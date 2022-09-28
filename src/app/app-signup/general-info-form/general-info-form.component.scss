@@ -1,0 +1,28 @@
+@import "../../../styles/themes/custom-palette.scss";
+@import "../../../styles/utils/variables";
+@import "../../../styles/shared/page-header.scss";
+@import "../../../styles/utils/spacing";
+
+
+.general-info-form-wrapper{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 40px;
+    .photo-uploader-container{
+        position: relative;
+        img{
+           
+        }
+        .uploader{
+            position: absolute;
+            bottom: 16px;
+            left: 100px;
+        }
+    }
+    .general-info-form{
+   
+        .form-field-pairs{
+            width: 100%;
+        }
+    }
+}

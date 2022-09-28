@@ -1,0 +1,65 @@
+.container {
+    .table-title-row {
+        .table-title {
+            font-family: $custom-font-family;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 40px;
+            color: $base-black-color;
+        }
+    }
+    
+    .table-header {
+        font-family: $custom-font-family !important;
+        font-style: normal !important;
+        font-weight: bold !important;
+        font-size: 12px !important;
+        line-height: 16px;
+        letter-spacing: 0.0125em;
+        //text-transform: uppercase !important;
+        color: map-get($mat-bs-accent, 500) !important;
+    }
+    .table-cell {
+        font-family: $custom-font-family;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        color: map-get($mat-bs-accent, 500) !important;
+    } 
+    
+}
+
+.text-center {
+    text-align: center;
+}
+
+::ng-deep {
+    //new code
+    .container {
+        .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+            min-height: 54px !important;
+        }
+        .ngx-datatable.material .datatable-body .datatable-row-left,
+        .ngx-datatable.material .datatable-body .datatable-row-center,
+        .ngx-datatable.material .datatable-body .datatable-row-right {
+            min-height: 54px !important;
+        }
+        .ngx-datatable.material .datatable-header .datatable-header-cell {
+            min-height: 48px !important;
+        }
+        .ngx-datatable.material .datatable-header {
+            min-height: 48px !important;
+        }
+        .data-table-shadow {
+            box-shadow: unset !important;
+        }
+
+        .page-count{
+            color: map-get($mat-bs-accent, 300);
+        }
+
+
+    }
+}

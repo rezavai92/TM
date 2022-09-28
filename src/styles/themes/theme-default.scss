@@ -1,0 +1,65 @@
+@import "~@angular/material/theming";
+
+@import'./custom-palette.scss';
+@import'./theme-bauleiter.scss';
+@import'./custom-palette-bauleiter.scss';
+
+
+ $primary: mat-palette($mat-bs-primary);
+ $accent: mat-palette($mat-bs-accent);
+
+// -----------------------------------------------------------------------------------------------------
+// @ Define the default theme
+// -----------------------------------------------------------------------------------------------------
+
+// Define the primary, accent and warn palettes
+$default-primary-palette: mat-palette($mat-bs-primary);
+$default-accent-palette: mat-palette($mat-bs-accent);
+$default-warn-palette: mat-palette($mat-bs-warn);
+// Create the Material theme object
+$theme: mat-light-theme($default-primary-palette, $default-accent-palette, $default-warn-palette);
+
+
+// Generate Fuse color classes for custom palettes
+$custom_palettes: (
+    mat-bs-primary: $mat-bs-primary,
+    mat-bs-accent: $mat-bs-accent,
+    mat-bs-warn: $mat-bs-warn,
+    mat-white: $mat-white);
+
+@include fuse-color-classes($custom_palettes);
+
+
+
+
+// Add ".theme-default" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-ecap {
+
+    // Create an Angular Material theme from the $theme map
+    @include angular-material-theme($theme);
+
+    // Apply the theme to the Fuse Core
+    @include fuse-core-theme($theme);
+
+    // Apply the theme to the user components
+    @include components-theme($theme);
+
+    // Generate Fuse color classes for primary, accent and warn colors
+    $palettes: (
+            primary: $default-primary-palette,
+            accent: $default-accent-palette,
+            warn: $default-warn-palette);
+
+    @include fuse-color-classes($palettes);
+}
+
+
+
+
+
+
+
+
+
+

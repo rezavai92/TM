@@ -1,0 +1,33 @@
+.region-button-wrapper {
+    background: $custom-white-color;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 4px;
+    height: 43px;
+
+    .region-button {
+        font-family:  $custom-font-family;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    ::ng-deep {
+       
+        .region-button-selected {
+            .mat-button-wrapper {
+                color:map-get($mat-bs-primary, 500)!important;
+            }
+        }
+
+        .region-button {
+            .mat-button:hover {
+                background-color: white !important;
+              }
+        }
+   
+    }
+
+}

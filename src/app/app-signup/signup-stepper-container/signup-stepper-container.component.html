@@ -1,0 +1,40 @@
+<div fxLayout="row" fxLayoutAlign="center center"  class="signup-page-container">
+    <div class="sign-up-box" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start center">
+        
+        <div fxFlex="100" class="page-header-1">
+            SIGNUP
+        </div>
+
+          <div  class="stepper-container" fxFlex="100">
+            <mat-stepper [linear]="true" #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                  <ng-template matStepLabel>General Information</ng-template>
+                   <app-general-info-form></app-general-info-form>
+                
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup" label="Professional Information">
+                  <form [formGroup]="secondFormGroup">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Address</mat-label>
+                      <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                             required>
+                    </mat-form-field>
+                    <div>
+                      <button mat-button color="accent" matStepperPrevious>Back</button>
+                      <button mat-button color="primary" matStepperNext>Next</button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step>
+                  <ng-template matStepLabel>Bank Information</ng-template>
+                  <p>You are now done.</p>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button >Reset</button>
+                  </div>
+                </mat-step>
+              </mat-stepper>
+          </div>
+          
+    </div>
+</div>

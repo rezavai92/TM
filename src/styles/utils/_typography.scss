@@ -1,0 +1,274 @@
+.header-1 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: 600!important;
+    font-size: 28px!important;
+    line-height: 40px!important;
+}
+
+.header-2 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: 600!important;
+    font-size: 20px!important;
+    line-height: 24px!important;
+}
+
+.header-3 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: 600!important;
+    font-size: 16px!important;
+    line-height: 20px!important;
+}
+
+.header-4 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: 600!important;
+    font-size: 14px!important;
+    line-height: 18px!important;
+}
+
+.body-1 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: normal;
+    font-size: 16px!important;
+    line-height: 20px!important;
+}
+
+.body-2 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: normal;
+    font-size: 14px!important;
+    line-height: 20px!important;
+}
+
+.caption-1 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: bold;
+    font-size: 14px!important;
+    line-height: 18px!important;
+}
+
+.caption-2 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: bold;
+    font-size: 12px!important;
+    line-height: 16px!important;
+}
+
+.caption-3 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: normal;
+    font-size: 12px!important;
+    line-height: 16px!important;
+}
+
+.caption-3-600 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: 600!important;
+    font-size: 12px!important;
+    line-height: 16px!important;
+}
+
+.caption-4 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: normal;
+    font-size: 10px!important;
+    line-height: 14px!important;
+}
+
+.subtitle-1 {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: normal;
+    font-size: 12px!important;
+    line-height: 16px!important;
+}
+
+.button-link {
+    font-family: $custom-font-family;
+    font-style: normal!important;
+    font-weight: 600!important;
+    font-size: 14px!important;
+    line-height: 16px!important;
+}
+
+.candidate-info-background-1{
+    background-color: #F5F5F5 !important;
+}
+
+.candidate-info-background-2{
+    background-color: #ffffff !important;
+}
+
+.candidate-info-background-3{
+    background-color: #ebebeb !important;
+}
+
+body [class^='mat-']:not(mat-icon), body [class*='mat-']:not(mat-icon)  {
+    font-family: $custom-font-family !important;
+}
+
+
+.data-table-shadow {
+    box-shadow: none!important;
+}
+
+.gray-color{
+    color: #939393 !important;
+}
+.mt-22{
+    margin-top: 22px !important;
+}
+.mt-30{
+    margin-top:30px !important;
+}
+.w-278{
+    width: 278px !important;
+}
+.tag-8{
+    background-color: #C5FAF6;
+    width: fit-content;
+    padding: 3px 8px 3px 8px;
+    font-family: Source Sans Pro;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.03em;
+    text-align: left;
+    color: #07864B;
+
+}
+.tag-3{
+    background-color: #9CF0C7;
+    width: fit-content;
+    padding: 3px 8px 3px 8px;
+    font-family: Source Sans Pro;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.03em;
+    text-align: left;
+    color: #006838;
+}
+.tag-4{
+    background-color: #F5C2BF;
+    width: fit-content;
+    padding: 3px 8px 3px 8px;
+    font-family: Source Sans Pro;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.03em;
+    text-align: left;
+    color: #006838;
+}
+.w-138{
+    width: 138px !important;
+}
+.written-tag{
+    width: 14px !important;
+    height: 14px !important;
+    background-color: #85B8ED !important;
+    border-radius: 4px !important;
+}
+.oral-tag{
+    width: 14px !important;
+    height: 14px !important;
+    background-color: #9CF0C7 !important;
+    border-radius: 4px !important;
+}
+.divider-05{
+    height: 24px !important;
+    width: 1px !important;
+    background-color: #E7E7EE !important;
+}
+
+.sticky-sidenav-header {
+    box-shadow: inset 0px 1px 0px #e7e7ee, inset 1px 0px 0px #e7e7ee !important;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff !important;
+    z-index: 9999 !important;
+}
+.sticky-sidenav{
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    //background-color: yellow !important;
+    z-index: 9999 !important;
+}
+
+.sticky-sidenav-save{
+    width: 282px !important;
+    background-color: #ffffff;
+    position: fixed !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    padding: 6px 0px 16px 0px !important;
+    margin-right: 16px;
+    z-index: 9999 !important;
+}
+.label-10{
+    font-size: 10px;
+    font-weight: 400;
+    position: relative;
+    top: 12px;
+    right: -10px;
+    z-index: 99;
+    background-color: white;
+    width: fit-content;
+}
+.label-10-gray{
+    font-size: 10px;
+    font-weight: 400;
+    position: relative;
+    top: 10px;
+    right: -10px;
+    z-index: 99;
+    background-color: #F5F5F5 !important;
+    width: fit-content;
+}
+.loader-background {
+    position: fixed;
+    background: rgba(0, 0, 0, .08);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999999 !important;
+    overflow: hidden;
+}
+.user-selection-label{
+    position: relative;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 10px;
+    color: #262626;
+    top: 6px;
+    left: 12px;
+    background-color: #F5F5F5;
+    width: fit-content;
+}
+// .divider-05{<snack-bar-container class="mat-snack-bar-container ng-tns-c54-67 ng-trigger ng-trigger-state snackbar-error ng-star-inserted" role="status" style="transform:scale(1);opacity:1;0:transform;1:opacity;opacity:1;transform:scale(1);webkit-opacity:1;webkit-transform:scale(1);"><!--bindings={
+//     "ng-reflect-portal": ""
+//   }--><simple-snack-bar class="mat-simple-snackbar ng-star-inserted"><span>Candidate Registration Details Update Successfully</span><!--bindings={
+//     "ng-reflect-ng-if": "false"
+//   }--></simple-snack-bar></snack-bar-container>

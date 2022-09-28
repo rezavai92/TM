@@ -1,0 +1,766 @@
+$text-color: '#808080';
+
+.cal-month-view .cal-day-badge {
+	display: none !important;
+}
+
+.event-wrapper {
+	.calendar-details {
+		float: left;
+	}
+
+	.calendar-icon {
+		float: left;
+	}
+
+	.status {
+		float: left;
+		display: flex;
+
+		span {
+			background: #b6bcbf;
+			padding: 5px 12px;
+			border-radius: 3px;
+		}
+	}
+}
+
+.cal-month-view .cal-day-cell.cal-today {
+	background-color: #feebef !important;
+}
+
+.cal-month-view .cal-open-day-events {
+	background: #DCDDE0 !important;
+    // padding: 5px 10px !important;
+    padding: 24px !important;
+	box-shadow: none !important;
+}
+::ng-deep{
+    mwl-calendar-open-day-events {
+        .mat-icon {
+            height: 16px !important;
+            width: 16px !important;
+        }
+    }
+}
+.cal-month-view .cal-cell-row .cal-cell:hover, .cal-month-view .cal-cell.cal-has-events.cal-open {
+    background-color: #E1EEFC !important;
+}
+
+.cal-open-day-events > div {
+	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.cal-week-view .cal-day-headers {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 0px !important;
+	border: 1px solid #e1e1e1;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+
+.cal-week-view {
+	.cal-events-row {
+		height: 45px !important;
+		border-left: 1px solid #e1e1e1;
+		border-right: 1px solid #e1e1e1;
+		border-bottom: 1px solid #e1e1e1;
+	}
+}
+
+.cal-event-action {
+	&:hover {
+		color: transparent !important;
+	}
+}
+
+.cal-week-view .cal-event-container {
+	padding: 7px;
+}
+
+.cal-day-view .cal-event-container {
+	width: calc(100% - 70px) !important;
+}
+
+.cal-event-container {
+	padding: 0px !important;
+
+	.cal-event {
+		flex-direction: row;
+		display: flex;
+
+		mwl-calendar-event-actions {
+			order: 2;
+			display: inline-block;
+		}
+	}
+}
+
+.cal-open-day-events {
+	background: #707070;
+	box-shadow: none !important;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+
+	> div {
+		padding: 0 16px;
+		min-height: 40px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start; // changes flex-start from start
+		background-color: white;
+		transition: box-shadow 300ms ease;
+		margin: 8px 0;
+
+		.cal-event {
+			top: 0 !important;
+			margin: 0;
+		}
+
+		mwl-calendar-event-title {
+			flex: 1;
+			display: flex;
+
+			.cal-event-title {
+				display: inline-block;
+				padding: 21px 24px;
+				line-height: 1;
+				text-decoration: none;
+				color: $text-color;
+				width: 100%;
+
+				.event-wrapper {
+					display: flex;
+					width: 100%;
+					align-items: center;
+					place-content: start space-evenly; //change start space-evenly; from start
+					position: relative;
+				}
+
+				i {
+					font-size: 24px !important;
+				}
+
+				&:hover {
+					text-decoration: none !important;
+				}
+			}
+
+			.calendar-details {
+				.event-name {
+					font-family: 'Roboto';
+					font-size: 16px;
+					color: $text-color;
+					margin-bottom: 4px !important;
+					float: left;
+					min-width: 480px;
+					max-width: 480px;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
+
+				.event-time {
+					font-family: 'Roboto';
+					font-size: 14px;
+					color: $text-color;
+					float: left;
+				}
+			}
+
+			.status {
+				position: absolute;
+				right: 116px;
+				bottom: 0px;
+				opacity: 1 !important;
+				span {
+					padding: 5px 12px !important;
+				}
+			}
+		}
+
+		mwl-calendar-event-actions {
+			.cal-event-actions {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+
+				.cal-event-action {
+					display: block;
+					line-height: 1;
+					padding: 8px;
+
+          .calendar-edit-icon{
+            &:hover {
+              color: map-get($mat-bs-accent, 500) !important;
+            }
+          }
+
+					i {
+						font-size: 24px;
+						transition: all 0.4s;
+
+						&:hover {
+							color: #ef273a;
+						}
+					}
+
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+mwl-calendar-week-view-event {
+	.cal-event {
+		color: $text-color !important;
+
+		mwl-calendar-event-title {
+			.cal-event-title {
+				.event-wrapper {
+					.calendar-icon {
+						display: none;
+					}
+
+					.calendar-details {
+						.event-name {
+							font-size: 16px !important;
+							width: 180px;
+							overflow: hidden;
+							white-space: nowrap;
+							text-overflow: ellipsis;
+							display: block;
+						}
+
+						.event-time {
+							display: none;
+						}
+					}
+
+					.status {
+						display: none !important;
+					}
+				}
+			}
+		}
+
+		mwl-calendar-event-actions {
+			display: none !important;
+		}
+	}
+}
+
+mwl-calendar-day-view-event {
+	.cal-event {
+		mwl-calendar-event-actions {
+			.cal-event-actions {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+
+				.cal-event-action {
+					display: block;
+					line-height: 1;
+					padding: 0px 8px;
+
+					i {
+						font-size: 16px;
+						transition: all 0.4s;
+
+						&:hover {
+							color: #ef273a;
+						}
+					}
+
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+		}
+
+		mwl-calendar-event-title {
+			flex: 1;
+			display: flex;
+			place-content: start center;
+			align-items: center;
+
+			.cal-event-title {
+				display: inline-block;
+				line-height: 1;
+				text-decoration: none;
+				color: $text-color;
+				width: 100%;
+
+				.event-wrapper {
+					display: flex;
+					width: 100%;
+					align-items: center;
+					place-content: start space-evenly; //change start space-evenly; from start
+					position: relative;
+				}
+
+				i {
+					font-size: 16px !important;
+				}
+
+				&:hover {
+					text-decoration: none !important;
+				}
+			}
+
+			.calendar-details {
+				.event-name {
+					font-family: 'Roboto';
+					font-weight: bold;
+					font-size: 14px;
+					color: $text-color;
+					margin-bottom: 0px !important;
+					float: left;
+					min-width: 480px;
+					max-width: 480px;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+				}
+
+				.event-time {
+					font-family: 'Roboto';
+					font-size: 12px;
+					color: $text-color;
+					float: left;
+				}
+			}
+
+			.status {
+				position: absolute;
+				right: 116px;
+
+				span {
+					padding: 5px 12px !important;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1440px) {
+	mwl-calendar-open-day-events {
+		.cal-open-day-events {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+								min-width: 150px !important;
+								max-width: 150px !important;
+							}
+
+							.event-time {
+								margin-left: 32px !important;
+							}
+						}
+
+						.status {
+							display: none !important;
+						}
+					}
+				}
+			}
+		}
+	}
+	mwl-calendar-day-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+								min-width: 150px !important;
+								max-width: 150px !important;
+							}
+
+							.event-time {
+								margin-left: 32px !important;
+							}
+						}
+
+						.status {
+							display: none !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.status {
+		opacity: 1 !important;
+	}
+	mwl-calendar-week-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								width: 120px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1920px) {
+	mwl-calendar-week-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								width: 120px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 1366px) and (max-width: 1440px) {
+	mwl-calendar-open-day-events {
+		.cal-open-day-events {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+								min-width: 100px !important;
+								max-width: 100px !important;
+							}
+
+							.event-time {
+								margin-left: 32px !important;
+							}
+						}
+
+						.status {
+							display: block !important;
+						}
+					}
+				}
+			}
+		}
+	}
+	mwl-calendar-day-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+								min-width: 100px !important;
+								max-width: 100px !important;
+							}
+
+							.event-time {
+								margin-left: 32px !important;
+							}
+						}
+
+						.status {
+							display: block !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	mwl-calendar-week-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								width: 120px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1366px) {
+	mwl-calendar-open-day-events {
+		.cal-open-day-events {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+								min-width: 100px !important;
+								max-width: 100px !important;
+							}
+
+							.event-time {
+								margin-left: 32px !important;
+							}
+						}
+
+						.status {
+							display: block !important;
+						}
+					}
+				}
+			}
+		}
+	}
+	mwl-calendar-day-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+								min-width: 100px !important;
+								max-width: 100px !important;
+							}
+
+							.event-time {
+								margin-left: 32px !important;
+							}
+						}
+
+						.status {
+							display: block !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	mwl-calendar-week-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								width: 75px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1280px) {
+	mwl-calendar-open-day-events {
+		.cal-open-day-events {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+								min-width: 150px !important;
+								max-width: 150px !important;
+							}
+
+							.event-time {
+								margin-left: 32px !important;
+							}
+						}
+
+						.status {
+							display: none !important;
+							opacity: 1 !important;
+						}
+					}
+				}
+			}
+		}
+	}
+	mwl-calendar-day-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+								min-width: 150px !important;
+								max-width: 150px !important;
+							}
+
+							.event-time {
+								margin-left: 32px !important;
+							}
+						}
+
+						.status {
+							display: none !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	mwl-calendar-week-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								width: 75px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Wide Mobile Layout: 480px. */
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+	mwl-calendar-open-day-events {
+		.cal-open-day-events {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					padding: 0px !important;
+
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								min-width: 120px;
+								max-width: 120px;
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+							}
+
+							.event-time {
+								display: none !important;
+							}
+						}
+
+						.calendar-icon {
+							display: none !important;
+						}
+
+						.status {
+							display: none;
+						}
+					}
+				}
+			}
+
+			mwl-calendar-event-actions {
+				.cal-event-actions {
+					.cal-event-action {
+						padding: 4px !important;
+
+						i {
+							font-size: 16px !important;
+						}
+					}
+				}
+			}
+		}
+	}
+	mwl-calendar-day-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					padding: 0px !important;
+
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								min-width: 120px;
+								max-width: 120px;
+								margin-left: 4px !important;
+								margin-bottom: 0px !important;
+							}
+
+							.event-time {
+								display: none !important;
+							}
+						}
+
+						.calendar-icon {
+							display: none !important;
+						}
+
+						.status {
+							display: none;
+						}
+					}
+				}
+			}
+
+			mwl-calendar-event-actions {
+				.cal-event-actions {
+					.cal-event-action {
+						padding: 4px !important;
+
+						i {
+							font-size: 16px !important;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	mwl-calendar-week-view-event {
+		.cal-event {
+			mwl-calendar-event-title {
+				.cal-event-title {
+					.event-wrapper {
+						.calendar-details {
+							.event-name {
+								width: 20px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

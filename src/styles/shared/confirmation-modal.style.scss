@@ -1,0 +1,43 @@
+::ng-deep {
+    .dialog-content-wrapper{
+        position: relative;
+    }
+}
+
+
+.text-align-center {
+    text-align: center;
+}
+
+
+.dialog-content-wrapper {
+    .close-icon {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        padding: 0;
+        cursor: pointer;
+    }
+
+
+    .header-title {
+        font-family: $custom-font-family;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: map-get($mat-bs-accent, 500);
+    }
+
+    .header-sub-title {
+        font-family: $custom-font-family;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: map-get($mat-bs-accent, 500);
+    }
+
+}

@@ -1,0 +1,34 @@
+::ng-deep {
+    // .mat-snack-bar-container {
+    //     background: map-get($mat-bs-system, green) !important;
+    //     border-radius: 4px !important;
+    //     min-height: 44px !important;
+    // }
+
+    .mat-snackbar-wrapper {
+        .mat-snackbar-success-text, .mat-snackbar-close-text {
+            font-family: $custom-font-family;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            color: #FFFFFF;
+        }
+
+        .mat-snackbar-success-text {
+            line-height: 20px !important;
+        }
+
+        .mat-snackbar-success-icon {
+            font-size: 15px;
+            line-height: 24px;
+        }
+
+        .mat-snackbar-close-text{
+            margin-left: 10px;
+            line-height: 16px;
+            cursor: pointer;
+        }
+    }
+
+}
+

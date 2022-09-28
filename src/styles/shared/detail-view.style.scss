@@ -1,0 +1,90 @@
+.background-color {
+    background: #ffffff;
+}
+
+.header-title {
+    font-family: $custom-font-family;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 40px;
+    color: map-get($mat-bs-accent, 500);
+}
+
+.card-header {
+    height: 50px;
+    background: #e4e4e4;
+
+    .card-header-text {
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 18px;
+        //text-transform: uppercase;
+        color: map-get($mat-bs-accent, 500);
+    }
+}
+.border-radius-4 {
+    border-radius: 4px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.form-label,
+.form-label-value {
+    font-size: 14px;
+    line-height: 20px;
+    color: map-get($mat-bs-accent, 500);
+}
+
+.user-name {
+    font-family: $custom-font-family;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: map-get($mat-bs-accent, 500);
+}
+
+.applied-on {
+    font-family: $custom-font-family;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: map-get($mat-bs-accent, 500);
+}
+
+.border-top-bottom-wrapper {
+    border-top: 1px solid #e6e8ec;
+    border-bottom: 1px solid #e6e8ec;
+}
+
+.border-top-bottom-wrapper .mat-icon,
+.description-icon {
+    font-size: 16px;
+    padding-top: 3px;
+}
+
+.document{
+    border: 1px solid #E6E8EC;
+}
+
+
+.description-title {
+    font-family: $custom-font-family;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: map-get($mat-bs-accent, 200);
+}
+
+.interest-areas{
+    display: block;
+}

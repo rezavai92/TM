@@ -1,0 +1,59 @@
+<div class="general-info-form-wrapper">
+    <div fxLayout="column" fxLayoutGap="16px" class="photo-uploader-container">
+        <div class="page-header-2">Profile Picture</div>
+        
+        <img  width="128" height="128" src="assets/images/user.png" alt="">
+        <app-photo-uploader class="uploader">
+                
+        </app-photo-uploader>
+    </div>
+
+    <form  class="general-info-form" [formGroup]="generalInfoForm">
+        <div fxLayout.xs="column" fxLayout="row" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start" class="form-field-pairs">
+            <mat-form-field  class="w-100-p">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First name" formControlName="FirstName" required>
+            </mat-form-field>
+         
+            <mat-form-field class="w-100-p">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last name" formControlName="LastName" required>
+            </mat-form-field>
+          
+        </div>
+    
+        <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start" class="form-field-pairs">
+            <mat-form-field class="w-100-p">
+                <mat-label>Gender</mat-label>
+                <input matInput placeholder="Gender" formControlName="Gender" required>
+            </mat-form-field>
+    
+            <mat-form-field  class="w-100-p">
+                <mat-label>Date Of Birth</mat-label>
+                <input matInput placeholder="Gender" formControlName="DateOfBirth" required>
+            </mat-form-field>
+    
+        </div>
+    
+        <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start" class="form-field-pairs">
+            <mat-form-field class="w-100-p">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="Email" required>
+            </mat-form-field>
+    
+            <mat-form-field  class="w-100-p">
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder="Phone Number" formControlName="PhoneNumber" required>
+            </mat-form-field>
+    
+        </div>
+      
+        <div>
+            <mat-form-field  class="w-100-p">
+                <mat-label>NID</mat-label>
+                <input matInput placeholder="NID" formControlName="NID" required>
+            </mat-form-field>
+        
+        </div>
+    </form>
+</div>

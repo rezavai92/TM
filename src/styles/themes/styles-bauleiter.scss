@@ -1,0 +1,432 @@
+
+@import "./custom-palette-bauleiter.scss";
+.theme-bauleiter {
+
+    .color-primary-50 { color:   map-get($mat-bauleiter-primary, 50) !important ; }
+    .color-primary-100 { color:   map-get($mat-bauleiter-primary, 100) !important ; }
+    .color-primary-200 { color:   map-get($mat-bauleiter-primary, 200) !important ; }
+    .color-primary-300 { color:   map-get($mat-bauleiter-primary, 300) !important ; }
+    .color-primary-400 { color:   map-get($mat-bauleiter-primary, 400) !important ; }
+    .color-primary-500 { color:   map-get($mat-bauleiter-primary, 500) !important ; }
+    .color-primary-600 { color:   map-get($mat-bauleiter-primary, 600) !important ; }
+    .color-primary-700 { color:   map-get($mat-bauleiter-primary, 700) !important ; }
+    .color-primary-800 { color:   map-get($mat-bauleiter-primary, 800) !important ; }
+    .color-primary-900 { color:   map-get($mat-bauleiter-primary, 900) !important ; }
+
+
+
+    .nav .nav-item .nav-link:hover {
+        background-color: mat-color($mat-bauleiter-primary, 50) !important;
+    }
+    
+    .nav .nav-item .nav-link.active {
+        background-color: mat-color($mat-bauleiter-primary, 500) !important;
+    }
+    
+    fuse-navbar-vertical .navbar-header {
+        background: #fff !important;
+    }
+    
+    .nav .nav-link-icon {
+        font-size: 18px !important;
+        color: mat-color($mat-bauleiter-accent, 500);
+    }
+    
+
+ 
+    /* Remove Chrome Input Field's Unwanted Yellow Background Color */
+
+    .mat-fab.mat-primary,
+    .mat-flat-button.mat-primary,
+    .mat-mini-fab.mat-primary,
+    .mat-raised-button.mat-primary ,  button.mat-primary {
+        background-color:   map-get($mat-bauleiter-primary, 500) !important ;
+        color: #000!important;
+    }
+    
+    .edit-delete-btn {
+        a {
+     
+            mat-icon {
+                color: mat-color($mat-bauleiter-primary, 500) !important;
+                font-size: 20px;
+                line-height: 22px;
+            }
+        }
+    }
+    
+  
+   
+    
+    .loginBackground {
+        width: 100%;
+        overflow: hidden;
+        //background: url("https://az-cdn.selise.biz/selisecdn/cdn/sko/top-bg/sko_login_bg.png") no-repeat;
+        background: url("../assets/images/login-bg.jpg") no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    
+ 
+   
+   
+    
+    .mat-tab-link.mat-tab-label-active.mat-tab-label-content {
+        color: mat-color($mat-bauleiter-primary, 500) !important;
+    }
+    
+    //.mat-tab-label{
+    //    color: rgba(0, 0, 0, 0.87);
+    //}
+    
+    .mat-tab-link:focus {
+        color: mat-color($mat-bauleiter-primary, 500) !important;
+    }
+    
+ 
+    
+    .mat-tab-label {
+        opacity: 1 !important;
+    }
+    
+    .mat-tab-link {
+        font-size: 16px !important;
+        color: mat-color($mat-bauleiter-accent, 500);
+        letter-spacing: 0.5px;
+        opacity: 1 !important;
+        font-family: "Source Sans Pro" !important;
+        height: 64px !important;
+    }
+    
+    .ngx-datatable .datatable-body .datatable-body-row {
+        outline: none;
+        //cursor: pointer;
+        font-family: "Source Sans Pro";
+        font-size: 16px;
+        color: mat-color($mat-bauleiter-primary, 500);
+        line-height: 21px;
+    }
+    
+  
+
+
+
+    
+
+    
+ 
+    
+    .radio-label {
+        color: mat-color($mat-bauleiter-accent, 500) !important;
+    }
+    
+
+    
+  
+    
+   
+    
+
+ 
+    .delete-header {
+        background: mat-color($mat-bauleiter-primary, 500) !important;
+    }
+    
+
+    
+
+    
+   
+    
+    // Customer detials scss
+    .accordion-title {
+        font-size: 18px;
+        color: mat-color($mat-bauleiter-accent, 500);
+        font-family: "Source Sans Pro" !important;
+    }
+    
+ 
+    
+    .add-contact-btn {
+        p,
+        mat-icon {
+            color: mat-color($mat-bauleiter-primary, 500) !important;
+        }
+    }
+    
+    .contact-details {
+        mat-icon {
+            color: mat-color($mat-bauleiter-primary, 500) !important;
+        }
+    }
+    
+    .income-source {
+        thead {
+            background: #e6e6e6 !important;
+        }
+    
+        mat-icon {
+            color: mat-color($mat-bauleiter-primary, 500) !important;
+        }
+    }
+    .add-expense {
+        p,
+        mat-icon {
+            color: mat-color($mat-bauleiter-primary, 500) !important;
+        }
+    }
+
+
+    .false-check {
+        color: mat-color($mat-bauleiter-primary, 500) !important;
+    }
+    
+    .ngx-datatable.material .datatable-body .progress-linear .container .bar {
+        background-color: mat-color($mat-bauleiter-primary, 500) !important;
+    }
+    
+    .ngx-datatable.material .datatable-body .progress-linear .container {
+        background-color: mat-color($mat-bauleiter-primary, 500) !important;
+    }
+    
+    // Customer detials scss end
+    .back-button {
+        a {
+            mat-icon {
+                color: mat-color($mat-bauleiter-primary, 500) !important;
+            }
+    
+            &:hover {
+                text-decoration: none !important;
+            }
+        }
+    }
+    
+    .add-note,
+    .add-icon,
+    .product-website {
+        mat-icon {
+            color: mat-color($mat-bauleiter-primary, 500) !important;
+        }
+    }
+    
+.hsap-grey-color {
+        color: mat-color($mat-bauleiter-accent, 500);
+    }
+    
+    
+    .bottom-sheet-panel {
+        margin-bottom: 20px;
+        background: mat-color($mat-bauleiter-primary, 500);
+        color: white;
+    }
+    
+    
+    .forgot-password {
+        color: mat-color($mat-bauleiter-accent, 500) !important;
+        // font-weight: 600 !important;
+    }
+    
+    #login {
+        .mat-checkbox-layout {
+            .mat-checkbox-label {
+                color: mat-color($mat-bauleiter-accent, 500) !important;
+            }
+        }
+    
+     
+
+        .description {
+            font-size: 18px;
+            font-weight: 600;
+            color: mat-color($mat-bauleiter-accent, 500);
+            text-align: center;
+        }
+    }
+    
+    app-platform-login-forgot-password {
+        .login-message {
+            font-size: 18px;
+            font-weight: 600;
+            color: mat-color($mat-bauleiter-accent, 500);
+            text-align: center;
+        }
+    
+        a {
+            font-size: 16px !important;
+            color: mat-color($mat-bauleiter-primary, 500) !important;
+            font-weight: 600 !important;
+        }
+    }
+    
+ 
+    .nav-primary-background {
+        background: map-get($mat-bauleiter-primary, A100);
+    }
+    
+    .nav-secondaryBackground {
+        background-color: map-get($mat-bauleiter-accent, 900);
+        z-index: 99;
+        height: 230px;
+    }
+    
+    .success-snackbar {
+        color: map-get($mat-bauleiter-primary ,500) !important;
+        background-color: #ffffff !important;
+        border-color: #c3e6cb !important;
+    
+        .mat-simple-snackbar-action {
+            color: map-get($mat-bauleiter-primary ,500) !important;
+        }
+    }
+    
+  
+    
+ 
+    
+    body.theme-bauleiter .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+        border-color: map-get($mat-bauleiter-primary, 500);
+    }
+    
+    body.theme-bauleiter .mat-radio-button.mat-accent .mat-radio-inner-circle,
+    body.theme-bauleiter .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+    body.theme-bauleiter .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+    body.theme-bauleiter .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+        background-color: map-get($mat-bauleiter-primary, 500);
+    }
+    
+   
+    
+    .secondary-button {
+        background: #f0f0f0;
+        color: map-get($mat-bauleiter-accent, 500);
+    }
+    
+    .primary-button {
+        background: map-get($mat-bauleiter-primary, 500);
+        color: #ffffff;
+    }
+
+
+    .mat-fab.mat-primary, 
+   .mat-flat-button.mat-primary,
+    .mat-mini-fab.mat-primary,
+   .mat-raised-button.mat-primary ,  button.mat-primary {
+    background-color:   map-get($mat-bauleiter-primary, 500) !important ; 
+    color: #000!important;
+}
+    
+
+
+  
+// $outline-color: mat-color($foreground, divider, if($is-dark-theme, 0.3, 0.12));
+// $outline-color-hover: mat-color($foreground, divider, if($is-dark-theme, 1, 0.87));
+// $outline-color-primary: mat-color($primary);
+// $outline-color-accent: mat-color($accent);
+// $outline-color-warn: mat-color($warn);
+// $outline-color-disabled: mat-color($foreground, divider, if($is-dark-theme, 0.15, 0.0
+
+ .mat-tab-label-active > .mat-tab-label-content {
+    stroke: #000!important;
+    color: #000!important;
+  }
+
+
+// Theme spinner color change 
+
+.mat-progress-spinner circle, body.theme-bauleiter .mat-spinner circle {
+    color: #000!important;
+}
+
+
+.mat-progress-spinner, .mat-spinner {
+    circle {
+      stroke: #000!important;
+    }
+
+    &.mat-accent circle {
+      stroke: #000!important;
+    }
+
+    &.mat-warn circle {
+      stroke: #000!important;
+    }
+  }
+
+
+
+// Theme form field   color change 
+
+  .mat-form-field-appearance-outline {
+    &.mat-focused {
+      .mat-form-field-outline-thick {
+        color:  #000!important;
+      }
+      .mat-form-field-label {
+        color:  #000!important;
+      }
+    //   &.mat-accent .mat-form-field-outline-thick {
+    //     color:  #000!important;
+    //   }
+
+    //   &.mat-warn .mat-form-field-outline-thick {
+    //     color:  #000!important;
+    //   }
+    }
+  }
+
+  app-platform-google-place-autocomplete {
+    .mat-form-field-appearance-outline {
+        &.mat-focused {
+          .mat-form-field-outline-thick {
+            color:  #000!important;
+          }
+          .mat-form-field-label {
+            color:  #000!important;
+          }
+
+        }
+    }
+  }
+
+
+  // Disabaled buttton color 
+.mat-fab.mat-accent[disabled], 
+.mat-fab.mat-primary[disabled],
+.mat-fab.mat-warn[disabled],
+.mat-fab[disabled][disabled],
+.mat-flat-button.mat-accent[disabled],
+.mat-flat-button.mat-primary[disabled], 
+.mat-flat-button.mat-warn[disabled],
+.mat-flat-button[disabled],
+.mat-mini-fab.mat-accent[disabled], 
+.mat-mini-fab.mat-primary[disabled], 
+.mat-mini-fab.mat-warn[disabled],
+.mat-mini-fab[disabled][disabled], 
+.mat-raised-button.mat-accent[disabled],
+.mat-raised-button.mat-primary[disabled], 
+.mat-raised-button.mat-warn[disabled],
+.mat-raised-button[disabled],
+.mat-button[disabled] {
+    cursor: not-allowed;
+    background-color: rgba(0, 0, 0, 0.12) !important;
+    color: rgba(0,0,0,.26)!important;
+}
+
+
+   
+
+ 
+    app-platform-google-place-finder {
+        .modal-footer 
+         .legacy-bold.save-btn {
+            background-color: mat-color($mat-bauleiter-primary, 500) !important;
+            color: #000!important;
+        }
+        button {
+            cursor: pointer!important;
+        }
+    }
+
+
+}

@@ -1,0 +1,25 @@
+@import "../../../styles/themes/custom-palette.scss";
+@import "../../../styles/utils/variables";
+@import "../../../styles/shared/page-header.scss";
+@import "../../../styles/utils/spacing";
+
+.signup-page-container{
+    width: 100%;
+    height: 100%;
+    background-color: map-get($mat-bs-primary, 700) !important;
+    .sign-up-box{
+        padding: 16px 0px;
+        border-radius: 4px;
+        width: 90%;
+        height: fit-content;
+        margin: 10% 5% 10% 5%;
+        background-color:  $custom-white-color;
+        font-family:  $custom-font-family;
+        color : $dark-primary-text;
+
+        .stepper-container{
+            width: 100%;
+        }
+        
+    }
+}

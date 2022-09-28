@@ -1,0 +1,105 @@
+.filter-wrapper {
+    position: absolute;
+    background: $custom-white-color;
+    z-index: 1;
+    border: 1px solid map-get($mat-bs-system, border);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    top: 48px;
+    right: 0;
+
+
+    .filter-body {
+        max-height: 400px;
+        overflow-y: scroll;
+
+        .filter-sub-header {
+            font-family: $custom-font-family;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 12px;
+            line-height: 18px;
+            letter-spacing: 0.015em;
+            text-transform: uppercase;
+            color: map-get($mat-bs-accent, 500);
+            margin-bottom: 12px;
+            margin-top: 21px;
+        }
+
+        .filter-text {
+            font-family:  $custom-font-family;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 20px;
+            color:  map-get($mat-bs-accent, 500);
+            margin-bottom: 12px;
+        }
+    }
+
+    .filter-header-wrapper {
+        border-bottom: 1px solid map-get($mat-bs-system, border);
+
+        .filter-title {
+            font-family: $custom-font-family;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18px;
+            //text-transform: capitalize;
+            color: $base-black-color;
+        }
+
+        .filter-rectangle {
+            background: map-get($mat-bs-system, border);
+            width: 1px;
+            height: 30px;
+        }
+
+        .filter-cancel-button {
+            background: map-get($mat-bs-accent, 50);
+
+            .mat-button-wrapper {
+                color: map-get($mat-bs-accent, 500);
+            }
+        }
+
+        .filter-cancel-button,
+        .filter-apply-button {
+            line-height: 30px !important;
+        }
+
+        .clear-disabled,
+        .clear-enabled {
+            font-family: $custom-font-family;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16px;
+            letter-spacing: 0.005em;
+            //text-transform: capitalize;
+            cursor: pointer;
+            //width: 52px;
+        }
+
+        .clear-disabled {
+            color: map-get($mat-bs-accent, 100);
+        }
+
+        .clear-enabled {
+            color: map-get($mat-bs-primary, 500);
+
+        }
+
+    }
+
+    ::ng-deep {
+        .filter-cancel-button, .filter-apply-button {
+             .mat-button-wrapper {
+                 font-size: 14px;
+             }
+         }
+     }
+
+}

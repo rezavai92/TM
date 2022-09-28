@@ -1,0 +1,55 @@
+
+@import'./custom-palette-bauleiter.scss';
+
+
+
+
+// -----------------------------------------------------------------------------------------------------
+// @ Define the   bauleiter THEME
+// -----------------------------------------------------------------------------------------------------
+
+   
+
+// Define the primary, accent and warn palettes
+$default-primary-palette-bauleiter: mat-palette($mat-bauleiter-primary);
+$default-accent-palette-bauleiter: mat-palette($mat-bauleiter-accent);
+$default-warn-palette-bauleiter: mat-palette($mat-bauleiter-warn);
+// Create the Material theme object
+$theme-bauleiter: mat-light-theme($default-primary-palette-bauleiter, $default-accent-palette-bauleiter, $default-warn-palette-bauleiter);
+
+
+// Generate Fuse color classes for custom palettes
+$custom_palettes-bauleiter: (
+    mat-bs-primary: $mat-bauleiter-primary,
+    mat-bs-accent: $mat-bauleiter-accent,
+    mat-bs-warn: $mat-bauleiter-primary,
+    mat-white: $mat-white);
+
+@include fuse-color-classes($custom_palettes-bauleiter);
+
+
+
+
+// Add ".theme-default" class to the body to activate this theme.
+// Class name must start with "theme-" !!!
+body.theme-bauleiter {
+
+    
+    
+    
+    // Create an Angular Material theme from the $theme map
+    @include angular-material-theme($theme-bauleiter);
+
+    // Apply the theme to the Fuse Core
+    @include fuse-core-theme($theme-bauleiter);
+
+    // Apply the theme to the user components
+    @include components-theme($theme-bauleiter);
+
+    // Generate Fuse color classes for primary, accent and warn colors
+   $palettes-bauleiter: (primary: $default-primary-palette-bauleiter,
+            accent: $default-accent-palette-bauleiter,
+            warn: $default-warn-palette-bauleiter);
+
+    @include fuse-color-classes($palettes-bauleiter);
+}
