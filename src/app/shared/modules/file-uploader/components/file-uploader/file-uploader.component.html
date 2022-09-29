@@ -1,1 +1,44 @@
-<p>file-uploader works!</p>
+<div class="base-file-uploader">
+
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px" class="file-input-box">
+        <div class="page-header-4" *ngIf="dataContext?.title">
+            {{dataContext.title}}
+        </div>
+        <div *ngIf="dataContext && !dataContext.title">
+            Upload
+        </div>
+        <div *ngIf="dataContext?.description">
+            {{dataContext.description}}
+        </div>
+
+        <div *ngIf="!uploadedFile">
+            <input style="display: none;"  #fileUploadInput type="file" (change)="onFileChange($event)">
+       
+            <button mat-button [disabled]="fileDeleting || fileUploading" (click)="fileUploadInput.click()">
+                <mat-icon>file_upload</mat-icon>
+                <span>Upload file</span>
+            </button>
+
+            <div *ngIf="uploadErrorMessage" class="error-message">
+                {{uploadErrorMessage}}
+            </div>
+        </div>
+
+        <div>
+            <div  fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="space-between center" *ngIf="uploadedFile" class="fake-uploader-box">
+                <div>
+                 {{uploadedFile.name}}
+                </div>
+                <div>
+                     <button mat-icon-button (click)="deleteFile()" [disabled]="fileDeleting || fileUploading" ><mat-icon>delete</mat-icon></button>
+                </div>
+             </div>
+            <div *ngIf="deleteErrorMessage" class="error-message">
+                {{uploadErrorMessage}}
+            </div>
+        </div>
+       
+      
+    </div>
+
+</div>

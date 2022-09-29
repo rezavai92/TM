@@ -1,0 +1,25 @@
+@import "../../../../../../styles/themes/custom-palette.scss";
+@import "../../../../../../styles/shared/page-header.scss";
+
+.base-file-uploader{
+  height: 100%;
+  .file-input-box{
+    height: 100%;
+    padding : 16px 24px;
+    border: map-get($mat-solid-border-accent, 'b2' );
+    border-radius: 8px;
+
+    .fake-uploader-box{
+      padding: 6px 12px;
+      box-sizing: border-box;
+      border: map-get($mat-solid-border-accent, 'b2' );
+      border-radius: 8px;
+  
+    }
+    .error-message{
+      color : map-get($mat-bs-error, "main" ) !important;
+    }
+  //  box-shadow: inset 0 0 0 12px rgb(0 0 0 / 37%);
+}
+  
+}

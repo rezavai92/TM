@@ -7,7 +7,11 @@
 .general-info-form-wrapper{
     width: 100%;
     box-sizing: border-box;
-    padding: 10px 40px;
+    //padding: 10px 40px;
+    background-color: white !important;
+    .form-field{
+        background-color: white;
+    }
     .photo-uploader-container{
         position: relative;
         img{

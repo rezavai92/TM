@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from '../material/material.module';
 
 
 
@@ -9,7 +11,12 @@ import { FileUploaderComponent } from './components/file-uploader/file-uploader.
     FileUploaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FlexLayoutModule,
+    MaterialModule
+  ],
+  exports:[
+    FileUploaderComponent
   ]
 })
 export class FileUploaderModule { }

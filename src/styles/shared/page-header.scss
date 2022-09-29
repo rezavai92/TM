@@ -9,7 +9,21 @@
 
 .page-header-2{
     font-family: $custom-font-family;
-    font-size: 18px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.page-header-3{
+    font-family: $custom-font-family;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.page-header-4{
+    font-family: $custom-font-family;
+    font-size: 16px;
     font-weight: 600;
     line-height: normal;
 }

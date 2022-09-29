@@ -76,6 +76,16 @@ $mat-bs-primary: (
   )
 );
 
+$mat-solid-border-accent:(
+  b1 : 1px solid #f0f0f0,
+  b2 : 2px solid #f0f0f0,
+  b3 : 3px solid #f0f0f0,
+  b4 : 4px solid #f0f0f0,
+  b5 : 5px solid #f0f0f0,
+  b6 : 6px solid #f0f0f0,
+
+);
+
 $mat-bs-accent: (
     50: #e8eaf6,
     100: #c5cae9,
@@ -136,6 +146,19 @@ $mat-bs-warn: (
         A400: $light-secondary-text,
         A700:$light-secondary-text,
     ),
+);
+
+$mat-bs-error: (
+   light : #ef5350,
+   main : #d32f2f,
+   dark: #c62828
+);
+
+
+$mat-bs-success: (
+   light : #4caf50,
+   main : #2e7d32,
+   dark: #1b5e20
 );
 
 
