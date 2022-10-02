@@ -12,7 +12,8 @@ export class FileUploaderComponent implements OnInit {
 	@Input("config") config!: IFileUploadConfig;
 	@Output() onSuccessfulFileUpload = new EventEmitter();
   	@Output() actionInProgressEmitter  = new EventEmitter();
-	
+	@Output() controlTouched  = new EventEmitter<boolean>();
+	@Output() onFileDelete = new EventEmitter();
 
 	selectedFile!: File | null;
 	uploadedFile!: File | null;
@@ -20,6 +21,7 @@ export class FileUploaderComponent implements OnInit {
 	fileDeleting  = false;
 	uploadErrorMessage="";
 	deleteErrorMessage ="";
+	errorMessages! : string[];
 	constructor() { }
 
 	ngOnInit(): void {
@@ -28,6 +30,7 @@ export class FileUploaderComponent implements OnInit {
 	clearAllErrorMessage(){
 		this.clearUploadErrorMessage();
 		this.clearDeleteErrorMessage();
+		this.errorMessages=[];
 	}
 
 	clearUploadErrorMessage(){
@@ -39,30 +42,53 @@ export class FileUploaderComponent implements OnInit {
 	}
 
 	onFileChange(event: Event) {
-	
 		const fileInfo = (event.target as HTMLInputElement);
 		const file: (File | null) = fileInfo && fileInfo.files && fileInfo.files.length ? fileInfo.files[0] : null;
+		console.log("file ",file)
 		if (file) {
+			this.selectedFile = file;
 			this.clearAllErrorMessage();
-			const candidateFileSize = Math.ceil(file.size / 1024);
-			if (!this.isFileSizeOverflown(candidateFileSize)) {
-				this.selectedFile = file;
+			if(this.isSelectedFileValid()){
 				this.uploadFile();
-				this.uploadErrorMessage="";
 			}
-			else{
-				this.uploadErrorMessage= `file size exceeds maximum limit. Maximum allowed file size is ${this.config.maxSize} MB`;
-				//console.log("file size overflows");
-			}
-			
+		
 		}
 		else {
 			console.log("file is not selected properly");
 		}
+		
+	}
+
+	isSelectedFileValid(){
+		const candidateFile = this.selectedFile as File;
+		const candidateFileSize = Math.ceil( (candidateFile.size / 1024));
+		const candidateFileType = candidateFile.type.split("/")[1];
+		const sizeOverflow = this.isFileSizeOverflown(candidateFileSize);
+		const fileFormatSupported = this.config && this.config.fileTypes ? this.config.fileTypes.includes(candidateFileType) : true;
+
+		if( !sizeOverflow  && fileFormatSupported  ){
+			return true;
+		}
+		else{
+
+			if(sizeOverflow){
+				this.errorMessages.push( `file size exceeds maximum limit. Maximum allowed file size is ${this.config.maxSize} MB`);
+			}
+			if(!fileFormatSupported){
+				this.errorMessages.push("file format not supported");
+			}
+			
+		}
+
+		return false;
+	}
+
+
+	emitControlTouch(){
+		this.controlTouched.emit(true);
 	}
 
 	uploadFile() {
-
 		 this.fileUploading = true;
 		 this.actionInProgressEmitter.emit(this.fileUploading);
 		setTimeout(()=>{
@@ -83,6 +109,7 @@ export class FileUploaderComponent implements OnInit {
 			this.uploadedFile = this.selectedFile;
 			this.fileDeleting = false;
 			this.actionInProgressEmitter.emit(this.fileDeleting);
+			this.onFileDelete.emit(true);
 		},3000)
 	
 	}

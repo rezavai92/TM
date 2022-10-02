@@ -11,18 +11,23 @@ import {HttpClient, HttpClientModule} from '@angular/common/http'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { MainComponent } from './main/main.component';
+import { FormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http,"./assets/i18n/common/",".json");
 }
 @NgModule({
   declarations: [
-    RootDefaultComponent
+    RootDefaultComponent,
+    MainComponent,
+  
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(routes),
     NoopAnimationsModule,
     MaterialModule,

@@ -6,6 +6,7 @@ export interface IFileUploadDataContext{
     documentUrl? : string,
     isRequired? : boolean,
     isDisabled? : boolean,
+    showBorderBox? : boolean,
 
 }
 
@@ -13,14 +14,11 @@ export interface IFileUploadDataContext{
 export interface IFileUploadConfig{
     maxSize: number; // (in MB)
     maxFiles?: number;
-    fileTypes?: string;
+    fileTypes?: string[];
     filesRead?: number;
-    uploadOnConfirm?: EventEmitter<any>;
     inputId?: string;
     IsErrorMsgShowOnBox?: boolean;
     errorCallback?: Function;
-    removeFileEvent?: EventEmitter<any>;
-    clearFileUploadQueue?: EventEmitter<any>;
     accessModifier? : any
 
 }

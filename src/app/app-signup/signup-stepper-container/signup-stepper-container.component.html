@@ -1,14 +1,15 @@
 <div fxLayout="row" fxLayoutAlign="center center"  class="signup-page-container">
-    <div class="sign-up-box" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="center center">
+    <div class="sign-up-box" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start center">
         
-        <div fxFlex="100" class="page-header-1">
+        <div  class="page-header-1">
             SIGNUP
         </div>
 
-          <div  class="stepper-container" fxFlex="100">
+          <!-- <div ngClass.gt-md="pr-100 pl-100" class="stepper-container" > -->
+           <div class="stepper-container" >
             <mat-stepper [linear]="true" #stepper >
-                <mat-step [stepControl]="generalInfoFormGroup" [completed]="true">
-                  <ng-template matStepLabel>General Information</ng-template>
+                <mat-step [stepControl]="generalInfoFormGroup" >
+                  <ng-template matStepLabel>General Information </ng-template>
                    <app-general-info-form #generalInfoForm></app-general-info-form>
                    <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap = "8px">
                       <button mat-button color="accent" matStepperPrevious>Back</button>
@@ -16,8 +17,8 @@
                   </div>
                 
                 </mat-step>
-                <mat-step [stepControl]="secondFormGroup" label="Professional Information">
-                  <form [formGroup]="secondFormGroup">
+                <mat-step [stepControl]="secondFormGroup" label="Professional Information      ">
+                  <form style="height:100%" [formGroup]="secondFormGroup">
                     <mat-form-field appearance="fill">
                       <mat-label>Address</mat-label>
                       <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
@@ -25,12 +26,12 @@
                     </mat-form-field>
 
                   </form>
-                
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
                 </mat-step>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                
                 <mat-step>
-                  <ng-template matStepLabel>Bank Information</ng-template>
+                  <ng-template matStepLabel>Bank Information;</ng-template>
                   <p>You are now done.</p>
                   <div>
                     <button mat-button matStepperPrevious>Back</button>

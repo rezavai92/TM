@@ -1,0 +1,53 @@
+<div class="main-container">
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Shifa Telemedicine</span>
+    
+        <div class="w-100-p" fxLayout.gt-xs="row" fxLayoutAlign="end" fxLayoutGap="32px">
+            <div class="pr-20">
+                <mat-select [(value)]="selectedLanguage" >
+                    <mat-option  aria-selected="true" value="En">English</mat-option>
+                    <mat-option aria-selected="true" value="Be">Bangla</mat-option>
+                   </mat-select>
+            </div>
+              
+        </div>
+       
+        <!-- <div class="w-100-p" fxLayout.gt-xs="row" fxLayoutAlign="end" fxLayoutGap="32px">
+            <mat-button-toggle-group [(ngModel)]="selectedLanguage" appearance="legacy" >
+                <mat-button-toggle value="En">English</mat-button-toggle>
+                <mat-button-toggle value="Be">Bangla</mat-button-toggle>
+            </mat-button-toggle-group>
+              
+        </div> -->
+       
+    </mat-toolbar>
+    
+    <mat-drawer-container  fxFlexFill >
+        <mat-drawer  #drawer class="side-nav"   [mode]="drawerMode" [opened]="isDrawerOpened">
+            <mat-list role="list">
+    
+               <mat-list-item>Hello</mat-list-item>
+               <mat-list-item>Hello Hello</mat-list-item>
+               <mat-list-item>Hello Hello Hello Hello</mat-list-item>
+               <!-- <ng-container *ngFor ="let option of sideNavMenu" >
+                <mat-list-item role="listitem" routerLink={{option.path}} [routerLinkActive]="['is-active']"  >
+                    <span class="material-icons">{{option.icon}}</span>
+                    <span>&nbsp; &nbsp;</span>
+                    <span fxHide.lt-sm > {{option.name}}</span>
+                 
+                </mat-list-item>
+               
+               </ng-container> -->
+              </mat-list>
+              
+    
+        </mat-drawer>
+        <mat-drawer-content  >
+          <ng-content></ng-content>
+        </mat-drawer-content>
+      </mat-drawer-container>
+    
+</div>

@@ -1,4 +1,4 @@
-<div class="general-info-form-wrapper" ngClass.lt-md="pt-5 pb-5 pl-15 pr-15" ngClass.gt-sm="pt-10 pb-10 pl-40 pr-40" >
+<div   class="general-info-form-wrapper" ngClass.lt-md="pt-5 pb-5 pl-15 pr-15" ngClass.gt-sm="pt-10 pb-10 pl-40 pr-40" >
     <div fxLayout="column" fxLayoutGap="16px" class="photo-uploader-container">
         <div class="page-header-2">Profile Picture</div>
         
@@ -13,11 +13,17 @@
             <mat-form-field appearance="outline"  class="w-100-p form-field">
                 <mat-label>First Name</mat-label>
                 <input matInput placeholder="First name" formControlName="FirstName" required>
+                <mat-error *ngIf="FormControls['FirstName'].hasError('required')">
+                    <span>This field is required</span>
+                </mat-error>
             </mat-form-field>
          
             <mat-form-field appearance="outline" class="w-100-p">
                 <mat-label>Last Name</mat-label>
                 <input matInput placeholder="Last name" formControlName="LastName" required>
+                <mat-error *ngIf="FormControls['LastName'].hasError('required')">
+                    <span>This field is required</span>
+                </mat-error>
             </mat-form-field>
           
         </div>
@@ -25,25 +31,43 @@
         <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start" class="form-field-pairs">
             <mat-form-field appearance="outline" class="w-100-p">
                 <mat-label>Gender</mat-label>
-                <input matInput placeholder="Gender" formControlName="Gender" required>
+                <mat-select formControlName="Gender">
+                    <mat-option *ngFor="let gender of genders" [value]="gender.Value">{{gender.Key}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="FormControls['Gender'].hasError('required')">
+                    <span>This field is required</span>
+                </mat-error>
             </mat-form-field>
     
-            <mat-form-field appearance="outline"  class="w-100-p">
-                <mat-label>Date Of Birth</mat-label>
-                <input matInput placeholder="Gender" formControlName="DateOfBirth" required>
-            </mat-form-field>
+            <mat-form-field class="w-100-p"  appearance="outline">
+                <mat-label>Choose a date</mat-label>
+                <input matInput formControlName="DateOfBirth" [matDatepicker]="birthDayPicker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="birthDayPicker"></mat-datepicker-toggle>
+                <mat-datepicker #birthDayPicker></mat-datepicker>
+                <mat-error *ngIf="FormControls['DateOfBirth'].hasError('required')">
+                    <span>This field is required</span>
+                </mat-error>
+              </mat-form-field>
+              
     
         </div>
     
         <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start" class="form-field-pairs">
             <mat-form-field appearance="outline" class="w-100-p">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Email" formControlName="Email" required>
+                <input matInput type="email" placeholder="Email" formControlName="Email" required>
+                <mat-error *ngIf="FormControls['Email'].hasError('required')">
+                    <span>This field is required</span>
+                </mat-error>
             </mat-form-field>
     
             <mat-form-field appearance="outline"  class="w-100-p">
                 <mat-label>Phone Number</mat-label>
-                <input matInput placeholder="Phone Number" formControlName="PhoneNumber" required>
+                <input matInput  placeholder="Phone Number" formControlName="PhoneNumber" required>
+                <mat-error *ngIf="FormControls['PhoneNumber'].hasError('required')">
+                    <span>This field is required</span>
+                </mat-error>
             </mat-form-field>
     
         </div>
@@ -52,24 +76,51 @@
             <mat-form-field appearance="outline"  class="w-100-p">
                 <mat-label>NID</mat-label>
                 <input matInput placeholder="NID" formControlName="NID" required>
+                <mat-error *ngIf="FormControls['NID'].hasError('required')">
+                    <span>This field is required</span>
+                </mat-error>
             </mat-form-field>
         
         </div>
 
-        <div style="display: none;">
+        <div >
             <mat-form-field appearance="outline"  class="w-100-p">
-                <input matInput  formControlName="FakeNidFrontPartControl" required>
+                <input style="display: none;" matInput  formControlName="FakeNidFrontPartControl" required>
+                <mat-error *ngIf="FormControls['FakeNidFrontPartControl'].hasError('required')">
+                    <span>This field is required</span>
+                </mat-error>
+                <div class="w-100-p" >
+                    <app-file-uploader    class="w-100-p"  
+                      
+                        (onSuccessfulFileUpload)="onNidFrontPartUpload($event)" 
+                        (onFileDelete)="onNidFrontPartDelete($event)"
+                        [config]="NidFrontPartUploadConfig" 
+                        [dataContext]="NidFrontPartUploadDataContext">
+                    </app-file-uploader>
+                </div>
             </mat-form-field>
+
             <mat-form-field appearance="outline"  class="w-100-p">
-                <input matInput  formControlName="FakeNidBackPartControl" required>
+                <input style="display: none;" matInput  formControlName="FakeNidBackPartControl" required>
+                <mat-error *ngIf="FormControls['FakeNidBackPartControl'].hasError('required')">
+                    <span>This field is required</span>
+                </mat-error>
+                <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start"  fxLayoutGap="16px" *ngIf="NidFrontPartUploadDataContext && NidBackPartUploadDataContext">
+        
+                    <div class="w-100-p" >
+                         <app-file-uploader  
+                            (onSuccessfulFileUpload)="onNidBackPartUpload($event)"
+                            (onFileDelete)="onNidBackPartDelete($event)"
+                            [config]="NidBackPartUploadConfig" 
+                            [dataContext]="NidBackPartUploadDataContext">
+                        </app-file-uploader>
+                     </div>
+                 </div>
             </mat-form-field>
         
         </div>
 
     </form>
 
-    <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start"  fxLayoutGap="16px" *ngIf="NidFrontPartUploadDataContext && NidBackPartUploadDataContext">
-        <app-file-uploader fxFlex="100"   class="w-100-p" (onSuccessfulFileUpload)="onNidFrontPartUpload($event)" [config]="NidFrontPartUploadConfig" [dataContext]="NidFrontPartUploadDataContext"></app-file-uploader>
-        <app-file-uploader fxFlex="100" class="w-100-p" (onSuccessfulFileUpload)="onNidBackPartUpload($event)" [config]="NidBackPartUploadConfig" [dataContext]="NidBackPartUploadDataContext"></app-file-uploader>
-    </div>
+   
 </div>
