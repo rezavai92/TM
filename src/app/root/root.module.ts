@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { RootDefaultComponent } from './root-default/root-default.component';
 import { routes } from './routes';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../shared/modules/material/material.module';
 import { CommonModule } from '@angular/common';
 import {HttpClient, HttpClientModule} from '@angular/common/http'
@@ -25,11 +25,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    NoopAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
     MaterialModule,

@@ -7,21 +7,10 @@
 .main-container{
     height: 100%;
     width: 100%;
-}
-.side-nav{
-  
-    min-width: 200px;
- 
-}
-
-.mat-button-toggle-group{
-    background-color:map-get($mat-bs-accent, 50) !important ;
-    border-radius: 16px;
-    padding: 0px;
-}
-
-.mat-button-toggle-checked{
-    background-color:map-get($mat-bs-primary, 200) !important ;
+    .side-nav{
+        min-width: 200px;
+    }
+    
 }
 
 :host{
@@ -33,5 +22,4 @@
         background-color: map-get($mat-bs-accent, 50) !important;
     }
    
-
 }

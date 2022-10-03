@@ -6,6 +6,7 @@ import { MaterialModule } from '../shared/modules/material/material.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -18,6 +19,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     CommonModule,
     HttpClientModule,
+    FlexLayoutModule,
     MaterialModule,
     RouterModule.forChild(routes),
     TranslateModule.forChild({

@@ -1,0 +1,34 @@
+@import "../../../styles/themes/custom-palette.scss";
+@import "../../../styles/utils/variables";
+@import "../../../styles/shared/page-header.scss";
+@import "../../../styles/utils/spacing";
+
+.login-container{
+    box-sizing: border-box;
+
+    .banner-container{
+        position: relative;
+        box-sizing: border-box;
+        background-color: white;
+        text-align: center;
+        .title-container{
+            text-align: center;
+            position: absolute;
+            top: 49%;
+            width: 100%;
+            opacity: 0.7;
+            z-index: 2;
+            color : white;
+        }
+    }
+   
+    .login-box{
+        box-sizing: border-box;
+        padding: 32px 16px;
+        border-radius: 4px;
+        max-width: 100%;
+        background-color:  $custom-white-color;
+        font-family:  $custom-font-family;
+        color : $dark-primary-text;
+    }
+}

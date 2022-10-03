@@ -11,8 +11,8 @@ import { GeneralInfoFormComponent } from '../general-info-form/general-info-form
 export class SignupStepperContainerComponent implements OnInit,AfterViewInit {
 
   @ViewChild("generalInfoForm") generalInfoFormComponent!: GeneralInfoFormComponent;
-
-  generalInfoFormGroup! : FormGroup;
+  formGroupsLoaded = false;
+  generalInfoFormGroup : FormGroup = new FormGroup({});
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
@@ -27,6 +27,7 @@ export class SignupStepperContainerComponent implements OnInit,AfterViewInit {
   ngAfterViewInit(): void {
     
     this.loadAllStepControls();
+    this.formGroupsLoaded = true;
     console.log("general info form group ",this.generalInfoFormGroup);
   }
 

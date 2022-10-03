@@ -101,7 +101,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
     MatTooltipModule,
     MatAutocompleteModule,
     MatStepperModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
   ],
   providers: [ 
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

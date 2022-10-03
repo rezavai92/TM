@@ -1,6 +1,6 @@
 <div class="main-container">
-    <mat-toolbar color="primary">
-        <button mat-icon-button (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+    <mat-toolbar *ngIf="!hideToolBar" color="primary">
+        <button *ngIf="!hideSideNavigation" mat-icon-button (click)="toggleDrawer()" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
         </button>
         <span>Shifa Telemedicine</span>
@@ -14,19 +14,12 @@
             </div>
               
         </div>
-       
-        <!-- <div class="w-100-p" fxLayout.gt-xs="row" fxLayoutAlign="end" fxLayoutGap="32px">
-            <mat-button-toggle-group [(ngModel)]="selectedLanguage" appearance="legacy" >
-                <mat-button-toggle value="En">English</mat-button-toggle>
-                <mat-button-toggle value="Be">Bangla</mat-button-toggle>
-            </mat-button-toggle-group>
-              
-        </div> -->
-       
     </mat-toolbar>
+
     
-    <mat-drawer-container  fxFlexFill >
-        <mat-drawer  #drawer class="side-nav"   [mode]="drawerMode" [opened]="isDrawerOpened">
+    
+    <mat-drawer-container   fxFlexFill >
+        <mat-drawer *ngIf="!hideToolBar && !hideSideNavigation"  #drawer  class="side-nav"   [mode]="drawerMode" [opened]="isDrawerOpened">
             <mat-list role="list">
     
                <mat-list-item>Hello</mat-list-item>

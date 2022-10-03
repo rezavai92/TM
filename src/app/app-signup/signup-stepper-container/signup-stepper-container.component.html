@@ -6,9 +6,9 @@
         </div>
 
           <!-- <div ngClass.gt-md="pr-100 pl-100" class="stepper-container" > -->
-           <div class="stepper-container" >
+           <div  class="stepper-container" >
             <mat-stepper [linear]="true" #stepper >
-                <mat-step [stepControl]="generalInfoFormGroup" >
+                <mat-step  [stepControl]="generalInfoFormGroup" >
                   <ng-template matStepLabel>General Information </ng-template>
                    <app-general-info-form #generalInfoForm></app-general-info-form>
                    <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap = "8px">

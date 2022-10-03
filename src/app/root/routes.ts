@@ -16,7 +16,9 @@ export const routes : Route[]=[
 		isFullScreen: true,
 		requiredFeature: 'login',
 		authFailRedirection: "",
-		isPublic: true
+		isPublic: true,
+		hideToolBar : true,
+		hideSideNavigation : true
 	}
 
 },
@@ -29,7 +31,9 @@ export const routes : Route[]=[
 		isFullScreen: true,
 		requiredFeature: 'login',
 		authFailRedirection: "",
-		isPublic: true
+		isPublic: true,
+		hideToolBar : false,
+		hideSideNavigation : true
 	}
 
 },
