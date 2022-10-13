@@ -41,32 +41,35 @@ export class GeneralInfoFormComponent implements OnInit {
   }
 
   initNidFileUploadDataContext(){
-    this.initNidFrontPartUloadDataContext();
-    this.initNidBackPartUloadDataContext();
+    this.NidFrontPartUploadDataContext = this.getUploadDataContextForNid("Front");
+    this.NidBackPartUploadDataContext = this.getUploadDataContextForNid("Back");
   }
 
-  initNidFrontPartUloadDataContext(){
-    this.NidFrontPartUploadDataContext ={
-      description : "Upload a clear picture of the front part of you NID",
-      title : "NID Front Part",
-      isDisabled : false,
-      isRequired : true,
-      showBorderBox : false
+
+  getUploadDataContextForNid(contextFor : string):IFileUploadDataContext{
+    if(contextFor === "Front"){
+      return {
+        description : "Upload a clear picture of the front part of you NID",
+        title : "NID Front Part",
+        isDisabled : false,
+        isRequired : true,
+        showBorderBox : false
+  
+      }
+    }
+    else{
+      return {
+        description : "Upload a clear picture of the back part of you NID",
+        title : "NID Back Part",
+        isDisabled : false,
+        isRequired : true,
+        showBorderBox : false
+      }
 
     }
   }
 
-  initNidBackPartUloadDataContext(){
-    this.NidBackPartUploadDataContext ={
-      description : "Upload a clear picture of the back part of you NID",
-      title : "NID Back Part",
-      isDisabled : false,
-      isRequired : true,
-      showBorderBox : false
-
-    }
-  }
-
+ 
   get FormControls(){
     return this.generalInfoForm.controls;
   }
