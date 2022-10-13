@@ -1,7 +1,6 @@
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <div *ngIf="!loading" fxLayout="column" fxLayoutALign="center center" class="root-default-container">
-    <app-main  [hideToolBar]="hideToolBar" [hideSideNavigation]="hideSideNavigation">
-        <router-outlet></router-outlet>
-    </app-main>
-  
+	<app-main [hideToolBar]="hideToolBar" [hideSideNavigation]="hideSideNavigation">
+		<router-outlet></router-outlet>
+	</app-main>
 </div>

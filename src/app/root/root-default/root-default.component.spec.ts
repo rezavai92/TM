@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateService } from '@ngx-translate/core';
 
 import { RootDefaultComponent } from './root-default.component';
 
@@ -8,9 +10,11 @@ describe('RootDefaultComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RootDefaultComponent ]
+      declarations: [RootDefaultComponent],
+      imports: [RouterTestingModule],
+
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

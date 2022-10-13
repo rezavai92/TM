@@ -4,27 +4,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-default',
   templateUrl: './login-default.component.html',
-  styleUrls: ['./login-default.component.scss']
+  styleUrls: ['./login-default.component.scss'],
 })
 export class LoginDefaultComponent implements OnInit {
-
-  constructor(private _router : Router) {
-    
-
-   }
-   ngOnChanges(){
+  constructor(private _router: Router) { }
+  ngOnChanges() {
     debugger;
-   }
-
-  ngOnInit(): void {
-   
   }
 
-  ngAfterViewInit(){
-  
-  }
-  navigateToSignUp(){
-    this._router.navigateByUrl("/signup");
-  }
+  ngOnInit(): void { }
 
+  ngAfterViewInit() { }
+  navigateToSignUp() {
+    this._router.navigateByUrl('/signup');
+  }
 }

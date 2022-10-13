@@ -13,9 +13,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-const routes: Route[] =[{path : "",component : SignupStepperContainerComponent}];
+const routes: Route[] = [{ path: "", component: SignupStepperContainerComponent }];
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http,"./assets/i18n/app-signup/",".json");
+  return new TranslateHttpLoader(http, "./assets/i18n/app-signup/", ".json");
 }
 @NgModule({
   declarations: [
@@ -24,21 +24,21 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     FlexLayoutModule,
     MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
     PhotoUploaderModule,
     FileUploaderModule,
     TranslateModule.forChild({
-      defaultLanguage : "en",
+      defaultLanguage: "en",
       loader: {
         provide: TranslateLoader,
         useFactory: (HttpLoaderFactory),
         deps: [HttpClient]
-    },
-    
+      },
+
 
     })
   ]

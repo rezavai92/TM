@@ -3,30 +3,27 @@
 @import "../../../styles/shared/page-header.scss";
 @import "../../../styles/utils/spacing";
 
-
-.general-info-form-wrapper{
-    width: 100%;
-    box-sizing: border-box;
-    //padding: 10px 40px;
-    background-color: white !important;
-    .form-field{
-        background-color: white;
+.general-info-form-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  //padding: 10px 40px;
+  background-color: white !important;
+  .form-field {
+    background-color: white;
+  }
+  .photo-uploader-container {
+    position: relative;
+    img {
     }
-    .photo-uploader-container{
-        position: relative;
-        img{
-           
-        }
-        .uploader{
-            position: absolute;
-            bottom: 16px;
-            left: 100px;
-        }
+    .uploader {
+      position: absolute;
+      bottom: 16px;
+      left: 100px;
     }
-    .general-info-form{
-   
-        .form-field-pairs{
-            width: 100%;
-        }
+  }
+  .general-info-form {
+    .form-field-pairs {
+      width: 100%;
     }
+  }
 }
