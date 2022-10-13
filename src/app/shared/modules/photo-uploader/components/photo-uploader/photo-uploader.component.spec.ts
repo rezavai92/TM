@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from '../../../material/material.module';
 
 import { PhotoUploaderComponent } from './photo-uploader.component';
 
@@ -8,9 +9,10 @@ describe('PhotoUploaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PhotoUploaderComponent ]
+      declarations: [PhotoUploaderComponent],
+      imports: [MaterialModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PhotoUploaderComponent);
     component = fixture.componentInstance;

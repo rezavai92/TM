@@ -8,36 +8,36 @@ import { GeneralInfoFormComponent } from '../general-info-form/general-info-form
   templateUrl: './signup-stepper-container.component.html',
   styleUrls: ['./signup-stepper-container.component.scss']
 })
-export class SignupStepperContainerComponent implements OnInit,AfterViewInit {
+export class SignupStepperContainerComponent implements OnInit, AfterViewInit {
 
   @ViewChild("generalInfoForm") generalInfoFormComponent!: GeneralInfoFormComponent;
   formGroupsLoaded = false;
-  generalInfoFormGroup : FormGroup = new FormGroup({});
+  generalInfoFormGroup: FormGroup = new FormGroup({});
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
   });
   constructor(
     private _formBuilder: FormBuilder,
-    private _translateService : TranslateService
-    
-    ) { 
-      
-      this._translateService.use("en");
-    }
+    private _translateService: TranslateService
+
+  ) {
+
+    //this._translateService.use("en");
+  }
   ngAfterViewInit(): void {
-    
+
     this.loadAllStepControls();
     this.formGroupsLoaded = true;
-    console.log("general info form group ",this.generalInfoFormGroup);
+    console.log("general info form group ", this.generalInfoFormGroup);
   }
 
   ngOnInit(): void {
-  
+
 
   }
 
 
-  loadAllStepControls(){
+  loadAllStepControls() {
     this.generalInfoFormGroup = this.generalInfoFormComponent.generalInfoForm;
 
   }

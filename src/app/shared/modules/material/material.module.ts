@@ -29,7 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatAutocompleteModule} from '@angular/material/autocomplete'
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 @NgModule({
@@ -66,7 +66,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
     MatTooltipModule,
     MatAutocompleteModule,
     MatStepperModule,
-  
+
 
   ],
   exports: [
@@ -102,10 +102,11 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
     MatAutocompleteModule,
     MatStepperModule,
     MatNativeDateModule,
+
   ],
-  providers: [ 
+  providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-  //  { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }
-]
+    //  { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig }
+  ]
 })
 export class MaterialModule { }

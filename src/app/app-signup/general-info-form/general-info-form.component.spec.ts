@@ -5,6 +5,7 @@ import { PhotoUploaderModule } from '../../shared/modules/photo-uploader/photo-u
 import { MaterialModule } from '../../shared/modules/material/material.module';
 
 import { GeneralInfoFormComponent } from './general-info-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('GeneralInfoFormComponent', () => {
   let component: GeneralInfoFormComponent;
@@ -14,7 +15,7 @@ describe('GeneralInfoFormComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [GeneralInfoFormComponent],
       imports: [ReactiveFormsModule, FormsModule, MaterialModule, PhotoUploaderModule,
-        FileUploaderModule,]
+        FileUploaderModule, BrowserAnimationsModule]
     })
       .compileComponents();
 

@@ -1,6 +1,7 @@
 <div class="base-file-uploader">
 
-    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px" class="file-input-box" [ngClass]="dataContext.showBorderBox? '.show-border-box' : ''">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px" class="file-input-box"
+        [ngClass]="dataContext && dataContext.showBorderBox? '.show-border-box' : ''">
         <div class="page-header-4" *ngIf="dataContext?.title">
             {{dataContext.title}} <span *ngIf="dataContext?.isRequired">*</span>
         </div>
@@ -12,8 +13,12 @@
         </div>
 
         <div *ngIf="!uploadedFile">
-            <input [required]="dataContext.isRequired" [accept]=" config.fileTypes? (config.fileTypes | acceptFormat) : 'image/*,.pdf'" style="display: none;"  #fileUploadInput type="file" (click)="$event.stopPropagation();emitControlTouch(); " (change)="onFileChange($event)">
-            <button mat-button [disabled]="fileDeleting || fileUploading" (click)="$event.preventDefault();fileUploadInput.click()">
+            <input [required]="dataContext?.isRequired"
+                [accept]="config && config.fileTypes? (config.fileTypes | acceptFormat) : 'image/*,.pdf'"
+                style="display: none;" #fileUploadInput type="file"
+                (click)="$event.stopPropagation();emitControlTouch(); " (change)="onFileChange($event)">
+            <button mat-button [disabled]="fileDeleting || fileUploading"
+                (click)="$event.preventDefault();fileUploadInput.click()">
                 <mat-icon>file_upload</mat-icon>
                 <span>Upload file</span>
             </button>
@@ -24,19 +29,22 @@
                 {{errorMsg}}
             </div>
         </ng-container>
-         
+
         <div>
-            <div  fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="space-between center" *ngIf="uploadedFile" class="fake-uploader-box">
+            <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="space-between center" *ngIf="uploadedFile"
+                class="fake-uploader-box">
                 <div>
-                 {{uploadedFile.name}}
+                    {{uploadedFile.name}}
                 </div>
                 <div>
-                     <button mat-icon-button (click)="deleteFile()" [disabled]="fileDeleting || fileUploading" ><mat-icon>delete</mat-icon></button>
+                    <button mat-icon-button (click)="deleteFile()" [disabled]="fileDeleting || fileUploading">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </div>
-             </div>
+            </div>
         </div>
-       
-      
+
+
     </div>
 
 </div>

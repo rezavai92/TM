@@ -17,8 +17,9 @@ import { AcceptFormatPipe } from './pipes/accept-format.pipe';
     FlexLayoutModule,
     MaterialModule
   ],
-  exports:[
-    FileUploaderComponent
+  exports: [
+    FileUploaderComponent,
+    AcceptFormatPipe
   ]
 })
 export class FileUploaderModule { }

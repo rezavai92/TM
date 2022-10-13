@@ -12,6 +12,7 @@ import { FileUploaderModule } from '../shared/modules/file-uploader/file-uploade
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Route[] = [{ path: "", component: SignupStepperContainerComponent }];
 export function HttpLoaderFactory(http: HttpClient) {
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FlexLayoutModule,
     MaterialModule,
     PhotoUploaderModule,
+    BrowserAnimationsModule,
     FileUploaderModule,
     TranslateModule.forChild({
       defaultLanguage: "en",
