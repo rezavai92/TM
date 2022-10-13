@@ -8,11 +8,21 @@ import { Router } from '@angular/router';
 })
 export class LoginDefaultComponent implements OnInit {
 
-  constructor(private _router : Router) { }
+  constructor(private _router : Router) {
+    
+
+   }
+   ngOnChanges(){
+    debugger;
+   }
 
   ngOnInit(): void {
+   
   }
 
+  ngAfterViewInit(){
+  
+  }
   navigateToSignUp(){
     this._router.navigateByUrl("/signup");
   }
