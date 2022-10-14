@@ -1,31 +1,34 @@
 <div class="main-container">
     <mat-toolbar *ngIf="!hideToolBar" color="primary">
-        <button *ngIf="!hideSideNavigation" mat-icon-button (click)="toggleDrawer()" aria-label="Example icon-button with menu icon">
+        <button *ngIf="!hideSideNavigation" mat-icon-button (click)="toggleDrawer()"
+            aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
         </button>
         <span>Shifa Telemedicine</span>
-    
+
         <div class="w-100-p" fxLayout.gt-xs="row" fxLayoutAlign="end" fxLayoutGap="32px">
             <div class="pr-20">
-                <mat-select [(value)]="selectedLanguage" >
-                    <mat-option  aria-selected="true" value="En">English</mat-option>
-                    <mat-option aria-selected="true" value="Be">Bangla</mat-option>
-                   </mat-select>
+                <mat-select [(value)]="selectedLanguage" (selectionChange)="setPortalLanguage()">
+                    <mat-option *ngFor="let lang of portalLanguages" aria-selected="true" [value]="lang.Value">
+                        {{lang.Key | translate}}
+                    </mat-option>
+                </mat-select>
             </div>
-              
+
         </div>
     </mat-toolbar>
 
-    
-    
-    <mat-drawer-container   fxFlexFill >
-        <mat-drawer *ngIf="!hideToolBar && !hideSideNavigation"  #drawer  class="side-nav"   [mode]="drawerMode" [opened]="isDrawerOpened">
+
+
+    <mat-drawer-container fxFlexFill>
+        <mat-drawer *ngIf="!hideToolBar && !hideSideNavigation" #drawer class="side-nav" [mode]="drawerMode"
+            [opened]="isDrawerOpened">
             <mat-list role="list">
-    
-               <mat-list-item>Hello</mat-list-item>
-               <mat-list-item>Hello Hello</mat-list-item>
-               <mat-list-item>Hello Hello Hello Hello</mat-list-item>
-               <!-- <ng-container *ngFor ="let option of sideNavMenu" >
+
+                <mat-list-item>Hello</mat-list-item>
+                <mat-list-item>Hello Hello</mat-list-item>
+                <mat-list-item>Hello Hello Hello Hello</mat-list-item>
+                <!-- <ng-container *ngFor ="let option of sideNavMenu" >
                 <mat-list-item role="listitem" routerLink={{option.path}} [routerLinkActive]="['is-active']"  >
                     <span class="material-icons">{{option.icon}}</span>
                     <span>&nbsp; &nbsp;</span>
@@ -34,13 +37,13 @@
                 </mat-list-item>
                
                </ng-container> -->
-              </mat-list>
-              
-    
+            </mat-list>
+
+
         </mat-drawer>
-        <mat-drawer-content  >
-          <ng-content></ng-content>
+        <mat-drawer-content>
+            <ng-content></ng-content>
         </mat-drawer-content>
-      </mat-drawer-container>
-    
+    </mat-drawer-container>
+
 </div>

@@ -6,6 +6,8 @@ import { MaterialModule } from '../../shared/modules/material/material.module';
 
 import { GeneralInfoFormComponent } from './general-info-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateServiceStub } from '../../shared/test-mocks/translate.mock';
 
 describe('GeneralInfoFormComponent', () => {
   let component: GeneralInfoFormComponent;
@@ -14,10 +16,19 @@ describe('GeneralInfoFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GeneralInfoFormComponent],
-      imports: [ReactiveFormsModule, FormsModule, MaterialModule, PhotoUploaderModule,
-        FileUploaderModule, BrowserAnimationsModule]
-    })
-      .compileComponents();
+      imports: [
+        ReactiveFormsModule,
+        FormsModule,
+        MaterialModule,
+        PhotoUploaderModule,
+        FileUploaderModule,
+        BrowserAnimationsModule,
+        TranslateModule,
+      ],
+      providers: [
+        { provide: TranslateService, useClass: TranslateServiceStub },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GeneralInfoFormComponent);
     component = fixture.componentInstance;

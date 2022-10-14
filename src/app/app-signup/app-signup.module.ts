@@ -14,15 +14,16 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const routes: Route[] = [{ path: "", component: SignupStepperContainerComponent }];
+const routes: Route[] = [
+  { path: '', component: SignupStepperContainerComponent },
+];
+
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, "./assets/i18n/app-signup/", ".json");
+  return new TranslateHttpLoader(http, './assets/i18n/app-signup/', '.json');
 }
+
 @NgModule({
-  declarations: [
-    SignupStepperContainerComponent,
-    GeneralInfoFormComponent
-  ],
+  declarations: [SignupStepperContainerComponent, GeneralInfoFormComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,18 +32,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     FlexLayoutModule,
     MaterialModule,
     PhotoUploaderModule,
-    BrowserAnimationsModule,
     FileUploaderModule,
     TranslateModule.forChild({
-      defaultLanguage: "en",
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
-        useFactory: (HttpLoaderFactory),
-        deps: [HttpClient]
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
       },
-
-
-    })
-  ]
+    }),
+  ],
 })
-export class AppSignupModule { }
+export class AppSignupModule {}
