@@ -13,7 +13,7 @@
         </div>
 
         <div *ngIf="!uploadedFile">
-            <input [required]="dataContext?.isRequired"
+            <input [required]="dataContext && dataContext.isRequired"
                 [accept]="config && config.fileTypes? (config.fileTypes | acceptFormat) : 'image/*,.pdf'"
                 style="display: none;" #fileUploadInput type="file"
                 (click)="$event.stopPropagation();emitControlTouch(); " (change)="onFileChange($event)">

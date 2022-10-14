@@ -58,6 +58,11 @@ export class RootDefaultComponent implements OnInit {
 		}
 	}
 
+	// Optional for testing
+	throwOldAngularError() {
+		throw new Error("Old Angular");
+	}
+
 
 
 }
