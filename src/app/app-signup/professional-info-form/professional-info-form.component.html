@@ -1,0 +1,115 @@
+<div class="professional-info-form-wrapper" ngClass.lt-md="pt-5 pb-5 pl-15 pr-15"
+    ngClass.gt-sm="pt-10 pb-20 pl-40 pr-40">
+    <form class="professional-info-form" [formGroup]="professionalInfoForm">
+        <div fxLayout.xs="column" fxLayout="row" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start"
+            class="form-field-pairs">
+            <mat-form-field floatLabel="always" appearance="outline" class="w-100-p business-phone-no">
+                <mat-label>{{"BUSINESS_PHONE_NUMBER" | translate}}</mat-label>
+                <input matInput placeholder="Business phone number" formControlName="BusinessPhoneNumber" required />
+                <span matPrefix>+880 &nbsp;</span>
+                <mat-error *ngIf="hasError(FormControls['BusinessPhoneNumber'])">
+                    <span *ngIf="FormControls['BusinessPhoneNumber']?.errors?.['required']">This field is
+                        required</span>
+                    <span *ngIf="FormControls['BusinessPhoneNumber']?.errors?.['pattern'] 
+                        || FormControls['BusinessPhoneNumber']?.errors?.['minlength'] 
+                        || FormControls['BusinessPhoneNumber']?.errors?.['maxlength']">please
+                        enter a valid phone number</span>
+                </mat-error>
+
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
+                <mat-label>{{"BUSINESS_EMAIL" | translate}}</mat-label>
+                <input matInput placeholder="BUSINESS_EMAIL" formControlName="BusinessEmail" required />
+                <mat-error *ngIf="hasError(FormControls['BusinessEmail'])">
+                    <span *ngIf="FormControls['BusinessEmail']?.errors?.['required']">This field is required</span>
+                    <span
+                        *ngIf="FormControls['BusinessEmail']?.errors?.['pattern'] || FormControls['BusinessEmail']?.errors?.['email']">please
+                        enter a valid email</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+
+        <div fxLayout.xs="column" fxLayout="row" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start"
+            class="form-field-pairs">
+            <mat-form-field class="w-100-p" appearance="outline">
+                <mat-label>Select specialization</mat-label>
+                <mat-select (selectionChange)="onSpecializationChange($event)" multiple
+                    formControlName="Specialization">
+                    <mat-option [disabled]="specialization.disabled" *ngFor="let specialization of sepcializations"
+                        [value]="specialization.key">
+                        {{specialization.key | translate}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="hasError(FormControls['Specialization'])">
+                    <span *ngIf="FormControls['Specialization']?.errors?.['required']">This field is
+                        required</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-divider class="w-100-p"></mat-divider>
+        <div fxLayout="column" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start" class="w-100-p pt-10">
+
+            <ng-container formArrayName="Documents">
+                <ng-container *ngFor="let document  of Documents.controls;let i=index">
+                    <div class="w-100-p" [formGroup]="findDocumentFormGroupAt(i)">
+                        <div class="page-header-4" ngClass.xs="mb-10">Document {{i+1}} : </div>
+                        <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start"
+                            fxLayoutGap="16px">
+
+                            <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="start center"
+                                fxLayoutGap.gt-xs="8px" class="form-field-pairs w-100-p">
+
+                                <mat-form-field appearance="outline" class="w-100-p">
+                                    <mat-label>Select Document Tag</mat-label>
+                                    <mat-select formControlName="Tag">
+                                        <mat-option *ngFor="let tag of documentTags" [value]="tag">
+                                            {{tag | translate}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="hasError(findDocumentFormGroupAt(i).controls['Tag'] )">
+                                        <span
+                                            *ngIf="findDocumentFormGroupAt(i).controls['Tag']?.errors?.['required']">This
+                                            field is
+                                            required</span>
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" class="w-100-p" style="margin-top: -10px;">
+                                    <input style="display: none" matInput formControlName="Attachment" required />
+                                    <mat-error *ngIf="hasError(findDocumentFormGroupAt(i).controls['Attachment'] )">
+                                        <span
+                                            *ngIf="findDocumentFormGroupAt(i).controls['Attachment']?.errors?.['required']">This
+                                            field is
+                                            required</span>
+                                    </mat-error>
+                                    <app-file-uploader (onSuccessfulFileUpload)="onDocumentUpload(i)"
+                                        (onFileDelete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
+                                        [dataContext]="documentUploadDataContext">
+                                    </app-file-uploader>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                    </div>
+                    <mat-divider class="w-100-p"></mat-divider>
+                </ng-container>
+
+            </ng-container>
+        </div>
+
+        <div style="text-align: center;" class="w-100-p mt-10">
+            <button [disabled]="Documents.invalid" (click)="$event.preventDefault(); onAddNewDocumentFormGroup()"
+                [class.add-more-doc-btn-valid]="Documents.valid" [class.add-more-doc-btn-invalid]="Documents.invalid"
+                mat-icon-button>
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+
+
+
+    </form>
+</div>

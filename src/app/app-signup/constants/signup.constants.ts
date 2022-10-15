@@ -1,0 +1,1 @@
+export const DoctorsProfessionalDocumentTags = ["MBBS", "FCPS", "ABCDE", "OTHER"]

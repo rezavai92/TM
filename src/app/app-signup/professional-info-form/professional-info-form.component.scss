@@ -1,0 +1,44 @@
+@import "../../../styles/themes/custom-palette.scss";
+@import "../../../styles/utils/variables";
+@import "../../../styles/shared/page-header.scss";
+@import "../../../styles/utils/spacing";
+
+.professional-info-form-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    //padding: 10px 40px;
+    background-color: white !important;
+
+    .form-field {
+        background-color: white;
+    }
+
+    .professional-info-form {
+        .form-field-pairs {
+            width: 100%;
+        }
+
+
+
+
+    }
+
+
+    .add-more-doc-btn-valid {
+        background-color: map-get($mat-bs-primary, 500);
+        color: white;
+    }
+
+    .add-more-doc-btn-invalid {
+        background-color: map-get($mat-bs-primary, 500);
+        color: $light-disabled-text;
+    }
+}
+
+:host ::ng-deep {
+
+    .mat-form-field-appearance-outline .mat-form-field-prefix {
+        top: 0em !important;
+    }
+
+}

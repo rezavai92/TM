@@ -13,6 +13,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProfessionalInfoFormComponent } from './professional-info-form/professional-info-form.component';
 
 const routes: Route[] = [
   { path: '', component: SignupStepperContainerComponent },
@@ -23,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [SignupStepperContainerComponent, GeneralInfoFormComponent],
+  declarations: [SignupStepperContainerComponent, GeneralInfoFormComponent, ProfessionalInfoFormComponent],
   imports: [
     CommonModule,
     FormsModule,

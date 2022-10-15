@@ -1,13 +1,10 @@
 <div class="base-file-uploader">
 
-    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px" class="file-input-box"
-        [ngClass]="dataContext && dataContext.showBorderBox? '.show-border-box' : ''">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px grid" class="file-input-box">
         <div class="page-header-4" *ngIf="dataContext?.title">
             {{dataContext.title}} <span *ngIf="dataContext?.isRequired">*</span>
         </div>
-        <div *ngIf="dataContext && !dataContext.title">
-            Upload
-        </div>
+
         <div *ngIf="dataContext?.description">
             {{dataContext.description}}
         </div>
@@ -30,10 +27,11 @@
             </div>
         </ng-container>
 
-        <div>
-            <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="space-between center" *ngIf="uploadedFile"
-                class="fake-uploader-box">
-                <div>
+
+        <div *ngIf="uploadedFile">
+            <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="space-between center" class="fake-uploader-box"
+                [ngClass]="{'show-border-box' : dataContext && dataContext.showBorderBox}">
+                <div class="file-name">
                     {{uploadedFile.name}}
                 </div>
                 <div>
@@ -43,6 +41,7 @@
                 </div>
             </div>
         </div>
+
 
 
     </div>

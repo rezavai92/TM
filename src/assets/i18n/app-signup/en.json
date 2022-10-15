@@ -1,5 +1,8 @@
 {
     "SIGNUP": "Sign Up",
-    "PROFILE_PICTURE" : "Profile Picture"
+    "PROFILE_PICTURE" : "Profile Picture",
+     "BUSINESS_PHONE_NUMBER" : "Business phone number",
+     "BUSINESS_EMAIL" : "Business email"
+
 
 }

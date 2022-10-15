@@ -9,7 +9,7 @@ import {
   IFileUploadConfig,
   IFileUploadDataContext,
 } from 'src/app/shared/modules/file-uploader/interfaces/file-uploader.interface';
-import { Gender } from '../../shared/shared-data/constants';
+import { emailRegexString, Gender, numberRegexString } from '../../shared/shared-data/constants';
 
 @Component({
   selector: 'app-general-info-form',
@@ -38,9 +38,9 @@ export class GeneralInfoFormComponent implements OnInit {
       LastName: ['', Validators.required],
       Gender: ['', Validators.required],
       DateOfBirth: ['', Validators.required],
-      NID: ['', Validators.required],
-      Email: ['', Validators.required],
-      PhoneNumber: ['', Validators.required],
+      NID: ['', [Validators.required, Validators.pattern(numberRegexString)]],
+      Email: ['', [Validators.required, Validators.email, Validators.pattern(emailRegexString)]],
+      PhoneNumber: ['', [Validators.required, Validators.pattern(numberRegexString), Validators.maxLength(10), Validators.minLength(10)]],
       FakeNidFrontPartControl: ['', Validators.required],
       FakeNidBackPartControl: ['', Validators.required],
     });
@@ -59,7 +59,7 @@ export class GeneralInfoFormComponent implements OnInit {
         title: 'NID Front Part',
         isDisabled: false,
         isRequired: true,
-        showBorderBox: false,
+        showBorderBox: true,
       };
     } else {
       return {
@@ -67,7 +67,7 @@ export class GeneralInfoFormComponent implements OnInit {
         title: 'NID Back Part',
         isDisabled: false,
         isRequired: true,
-        showBorderBox: false,
+        showBorderBox: true,
       };
     }
   }
