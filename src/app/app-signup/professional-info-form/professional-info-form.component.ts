@@ -15,6 +15,7 @@ import { DoctorsProfessionalDocumentTags } from '../constants/signup.constants';
 })
 export class ProfessionalInfoFormComponent implements OnInit {
 	professionalInfoForm!: FormGroup;
+	//uploaderErrorMessasges: string[] = [];
 	sepcializations = [
 		{ key: DoctorsSpecializationEnum.GeneralDoctor, disabled: false },
 		{ key: DoctorsSpecializationEnum.HeartSpecialist, disabled: false },
@@ -26,14 +27,15 @@ export class ProfessionalInfoFormComponent implements OnInit {
 	documentUploadConfig: IFileUploadConfig = {
 		maxSize: 1,
 		fileTypes: ['pdf', 'xls', 'doc'],
-		maxFiles: 1
+		maxFiles: 1,
+		showErrorInsideBox: true
 	};
 	documentUploadDataContext: IFileUploadDataContext = {
 		//description: "",
 		//title: 'Document',
 		isDisabled: false,
 		isRequired: true,
-		showBorderBox: true,
+		showBorderBox: false,
 
 	};
 	constructor(private _fb: FormBuilder) {
@@ -59,6 +61,10 @@ export class ProfessionalInfoFormComponent implements OnInit {
 		return this.professionalInfoForm.controls["Documents"] as FormArray;
 	}
 
+	// onFileUploadErrorMessageEmit(errorMessages: string[]) {
+	// 	this.uploaderErrorMessasges = errorMessages;
+	// }
+
 	findDocumentFormGroupAt(index: number) {
 		return this.Documents.at(index) as FormGroup;
 	}
@@ -66,9 +72,6 @@ export class ProfessionalInfoFormComponent implements OnInit {
 	onAddNewDocumentFormGroup() {
 		if (this.Documents.valid) {
 			this.addDocument();
-		}
-		else {
-
 		}
 
 	}

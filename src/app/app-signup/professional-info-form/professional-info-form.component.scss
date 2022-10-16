@@ -18,6 +18,10 @@
             width: 100%;
         }
 
+        .error-message {
+            color: map-get($mat-bs-error, "main") !important;
+            font-size: 12px;
+        }
 
 
 
@@ -37,8 +41,33 @@
 
 :host ::ng-deep {
 
+    .file-uploader-form-field {
+        .mat-form-field-flex {
+            height: 55.56px;
+        }
+    }
+
     .mat-form-field-appearance-outline .mat-form-field-prefix {
         top: 0em !important;
     }
+
+    .professional-info-form .base-file-uploader {
+        margin-top: -22px;
+
+        .file-upload {
+            margin-top: 8px;
+
+        }
+
+
+
+
+    }
+
+
+
+
+
+
 
 }

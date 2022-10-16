@@ -1,6 +1,6 @@
 <div class="base-file-uploader">
 
-    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px grid" class="file-input-box">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="16px" class="file-input-box">
         <div class="page-header-4" *ngIf="dataContext?.title">
             {{dataContext.title}} <span *ngIf="dataContext?.isRequired">*</span>
         </div>
@@ -9,7 +9,7 @@
             {{dataContext.description}}
         </div>
 
-        <div *ngIf="!uploadedFile">
+        <div class="file-upload" *ngIf="!uploadedFile">
             <input [required]="dataContext && dataContext.isRequired"
                 [accept]="config && config.fileTypes? (config.fileTypes | acceptFormat) : 'image/*,.pdf'"
                 style="display: none;" #fileUploadInput type="file"
@@ -21,14 +21,14 @@
             </button>
         </div>
 
-        <ng-container *ngIf="errorMessages && errorMessages.length">
+        <ng-container *ngIf="config?.showErrorInsideBox && errorMessages && errorMessages.length">
             <div class="error-message" *ngFor="let errorMsg of errorMessages">
                 {{errorMsg}}
             </div>
         </ng-container>
 
 
-        <div *ngIf="uploadedFile">
+        <div *ngIf="uploadedFile" class="fake-uploader-box-container">
             <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="space-between center" class="fake-uploader-box"
                 [ngClass]="{'show-border-box' : dataContext && dataContext.showBorderBox}">
                 <div class="file-name">

@@ -78,20 +78,31 @@
                                     </mat-error>
                                 </mat-form-field>
 
-                                <mat-form-field appearance="outline" class="w-100-p" style="margin-top: -10px;">
-                                    <input style="display: none" matInput formControlName="Attachment" required />
-                                    <mat-error *ngIf="hasError(findDocumentFormGroupAt(i).controls['Attachment'] )">
-                                        <span
-                                            *ngIf="findDocumentFormGroupAt(i).controls['Attachment']?.errors?.['required']">This
-                                            field is
-                                            required</span>
-                                    </mat-error>
-                                    <app-file-uploader (onSuccessfulFileUpload)="onDocumentUpload(i)"
-                                        (onFileDelete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
-                                        [dataContext]="documentUploadDataContext">
-                                    </app-file-uploader>
-                                </mat-form-field>
+
+                                <div class="file-uploader-form-field w-100-p">
+                                    <mat-form-field appearance="outline" class="w-100-p">
+                                        <input style="display: none" matInput formControlName="Attachment" required />
+                                        <mat-error *ngIf="hasError(findDocumentFormGroupAt(i).controls['Attachment'] )">
+                                            <span
+                                                *ngIf="findDocumentFormGroupAt(i).controls['Attachment']?.errors?.['required']">This
+                                                field is
+                                                required</span>
+                                        </mat-error>
+                                        <app-file-uploader style="margin-top: -20px;"
+                                            (onSuccessfulFileUpload)="onDocumentUpload(i)"
+                                            (onFileDelete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
+                                            [dataContext]="documentUploadDataContext">
+                                        </app-file-uploader>
+
+                                    </mat-form-field>
+                                    <!-- <ng-container *ngIf=" uploaderErrorMessasges && uploaderErrorMessasges.length">
+                                        <div class="error-message" *ngFor="let errorMsg of uploaderErrorMessasges">
+                                            {{errorMsg}}
+                                        </div>
+                                    </ng-container> -->
+                                </div>
                             </div>
+
 
                         </div>
                     </div>

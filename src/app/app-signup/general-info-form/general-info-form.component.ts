@@ -24,6 +24,7 @@ export class GeneralInfoFormComponent implements OnInit {
   NidBackPartUploadConfig!: IFileUploadConfig;
   genders = Gender;
   isNidFrontPartUploaderTouched = false;
+  profilePictureSrc = "assets/images/user.png";
   constructor(private _fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -125,5 +126,9 @@ export class GeneralInfoFormComponent implements OnInit {
       this.generalInfoForm.controls['FakeNidBackPartControl'].setValue('');
       this.generalInfoForm.updateValueAndValidity();
     }
+  }
+
+  onProfilePicUpload(event: any) {
+    this.profilePictureSrc = event;
   }
 }

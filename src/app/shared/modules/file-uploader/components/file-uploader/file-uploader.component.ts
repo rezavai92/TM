@@ -16,6 +16,7 @@ export class FileUploaderComponent implements OnInit {
 	@Output() actionInProgressEmitter = new EventEmitter();
 	@Output() controlTouched = new EventEmitter<boolean>();
 	@Output() onFileDelete = new EventEmitter();
+	@Output() emitErrorMessages = new EventEmitter<string[]>();
 
 	selectedFile!: File | null;
 	uploadedFile!: File | null;
@@ -33,6 +34,7 @@ export class FileUploaderComponent implements OnInit {
 		this.clearUploadErrorMessage();
 		this.clearDeleteErrorMessage();
 		this.errorMessages = [];
+		this.emitErrorMessages.emit(this.errorMessages);
 	}
 
 	clearUploadErrorMessage() {
@@ -79,6 +81,7 @@ export class FileUploaderComponent implements OnInit {
 			if (!fileFormatSupported) {
 				this.errorMessages.push("file format not supported");
 			}
+			this.emitErrorMessages.emit(this.errorMessages);
 
 		}
 

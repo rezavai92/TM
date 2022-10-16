@@ -1,24 +1,24 @@
 import { EventEmitter } from "@angular/core";
 
-export interface IFileUploadDataContext{
-    title? : string,
-    description? : string,
-    documentUrl? : string,
-    isRequired? : boolean,
-    isDisabled? : boolean,
-    showBorderBox? : boolean,
+export interface IFileUploadDataContext {
+    title?: string,
+    description?: string,
+    documentUrl?: string,
+    isRequired?: boolean,
+    isDisabled?: boolean,
+    showBorderBox?: boolean,
 
 }
 
 
-export interface IFileUploadConfig{
+export interface IFileUploadConfig {
     maxSize: number; // (in MB)
     maxFiles?: number;
     fileTypes?: string[];
     filesRead?: number;
     inputId?: string;
-    IsErrorMsgShowOnBox?: boolean;
+    showErrorInsideBox?: boolean;
     errorCallback?: Function;
-    accessModifier? : any
+    accessModifier?: any
 
 }

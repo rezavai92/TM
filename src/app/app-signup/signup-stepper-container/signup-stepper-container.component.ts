@@ -1,7 +1,5 @@
 import {
-	AfterViewChecked,
 	AfterViewInit,
-	CompilerOptions,
 	Component,
 	OnInit,
 	ViewChild,
@@ -26,9 +24,7 @@ export class SignupStepperContainerComponent implements OnInit, AfterViewInit {
 	generalInfoFormGroup: FormGroup = new FormGroup({});
 	professionalInfoFormGroup: FormGroup = new FormGroup({});
 
-	secondFormGroup = this._formBuilder.group({
-		secondCtrl: ['', Validators.required],
-	});
+
 	constructor(
 		private _formBuilder: FormBuilder,
 		private _translateService: TranslateService,

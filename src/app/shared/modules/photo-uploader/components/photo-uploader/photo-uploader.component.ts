@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-photo-uploader',
@@ -7,21 +7,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotoUploaderComponent implements OnInit {
 
-  selectedFile! : File;
+  selectedFile!: File;
+  preview!: any;
+  @Output() onSuccessfulFileUpload = new EventEmitter();
+  @Output() actionInProgressEmitter = new EventEmitter();
+  @Output() controlTouched = new EventEmitter<boolean>();
+  @Output() onFileDelete = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onFileUpload(){
+  onFileUpload() {
 
 
 
   }
 
-  onSelectFile(event : any ){
-    this.selectedFile =event.target.files[0];
-    console.log("selected file",this.selectedFile);
+  onSelectFile(event: any) {
+    this.selectedFile = event.target.files[0];
+    console.log("selected file", this.selectedFile);
+
+
+    if (!this.selectedFile.type.startsWith('image/')) { return }
+
+
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      console.log(e.target.result);
+      this.preview = e.target.result;
+      this.onSuccessfulFileUpload.emit(this.preview);
+    };
+
+    reader.readAsDataURL(this.selectedFile);
+
+
   }
 
 }

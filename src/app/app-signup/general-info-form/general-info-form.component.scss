@@ -16,7 +16,10 @@
   .photo-uploader-container {
     position: relative;
 
-    img {}
+
+    img {
+      border-radius: 50%;
+    }
 
     .uploader {
       position: absolute;
