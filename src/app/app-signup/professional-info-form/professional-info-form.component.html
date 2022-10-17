@@ -56,7 +56,7 @@
             <ng-container formArrayName="Documents">
                 <ng-container *ngFor="let document  of Documents.controls;let i=index">
                     <div class="w-100-p" [formGroup]="findDocumentFormGroupAt(i)">
-                        <div class="page-header-4" ngClass.xs="mb-10">Document {{i+1}} : </div>
+                        <div class="page-header-4 mb-10" ngClass.xs="mb-10">Document {{i+1}} : </div>
                         <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start"
                             fxLayoutGap="16px">
 
