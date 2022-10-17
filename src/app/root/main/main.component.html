@@ -7,7 +7,7 @@
         <span>Shifa Telemedicine</span>
 
         <div class="w-100-p" fxLayout.gt-xs="row" fxLayoutAlign="end" fxLayoutGap="32px">
-            <div class="pr-20">
+            <div style="font-size: 16px;" class="pr-20">
                 <mat-select [(value)]="selectedLanguage" (selectionChange)="setPortalLanguage()">
                     <mat-option *ngFor="let lang of portalLanguages" aria-selected="true" [value]="lang.Value">
                         {{lang.Key | translate}}

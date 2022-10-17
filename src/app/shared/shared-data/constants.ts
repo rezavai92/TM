@@ -23,3 +23,15 @@ export const PortalLanguages = [
 export const emailRegexString = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$';
 
 export const numberRegexString = "^[0-9]*$";
+
+export const MfsList = [
+  {
+    Key: "BKASH",
+    Value: "Bkash"
+  },
+  {
+    Key: "NAGAD",
+    Value: "Nagad"
+  }
+
+]

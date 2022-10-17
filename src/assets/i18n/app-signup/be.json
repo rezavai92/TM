@@ -2,5 +2,7 @@
     "SIGNUP" : "সাইন আপ করুন",
     "PROFILE_PICTURE" : "প্রোফাইল ছবি",
     "BUSINESS_PHONE_NUMBER" : "ব্যবসায়িক ফোন নম্বর",
-    "BUSINESS_EMAIL" : "ব্যবসায়িক ইমেল"
+    "BUSINESS_EMAIL" : "ব্যবসায়িক ইমেল",
+    "BANK" : "ব্যাংক",
+     "MFS" : "মোবাইল আর্থিক পরিষেবা"
 }

@@ -1,0 +1,44 @@
+@import "../../../styles/themes/custom-palette.scss";
+@import "../../../styles/utils/variables";
+@import "../../../styles/shared/page-header.scss";
+@import "../../../styles/utils/spacing";
+
+.bank-info-form-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    //padding: 10px 40px;
+    background-color: white !important;
+
+    .form-field {
+        background-color: white;
+    }
+
+    .photo-uploader-container {
+        position: relative;
+
+
+        img {
+            border-radius: 50%;
+        }
+
+        .uploader {
+            position: absolute;
+            bottom: 16px;
+            left: 100px;
+        }
+    }
+
+    .bank-info-form {
+        .form-field-pairs {
+            width: 100%;
+        }
+    }
+}
+
+:host ::ng-deep {
+
+    .mat-form-field-appearance-outline .mat-form-field-prefix {
+        top: 0em !important;
+    }
+
+}

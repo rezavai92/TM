@@ -14,6 +14,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfessionalInfoFormComponent } from './professional-info-form/professional-info-form.component';
+import { BankInfoFormComponent } from './bank-info-form/bank-info-form.component';
 
 const routes: Route[] = [
   { path: '', component: SignupStepperContainerComponent },
@@ -24,7 +25,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [SignupStepperContainerComponent, GeneralInfoFormComponent, ProfessionalInfoFormComponent],
+  declarations: [SignupStepperContainerComponent, GeneralInfoFormComponent, ProfessionalInfoFormComponent, BankInfoFormComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -44,4 +45,4 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
   ],
 })
-export class AppSignupModule {}
+export class AppSignupModule { }

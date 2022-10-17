@@ -6,6 +6,8 @@
 		<div class="stepper-container">
 			<mat-stepper [linear]="true" #stepper>
 				<mat-step>
+					<!-- <mat-step [stepControl]="generalInfoFormGroup"> -->
+
 					<ng-template matStepLabel>General Information </ng-template>
 					<app-general-info-form #generalInfoForm></app-general-info-form>
 					<div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="8px">
@@ -14,7 +16,8 @@
 					</div>
 
 				</mat-step>
-				<mat-step [stepControl]="professionalInfoFormGroup">
+				<mat-step>
+					<!-- <mat-step [stepControl]="professionalInfoFormGroup"> -->
 					<ng-template matStepLabel>Professional Information </ng-template>
 					<app-professional-info-form #professionalInfoForm></app-professional-info-form>
 					<div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="8px">
@@ -25,10 +28,10 @@
 
 				<mat-step>
 					<ng-template matStepLabel>Bank Information</ng-template>
-					<p>You are now done.</p>
-					<div>
-						<button mat-button matStepperPrevious>Back</button>
-						<button mat-button>Reset</button>
+					<app-bank-info-form #bankInfoForm></app-bank-info-form>
+
+					<div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="8px">
+						<button mat-raised-button color="primary">Complete</button>
 					</div>
 				</mat-step>
 			</mat-stepper>
