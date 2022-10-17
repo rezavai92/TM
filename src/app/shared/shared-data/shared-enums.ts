@@ -8,3 +8,10 @@ export enum DoctorsSpecializationEnum {
   HeartSpecialist = 'HEART_SPECIALIST',
   EyeSpecialist = 'EYE_SPECIALIST'
 }
+
+
+export enum GenderEnum {
+  Male = "Male",
+  Female = "Female",
+  Other = "Other"
+}

@@ -11,7 +11,7 @@ import { MfsList, numberRegexString } from '../../shared/shared-data/constants';
 export class BankInfoFormComponent implements OnInit, OnDestroy {
 
     bankInfoForm!: FormGroup;
-    chosenBankType: string = "";
+    chosenBankType: string = "Bank";
     FinanceTypeRadioButtonValueChangeSubscription!: Subscription;
 
     BankGroup!: FormGroup;
@@ -22,29 +22,37 @@ export class BankInfoFormComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.initBankInfoForm();
-        this.subscribeToFinanceTypeValueChange();
+        this.subscribeToFinanceTypeControlValueChange();
+        this.onChosenBankTypeValueChange();
+
 
     }
 
-    subscribeToFinanceTypeValueChange() {
+    onChosenBankTypeValueChange() {
+        if (this.chosenBankType === 'Bank') {
+            if (!this.BankGroup) {
+                this.initBankGroup();
+            }
+
+        }
+        else {
+            if (!this.MfsGroup) {
+                this.initMFSGroup()
+            }
+
+        }
+
+    }
+
+    subscribeToFinanceTypeControlValueChange() {
         this.FinanceTypeRadioButtonValueChangeSubscription =
             this.bankInfoForm.controls["FinanceType"].
                 valueChanges.
                 subscribe((val: any) => {
 
                     this.chosenBankType = val;
-                    if (this.chosenBankType === 'Bank') {
-                        if (!this.BankGroup) {
-                            this.initBankGroup();
-                        }
+                    this.onChosenBankTypeValueChange();
 
-                    }
-                    else {
-                        if (!this.MfsGroup) {
-                            this.initMFSGroup()
-                        }
-
-                    }
                 })
 
     }
@@ -70,7 +78,7 @@ export class BankInfoFormComponent implements OnInit, OnDestroy {
 
     initBankInfoForm() {
         this.bankInfoForm = this._fb.group({
-            FinanceType: ["", Validators.required],
+            FinanceType: [this.chosenBankType, Validators.required],
 
         });
 

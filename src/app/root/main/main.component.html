@@ -1,5 +1,5 @@
 <div class="main-container">
-    <mat-toolbar *ngIf="!hideToolBar" color="primary">
+    <mat-toolbar class="app-toolbar" style="position : sticky;" *ngIf="!hideToolBar" color="primary">
         <button *ngIf="!hideSideNavigation" mat-icon-button (click)="toggleDrawer()"
             aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>

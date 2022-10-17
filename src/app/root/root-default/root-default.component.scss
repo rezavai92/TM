@@ -1,7 +1,9 @@
 @import "../../../styles/utils/spacing";
 @import "../../../styles/themes/custom-palette.scss";
+
 .root-default-container {
   height: 100%;
+  overflow-y: scroll;
   background-color: map-get($mat-bs-accent, 50) !important;
   box-sizing: border-box;
 }

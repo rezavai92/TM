@@ -9,7 +9,7 @@ import {
   IFileUploadConfig,
   IFileUploadDataContext,
 } from 'src/app/shared/modules/file-uploader/interfaces/file-uploader.interface';
-import { emailRegexString, Gender, numberRegexString } from '../../shared/shared-data/constants';
+import { emailRegexString, Genders, numberRegexString } from '../../shared/shared-data/constants';
 
 @Component({
   selector: 'app-general-info-form',
@@ -22,7 +22,7 @@ export class GeneralInfoFormComponent implements OnInit {
   NidBackPartUploadDataContext!: IFileUploadDataContext;
   NidFrontPartUploadConfig!: IFileUploadConfig;
   NidBackPartUploadConfig!: IFileUploadConfig;
-  genders = Gender;
+  genders = Genders;
   isNidFrontPartUploaderTouched = false;
   profilePictureSrc = "assets/images/user.png";
   constructor(private _fb: FormBuilder) { }
