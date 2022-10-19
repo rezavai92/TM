@@ -1,0 +1,38 @@
+<div class="w-100-p login-form">
+
+    <form [formGroup]="loginForm">
+
+        <div class="w-100-p" fxLayout="column" fxLayoutAlign="start start">
+            <mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder="Phone Number" formControlName="PhoneNumber" required />
+                <span matPrefix>+880 &nbsp;</span>
+                <mat-error *ngIf="hasError(FormControls['PhoneNumber'])">
+                    <span *ngIf="FormControls['PhoneNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                        |translate}}</span>
+                    <span *ngIf="FormControls['PhoneNumber']?.errors?.['pattern'] 
+                  || FormControls['PhoneNumber']?.errors?.['minlength'] 
+                  || FormControls['PhoneNumber']?.errors?.['maxlength']">
+                        please enter a valid phone number</span>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always" class="w-100-p" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="Password" placeholder="Password">
+                <mat-error *ngIf="hasError(FormControls['Password'])">
+                    <span *ngIf="FormControls['Password']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |
+                        translate}}</span>
+                </mat-error>
+            </mat-form-field>
+
+            <div class="w-100-p txt-algn-r">
+                <ng-content></ng-content>
+            </div>
+            <button class="w-100-p mt-8" mat-raised-button color="primary" (click)="login()">
+                Sign up
+            </button>
+        </div>
+
+    </form>
+</div>

@@ -1,11 +1,52 @@
-<div fxFlexFill fxLayout="row" fxLayoutAlign.lt-md="center center" fxLayoutAlign.gt-sm="start" class="login-container">
-  <!-- <div fxFlex.gt-sm="75" fxHide.lt-md="true" class="banner-container">
-        <img src="assets/images/banner2.jpg" alt="" height="100%" width="100%">
-        <div class="page-header-1 title-container">SHIFA TELEMEDICINE</div>
-    </div> -->
-  <div fxFlex.gt-sm="25" fxLayout="column" class="login-box">
-    <button mat-raised-button color="primary" (click)="navigateToSignUp()">
-      Sign up
-    </button>
-  </div>
+<div fxFlexFill fxLayout="row" fxLayoutAlign="start" class="login-page-container w-100-p">
+
+	<div fxHide.lt-lg fxShow.gt-md>
+		<div fxFlex="75" class="bannner-container">
+			<img src="../../../assets/images/banner2.jpg" width="100%" height="100%" alt="Unable to show banner">
+		</div>
+		<div fxFlex="25" class="login-box-lg-screen">
+			<div class="mb-30 txt-algn-c">
+				<ng-container *ngTemplateOutlet="portalLanguageToggle ; context : {selectedLang : 'en'}">
+				</ng-container>
+			</div>
+
+			<app-login-form>
+				<button (click)="$event.preventDefault();" style="margin-right: -16px;" mat-button
+					color="primary">Forgot password?
+				</button>
+			</app-login-form>
+
+			<ng-container *ngTemplateOutlet="notAUserYet"></ng-container>
+
+		</div>
+	</div>
+
+	<div fxHide.gt-md fxShow.lt-lg class="w-100-p max-tab-view" fxLayout="column" fxLayoutAlign="center center">
+		<div [ngClass.md]="{'w-40-p' : true}" [ngClass.lt-md]="{'w-60-p' : true}" class="login-box-sm-screen">
+			<app-login-form>
+				<button (click)="$event.preventDefault();" style="margin-right: -16px;" mat-button
+					color="primary">Forgot password?
+				</button>
+			</app-login-form>
+			<ng-container *ngTemplateOutlet="notAUserYet"></ng-container>
+		</div>
+	</div>
+
+
 </div>
+
+<ng-template #notAUserYet>
+	<div fxLayoutAlign="start center" fxLayout="row" fxLayoutGap="4px">
+		<div>Not a user yet?</div>
+		<button (click)="navigateToSignUp()" mat-button color="primary">CreateAccount</button>
+	</div>
+
+</ng-template>
+
+<ng-template #portalLanguageToggle let-value="selectedLang">
+	<mat-button-toggle-group (change)="onChangePortalLang($event)" [value]="value" name="portalLanguage"
+		aria-label="choose language">
+		<mat-button-toggle value="be">{{"BENGALI" | translate}}</mat-button-toggle>
+		<mat-button-toggle value="en">{{"ENGLISH" | translate}}</mat-button-toggle>
+	</mat-button-toggle-group>
+</ng-template>

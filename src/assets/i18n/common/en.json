@@ -1,4 +1,5 @@
 {
     "ENGLISH" : "English",
-    "BENGALI": "বাংলা"
+    "BENGALI": "বাংলা",
+    "THIS_FIELD_REQUIRED" : "This field is required"
 }

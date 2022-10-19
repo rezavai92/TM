@@ -30,12 +30,11 @@ export class SignupStepperContainerComponent implements OnInit, AfterViewInit {
 
 
 	constructor(
-		private _formBuilder: FormBuilder,
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService
 	) {
 		// this._translateService.addLangs(['en', 'be']);
-		this._translateService.setDefaultLang('en');
+		// this._translateService.setDefaultLang('en');
 		this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			this._translateService.use(lang);
 		});

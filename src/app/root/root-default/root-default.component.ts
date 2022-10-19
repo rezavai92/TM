@@ -27,7 +27,12 @@ export class RootDefaultComponent implements OnInit {
 
     router.initialNavigation();
     this.setTranslationConfig();
-    router.events.subscribe((event) => {
+    this.onRouteChangeEvent();
+
+  }
+
+  onRouteChangeEvent() {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentApp = this.activatedRoute.root.firstChild?.snapshot;
         this.hideToolBar =

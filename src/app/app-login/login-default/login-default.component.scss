@@ -2,15 +2,19 @@
 @import "../../../styles/utils/variables";
 @import "../../../styles/shared/page-header.scss";
 @import "../../../styles/utils/spacing";
+@import "../../../styles/utils/singletone";
 
-.login-container {
+.login-page-container {
+  height: 100%;
   box-sizing: border-box;
+  overflow-y: hidden;
 
   .banner-container {
     position: relative;
     box-sizing: border-box;
     background-color: white;
     text-align: center;
+    height: 100%;
 
     .title-container {
       text-align: center;
@@ -23,13 +27,68 @@
     }
   }
 
-  .login-box {
-    box-sizing: border-box;
-    padding: 32px 16px;
-    border-radius: 4px;
-    max-width: 100%;
+
+
+  .login-box-lg-screen {
+    height: 100%;
+    padding: 32px;
     background-color: $custom-white-color;
     font-family: $custom-font-family;
     color: $dark-primary-text;
+  }
+
+
+
+  @media screen and (max-width :459px) {
+    .max-tab-view {
+      min-width: 300px;
+    }
+
+  }
+
+  @media screen and (min-width :460px) and (max-width : 599px) {
+    .max-tab-view {
+      min-width: 400px;
+    }
+
+  }
+
+  @media screen and (min-width :600px) {
+    .max-tab-view {
+      min-width: 500px;
+
+    }
+
+  }
+
+  .max-tab-view {
+
+    box-sizing: border-box;
+
+    background: #4e54c8;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, map-get($mat-bs-primary, 900), map-get($mat-bs-primary, 100));
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, map-get($mat-bs-primary, 900), map-get($mat-bs-primary, 100));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+    .login-box-sm-screen {
+
+      border-radius: 4px;
+      padding: 32px;
+      background-color: $custom-white-color;
+      font-family: $custom-font-family;
+      color: $dark-primary-text;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .mat-button-toggle-checked {
+    background-color: map-get($mat-bs-accent , 700);
+    color: white;
+    // color: mat-color($accent, default-contrast);
   }
 }

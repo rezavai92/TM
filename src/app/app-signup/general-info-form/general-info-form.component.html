@@ -13,7 +13,7 @@
         <mat-label>First Name</mat-label>
         <input matInput placeholder="First name" formControlName="FirstName" required />
         <mat-error *ngIf="hasError(FormControls['FirstName'])">
-          <span *ngIf="FormControls['FirstName']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['FirstName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
         </mat-error>
       </mat-form-field>
 
@@ -21,7 +21,7 @@
         <mat-label>Last Name</mat-label>
         <input matInput placeholder="Last name" formControlName="LastName" required />
         <mat-error *ngIf="hasError(FormControls['LastName'])">
-          <span *ngIf="FormControls['LastName']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['LastName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
         </mat-error>
       </mat-form-field>
     </div>
@@ -35,7 +35,7 @@
           </mat-option>
         </mat-select>
         <mat-error *ngIf="hasError(FormControls['Gender'])">
-          <span *ngIf="FormControls['Gender']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['Gender']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
         </mat-error>
       </mat-form-field>
 
@@ -46,7 +46,7 @@
         <mat-datepicker-toggle matSuffix [for]="birthDayPicker"></mat-datepicker-toggle>
         <mat-datepicker #birthDayPicker></mat-datepicker>
         <mat-error *ngIf="hasError(FormControls['DateOfBirth'])">
-          <span *ngIf="FormControls['DateOfBirth']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['DateOfBirth']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
         </mat-error>
       </mat-form-field>
     </div>
@@ -56,7 +56,7 @@
         <mat-label>Email</mat-label>
         <input matInput type="email" placeholder="Email" formControlName="Email" required />
         <mat-error *ngIf="hasError(FormControls['Email'])">
-          <span *ngIf="FormControls['Email']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['Email']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
           <span *ngIf="FormControls['Email']?.errors?.['pattern'] || FormControls['Email']?.errors?.['email']">please
             enter a valid email</span>
         </mat-error>
@@ -69,7 +69,7 @@
         <input matInput placeholder="Phone Number" formControlName="PhoneNumber" required />
         <span matPrefix>+880 &nbsp;</span>
         <mat-error *ngIf="hasError(FormControls['PhoneNumber'])">
-          <span *ngIf="FormControls['PhoneNumber']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['PhoneNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
           <span *ngIf="FormControls['PhoneNumber']?.errors?.['pattern'] 
           || FormControls['PhoneNumber']?.errors?.['minlength'] 
           || FormControls['PhoneNumber']?.errors?.['maxlength']">
@@ -83,7 +83,7 @@
         <mat-label>NID</mat-label>
         <input matInput placeholder="NID" formControlName="NID" required />
         <mat-error *ngIf="hasError(FormControls['NID'])">
-          <span *ngIf="FormControls['NID']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['NID']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
           <span *ngIf="FormControls['NID']?.errors?.['pattern']">
             please enter a valid NID number</span>
         </mat-error>
@@ -94,7 +94,8 @@
       <mat-form-field appearance="outline" class="w-100-p">
         <input style="display: none" matInput formControlName="FakeNidFrontPartControl" required />
         <mat-error *ngIf="hasError(FormControls['FakeNidFrontPartControl'])">
-          <span *ngIf="FormControls['FakeNidFrontPartControl']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['FakeNidFrontPartControl']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+            |translate}}</span>
         </mat-error>
         <div class="w-100-p">
           <app-file-uploader class="w-100-p" (onSuccessfulFileUpload)="onNidFrontPartUpload($event)"
@@ -107,7 +108,8 @@
       <mat-form-field appearance="outline" class="w-100-p">
         <input style="display: none" matInput formControlName="FakeNidBackPartControl" required />
         <mat-error *ngIf="hasError(FormControls['FakeNidBackPartControl'])">
-          <span *ngIf="FormControls['FakeNidBackPartControl']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['FakeNidBackPartControl']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+            |translate}}</span>
         </mat-error>
         <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px"
           *ngIf="NidFrontPartUploadDataContext && NidBackPartUploadDataContext">

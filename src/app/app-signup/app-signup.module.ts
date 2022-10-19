@@ -15,13 +15,17 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfessionalInfoFormComponent } from './professional-info-form/professional-info-form.component';
 import { BankInfoFormComponent } from './bank-info-form/bank-info-form.component';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 
 const routes: Route[] = [
   { path: '', component: SignupStepperContainerComponent },
 ];
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/app-signup/', '.json');
+  return new MultiTranslateHttpLoader(http, [
+    { prefix: "./assets/i18n/common/", suffix: ".json" },
+    { prefix: "./assets/i18n/app-signup/", suffix: ".json" },
+  ]);
 }
 
 @NgModule({

@@ -26,6 +26,7 @@
     "@ngrx/store": "^14.3.1",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
+    "ngx-translate-multi-http-loader": "^8.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -41,7 +42,11 @@
   },
   "jest": {
     "preset": "jest-preset-angular",
-    "roots": [ "<rootDir>/src/" ],
-    "setupFilesAfterEnv": ["<rootDir>/src/setup.jest.ts"]
-}
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setup.jest.ts"
+    ]
+  }
 }
