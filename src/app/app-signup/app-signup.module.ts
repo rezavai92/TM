@@ -23,8 +23,9 @@ const routes: Route[] = [
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
-    { prefix: "./assets/i18n/common/", suffix: ".json" },
     { prefix: "./assets/i18n/app-signup/", suffix: ".json" },
+    //{ prefix: "./assets/i18n/common/", suffix: ".json" },
+
   ]);
 }
 
@@ -46,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
+      isolate: true
     }),
   ],
 })

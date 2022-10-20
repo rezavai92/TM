@@ -34,7 +34,7 @@ export class SignupStepperContainerComponent implements OnInit, AfterViewInit {
 		private _sharedDataService: SharedDataService
 	) {
 		// this._translateService.addLangs(['en', 'be']);
-		// this._translateService.setDefaultLang('en');
+		//this._translateService.setDefaultLang('en');
 		this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			this._translateService.use(lang);
 		});

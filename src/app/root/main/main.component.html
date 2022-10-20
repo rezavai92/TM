@@ -6,13 +6,23 @@
         </button>
         <span>Shifa Telemedicine</span>
 
-        <div class="w-100-p" fxLayout.gt-xs="row" fxLayoutAlign="end" fxLayoutGap="32px">
-            <div style="font-size: 16px;" class="pr-20">
-                <mat-select [(value)]="selectedLanguage" (selectionChange)="setPortalLanguage()">
+        <div class="w-100-p" fxLayout.gt-xs="row" fxLayoutAlign="end center" fxLayoutGap="32px">
+            <div>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <mat-icon style="margin-top: -2px;" fontIcon="language"></mat-icon>
+                    <span> {{selectedLanguageValue | portalLanguage | translate}}</span>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <ng-container *ngFor="let lang of portalLanguages">
+                        <button (click)="setPortalLanguage(lang)" mat-menu-item> {{lang.Key | translate}}</button>
+                    </ng-container>
+
+                </mat-menu>
+                <!-- <mat-select [(value)]="selectedLanguage" (selectionChange)="setPortalLanguage()">
                     <mat-option *ngFor="let lang of portalLanguages" aria-selected="true" [value]="lang.Value">
                         {{lang.Key | translate}}
                     </mat-option>
-                </mat-select>
+                </mat-select> -->
             </div>
 
         </div>

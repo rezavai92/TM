@@ -21,7 +21,8 @@ import { Portal } from '@angular/cdk/portal';
 })
 export class MainComponent implements OnInit, OnChanges {
   drawerMode: MatDrawerMode = 'side';
-  selectedLanguage!: 'en' | 'be';
+  selectedLanguageValue: ('en' | 'be') = 'en';
+  //selectedlanguageKey!: string;
   portalLanguages = PortalLanguages;
   screenHeight!: number;
   screenWidth!: number;
@@ -33,7 +34,7 @@ export class MainComponent implements OnInit, OnChanges {
   @ViewChild('drawer') drawerRef!: MatDrawer;
   constructor(private _sharedDataService: SharedDataService) {
     this._sharedDataService.getCurrentLang().subscribe((lang) => {
-      this.selectedLanguage = lang;
+      this.selectedLanguageValue = lang;
     });
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -42,9 +43,7 @@ export class MainComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getScreenSizeAndUpdateDrawerConfig();
-    this._sharedDataService
-      .getCurrentLang()
-      .subscribe((lang) => (this.selectedLanguage = lang));
+
   }
 
   setCurrentDrawerMode() {
@@ -75,7 +74,9 @@ export class MainComponent implements OnInit, OnChanges {
     this.drawerRef.toggle();
   }
 
-  setPortalLanguage() {
-    this._sharedDataService.setCurrentLang(this.selectedLanguage);
+  setPortalLanguage(language: any) {
+    this._sharedDataService.setCurrentLang(language.Value);
   }
+
+
 }

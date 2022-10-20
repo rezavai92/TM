@@ -91,4 +91,8 @@
     color: white;
     // color: mat-color($accent, default-contrast);
   }
+
+  .no-hover-effect.mat-button.mat-primary .mat-button-focus-overlay {
+    background-color: transparent;
+  }
 }

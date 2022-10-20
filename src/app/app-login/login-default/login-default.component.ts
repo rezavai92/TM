@@ -10,6 +10,9 @@ import { SharedDataService } from '../../shared/services/shared-data-services/sh
   styleUrls: ['./login-default.component.scss'],
 })
 export class LoginDefaultComponent implements OnInit {
+
+  currentSelectedLanguageValue: 'be' | 'en' = 'en';
+  currentSelectedLanguageKey: string = "ENGLISH";
   constructor(
     private _router: Router,
     private _translateService: TranslateService,
@@ -17,6 +20,7 @@ export class LoginDefaultComponent implements OnInit {
   ) {
 
     this._sharedDataService.getCurrentLang().subscribe((lang) => {
+      this.currentSelectedLanguageValue = lang;
       this._translateService.use(lang);
     });
   }
@@ -30,8 +34,15 @@ export class LoginDefaultComponent implements OnInit {
     this._router.navigateByUrl('/signup');
   }
 
-  onChangePortalLang(toggleChange: MatButtonToggleChange) {
+  onChangePortalLang(langValue: ("en" | "de")) {
 
-    this._sharedDataService.setCurrentLang(toggleChange.value);
+    this._sharedDataService.setCurrentLang(this.toggleLanguageValue(langValue));
   }
+
+  toggleLanguageValue(langValue: ("en" | "de")) {
+
+    return langValue === 'en' ? 'be' : 'en'
+  }
+
+
 }

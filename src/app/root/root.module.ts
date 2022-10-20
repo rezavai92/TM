@@ -16,6 +16,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MainComponent } from './main/main.component';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -35,6 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MaterialModule,
     FlexLayoutModule,
     MaterialModule,
+    SharedUtilityModule,
     StoreModule.forRoot({}, {}),
     TranslateModule.forRoot({
       defaultLanguage: 'en',
