@@ -9,13 +9,14 @@ export class PhotoUploaderComponent implements OnInit {
 
   selectedFile!: File;
   preview!: any;
-  @Output() onSuccessfulFileUpload = new EventEmitter();
+  @Output() successfulFileUpload = new EventEmitter();
   @Output() actionInProgressEmitter = new EventEmitter();
   @Output() controlTouched = new EventEmitter<boolean>();
-  @Output() onFileDelete = new EventEmitter();
+  @Output() fileDelete = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
+    console.log('');
   }
 
   onFileUpload() {
@@ -36,7 +37,7 @@ export class PhotoUploaderComponent implements OnInit {
     reader.onload = (e: any) => {
       console.log(e.target.result);
       this.preview = e.target.result;
-      this.onSuccessfulFileUpload.emit(this.preview);
+      this.successfulFileUpload.emit(this.preview);
     };
 
     reader.readAsDataURL(this.selectedFile);

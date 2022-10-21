@@ -46,7 +46,7 @@ export class SignupStepperContainerComponent implements OnInit, AfterViewInit {
 
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void { console.log(''); }
 
 	loadAllStepControls() {
 		this.generalInfoFormGroup = this.generalInfoFormComponent.generalInfoForm;

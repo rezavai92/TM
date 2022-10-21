@@ -27,9 +27,9 @@ export class MainComponent implements OnInit, OnChanges {
   screenHeight!: number;
   screenWidth!: number;
   isDrawerOpened = true;
-  @Input('hideToolBar') hideToolBar: boolean = true;
-  @Input('hideSideNavigation') hideSideNavigation: boolean = true;
-  @Input('navigations') navigations!: Navigation[];
+  @Input() hideToolBar: boolean = true;
+  @Input() hideSideNavigation: boolean = true;
+  @Input() navigations!: Navigation[];
 
   @ViewChild('drawer') drawerRef!: MatDrawer;
   constructor(private _sharedDataService: SharedDataService) {

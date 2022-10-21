@@ -3,7 +3,7 @@
 		<div class="page-header-2">{{"PROFILE_PICTURE" | translate}}</div>
 
 		<img width="128" height="128" [src]="profilePictureSrc" alt="" />
-		<app-photo-uploader (onSuccessfulFileUpload)="onProfilePicUpload($event)" class="uploader"></app-photo-uploader>
+		<app-photo-uploader (successfulFileUpload)="onProfilePicUpload($event)" class="uploader"></app-photo-uploader>
 	</div>
 
 	<form class="general-info-form" [formGroup]="generalInfoForm">
@@ -142,8 +142,8 @@
 						|translate}}</span>
 				</mat-error>
 				<div class="w-100-p">
-					<app-file-uploader class="w-100-p" (onSuccessfulFileUpload)="onNidFrontPartUpload($event)"
-						(onFileDelete)="onNidFrontPartDelete($event)" [config]="NidFrontPartUploadConfig"
+					<app-file-uploader class="w-100-p" (successfulFileUpload)="onNidFrontPartUpload($event)"
+						(fileDelete)="onNidFrontPartDelete($event)" [config]="NidFrontPartUploadConfig"
 						[dataContext]="NidFrontPartUploadDataContext">
 					</app-file-uploader>
 				</div>
@@ -158,8 +158,8 @@
 				<div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px"
 					*ngIf="NidFrontPartUploadDataContext && NidBackPartUploadDataContext">
 					<div class="w-100-p">
-						<app-file-uploader (onSuccessfulFileUpload)="onNidBackPartUpload($event)"
-							(onFileDelete)="onNidBackPartDelete($event)" [config]="NidBackPartUploadConfig"
+						<app-file-uploader (successfulFileUpload)="onNidBackPartUpload($event)"
+							(fileDelete)="onNidBackPartDelete($event)" [config]="NidBackPartUploadConfig"
 							[dataContext]="NidBackPartUploadDataContext">
 						</app-file-uploader>
 					</div>

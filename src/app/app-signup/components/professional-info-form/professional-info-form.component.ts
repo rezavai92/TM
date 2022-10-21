@@ -42,7 +42,7 @@ export class ProfessionalInfoFormComponent implements OnInit {
 		this.initProfessionalInfoForm();
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void { console.log(''); }
 
 	initProfessionalInfoForm() {
 		this.professionalInfoForm = this._fb.group({

@@ -56,7 +56,7 @@ export class RootDefaultComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    console.log('');
 
   }
 

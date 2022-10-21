@@ -89,8 +89,8 @@
                                                 required</span>
                                         </mat-error>
                                         <app-file-uploader style="margin-top: -20px;"
-                                            (onSuccessfulFileUpload)="onDocumentUpload(i)"
-                                            (onFileDelete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
+                                            (successfulFileUpload)="onDocumentUpload(i)"
+                                            (fileDelete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
                                             [dataContext]="documentUploadDataContext">
                                         </app-file-uploader>
 
