@@ -13,14 +13,14 @@ import {
 	IFileUploadConfig,
 	IFileUploadDataContext,
 } from 'src/app/shared/modules/file-uploader/interfaces/file-uploader.interface';
-import { SharedUtilityService } from '../../shared/services/shared-utilities/shared-utility.service';
-import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
+import { SharedUtilityService } from '../../../shared/services/shared-utilities/shared-utility.service';
+import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 import {
 	emailRegexString,
 	Genders,
 	numberRegexString,
 	passwordRegexString,
-} from '../../shared/shared-data/constants';
+} from '../../../shared/shared-data/constants';
 import * as _ from 'lodash';
 @Component({
 	selector: 'app-general-info-form',

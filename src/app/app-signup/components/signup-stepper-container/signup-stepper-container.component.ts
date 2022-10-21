@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
+import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 import { BankInfoFormComponent } from '../bank-info-form/bank-info-form.component';
 import { GeneralInfoFormComponent } from '../general-info-form/general-info-form.component';
 import { ProfessionalInfoFormComponent } from '../professional-info-form/professional-info-form.component';

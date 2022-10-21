@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { MfsList, numberRegexString } from '../../shared/shared-data/constants';
+import { MfsList, numberRegexString } from '../../../shared/shared-data/constants';
 
 @Component({
     selector: 'app-bank-info-form',

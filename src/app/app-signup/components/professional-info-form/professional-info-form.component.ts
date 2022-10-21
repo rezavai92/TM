@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
-import { emailRegexString, numberRegexString } from '../../shared/shared-data/constants';
-import { IFileUploadConfig, IFileUploadDataContext } from '../../shared/modules/file-uploader/interfaces/file-uploader.interface';
+import { emailRegexString, numberRegexString } from '../../../shared/shared-data/constants';
+import { IFileUploadConfig, IFileUploadDataContext } from '../../../shared/modules/file-uploader/interfaces/file-uploader.interface';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { DoctorsSpecializationEnum } from 'src/app/shared/shared-data/shared-enums';
 import { MatSelectChange } from '@angular/material/select';
-import { DoctorsProfessionalDocumentTags } from '../constants/signup.constants';
+import { DoctorsProfessionalDocumentTags } from '../../constants/signup.constants';
 
 @Component({
 	selector: 'app-professional-info-form',
