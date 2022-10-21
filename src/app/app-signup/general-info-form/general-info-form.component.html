@@ -78,6 +78,32 @@
       </mat-form-field>
     </div>
 
+    <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start" class="form-field-pairs">
+      <mat-form-field appearance="outline" class="w-100-p">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Password" formControlName="Password" required />
+        <mat-error *ngIf="hasError(FormControls['Password'])">
+          <span *ngIf="FormControls['Password']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['Password']?.errors?.['pattern']">please
+            enter a valid password</span>
+        </mat-error>
+
+
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
+        <mat-label>Phone Number</mat-label>
+        <input matInput placeholder="Phone Number" formControlName="ConfirmPassword" required />
+        <span matPrefix>+880 &nbsp;</span>
+        <mat-error *ngIf="hasError(FormControls['PhoneNumber'])">
+          <span *ngIf="FormControls['ConfirmPassword']?.errors?.['required']">This field is required</span>
+          <span *ngIf="FormControls['ConfirmPassword']?.errors?.['pattern']">
+            please enter a valid password</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
     <div>
       <mat-form-field appearance="outline" class="w-100-p">
         <mat-label>NID</mat-label>

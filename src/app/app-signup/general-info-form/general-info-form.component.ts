@@ -23,6 +23,7 @@ import {
 	styleUrls: ['./general-info-form.component.scss'],
 })
 export class GeneralInfoFormComponent implements OnInit {
+
 	generalInfoForm!: FormGroup;
 	NidFrontPartUploadDataContext!: IFileUploadDataContext;
 	NidBackPartUploadDataContext!: IFileUploadDataContext;
@@ -74,6 +75,8 @@ export class GeneralInfoFormComponent implements OnInit {
 			],
 			FakeNidFrontPartControl: ['', Validators.required],
 			FakeNidBackPartControl: ['', Validators.required],
+			Password: ['', [Validators.required]],
+			ConfirmPassword: ['', [Validators.required]]
 		});
 	}
 
