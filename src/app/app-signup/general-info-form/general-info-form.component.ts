@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {
 	AbstractControl,
 	FormBuilder,
+	FormControl,
 	FormGroup,
+	ValidationErrors,
+	ValidatorFn,
 	Validators,
 } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,13 +13,15 @@ import {
 	IFileUploadConfig,
 	IFileUploadDataContext,
 } from 'src/app/shared/modules/file-uploader/interfaces/file-uploader.interface';
+import { SharedUtilityService } from '../../shared/services/shared-utilities/shared-utility.service';
 import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
 import {
 	emailRegexString,
 	Genders,
 	numberRegexString,
+	passwordRegexString,
 } from '../../shared/shared-data/constants';
-
+import * as _ from 'lodash';
 @Component({
 	selector: 'app-general-info-form',
 	templateUrl: './general-info-form.component.html',
@@ -25,6 +30,7 @@ import {
 export class GeneralInfoFormComponent implements OnInit {
 
 	generalInfoForm!: FormGroup;
+	PasswordGroup!: FormGroup;
 	NidFrontPartUploadDataContext!: IFileUploadDataContext;
 	NidBackPartUploadDataContext!: IFileUploadDataContext;
 	NidFrontPartUploadConfig!: IFileUploadConfig;
@@ -36,7 +42,8 @@ export class GeneralInfoFormComponent implements OnInit {
 	constructor(
 		private _fb: FormBuilder,
 		private _translateService: TranslateService,
-		private _sharedDataService: SharedDataService
+		private _sharedDataService: SharedDataService,
+		private _sharedUtilityService: SharedUtilityService
 	) {
 		this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			this._translateService.use(lang);
@@ -75,10 +82,49 @@ export class GeneralInfoFormComponent implements OnInit {
 			],
 			FakeNidFrontPartControl: ['', Validators.required],
 			FakeNidBackPartControl: ['', Validators.required],
-			Password: ['', [Validators.required]],
-			ConfirmPassword: ['', [Validators.required]]
-		});
+			PasswordGroup: new FormGroup({
+				Password: new FormControl('', [Validators.required, Validators.pattern(passwordRegexString)]),
+				ConfirmPassword: new FormControl('', [Validators.required,])
+			})
+
+
+		},
+		);
+
+		(this.FormControls['PasswordGroup'] as FormGroup).addValidators(this.confirmPasswordValidator());
+
+
 	}
+
+	get PasswordFormGroup() {
+		return (this.generalInfoForm.controls['PasswordGroup'] as FormGroup).controls;
+	}
+
+	confirmPasswordValidator(): ValidatorFn {
+
+		return (control: AbstractControl): ValidationErrors | null => {
+			const password = this.PasswordFormGroup['Password'];
+			const confirmPassword = this.PasswordFormGroup['ConfirmPassword'];
+			const passwordMatched = password.value === (confirmPassword.value);
+			const passwordMatchError = !passwordMatched ? { notmatched: true } : null;
+			let errors: any = {};
+			if (!confirmPassword.value) {
+				errors['required'] = true;
+			}
+
+			if (passwordMatchError) {
+				errors['notmatched'] = true;
+			}
+
+			if (_.isEmpty(errors)) {
+				errors = null;
+			}
+
+			this.PasswordFormGroup["ConfirmPassword"].setErrors(errors);
+			return passwordMatchError;
+		};
+	}
+
 
 	initNidFileUploadDataContext() {
 		this.NidFrontPartUploadDataContext =
@@ -111,7 +157,13 @@ export class GeneralInfoFormComponent implements OnInit {
 	}
 
 	hasError(control: AbstractControl) {
+		//	console.log(control.errors, control.touched);
 		return control.errors && control.touched;
+	}
+
+	hasPasswordGroupError(group: AbstractControl) {
+		console.log(group);
+		return group.errors && group.touched;
 	}
 
 	initNidFileUploadConfig() {

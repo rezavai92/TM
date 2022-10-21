@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PortalLanguagePipe } from './portal-language.pipe';
+import { PortalLanguagePipe } from './pipes/portal-language.pipe';
 
 
 

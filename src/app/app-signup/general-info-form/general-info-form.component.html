@@ -1,152 +1,170 @@
 <div class="general-info-form-wrapper" ngClass.lt-md="pt-5 pb-5 pl-15 pr-15" ngClass.gt-sm="pt-10 pb-10 pl-40 pr-40">
-  <div fxLayout="column" fxLayoutGap="16px" class="photo-uploader-container">
-    <div class="page-header-2">{{"PROFILE_PICTURE" | translate}}</div>
+	<div fxLayout="column" fxLayoutGap="16px" class="photo-uploader-container">
+		<div class="page-header-2">{{"PROFILE_PICTURE" | translate}}</div>
 
-    <img width="128" height="128" [src]="profilePictureSrc" alt="" />
-    <app-photo-uploader (onSuccessfulFileUpload)="onProfilePicUpload($event)" class="uploader"></app-photo-uploader>
-  </div>
+		<img width="128" height="128" [src]="profilePictureSrc" alt="" />
+		<app-photo-uploader (onSuccessfulFileUpload)="onProfilePicUpload($event)" class="uploader"></app-photo-uploader>
+	</div>
 
-  <form class="general-info-form" [formGroup]="generalInfoForm">
-    <div fxLayout.xs="column" fxLayout="row" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start"
-      class="form-field-pairs">
-      <mat-form-field appearance="outline" class="w-100-p form-field">
-        <mat-label>First Name</mat-label>
-        <input matInput placeholder="First name" formControlName="FirstName" required />
-        <mat-error *ngIf="hasError(FormControls['FirstName'])">
-          <span *ngIf="FormControls['FirstName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
-        </mat-error>
-      </mat-form-field>
+	<form class="general-info-form" [formGroup]="generalInfoForm">
+		<div fxLayout.xs="column" fxLayout="row" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start"
+			class="form-field-pairs">
+			<mat-form-field appearance="outline" class="w-100-p form-field">
+				<mat-label>First Name</mat-label>
+				<input matInput placeholder="First name" formControlName="FirstName" required />
+				<mat-error *ngIf="hasError(FormControls['FirstName'])">
+					<span *ngIf="FormControls['FirstName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+						|translate}}</span>
+				</mat-error>
+			</mat-form-field>
 
-      <mat-form-field appearance="outline" class="w-100-p">
-        <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Last name" formControlName="LastName" required />
-        <mat-error *ngIf="hasError(FormControls['LastName'])">
-          <span *ngIf="FormControls['LastName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
-        </mat-error>
-      </mat-form-field>
-    </div>
+			<mat-form-field appearance="outline" class="w-100-p">
+				<mat-label>Last Name</mat-label>
+				<input matInput placeholder="Last name" formControlName="LastName" required />
+				<mat-error *ngIf="hasError(FormControls['LastName'])">
+					<span *ngIf="FormControls['LastName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+						|translate}}</span>
+				</mat-error>
+			</mat-form-field>
+		</div>
 
-    <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start" class="form-field-pairs">
-      <mat-form-field appearance="outline" class="w-100-p">
-        <mat-label>Gender</mat-label>
-        <mat-select formControlName="Gender">
-          <mat-option *ngFor="let gender of genders" [value]="gender.Value">
-            {{gender.Key | translate}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="hasError(FormControls['Gender'])">
-          <span *ngIf="FormControls['Gender']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
-        </mat-error>
-      </mat-form-field>
+		<div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start"
+			class="form-field-pairs">
+			<mat-form-field appearance="outline" class="w-100-p">
+				<mat-label>Gender</mat-label>
+				<mat-select formControlName="Gender">
+					<mat-option *ngFor="let gender of genders" [value]="gender.Value">
+						{{gender.Key | translate}}
+					</mat-option>
+				</mat-select>
+				<mat-error *ngIf="hasError(FormControls['Gender'])">
+					<span *ngIf="FormControls['Gender']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+						|translate}}</span>
+				</mat-error>
+			</mat-form-field>
 
-      <mat-form-field class="w-100-p" appearance="outline">
-        <mat-label>Choose a date</mat-label>
-        <input matInput formControlName="DateOfBirth" [matDatepicker]="birthDayPicker" />
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="birthDayPicker"></mat-datepicker-toggle>
-        <mat-datepicker #birthDayPicker></mat-datepicker>
-        <mat-error *ngIf="hasError(FormControls['DateOfBirth'])">
-          <span *ngIf="FormControls['DateOfBirth']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
-        </mat-error>
-      </mat-form-field>
-    </div>
+			<mat-form-field class="w-100-p" appearance="outline">
+				<mat-label>Choose a date</mat-label>
+				<input matInput formControlName="DateOfBirth" [matDatepicker]="birthDayPicker" />
+				<mat-hint>MM/DD/YYYY</mat-hint>
+				<mat-datepicker-toggle matSuffix [for]="birthDayPicker"></mat-datepicker-toggle>
+				<mat-datepicker #birthDayPicker></mat-datepicker>
+				<mat-error *ngIf="hasError(FormControls['DateOfBirth'])">
+					<span *ngIf="FormControls['DateOfBirth']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+						|translate}}</span>
+				</mat-error>
+			</mat-form-field>
+		</div>
 
-    <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start" class="form-field-pairs">
-      <mat-form-field appearance="outline" class="w-100-p">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="Email" formControlName="Email" required />
-        <mat-error *ngIf="hasError(FormControls['Email'])">
-          <span *ngIf="FormControls['Email']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
-          <span *ngIf="FormControls['Email']?.errors?.['pattern'] || FormControls['Email']?.errors?.['email']">please
-            enter a valid email</span>
-        </mat-error>
+		<div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start"
+			class="form-field-pairs">
+			<mat-form-field appearance="outline" class="w-100-p">
+				<mat-label>Email</mat-label>
+				<input matInput type="email" placeholder="Email" formControlName="Email" required />
+				<mat-error *ngIf="hasError(FormControls['Email'])">
+					<span *ngIf="FormControls['Email']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+						|translate}}</span>
+					<span
+						*ngIf="FormControls['Email']?.errors?.['pattern'] || FormControls['Email']?.errors?.['email']">please
+						enter a valid email</span>
+				</mat-error>
 
 
-      </mat-form-field>
+			</mat-form-field>
 
-      <mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
-        <mat-label>Phone Number</mat-label>
-        <input matInput placeholder="Phone Number" formControlName="PhoneNumber" required />
-        <span matPrefix>+880 &nbsp;</span>
-        <mat-error *ngIf="hasError(FormControls['PhoneNumber'])">
-          <span *ngIf="FormControls['PhoneNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
-          <span *ngIf="FormControls['PhoneNumber']?.errors?.['pattern'] 
+			<mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
+				<mat-label>Phone Number</mat-label>
+				<input matInput placeholder="Phone Number" formControlName="PhoneNumber" required />
+				<span matPrefix>+880 &nbsp;</span>
+				<mat-error *ngIf="hasError(FormControls['PhoneNumber'])">
+					<span *ngIf="FormControls['PhoneNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+						|translate}}</span>
+					<span *ngIf="FormControls['PhoneNumber']?.errors?.['pattern'] 
           || FormControls['PhoneNumber']?.errors?.['minlength'] 
           || FormControls['PhoneNumber']?.errors?.['maxlength']">
-            please enter a valid phone number</span>
-        </mat-error>
-      </mat-form-field>
-    </div>
+						please enter a valid phone number</span>
+				</mat-error>
+			</mat-form-field>
+		</div>
 
-    <div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start" class="form-field-pairs">
-      <mat-form-field appearance="outline" class="w-100-p">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="Password" formControlName="Password" required />
-        <mat-error *ngIf="hasError(FormControls['Password'])">
-          <span *ngIf="FormControls['Password']?.errors?.['required']">This field is required</span>
-          <span *ngIf="FormControls['Password']?.errors?.['pattern']">please
-            enter a valid password</span>
-        </mat-error>
+		<div fxLayout="column" formGroupName="PasswordGroup" class="w-100-p">
+			<div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start"
+				class="form-field-pairs" class="w-100-p">
+				<mat-form-field appearance="outline" class="w-100-p">
+					<mat-label>Password</mat-label>
+					<input matInput type="email" placeholder="Password" formControlName="Password" required />
+					<mat-error *ngIf="hasError(PasswordFormGroup['Password'])">
+						<span *ngIf="PasswordFormGroup['Password']?.errors?.['required']">This field is required</span>
+						<span *ngIf="PasswordFormGroup['Password']?.errors?.['pattern']">Password must contain
+							...</span>
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
+					<mat-label>Confirm Password</mat-label>
+					<input matInput placeholder="ConfirmPassword" formControlName="ConfirmPassword" required />
+					<mat-error>
+						<span *ngIf="PasswordFormGroup['ConfirmPassword']?.errors?.['required']">This field is
+							required</span>
+						<span *ngIf="PasswordFormGroup['ConfirmPassword']?.errors?.['notmatched']">
+							password is not matched
+						</span>
+					</mat-error>
+
+				</mat-form-field>
+			</div>
+
+			<!-- <div class="w-100-p txt-algn-c" *ngIf="hasError(FormControls['PasswordGroup'])">
+				<span *ngIf="FormControls['PasswordGroup']?.errors?.['notmatched']">
+					password is not matched
+				</span>
+			</div> -->
+		</div>
 
 
-      </mat-form-field>
+		<div>
+			<mat-form-field appearance="outline" class="w-100-p">
+				<mat-label>NID</mat-label>
+				<input matInput placeholder="NID" formControlName="NID" required />
+				<mat-error *ngIf="hasError(FormControls['NID'])">
+					<span *ngIf="FormControls['NID']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
+					<span *ngIf="FormControls['NID']?.errors?.['pattern']">
+						please enter a valid NID number</span>
+				</mat-error>
+			</mat-form-field>
+		</div>
 
-      <mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
-        <mat-label>Phone Number</mat-label>
-        <input matInput placeholder="Phone Number" formControlName="ConfirmPassword" required />
-        <span matPrefix>+880 &nbsp;</span>
-        <mat-error *ngIf="hasError(FormControls['PhoneNumber'])">
-          <span *ngIf="FormControls['ConfirmPassword']?.errors?.['required']">This field is required</span>
-          <span *ngIf="FormControls['ConfirmPassword']?.errors?.['pattern']">
-            please enter a valid password</span>
-        </mat-error>
-      </mat-form-field>
-    </div>
+		<div>
+			<mat-form-field appearance="outline" class="w-100-p">
+				<input style="display: none" matInput formControlName="FakeNidFrontPartControl" required />
+				<mat-error *ngIf="hasError(FormControls['FakeNidFrontPartControl'])">
+					<span *ngIf="FormControls['FakeNidFrontPartControl']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+						|translate}}</span>
+				</mat-error>
+				<div class="w-100-p">
+					<app-file-uploader class="w-100-p" (onSuccessfulFileUpload)="onNidFrontPartUpload($event)"
+						(onFileDelete)="onNidFrontPartDelete($event)" [config]="NidFrontPartUploadConfig"
+						[dataContext]="NidFrontPartUploadDataContext">
+					</app-file-uploader>
+				</div>
+			</mat-form-field>
 
-
-    <div>
-      <mat-form-field appearance="outline" class="w-100-p">
-        <mat-label>NID</mat-label>
-        <input matInput placeholder="NID" formControlName="NID" required />
-        <mat-error *ngIf="hasError(FormControls['NID'])">
-          <span *ngIf="FormControls['NID']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
-          <span *ngIf="FormControls['NID']?.errors?.['pattern']">
-            please enter a valid NID number</span>
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div>
-      <mat-form-field appearance="outline" class="w-100-p">
-        <input style="display: none" matInput formControlName="FakeNidFrontPartControl" required />
-        <mat-error *ngIf="hasError(FormControls['FakeNidFrontPartControl'])">
-          <span *ngIf="FormControls['FakeNidFrontPartControl']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-            |translate}}</span>
-        </mat-error>
-        <div class="w-100-p">
-          <app-file-uploader class="w-100-p" (onSuccessfulFileUpload)="onNidFrontPartUpload($event)"
-            (onFileDelete)="onNidFrontPartDelete($event)" [config]="NidFrontPartUploadConfig"
-            [dataContext]="NidFrontPartUploadDataContext">
-          </app-file-uploader>
-        </div>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="w-100-p">
-        <input style="display: none" matInput formControlName="FakeNidBackPartControl" required />
-        <mat-error *ngIf="hasError(FormControls['FakeNidBackPartControl'])">
-          <span *ngIf="FormControls['FakeNidBackPartControl']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-            |translate}}</span>
-        </mat-error>
-        <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px"
-          *ngIf="NidFrontPartUploadDataContext && NidBackPartUploadDataContext">
-          <div class="w-100-p">
-            <app-file-uploader (onSuccessfulFileUpload)="onNidBackPartUpload($event)"
-              (onFileDelete)="onNidBackPartDelete($event)" [config]="NidBackPartUploadConfig"
-              [dataContext]="NidBackPartUploadDataContext">
-            </app-file-uploader>
-          </div>
-        </div>
-      </mat-form-field>
-    </div>
-  </form>
+			<mat-form-field appearance="outline" class="w-100-p">
+				<input style="display: none" matInput formControlName="FakeNidBackPartControl" required />
+				<mat-error *ngIf="hasError(FormControls['FakeNidBackPartControl'])">
+					<span *ngIf="FormControls['FakeNidBackPartControl']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+						|translate}}</span>
+				</mat-error>
+				<div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px"
+					*ngIf="NidFrontPartUploadDataContext && NidBackPartUploadDataContext">
+					<div class="w-100-p">
+						<app-file-uploader (onSuccessfulFileUpload)="onNidBackPartUpload($event)"
+							(onFileDelete)="onNidBackPartDelete($event)" [config]="NidBackPartUploadConfig"
+							[dataContext]="NidBackPartUploadDataContext">
+						</app-file-uploader>
+					</div>
+				</div>
+			</mat-form-field>
+		</div>
+	</form>
 </div>
