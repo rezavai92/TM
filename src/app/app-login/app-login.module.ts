@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
-import { LoginDefaultComponent } from './login-default/login-default.component';
+import { LoginDefaultComponent } from './components/login-default/login-default.component';
 import { MaterialModule } from '../shared/modules/material/material.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { LoginFormComponent } from './login-form/login-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';

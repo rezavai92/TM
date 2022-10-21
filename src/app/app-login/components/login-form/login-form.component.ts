@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { emailRegexString, numberRegexString } from '../../shared/shared-data/constants';
+import { emailRegexString, numberRegexString } from '../../../shared/shared-data/constants';
 
 @Component({
   selector: 'app-login-form',

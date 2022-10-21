@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
+import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 
 @Component({
   selector: 'app-login-default',

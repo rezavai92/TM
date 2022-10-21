@@ -1,0 +1,13 @@
+@import "../../../../styles/themes/custom-palette.scss";
+@import "../../../../styles/utils/variables";
+@import "../../../../styles/shared/page-header.scss";
+@import "../../../../styles/utils/spacing";
+@import "../../../../styles/utils/singletone";
+
+:host ::ng-deep {
+
+    .mat-form-field-appearance-outline .mat-form-field-prefix {
+        top: 0em !important;
+    }
+
+}
