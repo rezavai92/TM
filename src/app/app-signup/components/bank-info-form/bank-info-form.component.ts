@@ -101,7 +101,10 @@ export class BankInfoFormComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.FinanceTypeRadioButtonValueChangeSubscription.unsubscribe();
+        if (this.FinanceTypeRadioButtonValueChangeSubscription) {
+            this.FinanceTypeRadioButtonValueChangeSubscription.unsubscribe();
+        }
+
     }
 
 }

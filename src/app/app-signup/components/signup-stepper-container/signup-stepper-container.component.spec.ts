@@ -13,6 +13,9 @@ import { SignupStepperContainerComponent } from './signup-stepper-container.comp
 import { GeneralInfoFormComponent } from '../general-info-form/general-info-form.component';
 import { FileUploaderModule } from '../../../shared/modules/file-uploader/file-uploader.module';
 import { PhotoUploaderModule } from '../../../shared/modules/photo-uploader/photo-uploader.module';
+import { ProfessionalInfoFormComponent } from '../professional-info-form/professional-info-form.component';
+import { BankInfoFormComponent } from '../bank-info-form/bank-info-form.component';
+import { TranslateMockPipe } from '../../../shared/modules/shared-utility/pipes/translate-mock.pipe';
 
 describe('SignupStepperContainerComponent', () => {
   let component: SignupStepperContainerComponent;
@@ -20,7 +23,7 @@ describe('SignupStepperContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SignupStepperContainerComponent, GeneralInfoFormComponent],
+      declarations: [TranslateMockPipe, SignupStepperContainerComponent, GeneralInfoFormComponent, ProfessionalInfoFormComponent, BankInfoFormComponent],
       imports: [
         ReactiveFormsModule,
         FormsModule,

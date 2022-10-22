@@ -61,7 +61,7 @@ export class RootDefaultComponent implements OnInit {
   }
 
   setTranslationConfig() {
-    this._translateService.setDefaultLang('en');
+    //this._translateService.setDefaultLang('en');
     this._sharedDataService.getCurrentLang().subscribe((lang) => {
       this._translateService.use(lang);
     });

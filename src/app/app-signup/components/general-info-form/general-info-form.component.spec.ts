@@ -8,6 +8,8 @@ import { GeneralInfoFormComponent } from './general-info-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateServiceStub } from '../../../shared/test-mocks/translate.mock';
+import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
+import { TranslateMockPipe } from '../../../shared/modules/shared-utility/pipes/translate-mock.pipe';
 
 describe('GeneralInfoFormComponent', () => {
   let component: GeneralInfoFormComponent;
@@ -15,7 +17,7 @@ describe('GeneralInfoFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GeneralInfoFormComponent],
+      declarations: [GeneralInfoFormComponent, TranslateMockPipe],
       imports: [
         ReactiveFormsModule,
         FormsModule,
@@ -23,9 +25,9 @@ describe('GeneralInfoFormComponent', () => {
         PhotoUploaderModule,
         FileUploaderModule,
         BrowserAnimationsModule,
-        TranslateModule,
       ],
       providers: [
+        SharedDataService,
         { provide: TranslateService, useClass: TranslateServiceStub },
       ],
     }).compileComponents();

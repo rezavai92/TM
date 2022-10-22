@@ -16,7 +16,7 @@ import { ProfessionalInfoFormComponent } from '../professional-info-form/profess
 	templateUrl: './signup-stepper-container.component.html',
 	styleUrls: ['./signup-stepper-container.component.scss'],
 })
-export class SignupStepperContainerComponent implements OnInit, AfterViewInit {
+export class SignupStepperContainerComponent implements AfterViewInit {
 	@ViewChild('generalInfoForm')
 	generalInfoFormComponent!: GeneralInfoFormComponent;
 	@ViewChild('professionalInfoForm')
@@ -46,7 +46,6 @@ export class SignupStepperContainerComponent implements OnInit, AfterViewInit {
 
 	}
 
-	ngOnInit(): void { console.log(''); }
 
 	loadAllStepControls() {
 		this.generalInfoFormGroup = this.generalInfoFormComponent.generalInfoForm;
