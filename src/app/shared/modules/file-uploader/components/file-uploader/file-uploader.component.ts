@@ -6,7 +6,7 @@ import { IFileUploadConfig, IFileUploadDataContext } from '../../interfaces/file
 	templateUrl: './file-uploader.component.html',
 	styleUrls: ['./file-uploader.component.scss']
 })
-export class FileUploaderComponent implements OnInit {
+export class FileUploaderComponent {
 
 	@Input()
 	dataContext!: IFileUploadDataContext;
@@ -27,9 +27,7 @@ export class FileUploaderComponent implements OnInit {
 	errorMessages!: string[];
 	constructor() { }
 
-	ngOnInit(): void {
-		console.log('');
-	}
+
 
 	clearAllErrorMessage() {
 		this.clearUploadErrorMessage();

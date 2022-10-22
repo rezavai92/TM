@@ -10,6 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateServiceStub } from '../../../shared/test-mocks/translate.mock';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 import { TranslateMockPipe } from '../../../shared/modules/shared-utility/pipes/translate-mock.pipe';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 describe('GeneralInfoFormComponent', () => {
   let component: GeneralInfoFormComponent;
@@ -24,6 +25,7 @@ describe('GeneralInfoFormComponent', () => {
         MaterialModule,
         PhotoUploaderModule,
         FileUploaderModule,
+        FlexLayoutModule,
         BrowserAnimationsModule,
       ],
       providers: [

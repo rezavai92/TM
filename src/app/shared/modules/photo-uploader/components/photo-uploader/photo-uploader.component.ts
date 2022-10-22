@@ -5,7 +5,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   templateUrl: './photo-uploader.component.html',
   styleUrls: ['./photo-uploader.component.scss']
 })
-export class PhotoUploaderComponent implements OnInit {
+export class PhotoUploaderComponent {
 
   selectedFile!: File;
   preview!: any;
@@ -15,9 +15,7 @@ export class PhotoUploaderComponent implements OnInit {
   @Output() fileDelete = new EventEmitter();
   constructor() { }
 
-  ngOnInit(): void {
-    console.log('');
-  }
+
 
   onFileUpload() {
 

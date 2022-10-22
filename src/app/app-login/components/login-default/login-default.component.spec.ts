@@ -9,6 +9,7 @@ import { LoginDefaultComponent } from './login-default.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PortalLanguagePipe } from '../../../shared/modules/shared-utility/pipes/portal-language.pipe';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 describe('LoginDefaultComponent', () => {
 	let component: LoginDefaultComponent;
@@ -22,6 +23,7 @@ describe('LoginDefaultComponent', () => {
 				ReactiveFormsModule,
 				FormsModule,
 				BrowserAnimationsModule,
+				FlexLayoutModule
 			],
 			providers: [{ provide: TranslateService, useClass: TranslateServiceStub }]
 		})

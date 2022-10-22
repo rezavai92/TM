@@ -16,6 +16,7 @@ import { PhotoUploaderModule } from '../../../shared/modules/photo-uploader/phot
 import { ProfessionalInfoFormComponent } from '../professional-info-form/professional-info-form.component';
 import { BankInfoFormComponent } from '../bank-info-form/bank-info-form.component';
 import { TranslateMockPipe } from '../../../shared/modules/shared-utility/pipes/translate-mock.pipe';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 describe('SignupStepperContainerComponent', () => {
   let component: SignupStepperContainerComponent;
@@ -32,6 +33,7 @@ describe('SignupStepperContainerComponent', () => {
         FileUploaderModule,
         PhotoUploaderModule,
         TranslateModule,
+        FlexLayoutModule
       ],
       providers: [
         { provide: TranslateService, useClass: TranslateServiceStub },

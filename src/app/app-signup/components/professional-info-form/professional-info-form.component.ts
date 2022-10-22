@@ -11,7 +11,7 @@ import { DoctorsProfessionalDocumentTags } from '../../constants/signup.constant
 	templateUrl: './professional-info-form.component.html',
 	styleUrls: ['./professional-info-form.component.scss'],
 })
-export class ProfessionalInfoFormComponent implements OnInit {
+export class ProfessionalInfoFormComponent {
 	professionalInfoForm!: FormGroup;
 	//uploaderErrorMessasges: string[] = [];
 	sepcializations = [
@@ -40,7 +40,6 @@ export class ProfessionalInfoFormComponent implements OnInit {
 		this.initProfessionalInfoForm();
 	}
 
-	ngOnInit(): void { console.log(''); }
 
 	initProfessionalInfoForm() {
 		this.professionalInfoForm = this._fb.group({
@@ -103,7 +102,6 @@ export class ProfessionalInfoFormComponent implements OnInit {
 			Attachment: ["", Validators.required],
 			Tag: ["MBBS", Validators.required]
 		});
-		console.log(":", this.Documents)
 
 		this.Documents.push(doc)
 	}

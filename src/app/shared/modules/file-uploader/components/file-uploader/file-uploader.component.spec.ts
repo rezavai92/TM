@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../../../material/material.module';
 import { AcceptFormatPipe } from '../../pipes/accept-format.pipe';
 
@@ -11,7 +12,7 @@ describe('FileUploaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FileUploaderComponent, AcceptFormatPipe],
-      imports: [MaterialModule]
+      imports: [MaterialModule, FlexLayoutModule]
     })
       .compileComponents();
 

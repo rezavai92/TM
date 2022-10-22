@@ -5,6 +5,7 @@ import { TranslateMockPipe } from '../../../shared/modules/shared-utility/pipes/
 import { MaterialModule } from '../../../shared/modules/material/material.module';
 
 import { BankInfoFormComponent } from './bank-info-form.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 describe('BankInfoFormComponent', () => {
   let component: BankInfoFormComponent;
@@ -18,6 +19,7 @@ describe('BankInfoFormComponent', () => {
         FormsModule,
         MaterialModule,
         BrowserAnimationsModule,
+        FlexLayoutModule
 
       ],
     })

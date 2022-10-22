@@ -8,7 +8,7 @@ import { SharedDataService } from '../../../shared/services/shared-data-services
 	templateUrl: './login-default.component.html',
 	styleUrls: ['./login-default.component.scss'],
 })
-export class LoginDefaultComponent implements OnInit {
+export class LoginDefaultComponent {
 	currentSelectedLanguageValue: 'be' | 'en' = 'en';
 	currentSelectedLanguageKey: string = 'ENGLISH';
 	constructor(
@@ -22,9 +22,7 @@ export class LoginDefaultComponent implements OnInit {
 		});
 	}
 
-	ngOnInit(): void {
-		console.log('');
-	}
+
 
 	navigateToSignUp() {
 		this._router.navigateByUrl('/signup');

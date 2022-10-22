@@ -5,6 +5,7 @@ import { TranslateMockPipe } from '../../../shared/modules/shared-utility/pipes/
 import { MaterialModule } from '../../../shared/modules/material/material.module';
 
 import { LoginFormComponent } from './login-form.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 describe('LoginFormComponent', () => {
   let component: LoginFormComponent;
@@ -18,6 +19,7 @@ describe('LoginFormComponent', () => {
         FormsModule,
         MaterialModule,
         BrowserAnimationsModule,
+        FlexLayoutModule
 
       ],
     })
