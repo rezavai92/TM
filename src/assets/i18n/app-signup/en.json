@@ -4,7 +4,8 @@
      "BUSINESS_PHONE_NUMBER" : "Business phone number",
      "BUSINESS_EMAIL" : "Business email",
      "BANK" : "Bank",
-     "MFS" : "Mobile financial service"
-
-
+     "MFS" : "Mobile financial service",
+     "PASSWORD_CONSTRAINTS" : "***Password must be of at least 8 characters long and include at least one uppercase, one lowercase, one number and one special character (#?!@$%^&*-)***",
+     "PASSWORD_CONSTRAINTS_FAILED" : "Please give a valid password.",
+     "PASSWORD_NOT_MATCHED" : "Password is not matched."
 }

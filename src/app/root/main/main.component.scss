@@ -3,33 +3,27 @@
 @import "../../../styles/shared/page-header.scss";
 @import "../../../styles/utils/spacing";
 
-
 .main-container {
-    height: 100%;
-    width: 100%;
+	height: 100%;
+	width: 100%;
 
+	.app-toolbar {
+		position: sticky;
+		position: -webkit-sticky;
+		top: 0;
+		z-index: 1000;
+	}
 
-    .app-toolbar {
-        position: sticky;
-        position: -webkit-sticky;
-        top: 0;
-        z-index: 1000;
-
-    }
-
-    .side-nav {
-        min-width: 200px;
-    }
-
+	.side-nav {
+		min-width: 200px;
+	}
 }
-
 :host {
-    height: 100%;
+	height: 100%;
 }
 
 :host ::ng-deep {
-    .mat-drawer-container {
-        background-color: map-get($mat-bs-accent, 50) !important;
-    }
-
+	.mat-drawer-container {
+		background-color: map-get($mat-bs-accent, 50) !important;
+	}
 }

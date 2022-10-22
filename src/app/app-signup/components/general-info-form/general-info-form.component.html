@@ -88,26 +88,31 @@
 		</div>
 
 		<div fxLayout="column" formGroupName="PasswordGroup" class="w-100-p">
+			<div class="fs-10" [ngClass.gt-xs]="{'w-50-p' : true}">{{"PASSWORD_CONSTRAINTS" | translate}}</div>
 			<div fxLayout.xs="column" fxLayout="row" fxLayoutGap="16px" fxLayoutALign="start start"
-				class="form-field-pairs" class="w-100-p">
+				class="form-field-pairs pass-group" class="w-100-p">
+
 				<mat-form-field appearance="outline" class="w-100-p">
 					<mat-label>Password</mat-label>
-					<input matInput type="email" placeholder="Password" formControlName="Password" required />
+					<input matInput type="password" placeholder="Password" formControlName="Password" required />
 					<mat-error *ngIf="hasError(PasswordFormGroup['Password'])">
-						<span *ngIf="PasswordFormGroup['Password']?.errors?.['required']">This field is required</span>
-						<span *ngIf="PasswordFormGroup['Password']?.errors?.['pattern']">Password must contain
-							...</span>
+						<span *ngIf="PasswordFormGroup['Password']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+							|translate}}</span>
+						<span *ngIf="PasswordFormGroup['Password']?.errors?.['pattern']">{{"PASSWORD_CONSTRAINTS_FAILED"
+							|
+							translate }}</span>
 					</mat-error>
 				</mat-form-field>
 
 				<mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
 					<mat-label>Confirm Password</mat-label>
-					<input matInput placeholder="ConfirmPassword" formControlName="ConfirmPassword" required />
+					<input matInput placeholder="ConfirmPassword" type="password" formControlName="ConfirmPassword"
+						required />
 					<mat-error>
-						<span *ngIf="PasswordFormGroup['ConfirmPassword']?.errors?.['required']">This field is
-							required</span>
+						<span *ngIf="PasswordFormGroup['ConfirmPassword']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+							|translate}}</span>
 						<span *ngIf="PasswordFormGroup['ConfirmPassword']?.errors?.['notmatched']">
-							password is not matched
+							{{"PASSWORD_NOT_MATCHED" | translate}}
 						</span>
 					</mat-error>
 

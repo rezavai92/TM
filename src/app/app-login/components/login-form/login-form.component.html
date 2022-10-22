@@ -19,7 +19,7 @@
 
             <mat-form-field floatLabel="always" class="w-100-p" appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="Password" placeholder="Password">
+                <input matInput formControlName="Password" type="password" placeholder="Password">
                 <mat-error *ngIf="hasError(FormControls['Password'])">
                     <span *ngIf="FormControls['Password']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |
                         translate}}</span>
