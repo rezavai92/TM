@@ -97,6 +97,8 @@
     }
   },
   "cli": {
+    "packageManager": "npm",
+    "cache": {"enabled": true,"environment": "all","path": "tmp/cache/.angular"},
     "schematicCollections": [
       "@angular-eslint/schematics"
     ]
