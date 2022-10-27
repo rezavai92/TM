@@ -22,6 +22,7 @@ import {
 	passwordRegexString,
 } from '../../../shared/shared-data/constants';
 import * as _ from 'lodash';
+import { Subscription } from 'rxjs';
 @Component({
 	selector: 'app-general-info-form',
 	templateUrl: './general-info-form.component.html',
@@ -38,16 +39,20 @@ export class GeneralInfoFormComponent implements OnInit {
 	genders = Genders;
 	isNidFrontPartUploaderTouched = false;
 	profilePictureSrc = 'assets/images/user.png';
-
+	languageSubscription!: Subscription;
 	constructor(
 		private _fb: FormBuilder,
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
 		private _sharedUtilityService: SharedUtilityService
 	) {
-		this._sharedDataService.getCurrentLang().subscribe((lang) => {
+		this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			this._translateService.use(lang);
 		});
+	}
+
+	ngOnDestroy() {
+		this.languageSubscription.unsubscribe();
 	}
 
 	ngOnInit(): void {

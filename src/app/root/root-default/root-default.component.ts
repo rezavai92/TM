@@ -7,6 +7,7 @@ import {
   Router,
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
 @Component({
   selector: 'app-root-default',
@@ -18,6 +19,7 @@ export class RootDefaultComponent {
   loading = true;
   hideToolBar = true;
   hideSideNavigation = true;
+  languageSubscription!: Subscription;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -58,9 +60,13 @@ export class RootDefaultComponent {
 
   setTranslationConfig() {
     //this._translateService.setDefaultLang('en');
-    this._sharedDataService.getCurrentLang().subscribe((lang) => {
+    this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
       this._translateService.use(lang);
     });
+  }
+
+  ngOnDestroy() {
+    this.languageSubscription.unsubscribe();
   }
 
   setSideNavigationForApp() {

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 
 @Component({
@@ -8,18 +9,23 @@ import { SharedDataService } from '../../../shared/services/shared-data-services
 	templateUrl: './login-default.component.html',
 	styleUrls: ['./login-default.component.scss'],
 })
-export class LoginDefaultComponent {
+export class LoginDefaultComponent implements OnDestroy {
 	currentSelectedLanguageValue: 'be' | 'en' = 'en';
 	currentSelectedLanguageKey: string = 'ENGLISH';
+	languageSubscription!: Subscription;
 	constructor(
 		private _router: Router,
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService
 	) {
-		this._sharedDataService.getCurrentLang().subscribe((lang) => {
+		this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			this.currentSelectedLanguageValue = lang;
+			console.log("from login")
 			this._translateService.use(lang);
 		});
+	}
+	ngOnDestroy(): void {
+		this.languageSubscription.unsubscribe();
 	}
 
 
