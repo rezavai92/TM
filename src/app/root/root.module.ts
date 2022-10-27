@@ -35,7 +35,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterModule.forRoot(routes),
     MaterialModule,
     FlexLayoutModule,
-    MaterialModule,
     SharedUtilityModule,
     StoreModule.forRoot({}, {}),
     TranslateModule.forRoot({
