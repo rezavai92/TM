@@ -37,14 +37,14 @@
             <mat-form-field class="w-100-p" appearance="outline">
                 <mat-label>Select specialization</mat-label>
                 <mat-select (selectionChange)="onSpecializationChange($event)" multiple
-                    formControlName="Specialization">
+                    formControlName="Specializations">
                     <mat-option [disabled]="specialization.disabled" *ngFor="let specialization of sepcializations"
                         [value]="specialization.key">
                         {{specialization.key | translate}}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="hasError(FormControls['Specialization'])">
-                    <span *ngIf="FormControls['Specialization']?.errors?.['required']">This field is
+                <mat-error *ngIf="hasError(FormControls['Specializations'])">
+                    <span *ngIf="FormControls['Specializations']?.errors?.['required']">This field is
                         required</span>
                 </mat-error>
             </mat-form-field>
@@ -53,8 +53,8 @@
         <mat-divider class="w-100-p"></mat-divider>
         <div fxLayout="column" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start" class="w-100-p pt-10">
 
-            <ng-container formArrayName="Documents">
-                <ng-container *ngFor="let document  of Documents.controls;let i=index">
+            <ng-container formArrayName="ProfessionalDocuments">
+                <ng-container *ngFor="let document  of ProfessionalDocuments.controls;let i=index">
                     <div class="w-100-p" [formGroup]="findDocumentFormGroupAt(i)">
                         <div class="page-header-4 mb-10" ngClass.xs="mb-10">Document {{i+1}} : </div>
                         <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start"
@@ -109,8 +109,9 @@
         </div>
 
         <div style="text-align: center;" class="w-100-p mt-10">
-            <button [disabled]="Documents.invalid" (click)="$event.preventDefault(); onAddNewDocumentFormGroup()"
-                [class.add-more-doc-btn-valid]="Documents.valid" [class.add-more-doc-btn-invalid]="Documents.invalid"
+            <button [disabled]="ProfessionalDocuments.invalid" (click)="$event.preventDefault(); onAddNewDocumentFormGroup()"
+                [class.add-more-doc-btn-valid]="ProfessionalDocuments.valid"
+                [class.add-more-doc-btn-invalid]="ProfessionalDocuments.invalid"
                 mat-icon-button>
                 <mat-icon>add</mat-icon>
             </button>

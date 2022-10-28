@@ -67,7 +67,7 @@ export class GeneralInfoFormComponent implements OnInit {
 			LastName: ['', Validators.required],
 			Gender: ['', Validators.required],
 			DateOfBirth: ['', Validators.required],
-			NID: ['', [Validators.required, Validators.pattern(numberRegexString)]],
+			NidNumber: ['', [Validators.required, Validators.pattern(numberRegexString)]],
 			Email: [
 				'',
 				[

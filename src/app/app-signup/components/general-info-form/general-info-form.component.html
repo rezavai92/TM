@@ -129,12 +129,12 @@
 
 		<div>
 			<mat-form-field appearance="outline" class="w-100-p">
-				<mat-label>NID</mat-label>
-				<input matInput placeholder="NID" formControlName="NID" required />
-				<mat-error *ngIf="hasError(FormControls['NID'])">
-					<span *ngIf="FormControls['NID']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
-					<span *ngIf="FormControls['NID']?.errors?.['pattern']">
-						please enter a valid NID number</span>
+				<mat-label>NID Number</mat-label>
+				<input matInput placeholder="NID Number" formControlName="NidNumber" required />
+				<mat-error *ngIf="hasError(FormControls['NidNumber'])">
+					<span *ngIf="FormControls['NidNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED" |translate}}</span>
+					<span *ngIf="FormControls['NidNumber']?.errors?.['pattern']">
+						please enter a valid NidNumber number</span>
 				</mat-error>
 			</mat-form-field>
 		</div>

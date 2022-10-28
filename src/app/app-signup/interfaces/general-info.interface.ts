@@ -5,9 +5,13 @@ export interface ISignUpGeneralInfoFormData {
     LastName: string;
     Gender: GenderEnum;
     DateOfBirth: string;
-    NID: number;
+    NidNumber: number;
     Email: string;
     PhoneNumber: number;
     NidFrontPartDocId: string;
     NidBackPartDocId: string;
+    PasswordGroup: {
+        Password: string,
+        ConfirmPassword: string
+    }
 }

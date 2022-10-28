@@ -1,0 +1,1 @@
+export const defaultDate = '0001-01-01';

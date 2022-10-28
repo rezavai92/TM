@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import * as _ from 'lodash';
 
 @Injectable({
 	providedIn: 'root'
@@ -22,6 +23,22 @@ export class SharedUtilityService {
 			const passwordMatched = source === (control.value);
 			return !passwordMatched ? { notmatched: true } : null;
 		};
+	}
+
+
+	trimStringPropFromAnObject(object: any) {
+		Object.keys(object).forEach((key) => {
+			if (typeof (object[key]) === 'string') {
+				object[key] = object[key].trim();
+			}
+		});
+
+		return object;
+	}
+
+	deepTrimObjectProperties(object: any) {
+
+		///
 	}
 
 

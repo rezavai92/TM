@@ -45,8 +45,8 @@ export class ProfessionalInfoFormComponent {
 		this.professionalInfoForm = this._fb.group({
 			BusinessPhoneNumber: ['', [Validators.required, Validators.pattern(numberRegexString), Validators.maxLength(10), Validators.minLength(10)]],
 			BusinessEmail: ['', [Validators.required, Validators.email, Validators.pattern(emailRegexString)]],
-			Specialization: ['', Validators.required],
-			Documents: this._fb.array([]),
+			Specializations: ['', Validators.required],
+			ProfessionalDocuments: this._fb.array([]),
 
 
 
@@ -54,8 +54,8 @@ export class ProfessionalInfoFormComponent {
 		this.addDocument();
 	}
 
-	get Documents() {
-		return this.professionalInfoForm.controls["Documents"] as FormArray;
+	get ProfessionalDocuments() {
+		return this.professionalInfoForm.controls["ProfessionalDocuments"] as FormArray;
 	}
 
 	// onFileUploadErrorMessageEmit(errorMessages: string[]) {
@@ -63,11 +63,11 @@ export class ProfessionalInfoFormComponent {
 	// }
 
 	findDocumentFormGroupAt(index: number) {
-		return this.Documents.at(index) as FormGroup;
+		return this.ProfessionalDocuments.at(index) as FormGroup;
 	}
 
 	onAddNewDocumentFormGroup() {
-		if (this.Documents.valid) {
+		if (this.ProfessionalDocuments.valid) {
 			this.addDocument();
 		}
 
@@ -75,7 +75,7 @@ export class ProfessionalInfoFormComponent {
 
 	onSpecializationChange(optionSelectionChange: MatSelectChange) {
 		const selectedValue = optionSelectionChange.value as Array<DoctorsSpecializationEnum>;
-		const specializationFormControl = this.professionalInfoForm.controls['Specialization']
+		const specializationFormControl = this.professionalInfoForm.controls['Specializations']
 
 		if (selectedValue.length > 0 && selectedValue.findIndex((val) => val === DoctorsSpecializationEnum.GeneralDoctor) > -1) {
 			specializationFormControl.reset();
@@ -103,12 +103,12 @@ export class ProfessionalInfoFormComponent {
 			Tag: ["MBBS", Validators.required]
 		});
 
-		this.Documents.push(doc)
+		this.ProfessionalDocuments.push(doc)
 	}
 
 
 	deleteDocument(index: number) {
-		this.Documents.removeAt(index)
+		this.ProfessionalDocuments.removeAt(index)
 	}
 
 
@@ -131,7 +131,7 @@ export class ProfessionalInfoFormComponent {
 			this.deleteDocument(documentIndex);
 			// const docFormGroupFromArray = this.findDocumentFormGroupAt(documentIndex);
 			// docFormGroupFromArray.controls["Attachment"].setValue("");
-			if (this.Documents.length === 0) {
+			if (this.ProfessionalDocuments.length === 0) {
 				this.addDocument();
 			}
 			this.professionalInfoForm.updateValueAndValidity();

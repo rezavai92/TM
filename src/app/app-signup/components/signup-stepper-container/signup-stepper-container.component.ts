@@ -1,4 +1,5 @@
 import {
+	AfterViewChecked,
 	AfterViewInit,
 	Component,
 	OnDestroy,
@@ -7,8 +8,15 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
+import { FinanceTypeEnum } from '../../constants/signup.constants';
+import { IBankInfoForm, IMobileFinancialServiceInfo, ITraditionalBankInfo } from '../../interfaces/bank-info.interface';
+import { ISignUpGeneralInfoFormData } from '../../interfaces/general-info.interface';
+import { ISignUpProfessionalInfoFormData } from '../../interfaces/professional-info.interface';
+import { IRegisterUserPayload } from '../../interfaces/signup.interface';
+import { BankInfo, MfsInfo, UserFinancialInfo } from '../../models/bank-information.model';
+import { SignupService } from '../../services/signup.service';
 import { BankInfoFormComponent } from '../bank-info-form/bank-info-form.component';
 import { GeneralInfoFormComponent } from '../general-info-form/general-info-form.component';
 import { ProfessionalInfoFormComponent } from '../professional-info-form/professional-info-form.component';
@@ -18,7 +26,7 @@ import { ProfessionalInfoFormComponent } from '../professional-info-form/profess
 	templateUrl: './signup-stepper-container.component.html',
 	styleUrls: ['./signup-stepper-container.component.scss'],
 })
-export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit {
+export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit, AfterViewChecked {
 	@ViewChild('generalInfoForm')
 	generalInfoFormComponent!: GeneralInfoFormComponent;
 	@ViewChild('professionalInfoForm')
@@ -29,18 +37,30 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	generalInfoFormGroup: FormGroup = new FormGroup({});
 	professionalInfoFormGroup: FormGroup = new FormGroup({});
 	bankInfoFormGroup: FormGroup = new FormGroup({});
+	bankFormGroup: FormGroup = new FormGroup({});
+	mfsFormGroup: FormGroup = new FormGroup({});
 	languageSubscription!: Subscription;
+	mergedFormData!: any;
 
 	constructor(
 		private _translateService: TranslateService,
-		private _sharedDataService: SharedDataService
+		private _sharedDataService: SharedDataService,
+		private _signupService: SignupService
 	) {
 		// this._translateService.addLangs(['en', 'be']);
 		//this._translateService.setDefaultLang('en');
+
 		this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			console.log("from inside signup container")
 			this._translateService.use(lang);
 		});
+
+		const payload: any = {}
+
+	}
+	ngAfterViewChecked(): void {
+		this.loadAllStepControls();
+		this.formGroupsLoaded = true;
 	}
 
 	ngOnDestroy(): void {
@@ -48,8 +68,8 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	} 
 
 	ngAfterViewInit(): void {
-		this.loadAllStepControls();
-		this.formGroupsLoaded = true;
+		// this.loadAllStepControls();
+		// this.formGroupsLoaded = true;
 
 	}
 
@@ -58,6 +78,42 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 		this.generalInfoFormGroup = this.generalInfoFormComponent.generalInfoForm;
 		this.professionalInfoFormGroup = this.professionalInfoFormComponent.professionalInfoForm;
 		this.bankInfoFormGroup = this.bankInfoFormComponent.bankInfoForm;
+		this.bankFormGroup = this.bankInfoFormComponent.BankGroup;
+		this.mfsFormGroup = this.bankInfoFormComponent.MfsGroup;
 
+	}
+
+
+
+	submitForUserRegistration() {
+
+		let generalInfoFormData: ISignUpGeneralInfoFormData = this.generalInfoFormGroup.getRawValue();
+		let professionalInfoFormData: ISignUpProfessionalInfoFormData = this.professionalInfoFormGroup.getRawValue();
+		let bankInfoFormData: IBankInfoForm = this.bankInfoFormGroup.getRawValue();
+		let hasBfs = bankInfoFormData.FinanceType === FinanceTypeEnum.Bank;
+		let hasMfs = bankInfoFormData.FinanceType === FinanceTypeEnum.Mfs;
+		let bfsFormData: ITraditionalBankInfo | null = null;
+		let mfsFormData: IMobileFinancialServiceInfo | null = null;
+
+		if (hasBfs) {
+			bfsFormData = this.bankFormGroup.getRawValue();
+		}
+
+		if (hasMfs) {
+			mfsFormData = this.mfsFormGroup.getRawValue();
+		}
+
+		const financialInfo: UserFinancialInfo = this._signupService.
+			prepareFinancialInfoModelFromFormData(bfsFormData, mfsFormData, bankInfoFormData.FinanceType)
+
+		const registrationPayload: IRegisterUserPayload =
+			this._signupService.prepareUserRegistrationPayload(generalInfoFormData, professionalInfoFormData, financialInfo);
+
+
+		console.log("reg payload ", registrationPayload);
+		this._signupService.registerUser(registrationPayload).pipe(take(1))
+			.subscribe((res) => {
+				console.log(res)
+			});
 	}
 }

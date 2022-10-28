@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MfsList, numberRegexString } from '../../../shared/shared-data/constants';
+import { FinanceTypeEnum } from '../../constants/signup.constants';
 
 @Component({
     selector: 'app-bank-info-form',
@@ -11,7 +12,8 @@ import { MfsList, numberRegexString } from '../../../shared/shared-data/constant
 export class BankInfoFormComponent implements OnInit, OnDestroy {
 
     bankInfoForm!: FormGroup;
-    chosenBankType: string = "Bank";
+    chosenBankType: FinanceTypeEnum = FinanceTypeEnum.Bank;
+    financeTypes = [FinanceTypeEnum.Bank, FinanceTypeEnum.Mfs]
     FinanceTypeRadioButtonValueChangeSubscription!: Subscription;
 
     BankGroup!: FormGroup;
@@ -29,7 +31,7 @@ export class BankInfoFormComponent implements OnInit, OnDestroy {
     }
 
     onChosenBankTypeValueChange() {
-        if (this.chosenBankType === 'Bank') {
+        if (this.chosenBankType === FinanceTypeEnum.Bank) {
             if (!this.BankGroup) {
                 this.initBankGroup();
             }
@@ -64,15 +66,19 @@ export class BankInfoFormComponent implements OnInit, OnDestroy {
             BranchName: ["", Validators.required],
             AccountHolderName: ["", Validators.required],
             AccountNumber: ["", Validators.required],
-            BankRouteNumber: [""],
+            RoutingNumber: [""],
 
         })
     }
 
     initMFSGroup() {
         this.MfsGroup = this._fb.group({
-            ServiceProvider: ["", Validators.required],
-            PhoneNumber: ["", [Validators.required, Validators.pattern(numberRegexString), Validators.maxLength(10), Validators.minLength(10)]]
+            OperatorName: ["", Validators.required],
+            MfsPhoneNumber: ["", [
+                Validators.required, Validators.pattern(numberRegexString),
+                Validators.maxLength(10),
+                Validators.minLength(10)
+            ]]
         })
     }
 
