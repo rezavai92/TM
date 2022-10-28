@@ -3,6 +3,7 @@ import {
   HostListener,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   SimpleChanges,
   ViewChild,
@@ -13,13 +14,14 @@ import { Navigation } from '../../shared/models/interfaces/feature.interface';
 import { PortalLanguageEnum } from '../../shared/shared-data/shared-enums';
 import { PortalLanguages } from '../../shared/shared-data/constants';
 import { Portal } from '@angular/cdk/portal';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit, OnChanges {
+export class MainComponent implements OnInit, OnChanges, OnDestroy {
   drawerMode: MatDrawerMode = 'side';
   selectedLanguageValue: ('en' | 'be') = 'en';
   //selectedlanguageKey!: string;
@@ -30,12 +32,16 @@ export class MainComponent implements OnInit, OnChanges {
   @Input() hideToolBar: boolean = true;
   @Input() hideSideNavigation: boolean = true;
   @Input() navigations!: Navigation[];
-
   @ViewChild('drawer') drawerRef!: MatDrawer;
+
+  destroyAll$: Subject<any> = new Subject();
   constructor(private _sharedDataService: SharedDataService) {
-    this._sharedDataService.getCurrentLang().subscribe((lang) => {
+    this._sharedDataService.getCurrentLang().pipe(takeUntil(this.destroyAll$)).subscribe((lang) => {
       this.selectedLanguageValue = lang;
     });
+  }
+  ngOnDestroy(): void {
+    this.destroyAll$.next(true);
   }
   ngOnChanges(changes: SimpleChanges): void {
     console.log('toolbar sidenav', this.hideSideNavigation, this.hideToolBar);
