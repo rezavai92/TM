@@ -5,27 +5,34 @@
             class="form-field-pairs">
             <mat-form-field floatLabel="always" appearance="outline" class="w-100-p business-phone-no">
                 <mat-label>{{"BUSINESS_PHONE_NUMBER" | translate}}</mat-label>
-                <input matInput placeholder="Business phone number" formControlName="BusinessPhoneNumber" required />
+                <input matInput [placeholder]=" 'BUSINESS_PHONE_NUMBER' | translate"
+                    formControlName="BusinessPhoneNumber" required />
                 <span matPrefix>+880 &nbsp;</span>
                 <mat-error *ngIf="hasError(FormControls['BusinessPhoneNumber'])">
-                    <span *ngIf="FormControls['BusinessPhoneNumber']?.errors?.['required']">This field is
-                        required</span>
+                    <span *ngIf="FormControls['BusinessPhoneNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                        |translate}}</span>
                     <span *ngIf="FormControls['BusinessPhoneNumber']?.errors?.['pattern'] 
                         || FormControls['BusinessPhoneNumber']?.errors?.['minlength'] 
-                        || FormControls['BusinessPhoneNumber']?.errors?.['maxlength']">please
-                        enter a valid phone number</span>
+                        || FormControls['BusinessPhoneNumber']?.errors?.['maxlength']">
+
+                        {{"PLEASE_ENTER_VALID_PHONE_NUMBER" | translate}}
+                    </span>
                 </mat-error>
 
             </mat-form-field>
 
             <mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
                 <mat-label>{{"BUSINESS_EMAIL" | translate}}</mat-label>
-                <input matInput placeholder="BUSINESS_EMAIL" formControlName="BusinessEmail" required />
+                <input matInput [placeholder]=" 'BUSINESS_EMAIL' | translate" formControlName="BusinessEmail"
+                    required />
                 <mat-error *ngIf="hasError(FormControls['BusinessEmail'])">
-                    <span *ngIf="FormControls['BusinessEmail']?.errors?.['required']">This field is required</span>
+                    <span *ngIf="FormControls['BusinessEmail']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                        |translate}}</span>
                     <span
-                        *ngIf="FormControls['BusinessEmail']?.errors?.['pattern'] || FormControls['BusinessEmail']?.errors?.['email']">please
-                        enter a valid email</span>
+                        *ngIf="FormControls['BusinessEmail']?.errors?.['pattern'] || FormControls['BusinessEmail']?.errors?.['email']">
+
+                        {{ "PLEASE_ENTER_VALID_MAIL" | translate }}
+                    </span>
                 </mat-error>
             </mat-form-field>
         </div>
@@ -35,7 +42,7 @@
         <div fxLayout.xs="column" fxLayout="row" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start"
             class="form-field-pairs">
             <mat-form-field class="w-100-p" appearance="outline">
-                <mat-label>Select specialization</mat-label>
+                <mat-label>{{'SELECT_SPECIALIZATIONS' | translate}}</mat-label>
                 <mat-select (selectionChange)="onSpecializationChange($event)" multiple
                     formControlName="Specializations">
                     <mat-option [disabled]="specialization.disabled" *ngFor="let specialization of sepcializations"
@@ -44,8 +51,8 @@
                     </mat-option>
                 </mat-select>
                 <mat-error *ngIf="hasError(FormControls['Specializations'])">
-                    <span *ngIf="FormControls['Specializations']?.errors?.['required']">This field is
-                        required</span>
+                    <span *ngIf="FormControls['Specializations']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                        |translate}}</span>
                 </mat-error>
             </mat-form-field>
         </div>
@@ -56,7 +63,7 @@
             <ng-container formArrayName="ProfessionalDocuments">
                 <ng-container *ngFor="let document  of ProfessionalDocuments.controls;let i=index">
                     <div class="w-100-p" [formGroup]="findDocumentFormGroupAt(i)">
-                        <div class="page-header-4 mb-10" ngClass.xs="mb-10">Document {{i+1}} : </div>
+                        <div class="page-header-4 mb-10" ngClass.xs="mb-10">{{"DOCUMENT" | translate}} {{i+1}} : </div>
                         <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start"
                             fxLayoutGap="16px">
 
@@ -64,7 +71,7 @@
                                 fxLayoutGap.gt-xs="8px" class="form-field-pairs w-100-p">
 
                                 <mat-form-field appearance="outline" class="w-100-p">
-                                    <mat-label>Select Document Tag</mat-label>
+                                    <mat-label>{{'SELECT_DOCUMENT_TAG' | translate}}</mat-label>
                                     <mat-select formControlName="Tag">
                                         <mat-option *ngFor="let tag of documentTags" [value]="tag">
                                             {{tag | translate}}
@@ -72,9 +79,8 @@
                                     </mat-select>
                                     <mat-error *ngIf="hasError(findDocumentFormGroupAt(i).controls['Tag'] )">
                                         <span
-                                            *ngIf="findDocumentFormGroupAt(i).controls['Tag']?.errors?.['required']">This
-                                            field is
-                                            required</span>
+                                            *ngIf="findDocumentFormGroupAt(i).controls['Tag']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                            |translate}}</span>
                                     </mat-error>
                                 </mat-form-field>
 
@@ -84,9 +90,8 @@
                                         <input style="display: none" matInput formControlName="Attachment" required />
                                         <mat-error *ngIf="hasError(findDocumentFormGroupAt(i).controls['Attachment'] )">
                                             <span
-                                                *ngIf="findDocumentFormGroupAt(i).controls['Attachment']?.errors?.['required']">This
-                                                field is
-                                                required</span>
+                                                *ngIf="findDocumentFormGroupAt(i).controls['Attachment']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                                |translate}}</span>
                                         </mat-error>
                                         <app-file-uploader style="margin-top: -20px;"
                                             (successfulFileUpload)="onDocumentUpload(i)"
@@ -109,10 +114,10 @@
         </div>
 
         <div style="text-align: center;" class="w-100-p mt-10">
-            <button [disabled]="ProfessionalDocuments.invalid" (click)="$event.preventDefault(); onAddNewDocumentFormGroup()"
+            <button [disabled]="ProfessionalDocuments.invalid"
+                (click)="$event.preventDefault(); onAddNewDocumentFormGroup()"
                 [class.add-more-doc-btn-valid]="ProfessionalDocuments.valid"
-                [class.add-more-doc-btn-invalid]="ProfessionalDocuments.invalid"
-                mat-icon-button>
+                [class.add-more-doc-btn-invalid]="ProfessionalDocuments.invalid" mat-icon-button>
                 <mat-icon>add</mat-icon>
             </button>
         </div>

@@ -1,5 +1,22 @@
 {
     "ENGLISH" : "English",
     "BENGALI": "বাংলা",
-    "THIS_FIELD_REQUIRED": "অবশ্যই পূরনীয়।"
+    "THIS_FIELD_REQUIRED": "অবশ্যই পূরনীয়।",
+    "FIRST_NAME" : "First Name",
+    "LAST_NAME" : "Last Name",
+    "GENDER" : "Gender",
+    "MALE" : "Male",
+    "FEMALE" : "Female",
+    "DATE_OF_BIRTH" : "Date of Birth",
+    "EMAIL" : "Email",
+    "PLEASE_ENTER_VALID_MAIL" : "Please enter a valid email",
+    "PHONE_NUMBER" : "Phone Number",
+    "PASSWORD" : "Password",
+    "CONFIRM_PASSWORD" : "Confirm Password",
+    "NID_NUMBER" : "Nid Number",
+    "ENTER_VALID_NID_NUMBER" : "Enter valid Nid number",
+    "PLEASE_ENTER_VALID_PHONE_NUMBER" : "Please enter a valid phone number",
+    "DOCUMENT" : "Document",
+    "BACK" : "Back",
+    "NEXT"  : "Next"
 }

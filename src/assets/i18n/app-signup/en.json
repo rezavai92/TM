@@ -4,8 +4,23 @@
      "BUSINESS_PHONE_NUMBER" : "Business phone number",
      "BUSINESS_EMAIL" : "Business email",
      "BANK" : "Bank",
+     "BFS" : "Bank financial service",
      "MFS" : "Mobile financial service",
      "PASSWORD_CONSTRAINTS" : "***Password must be of at least 8 characters long and include at least one uppercase, one lowercase, one number and one special character (#?!@$%^&*-)***",
      "PASSWORD_CONSTRAINTS_FAILED" : "Please give a valid password.",
-     "PASSWORD_NOT_MATCHED" : "Password is not matched."
+     "PASSWORD_NOT_MATCHED" : "Password is not matched.",
+     "SELECT_SPECIALIZATIONS" : "Select Specializations",
+     "SELECT_DOCUMENT_TAG" : "Select document tag",
+     "CHOOSE_FINANCIAL_SERVICE_TYPE" : "Choose financial service type",
+     "BANK_NAME" : "Bank Name",
+     "BRANCH_NAME" : "Branch Name",
+     "ACCOUNT_HOLDER_NAME" : "Account Holder Name",
+     "ACCOUNT_NUMBER" : "Account Number",
+     "BANK_ROUTE_NUMBER" : "Routing Number",
+     "OPERATOR_NAME" : "Operator Name",
+     "GENERAL_INFORMATION" : "General Information",
+     "PROFESSIONAL_INFORMATION" : "Professional Information",
+     "FINANCIAL_INFORMATION" : "financial Information",
+     "COMPLETE_SIGNUP" : "Complete Sign up"
+ 
 }

@@ -1,4 +1,4 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FinanceTypeEnum } from '../constants/signup.constants';
 import {
     IBankInformation,
@@ -16,7 +16,7 @@ export class MfsInfo implements IBankInformation<IMobileFinancialServiceInfo>
 }
 
 export class UserFinancialInfo {
-    public Type!: FinanceTypeEnum;
+    public Type: FinanceTypeEnum;
     public MobileFinancialServiceInfo: (IMobileFinancialServiceInfo | null) = null;
     public BankFinancialServiceInfo: (ITraditionalBankInfo | null) = null;
 
@@ -27,7 +27,7 @@ export class UserFinancialInfo {
         if (mfs) {
             this.MobileFinancialServiceInfo = {
                 OperatorName: mfs.Info ? mfs.Info.OperatorName : '',
-                PhoneNumber: mfs.Info ? mfs.Info.PhoneNumber : 12345678
+                PhoneNumber: mfs.Info ? mfs.Info.PhoneNumber : 11111111
             }
         }
 

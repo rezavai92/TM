@@ -27,7 +27,6 @@ export class BankInfoFormComponent implements OnInit, OnDestroy {
         this.subscribeToFinanceTypeControlValueChange();
         this.onChosenBankTypeValueChange();
 
-
     }
 
     onChosenBankTypeValueChange() {

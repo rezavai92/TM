@@ -1,56 +1,59 @@
 <div class="bank-info-form-wrapper" ngClass.lt-md="pt-5 pb-5 pl-15 pr-15" ngClass.gt-sm="pt-10 pb-10 pl-40 pr-40">
     <form class="bank-info-form" [formGroup]="bankInfoForm">
-        <div class="page-header-4 mb-10">Choose Financial service type :</div>
+        <div class="page-header-4 mb-10"> {{"CHOOSE_FINANCIAL_SERVICE_TYPE" | translate}} :</div>
 
         <mat-radio-group class="mt-10" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around"
             formControlName="FinanceType" aria-label="Choose financial service type">
-            <mat-radio-button *ngFor="let type of financeTypes" color="primary" [value]="type">{{ type | uppercase | translate}}
+            <mat-radio-button *ngFor="let type of financeTypes" color="primary" [value]="type">{{ type | uppercase |
+                translate }}
             </mat-radio-button>
         </mat-radio-group>
     </form>
 
     <div class="mt-20" fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="start start">
-        <form class="w-100-p" fxFlex.gt-xs="50" fxFlex="100" *ngIf="chosenBankType==='BFS'" [formGroup]="BankGroup">
+        <form class="w-100-p" fxFlex.gt-xs="50" fxFlex="100" *ngIf="chosenBankType === 'BFS'" [formGroup]="BankGroup">
             <div class="w-100-p" fxLayout="column" fxLayoutGap="-4px">
                 <mat-form-field appearance="outline" class="w-100-p form-field">
-                    <mat-label>{{"BANK_NAME" | translate}}</mat-label>
+                    <mat-label>{{ "BANK_NAME" | translate }}</mat-label>
                     <input matInput formControlName="BankName" required />
                     <mat-error *ngIf="hasError(BankGroupControls['BankName'])">
-                        <span *ngIf="BankGroupControls['BankName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-                            |translate}}</span>
+                        <span *ngIf="BankGroupControls['BankName']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED" |
+                            translate }}</span>
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100-p form-field">
-                    <mat-label>{{"BRANCH_NAME" | translate}}</mat-label>
+                    <mat-label>{{ "BRANCH_NAME" | translate }}</mat-label>
                     <input matInput formControlName="BranchName" required />
                     <mat-error *ngIf="hasError(BankGroupControls['BranchName'])">
-                        <span *ngIf="BankGroupControls['BranchName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-                            |translate}}</span>
+                        <span *ngIf="BankGroupControls['BranchName']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED" |
+                            translate }}</span>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100-p form-field">
-                    <mat-label>{{"ACCOUNT_HOLDER_NAME" | translate}}</mat-label>
+                    <mat-label>{{
+                        "ACCOUNT_HOLDER_NAME" | translate
+                        }}</mat-label>
                     <input matInput formControlName="AccountNumber" required />
                     <mat-error *ngIf="hasError(BankGroupControls['AccountNumber'])">
-                        <span *ngIf="BankGroupControls['AccountNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-                            |translate}}</span>
+                        <span *ngIf="BankGroupControls['AccountNumber']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED"
+                            | translate }}</span>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100-p form-field">
-                    <mat-label>{{"ACCOUNT_NUMBER" | translate}}</mat-label>
+                    <mat-label>{{ "ACCOUNT_NUMBER" | translate }}</mat-label>
                     <input matInput formControlName="AccountHolderName" required />
                     <mat-error *ngIf="hasError(BankGroupControls['AccountHolderName'])">
-                        <span *ngIf="BankGroupControls['AccountHolderName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-                            |translate}}</span>
+                        <span *ngIf="BankGroupControls['AccountHolderName']?.errors?.['required']">{{
+                            "THIS_FIELD_REQUIRED" | translate }}</span>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100-p form-field">
-                    <mat-label>{{"BANK_ROUTE_NUMBER" | translate}}</mat-label>
+                    <mat-label>{{ "BANK_ROUTE_NUMBER" | translate }}</mat-label>
                     <input matInput formControlName="RoutingNumber" />
                     <mat-error *ngIf="hasError(BankGroupControls['RoutingNumber'])">
-                        <span *ngIf="BankGroupControls['RoutingNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-                            |translate}}</span>
+                        <span *ngIf="BankGroupControls['RoutingNumber']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED"
+                            | translate }}</span>
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -61,35 +64,32 @@
         <form class="w-100-p" fxFlex.gt-xs="50" fxFlex="100" *ngIf="chosenBankType === 'MFS'" [formGroup]="MfsGroup">
             <div fxLayout="column" fxLayoutGap="-4px">
                 <mat-form-field appearance="outline" class="w-100-p form-field">
-                    <mat-label>{{"SERVICE_PROVIDER" | translate}}</mat-label>
+                    <mat-label>{{ "OPERATOR_NAME" | translate }}</mat-label>
                     <mat-select formControlName="OperatorName">
-                        <mat-option *ngFor="let mfs of mfsServiceProviders" [value]="mfs.Value">{{
-                            mfs.Key | translate
+                        <mat-option *ngFor="let mfs of mfsServiceProviders" [value]="mfs.Value">{{ mfs.Key | translate
                             }}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="hasError(MfsGroupControls['OperatorName'])">
-                        <span *ngIf="MfsGroupControls['OperatorName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-                            |translate}}</span>
+                        <span *ngIf="MfsGroupControls['OperatorName']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED" |
+                            translate }}</span>
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field floatLabel="always" appearance="outline" class="w-100-p form-field">
-                    <mat-label>Phone Number</mat-label>
+                    <mat-label> {{"PHONE_NUMBER" | translate}} </mat-label>
                     <input matInput placeholder="Phone Number" formControlName="MfsPhoneNumber" required />
                     <span matPrefix>+880 &nbsp;</span>
                     <mat-error *ngIf="hasError(MfsGroupControls['MfsPhoneNumber'])">
-                        <span *ngIf="MfsGroupControls['MfsPhoneNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-                            |translate}}</span>
-                        <span
-                            *ngIf="MfsGroupControls['MfsPhoneNumber']?.errors?.['pattern'] 
-                                                                                                                                                                                                                                                                                              || MfsGroupControls['MfsPhoneNumber']?.errors?.['minlength'] 
-                                                                                                                                                                                                                                                                                              || MfsGroupControls['MfsPhoneNumber']?.errors?.['maxlength']">
-                            please enter a valid phone number</span>
+                        <span *ngIf="MfsGroupControls['MfsPhoneNumber']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED"
+                            | translate }}</span>
+                        <span *ngIf="MfsGroupControls['MfsPhoneNumber']?.errors?.['pattern'] 
+                             || MfsGroupControls['MfsPhoneNumber']?.errors?.['minlength'] 
+                          || MfsGroupControls['MfsPhoneNumber']?.errors?.['maxlength']">
+                            {{'PLEASE_ENTER_VALID_PHONE_NUMBER' | translate}}
+                        </span>
                     </mat-error>
                 </mat-form-field>
             </div>
         </form>
-
     </div>
-
 </div>
