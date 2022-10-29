@@ -7,6 +7,7 @@ export interface IFileUploadDataContext {
     isRequired?: boolean,
     isDisabled?: boolean,
     showBorderBox?: boolean,
+    customHintOnGivenRestriction: boolean
 
 }
 

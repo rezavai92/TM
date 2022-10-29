@@ -140,19 +140,22 @@ export class GeneralInfoFormComponent implements OnInit {
 	getUploadDataContextForNid(contextFor: string): IFileUploadDataContext {
 		if (contextFor === 'Front') {
 			return {
-				description: 'Upload a clear picture of the front part of you NID',
+				description: "Allowed formats are : ('png', 'jpg', 'jpeg').  Maximum file size is 1 MB.",
 				title: 'NID Front Part',
 				isDisabled: false,
 				isRequired: true,
 				showBorderBox: true,
+				customHintOnGivenRestriction: false,
+
 			};
 		} else {
 			return {
-				description: 'Upload a clear picture of the back part of you NID',
+				description: "Allowed formats are : ('png', 'jpg', 'jpeg'). Maximum file size is 1 MB.",
 				title: 'NID Back Part',
 				isDisabled: false,
 				isRequired: true,
 				showBorderBox: true,
+				customHintOnGivenRestriction: false
 			};
 		}
 	}
@@ -180,6 +183,7 @@ export class GeneralInfoFormComponent implements OnInit {
 		this.NidFrontPartUploadConfig = {
 			maxSize: 1,
 			fileTypes: ['png', 'jpg', 'jpeg'],
+			showErrorInsideBox: true
 		};
 	}
 
@@ -187,6 +191,7 @@ export class GeneralInfoFormComponent implements OnInit {
 		this.NidBackPartUploadConfig = {
 			maxSize: 1,
 			fileTypes: ['png', 'jpg', 'jpeg'],
+			showErrorInsideBox: true
 		};
 	}
 

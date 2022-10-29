@@ -6,7 +6,7 @@ import {
 	OnInit,
 	ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, take } from 'rxjs';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
@@ -15,7 +15,7 @@ import { IBankInfoForm, IMobileFinancialServiceInfo, ITraditionalBankInfo } from
 import { ISignUpGeneralInfoFormData } from '../../interfaces/general-info.interface';
 import { ISignUpProfessionalInfoFormData } from '../../interfaces/professional-info.interface';
 import { IRegisterUserPayload } from '../../interfaces/signup.interface';
-import { BankInfo, MfsInfo, UserFinancialInfo } from '../../models/bank-information.model';
+import { UserFinancialInfo } from '../../models/bank-information.model';
 import { SignupService } from '../../services/signup.service';
 import { BankInfoFormComponent } from '../bank-info-form/bank-info-form.component';
 import { GeneralInfoFormComponent } from '../general-info-form/general-info-form.component';
@@ -41,26 +41,29 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	mfsFormGroup: FormGroup = new FormGroup({});
 	languageSubscription!: Subscription;
 	mergedFormData!: any;
+	isAllFormsValid: boolean = false;
 
 	constructor(
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
 		private _signupService: SignupService
 	) {
-		// this._translateService.addLangs(['en', 'be']);
-		//this._translateService.setDefaultLang('en');
+
 
 		this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			console.log("from inside signup container")
 			this._translateService.use(lang);
 		});
 
-		const payload: any = {}
+
 
 	}
 	ngAfterViewChecked(): void {
 		this.loadAllStepControls();
 		this.formGroupsLoaded = true;
+		setTimeout(() => {
+			this.validateAllForms();
+		})
 	}
 
 	ngOnDestroy(): void {
@@ -70,6 +73,18 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	ngAfterViewInit(): void {
 		// this.loadAllStepControls();
 		// this.formGroupsLoaded = true;
+
+	}
+
+	validateAllForms() {
+
+		const bankInfoFormData: IBankInfoForm = this.bankInfoFormGroup.getRawValue();
+		this.isAllFormsValid = (this.generalInfoFormGroup.valid &&
+			this.professionalInfoFormGroup.valid &&
+			this.bankInfoFormGroup.valid &&
+			(bankInfoFormData.FinanceType === FinanceTypeEnum.Bank ? this.bankFormGroup?.valid : this.mfsFormGroup?.valid)
+		)
+
 
 	}
 
@@ -116,4 +131,6 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 				console.log(res)
 			});
 	}
+
+
 }

@@ -34,6 +34,7 @@ export class ProfessionalInfoFormComponent {
 		isDisabled: false,
 		isRequired: true,
 		showBorderBox: false,
+		customHintOnGivenRestriction: false
 
 	};
 	constructor(private _fb: FormBuilder) {

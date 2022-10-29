@@ -25,8 +25,8 @@
                     <mat-label>{{"BRANCH_NAME" | translate}}</mat-label>
                     <input matInput formControlName="BranchName" required />
                     <mat-error *ngIf="hasError(BankGroupControls['BranchName'])">
-                        <span *ngIf="BankGroupControls['BranchName']?.errors?.['required']">This field is
-                            required</span>
+                        <span *ngIf="BankGroupControls['BranchName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                            |translate}}</span>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100-p form-field">
@@ -39,15 +39,15 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100-p form-field">
                     <mat-label>{{"ACCOUNT_NUMBER" | translate}}</mat-label>
-                    <input matInput formControlName="AccountNumber" required />
-                    <mat-error *ngIf="hasError(BankGroupControls['AccountNumber'])">
-                        <span *ngIf="BankGroupControls['AccountNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                    <input matInput formControlName="AccountHolderName" required />
+                    <mat-error *ngIf="hasError(BankGroupControls['AccountHolderName'])">
+                        <span *ngIf="BankGroupControls['AccountHolderName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
                             |translate}}</span>
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100-p form-field">
                     <mat-label>{{"BANK_ROUTE_NUMBER" | translate}}</mat-label>
-                    <input matInput formControlName="RoutingNumber" required />
+                    <input matInput formControlName="RoutingNumber" />
                     <mat-error *ngIf="hasError(BankGroupControls['RoutingNumber'])">
                         <span *ngIf="BankGroupControls['RoutingNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
                             |translate}}</span>
