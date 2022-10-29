@@ -5,18 +5,17 @@
 		</div>
 		<div class="stepper-container">
 			<mat-stepper style="height: 100%;" [linear]="true" #stepper>
-				<!-- <mat-step [stepControl]="generalInfoFormGroup"> -->
-				<mat-step>
+
+				<mat-step [stepControl]="generalInfoFormGroup">
 					<ng-template matStepLabel>{{"GENERAL_INFORMATION" | translate}} </ng-template>
 					<app-general-info-form #generalInfoForm></app-general-info-form>
 					<div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="8px">
 						<button mat-button color="accent" matStepperPrevious>{{"BACK" | translate}}</button>
 						<button mat-button color="primary" matStepperNext>{{"NEXT" | translate}}</button>
 					</div>
-
 				</mat-step>
-				<mat-step>
-					<!-- <mat-step [stepControl]="professionalInfoFormGroup"> -->
+
+				<mat-step [stepControl]="professionalInfoFormGroup">
 					<ng-template matStepLabel> {{"PROFESSIONAL_INFORMATION" | translate}} </ng-template>
 					<app-professional-info-form #professionalInfoForm></app-professional-info-form>
 					<div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="8px">
@@ -28,12 +27,12 @@
 				<mat-step>
 					<ng-template matStepLabel> {{"FINANCIAL_INFORMATION" | translate}} </ng-template>
 					<app-bank-info-form #bankInfoForm></app-bank-info-form>
-
 					<div fxLayout="row" fxLayoutAlign="end" fxLayoutAlign.xs="center" fxLayoutGap="8px">
 						<button [disabled]="!isAllFormsValid" mat-raised-button color="primary"
 							(click)="submitForUserRegistration()">{{"COMPLETE_SIGNUP" | translate}}</button>
 					</div>
 				</mat-step>
+
 			</mat-stepper>
 		</div>
 
