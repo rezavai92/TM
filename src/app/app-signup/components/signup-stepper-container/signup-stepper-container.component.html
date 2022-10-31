@@ -30,8 +30,8 @@
 					<div fxLayout="row" fxLayoutAlign="end center" fxLayoutAlign.xs="center  center" fxLayoutGap="8px">
 						<button [disabled]="!isAllFormsValid || signupLoading" mat-raised-button color="primary"
 							(click)="submitForUserRegistration()">{{"COMPLETE_SIGNUP" | translate}}</button>
+							<mat-spinner *ngIf="signupLoading" diameter="20"></mat-spinner>
 					</div>
-					<mat-spinner *ngIf="signupLoading" diameter="20"></mat-spinner>
 				</mat-step>
 
 			</mat-stepper>

@@ -130,13 +130,19 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 
 
 		this._signupService.registerUser(registrationPayload).pipe(take(1))
-			.subscribe((res: any) => {
-				console.log(res);
-				this.signupLoading = false;
-			}, (error) => {
-				this.signupLoading = false;
-				console.log(error);
-			});
+			.subscribe(
+				{
+					next: (res: any) => {
+						console.log(res);
+						this.signupLoading = false;
+					},
+
+					error: (error) => {
+						this.signupLoading = false;
+						console.log(error);
+					}
+				}
+			);
 	}
 
 
