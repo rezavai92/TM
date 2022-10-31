@@ -24,8 +24,12 @@
 
 		.uploader {
 			position: absolute;
-			bottom: 16px;
-			left: 100px;
+			top: 130px;
+			left: 90px;
+		}
+
+		.profile-pic-upload-error{
+			color : map-get($mat-bs-error , main );
 		}
 	}
 

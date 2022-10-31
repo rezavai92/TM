@@ -1,4 +1,4 @@
-const baseUrl = "http://137.184.124.68";
+const baseUrl = "https://localhost:7074";
 export const environment = {
   production: false,
   baseUrl: `${baseUrl}`,

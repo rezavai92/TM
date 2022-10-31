@@ -26,7 +26,7 @@ export class SignupService {
 		});
 		const httpOption = { headers: header }
 
-		return this.http.post(`${environment.UserService}Register`, payload, { ...httpOption });
+		return this.http.post<any>(`${environment.UserService}Register`, payload, { ...httpOption });
 
 	}
 
@@ -34,7 +34,7 @@ export class SignupService {
 	getDateOnlyString(date: Date) {
 
 		const momentObject = moment(date)
-		const d = momentObject.format('yyyy-DD-MM');
+		const d = momentObject.format('yyyy-MM-DD');
 		return d.toString();
 
 	}
@@ -90,7 +90,6 @@ export class SignupService {
 			Specializations: professionalInfoFormData.Specializations,
 			password: this.parsePasswordFromGroup(generalInfoFormData.PasswordGroup),
 			DocumentIds: this.mergeAllDocumentIds(professionalInfoFormData.ProfessionalDocuments, []),
-			address: '',
 			profileImageId: '',
 		}
 

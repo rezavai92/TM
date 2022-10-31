@@ -33,6 +33,10 @@ export class FileUploaderComponent {
 		this.clearUploadErrorMessage();
 		this.clearDeleteErrorMessage();
 		this.errorMessages = [];
+	}
+
+	emitAllErrorMessages() {
+
 		this.emitErrorMessages.emit(this.errorMessages);
 	}
 
@@ -51,6 +55,7 @@ export class FileUploaderComponent {
 		if (file) {
 			this.selectedFile = file;
 			this.clearAllErrorMessage();
+			this.emitAllErrorMessages();
 			if (this.isSelectedFileValid()) {
 				this.uploadFile();
 			}

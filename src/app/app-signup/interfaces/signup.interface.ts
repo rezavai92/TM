@@ -4,7 +4,7 @@ import { UserFinancialInfo } from "../models/bank-information.model";
 export interface IRegisterUserPayload {
     firstName: string,
     lastName: string,
-    address: string,
+    //address: string,
     email: string,
     dob: string,
     profileImageId: string,

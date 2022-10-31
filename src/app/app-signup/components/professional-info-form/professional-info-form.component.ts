@@ -63,6 +63,14 @@ export class ProfessionalInfoFormComponent {
 	// 	this.uploaderErrorMessasges = errorMessages;
 	// }
 
+	autoPopulateForm() {
+		this.professionalInfoForm.patchValue({
+			BusinessPhoneNumber: "1831309302",
+			BusinessEmail: 'rezaink@yopmail.com',
+			Specializations: [DoctorsSpecializationEnum.GeneralDoctor],
+			ProfessionalDocuments: [{ Attachment: 'sdf', Tag: 'MBBS' }],
+		})
+	}
 	findDocumentFormGroupAt(index: number) {
 		return this.ProfessionalDocuments.at(index) as FormGroup;
 	}

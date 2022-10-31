@@ -23,6 +23,7 @@ import {
 } from '../../../shared/shared-data/constants';
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
 @Component({
 	selector: 'app-general-info-form',
 	templateUrl: './general-info-form.component.html',
@@ -36,7 +37,10 @@ export class GeneralInfoFormComponent implements OnInit {
 	NidBackPartUploadDataContext!: IFileUploadDataContext;
 	NidFrontPartUploadConfig!: IFileUploadConfig;
 	NidBackPartUploadConfig!: IFileUploadConfig;
+	ProfilePictureUploadDataContext!: IFileUploadDataContext;
+	ProfilePictureUploadConfig!: IFileUploadConfig;
 	genders = Genders;
+	profilePictureErrors: string[] = [];
 	isNidFrontPartUploaderTouched = false;
 	profilePictureSrc = 'assets/images/user.png';
 	languageSubscription!: Subscription;
@@ -59,6 +63,8 @@ export class GeneralInfoFormComponent implements OnInit {
 		this.initGeneralInfoForm();
 		this.initNidFileUploadDataContext();
 		this.initNidFileUploadConfig();
+		this.initProfilePictureUploadDataContext();
+		this.initProfilePictureUploadConfig();
 	}
 
 	initGeneralInfoForm() {
@@ -101,6 +107,28 @@ export class GeneralInfoFormComponent implements OnInit {
 
 	}
 
+
+	autoPopulateForm() {
+		this.generalInfoForm.patchValue({
+			FirstName: 'Rezaul',
+			LastName: 'Karim',
+			Gender: 'Male',
+			DateOfBirth: new Date(),
+			NidNumber: 1111111111111111,
+			Email: 'rezaink1996@yopmail.com',
+			PhoneNumber: parseInt('01831309302'),
+			FakeNidFrontPartControl: 'uploaded',
+			FakeNidBackPartControl: 'uploaded',
+			PasswordGroup: {
+				Password: '1qazZAQ!',
+				ConfirmPassword: '1qazZAQ!'
+			}
+
+
+		});
+
+	}
+
 	get PasswordFormGroup() {
 		return (this.generalInfoForm.controls['PasswordGroup'] as FormGroup).controls;
 	}
@@ -131,6 +159,24 @@ export class GeneralInfoFormComponent implements OnInit {
 	}
 
 
+	get FormControls() {
+		return this.generalInfoForm.controls;
+	}
+
+	hasError(control: AbstractControl) {
+		//	console.log(control.errors, control.touched);
+		return control.errors && control.touched;
+	}
+
+	hasPasswordGroupError(group: AbstractControl) {
+		console.log(group);
+		return group.errors && group.touched;
+	}
+
+
+
+
+
 	initNidFileUploadDataContext() {
 		this.NidFrontPartUploadDataContext =
 			this.getUploadDataContextForNid('Front');
@@ -158,20 +204,6 @@ export class GeneralInfoFormComponent implements OnInit {
 				customHintOnGivenRestriction: false
 			};
 		}
-	}
-
-	get FormControls() {
-		return this.generalInfoForm.controls;
-	}
-
-	hasError(control: AbstractControl) {
-		//	console.log(control.errors, control.touched);
-		return control.errors && control.touched;
-	}
-
-	hasPasswordGroupError(group: AbstractControl) {
-		console.log(group);
-		return group.errors && group.touched;
 	}
 
 	initNidFileUploadConfig() {
@@ -223,7 +255,51 @@ export class GeneralInfoFormComponent implements OnInit {
 		}
 	}
 
-	onProfilePicUpload(event: any) {
+
+
+
+	initProfilePictureUploadConfig() {
+		this.ProfilePictureUploadConfig = {
+			maxSize: 5,
+			fileTypes: ['png', 'jpg', 'jpeg'],
+			showErrorInsideBox: false
+		};
+	}
+
+	initProfilePictureUploadDataContext() {
+		this.ProfilePictureUploadDataContext = this.getUploadDataContextForProfilePicture();
+	}
+
+	getUploadDataContextForProfilePicture() {
+		return {
+			description: "Allowed formats are : ('png', 'jpg', 'jpeg').  Maximum file size is 5 MB.",
+			title: 'Profile Picture',
+			isDisabled: false,
+			isRequired: false,
+			showBorderBox: false,
+			customHintOnGivenRestriction: true,
+
+		};
+	}
+
+
+	onProfilePictureDelete(event: any) {
+		if (event) {
+
+		}
+	}
+
+	onProfilePictureUpload(event: any) {
+		if (event) {
+
+		}
+	}
+
+	onProfilePictureUploadErrorMessageEmit(messages: string[]) {
+		this.profilePictureErrors = [...messages];
+	}
+
+	PreviewUplaodedProfilePicture(event: any) {
 		this.profilePictureSrc = event;
 	}
 }

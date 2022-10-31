@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Injectable({
 	providedIn: 'root'
@@ -8,6 +9,14 @@ import * as _ from 'lodash';
 export class SharedUtilityService {
 
 	constructor() { }
+
+	getDateOnlyString(date: Date) {
+
+		const momentObject = moment(date)
+		const d = momentObject.format('yyyy-DD-MM');
+		return d.toString();
+
+	}
 
 	whiteSpaceValidator(): ValidatorFn {
 		const whiteSpaceRegex: RegExp = new RegExp("^\\s+$");
@@ -18,7 +27,6 @@ export class SharedUtilityService {
 	}
 
 	confirmPasswordValidator(source: string): ValidatorFn {
-		debugger;
 		return (control: AbstractControl): ValidationErrors | null => {
 			const passwordMatched = source === (control.value);
 			return !passwordMatched ? { notmatched: true } : null;

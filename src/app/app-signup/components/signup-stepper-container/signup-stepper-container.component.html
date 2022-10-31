@@ -27,10 +27,11 @@
 				<mat-step>
 					<ng-template matStepLabel> {{"FINANCIAL_INFORMATION" | translate}} </ng-template>
 					<app-bank-info-form #bankInfoForm></app-bank-info-form>
-					<div fxLayout="row" fxLayoutAlign="end" fxLayoutAlign.xs="center" fxLayoutGap="8px">
-						<button [disabled]="!isAllFormsValid" mat-raised-button color="primary"
+					<div fxLayout="row" fxLayoutAlign="end center" fxLayoutAlign.xs="center  center" fxLayoutGap="8px">
+						<button [disabled]="!isAllFormsValid || signupLoading" mat-raised-button color="primary"
 							(click)="submitForUserRegistration()">{{"COMPLETE_SIGNUP" | translate}}</button>
 					</div>
+					<mat-spinner *ngIf="signupLoading" diameter="20"></mat-spinner>
 				</mat-step>
 
 			</mat-stepper>

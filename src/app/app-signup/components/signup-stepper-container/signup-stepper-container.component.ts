@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import {
 	AfterViewChecked,
 	AfterViewInit,
@@ -42,6 +43,7 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	languageSubscription!: Subscription;
 	mergedFormData!: any;
 	isAllFormsValid: boolean = false;
+	signupLoading = false;
 
 	constructor(
 		private _translateService: TranslateService,
@@ -102,6 +104,7 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 
 	submitForUserRegistration() {
 
+		this.signupLoading = true;
 		let generalInfoFormData: ISignUpGeneralInfoFormData = this.generalInfoFormGroup.getRawValue();
 		let professionalInfoFormData: ISignUpProfessionalInfoFormData = this.professionalInfoFormGroup.getRawValue();
 		let bankInfoFormData: IBankInfoForm = this.bankInfoFormGroup.getRawValue();
@@ -123,12 +126,16 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 
 		const registrationPayload: IRegisterUserPayload =
 			this._signupService.prepareUserRegistrationPayload(generalInfoFormData, professionalInfoFormData, financialInfo);
-
-
 		console.log("reg payload ", registrationPayload);
+
+
 		this._signupService.registerUser(registrationPayload).pipe(take(1))
-			.subscribe((res) => {
-				console.log(res)
+			.subscribe((res: any) => {
+				console.log(res);
+				this.signupLoading = false;
+			}, (error) => {
+				this.signupLoading = false;
+				console.log(error);
 			});
 	}
 

@@ -1,4 +1,4 @@
-export interface IFileUploadDataContext {
+export interface IPhotoUploadDataContext {
     title?: string,
     description?: string,
     documentUrl?: string,
@@ -10,7 +10,7 @@ export interface IFileUploadDataContext {
 }
 
 
-export interface IFileUploadConfig {
+export interface IPhotoUploadConfig {
     maxSize: number; // (in MB)
     maxFiles?: number;
     fileTypes?: string[];
