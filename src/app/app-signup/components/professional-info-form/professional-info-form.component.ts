@@ -5,6 +5,8 @@ import { IFileUploadConfig, IFileUploadDataContext } from '../../../shared/modul
 import { DoctorsSpecializationEnum } from '../../../shared/shared-data/shared-enums';
 import { MatSelectChange } from '@angular/material/select';
 import { DoctorsProfessionalDocumentTags } from '../../constants/signup.constants';
+import { IProfessionalInfoFormDataForRegistration, ISignUpProfessionalInfoFormData } from '../../interfaces/professional-info.interface';
+import { ISignUpGeneralInfoFormData } from '../../interfaces/general-info.interface';
 
 @Component({
 	selector: 'app-professional-info-form',
@@ -41,6 +43,19 @@ export class ProfessionalInfoFormComponent {
 		this.initProfessionalInfoForm();
 	}
 
+	getRegistrationCompatibleProfessionalInfoFormData() : IProfessionalInfoFormDataForRegistration {
+		const formData: ISignUpProfessionalInfoFormData = this.professionalInfoForm.getRawValue();
+
+		const result = {
+			BusinessPhoneNumber: formData.BusinessPhoneNumber,
+			BusinessEmail: formData.BusinessEmail,
+			Specializations: formData.Specializations,
+			ProfessionalDocumentIds : []
+		}
+		
+		return result;
+	}
+
 
 	initProfessionalInfoForm() {
 		this.professionalInfoForm = this._fb.group({
@@ -68,9 +83,15 @@ export class ProfessionalInfoFormComponent {
 			BusinessPhoneNumber: "1831309302",
 			BusinessEmail: 'rezaink@yopmail.com',
 			Specializations: [DoctorsSpecializationEnum.GeneralDoctor],
-			ProfessionalDocuments: [{ Attachment: 'sdf', Tag: 'MBBS' }],
+			ProfessionalDocuments: [
+				{
+					Attachment: 'sdf',
+					Tag: 'MBBS'
+				}
+			],
 		})
 	}
+
 	findDocumentFormGroupAt(index: number) {
 		return this.ProfessionalDocuments.at(index) as FormGroup;
 	}

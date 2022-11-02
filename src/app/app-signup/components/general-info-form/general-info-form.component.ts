@@ -25,6 +25,7 @@ import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
+import { ISignUpGeneralInfoFormData, ISignupGeneralInfoFormDataForRegistration } from '../../interfaces/general-info.interface';
 @Component({
 	selector: 'app-general-info-form',
 	templateUrl: './general-info-form.component.html',
@@ -43,6 +44,8 @@ export class GeneralInfoFormComponent implements OnInit {
 	genders = Genders;
 	profilePictureErrors: string[] = [];
 	isNidFrontPartUploaderTouched = false;
+	NidFrontPartDocId = "";
+	NidBackPartDocId = "";
 	profilePictureSrc = 'assets/images/user.png';
 	languageSubscription!: Subscription;
 	constructor(
@@ -66,6 +69,23 @@ export class GeneralInfoFormComponent implements OnInit {
 		this.initNidFileUploadConfig();
 		this.initProfilePictureUploadDataContext();
 		this.initProfilePictureUploadConfig();
+	}
+
+
+
+
+
+
+	getRegistrationCompatibleGeneralInfoFormData(): ISignupGeneralInfoFormDataForRegistration{
+
+		const formData: ISignUpGeneralInfoFormData = this.generalInfoForm.getRawValue();
+		const DocuemntObject = {
+			NidFrontPartDocId : this.NidFrontPartDocId,
+			NidBackPartDocId : this.NidBackPartDocId
+		}
+		const result: ISignupGeneralInfoFormDataForRegistration = Object.assign(formData, DocuemntObject);
+		return result;
+
 	}
 
 	initGeneralInfoForm() {

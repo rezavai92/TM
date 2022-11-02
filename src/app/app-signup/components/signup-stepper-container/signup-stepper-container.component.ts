@@ -10,11 +10,12 @@ import {
 import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, take } from 'rxjs';
+import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 import { FinanceTypeEnum } from '../../constants/signup.constants';
 import { IBankInfoForm, IMobileFinancialServiceInfo, ITraditionalBankInfo } from '../../interfaces/bank-info.interface';
-import { ISignUpGeneralInfoFormData } from '../../interfaces/general-info.interface';
-import { ISignUpProfessionalInfoFormData } from '../../interfaces/professional-info.interface';
+import { ISignUpGeneralInfoFormData, ISignupGeneralInfoFormDataForRegistration } from '../../interfaces/general-info.interface';
+import { IProfessionalInfoFormDataForRegistration, ISignUpProfessionalInfoFormData } from '../../interfaces/professional-info.interface';
 import { IRegisterUserPayload } from '../../interfaces/signup.interface';
 import { UserFinancialInfo } from '../../models/bank-information.model';
 import { SignupService } from '../../services/signup.service';
@@ -48,7 +49,8 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	constructor(
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
-		private _signupService: SignupService
+		private _signupService: SignupService,
+		private _customToastService : CustomToastService
 	) {
 
 
@@ -60,6 +62,7 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 
 
 	}
+
 	ngAfterViewChecked(): void {
 		this.loadAllStepControls();
 		this.formGroupsLoaded = true;
@@ -105,8 +108,11 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	submitForUserRegistration() {
 
 		this.signupLoading = true;
-		let generalInfoFormData: ISignUpGeneralInfoFormData = this.generalInfoFormGroup.getRawValue();
-		let professionalInfoFormData: ISignUpProfessionalInfoFormData = this.professionalInfoFormGroup.getRawValue();
+		let generalInfoFormData: ISignupGeneralInfoFormDataForRegistration =
+			this.generalInfoFormComponent.getRegistrationCompatibleGeneralInfoFormData();
+		let professionalInfoFormData: IProfessionalInfoFormDataForRegistration =
+			this.professionalInfoFormComponent.getRegistrationCompatibleProfessionalInfoFormData();
+	
 		let bankInfoFormData: IBankInfoForm = this.bankInfoFormGroup.getRawValue();
 		let hasBfs = bankInfoFormData.FinanceType === FinanceTypeEnum.Bank;
 		let hasMfs = bankInfoFormData.FinanceType === FinanceTypeEnum.Mfs;
@@ -132,14 +138,18 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 		this._signupService.registerUser(registrationPayload).pipe(take(1))
 			.subscribe(
 				{
-					next: (res: any) => {
+					next: (res) => {
 						console.log(res);
+						if (res && res.status) {
+							this._customToastService.openSnackBar('SIGNUP_REGISTRATION_SUCCESSFULL', true, "success");
+						}
 						this.signupLoading = false;
 					},
 
-					error: (error) => {
+					error: (error : HttpErrorResponse) => {
 						this.signupLoading = false;
-						console.log(error);
+						this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
+					//	console.log(error.message);
 					}
 				}
 			);

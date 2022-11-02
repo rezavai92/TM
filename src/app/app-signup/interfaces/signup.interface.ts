@@ -2,19 +2,20 @@ import { DoctorsSpecializationEnum } from "src/app/shared/shared-data/shared-enu
 import { UserFinancialInfo } from "../models/bank-information.model";
 
 export interface IRegisterUserPayload {
-    firstName: string,
-    lastName: string,
+    FirstName: string,
+    LastName: string,
     //address: string,
-    email: string,
-    dob: string,
-    profileImageId: string,
-    itemId?: string,
-    gender: string,
-    nidNumber: number,
-    financialInfo: UserFinancialInfo,
-    businessPhoneNumber: number,
-    businessEmail: string,
+    Email: string,
+    Dob: string,
+    ProfileImageId: string,
+    ItemId?: string,
+    Gender: string,
+    NidNumber: number,
+    PhoneNumber : number,
+    FinancialInfo: UserFinancialInfo,
+    BusinessPhoneNumber: number,
+    BusinessEmail: string,
     Specializations: DoctorsSpecializationEnum[],
-    password: string,
+    Password: string,
     DocumentIds: string[]
 }

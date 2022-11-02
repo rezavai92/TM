@@ -77,14 +77,14 @@
 
                 <mat-form-field floatLabel="always" appearance="outline" class="w-100-p form-field">
                     <mat-label> {{"PHONE_NUMBER" | translate}} </mat-label>
-                    <input matInput placeholder="Phone Number" formControlName="MfsPhoneNumber" required />
+                    <input matInput placeholder="Phone Number" formControlName="PhoneNumber" required />
                     <span matPrefix>+880 &nbsp;</span>
-                    <mat-error *ngIf="hasError(MfsGroupControls['MfsPhoneNumber'])">
-                        <span *ngIf="MfsGroupControls['MfsPhoneNumber']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED"
+                    <mat-error *ngIf="hasError(MfsGroupControls['PhoneNumber'])">
+                        <span *ngIf="MfsGroupControls['PhoneNumber']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED"
                             | translate }}</span>
-                        <span *ngIf="MfsGroupControls['MfsPhoneNumber']?.errors?.['pattern'] 
-                             || MfsGroupControls['MfsPhoneNumber']?.errors?.['minlength'] 
-                          || MfsGroupControls['MfsPhoneNumber']?.errors?.['maxlength']">
+                        <span *ngIf="MfsGroupControls['PhoneNumber']?.errors?.['pattern'] 
+                             || MfsGroupControls['PhoneNumber']?.errors?.['minlength'] 
+                          || MfsGroupControls['PhoneNumber']?.errors?.['maxlength']">
                             {{'PLEASE_ENTER_VALID_PHONE_NUMBER' | translate}}
                         </span>
                     </mat-error>

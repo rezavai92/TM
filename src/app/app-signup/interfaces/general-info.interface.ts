@@ -8,10 +8,14 @@ export interface ISignUpGeneralInfoFormData {
     NidNumber: number;
     Email: string;
     PhoneNumber: number;
-    NidFrontPartDocId: string;
-    NidBackPartDocId: string;
     PasswordGroup: {
         Password: string,
         ConfirmPassword: string
     }
+}
+
+export interface ISignupGeneralInfoFormDataForRegistration extends ISignUpGeneralInfoFormData{
+
+    NidFrontPartDocId: string;
+    NidBackPartDocId: string;
 }

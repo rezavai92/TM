@@ -73,7 +73,7 @@ export class BankInfoFormComponent implements OnInit, OnDestroy {
     initMFSGroup() {
         this.MfsGroup = this._fb.group({
             OperatorName: ["", Validators.required],
-            MfsPhoneNumber: ["", [
+            PhoneNumber: ["", [
                 Validators.required, Validators.pattern(numberRegexString),
                 Validators.maxLength(10),
                 Validators.minLength(10)
