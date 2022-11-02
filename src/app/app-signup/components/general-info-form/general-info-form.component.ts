@@ -47,6 +47,8 @@ export class GeneralInfoFormComponent implements OnInit {
 	NidFrontPartDocId = "";
 	NidBackPartDocId = "";
 	profilePictureSrc = 'assets/images/user.png';
+	profilePicUploading = false;
+	uploadedProfileImageId = "";
 	languageSubscription!: Subscription;
 	constructor(
 		private _fb: FormBuilder,
@@ -81,7 +83,8 @@ export class GeneralInfoFormComponent implements OnInit {
 		const formData: ISignUpGeneralInfoFormData = this.generalInfoForm.getRawValue();
 		const DocuemntObject = {
 			NidFrontPartDocId : this.NidFrontPartDocId,
-			NidBackPartDocId : this.NidBackPartDocId
+			NidBackPartDocId: this.NidBackPartDocId,
+			ProfileImageId : this.uploadedProfileImageId
 		}
 		const result: ISignupGeneralInfoFormDataForRegistration = Object.assign(formData, DocuemntObject);
 		return result;
@@ -248,18 +251,35 @@ export class GeneralInfoFormComponent implements OnInit {
 		};
 	}
 
-	onNidFrontPartUpload(event: any) {
-		this.generalInfoForm.controls['FakeNidFrontPartControl'].setValue(
-			'uploaded'
-		);
-		this.generalInfoForm.updateValueAndValidity();
+	onNidFrontPartUpload(event: { status: boolean, metaData: any }) {
+		
+		if (event && event.status) {
+			this.generalInfoForm.controls['FakeNidFrontPartControl'].setValue(
+				'uploaded'
+			);
+			this.generalInfoForm.updateValueAndValidity();	
+			this.NidBackPartDocId = event.metaData.uploadedFileId;
+		}
+		else {
+			this.generalInfoForm.controls['FakeNidFrontPartControl'].markAsTouched();
+		}
+
 	}
 
-	onNidBackPartUpload(event: any) {
-		this.generalInfoForm.controls['FakeNidBackPartControl'].setValue(
-			'uploaded'
-		);
-		this.generalInfoForm.updateValueAndValidity();
+	onNidBackPartUpload(event: { status: boolean, metaData: any }) {
+		
+		if (event && event.status) {
+			this.generalInfoForm.controls['FakeNidBackPartControl'].setValue(
+				'uploaded'
+			);
+			this.generalInfoForm.updateValueAndValidity();	
+			this.NidBackPartDocId = event.metaData.uploadedFileId;
+		}
+
+		else {
+			this.generalInfoForm.controls['FakeNidBackPartControl'].markAsTouched();
+		}
+		
 	}
 
 	onNidFrontPartDelete(event: any) {
@@ -310,20 +330,38 @@ export class GeneralInfoFormComponent implements OnInit {
 		}
 	}
 
-	onProfilePictureUpload(event: { status: boolean, metaData : any}) {
+
+
+	onProfilePictureUpload(event: { status: boolean, metaData: any }) {
+	
 		if (event && event.status) {
 			
+			this.uploadedProfileImageId = event.metaData.uploadedFileId ?? this.uploadedProfileImageId ;
 		}
+
 		else if (event && !event.status) {
 			this._customToastService.openSnackBar("FAILED_TO_UPLOAD_PHOTO", true, 'error');
+			this.resetProfilePicture();
 		}
+
 	}
+
+
 
 	onProfilePictureUploadErrorMessageEmit(messages: string[]) {
 		this.profilePictureErrors = [...messages];
 	}
 
+
+
 	PreviewUplaodedProfilePicture(event: any) {
 		this.profilePictureSrc = event;
+	}
+
+
+	resetProfilePicture() {
+		
+		this.profilePictureSrc = "assets/images/user.png";
+		
 	}
 }

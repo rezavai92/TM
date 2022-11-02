@@ -10,10 +10,15 @@
         </div>
 
         <div class="file-upload" *ngIf="!uploadedFile">
-            <input [required]="dataContext && dataContext.isRequired"
+            <input 
+                [required]="dataContext && dataContext.isRequired"
                 [accept]="config && config.fileTypes? (config.fileTypes | acceptFormat) : 'image/*,.pdf'"
-                style="display: none;" #fileUploadInput type="file"
-                (click)="$event.stopPropagation();emitControlTouch(); " (change)="onFileChange($event)">
+                style="display: none;" 
+                #fileUploadInput 
+                type="file"
+                (click)="$event.stopPropagation();emitControlTouch(); " 
+                (change)="onFileChange($event)">
+                
             <button mat-button [disabled]="fileDeleting || fileUploading"
                 (click)="$event.preventDefault();fileUploadInput.click()">
                 <mat-icon>file_upload</mat-icon>

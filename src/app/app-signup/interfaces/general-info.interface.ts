@@ -18,4 +18,5 @@ export interface ISignupGeneralInfoFormDataForRegistration extends ISignUpGenera
 
     NidFrontPartDocId: string;
     NidBackPartDocId: string;
+    ProfileImageId: string;
 }

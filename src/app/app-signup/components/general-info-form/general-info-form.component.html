@@ -2,10 +2,15 @@
 	<div fxLayout="column" fxLayoutGap="16px" class="photo-uploader-container">
 		<div class="page-header-2">{{ "PROFILE_PICTURE" | translate }}</div>
 		<img width="128" height="128" [src]="profilePictureSrc" alt="" />
+		<mat-spinner class="photo-upload-spinner" diameter="20" *ngIf="profilePicUploading"></mat-spinner>
 		<app-photo-uploader (upload)="onProfilePictureUpload($event)"
-			(emitErrorMessages)="onProfilePictureUploadErrorMessageEmit($event)" (fileDelete)="onProfilePictureDelete($event)"
-			[config]="ProfilePictureUploadConfig" [dataContext]="ProfilePictureUploadDataContext"
-			(preview)="PreviewUplaodedProfilePicture($event)" class="uploader">
+			(emitErrorMessages)="onProfilePictureUploadErrorMessageEmit($event)" 
+			(fileDelete)="onProfilePictureDelete($event)"
+			[config]="ProfilePictureUploadConfig" 
+			[dataContext]="ProfilePictureUploadDataContext"
+			(preview)="PreviewUplaodedProfilePicture($event)" 
+			(actionInProgressEmitter)="profilePicUploading=$event"
+			class="uploader">
 		</app-photo-uploader>
 		
 		<ng-container *ngIf="profilePictureErrors && profilePictureErrors.length">
@@ -159,8 +164,11 @@
 						| translate }}</span>
 				</mat-error>
 				<div class="w-100-p">
-					<app-file-uploader class="w-100-p" (successfulFileUpload)="onNidFrontPartUpload($event)"
-						(fileDelete)="onNidFrontPartDelete($event)" [config]="NidFrontPartUploadConfig"
+					<app-file-uploader 
+						class="w-100-p" 
+						(upload)="onNidFrontPartUpload($event)"
+						(fileDelete)="onNidFrontPartDelete($event)" 
+						[config]="NidFrontPartUploadConfig"
 						[dataContext]="NidFrontPartUploadDataContext">
 					</app-file-uploader>
 				</div>
@@ -178,8 +186,10 @@
 						NidBackPartUploadDataContext
 					">
 					<div class="w-100-p">
-						<app-file-uploader (successfulFileUpload)="onNidBackPartUpload($event)"
-							(fileDelete)="onNidBackPartDelete($event)" [config]="NidBackPartUploadConfig"
+						<app-file-uploader 
+							(upload)="onNidBackPartUpload($event)"
+							(fileDelete)="onNidBackPartDelete($event)" 
+							[config]="NidBackPartUploadConfig"
 							[dataContext]="NidBackPartUploadDataContext">
 						</app-file-uploader>
 					</div>

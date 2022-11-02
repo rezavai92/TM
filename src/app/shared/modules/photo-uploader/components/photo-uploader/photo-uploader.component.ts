@@ -151,13 +151,17 @@ export class PhotoUploaderComponent {
 					this.actionInProgressEmitter.emit(this.fileUploading);
 					this.uploadedFile = this.selectedFile;
 					this.upload.emit({
-						metaData: { uploadedFileId: "", uploadedFile : this.uploadedFile },
+						metaData: {
+							uploadedFileId: payload.FileId,
+							uploadedFile: this.uploadedFile
+						},
 						status : true
 					});
 					console.log(res);
 				},
 				error: (error) => {
 					this.fileUploading = false;
+					this.actionInProgressEmitter.emit(this.fileUploading);
 					this.clearAllErrorMessages();
 					this.upload.emit({
 						metaData: { errorMessage : "FILE_UPLOADING_FAILED", error : error},

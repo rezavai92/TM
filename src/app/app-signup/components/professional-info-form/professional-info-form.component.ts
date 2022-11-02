@@ -150,10 +150,13 @@ export class ProfessionalInfoFormComponent {
 		return control.errors && control.touched;
 	}
 
-	onDocumentUpload(documentIndex: number) {
-		const docFormGroupFromArray = this.findDocumentFormGroupAt(documentIndex);
-		docFormGroupFromArray.controls["Attachment"].setValue("document uploaded");
-		this.professionalInfoForm.updateValueAndValidity();
+	onDocumentUpload(event: { status: boolean, metaData: any }, documentIndex: number) {
+		if (event && event.status) {
+			const docFormGroupFromArray = this.findDocumentFormGroupAt(documentIndex);
+			docFormGroupFromArray.controls["Attachment"].setValue("document uploaded");
+			this.professionalInfoForm.updateValueAndValidity();	
+		}
+		
 	}
 
 	onDocumentDelete(deleted: boolean, documentIndex: number) {
