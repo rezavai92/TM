@@ -1,0 +1,9 @@
+<div class="custom-toast">
+    <div *ngIf="data.translationReq">
+        {{data.key | translate}}
+    </div>
+
+    <div *ngIf="!data.translationReq">
+        {{data.key}}
+    </div>
+</div>

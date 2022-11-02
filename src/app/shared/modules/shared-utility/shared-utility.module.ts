@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PortalLanguagePipe } from './pipes/portal-language.pipe';
 import { TranslateMockPipe } from './pipes/translate-mock.pipe';
 import { AcceptFormatPipe } from './pipes/accept-format.pipe';
+import { CustomToastComponent } from './components/custom-toast/custom-toast.component';
 
 
 
@@ -11,7 +12,8 @@ import { AcceptFormatPipe } from './pipes/accept-format.pipe';
   declarations: [
     PortalLanguagePipe,
     TranslateMockPipe,
-    AcceptFormatPipe
+    AcceptFormatPipe,
+    CustomToastComponent
   ],
   imports: [
     CommonModule

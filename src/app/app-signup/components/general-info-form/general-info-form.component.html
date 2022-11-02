@@ -2,7 +2,7 @@
 	<div fxLayout="column" fxLayoutGap="16px" class="photo-uploader-container">
 		<div class="page-header-2">{{ "PROFILE_PICTURE" | translate }}</div>
 		<img width="128" height="128" [src]="profilePictureSrc" alt="" />
-		<app-photo-uploader (successfulFileUpload)="onProfilePictureUpload($event)"
+		<app-photo-uploader (upload)="onProfilePictureUpload($event)"
 			(emitErrorMessages)="onProfilePictureUploadErrorMessageEmit($event)" (fileDelete)="onProfilePictureDelete($event)"
 			[config]="ProfilePictureUploadConfig" [dataContext]="ProfilePictureUploadDataContext"
 			(preview)="PreviewUplaodedProfilePicture($event)" class="uploader">

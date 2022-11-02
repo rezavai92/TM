@@ -21,12 +21,11 @@ export class SignupService {
 
 	registerUser(payload: IRegisterUserPayload) {
 
-		const header: any = new HttpHeaders({
-			'Content-Type': 'application/json',
-		});
-		const httpOption = { headers: header }
-
-		return this.http.post<any>(`${environment.UserService}Register`, payload, { ...httpOption });
+		const header: any = new HttpHeaders()
+			.set('content-type', 'application/json')
+			.set('Access-Control-Allow-Origin', '*');
+	
+		return this.http.post<any>(`${environment.UserService}Register`, payload, {headers : {...header},observe : 'response'} );
 
 	}
 

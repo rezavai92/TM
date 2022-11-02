@@ -24,6 +24,7 @@ import {
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
+import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 @Component({
 	selector: 'app-general-info-form',
 	templateUrl: './general-info-form.component.html',
@@ -48,7 +49,7 @@ export class GeneralInfoFormComponent implements OnInit {
 		private _fb: FormBuilder,
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
-		private _sharedUtilityService: SharedUtilityService
+		private _customToastService : CustomToastService
 	) {
 		this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			this._translateService.use(lang);
@@ -270,7 +271,7 @@ export class GeneralInfoFormComponent implements OnInit {
 		this.ProfilePictureUploadDataContext = this.getUploadDataContextForProfilePicture();
 	}
 
-	getUploadDataContextForProfilePicture() {
+	getUploadDataContextForProfilePicture() : IFileUploadDataContext {
 		return {
 			description: "Allowed formats are : ('png', 'jpg', 'jpeg').  Maximum file size is 5 MB.",
 			title: 'Profile Picture',
@@ -278,7 +279,7 @@ export class GeneralInfoFormComponent implements OnInit {
 			isRequired: false,
 			showBorderBox: false,
 			customHintOnGivenRestriction: true,
-
+			tags: ["ProfilePicture"],
 		};
 	}
 
@@ -289,9 +290,12 @@ export class GeneralInfoFormComponent implements OnInit {
 		}
 	}
 
-	onProfilePictureUpload(event: any) {
-		if (event) {
-
+	onProfilePictureUpload(event: { status: boolean, metaData : any}) {
+		if (event && event.status) {
+			
+		}
+		else if (event && !event.status) {
+			this._customToastService.openSnackBar("FAILED_TO_UPLOAD_PHOTO", true, 'error');
 		}
 	}
 
