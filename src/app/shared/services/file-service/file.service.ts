@@ -17,7 +17,8 @@ export class FileService {
 	uploadFile<T>(payload: FileUploadPayload) {
 		const headers: any = new HttpHeaders()
 			.set('content-type', 'application/json')
-			.set('Access-Control-Allow-Origin', '*');
+		//	.set('Access-Control-Allow-Origin', '*')
+		//	.set('Access-Control-Allow-Methods','GET, HEAD, POST, DELETE, PATCH, PUT, CONNECT, TRACE, OPTIONS');
 
 		return this.http.post<IHttpCommonResponse<T>>(
 			`${environment.StorageService}UploadFile`,

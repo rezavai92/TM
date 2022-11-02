@@ -4,9 +4,9 @@
 @import "~@angular/material/theming";
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
 
-body {
-    font-family: $custom-font-family;
-}
+// body {
+//     font-family: $custom-font-family;
+// }
 
 html {
     letter-spacing: 0 !important;
@@ -113,13 +113,7 @@ html {
 
 
 
-.mat-dialog-container {
-    padding: 0 !important;
-}
 
-.radio-label {
-    color: mat-color($mat-bs-accent, 500) !important;
-}
 
 .phone-number {
     .mat-icon-button {
@@ -136,15 +130,8 @@ html {
     transition: all 0.75s ease;
 }
 
-.cal-month-view .cal-event {
-    width: 8px !important;
-    height: 8px !important;
-}
 
-.gc-tooltip {
-    //  background: #BDBBBC    ;
-    border-radius: 4px 4px 0px 0px;
-}
+
 
 .success-snackbar {
     background: map-get($mat-bs-success , dark ) !important;
@@ -174,18 +161,6 @@ html {
     font-weight: bold;
 }
 
-.mat-expansion-panel-spacing {
-    .mat-expansion-panel-header {
-        background: #e6e6e6;
-        box-shadow: 0 -1px 0 0 #e6e6e6, 0 1px 0 0 #e6e6e6;
-        padding: 0 16px !important;
-    }
-}
-
-
-.mat-tab-header-pagination.mat-tab-header-pagination-disabled {
-    display: none !important;
-}
 
 
 

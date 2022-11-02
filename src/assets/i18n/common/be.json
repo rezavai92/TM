@@ -18,5 +18,6 @@
     "PLEASE_ENTER_VALID_PHONE_NUMBER" : "Please enter a valid phone number",
     "DOCUMENT" : "Document",
     "BACK" : "Back",
-    "NEXT"  : "Next"
+    "NEXT"  : "Next",
+    "FILE_UPLOADING_FAILED" : "Sorry, File uploading has failed. please try again!"
 }
