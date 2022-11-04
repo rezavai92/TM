@@ -38,8 +38,6 @@ export class SignupService {
 	registerUser(payload: IRegisterUserPayload) {
 		const headers: any = new HttpHeaders()
 			.set('content-type', 'application/json')
-			.set('Access-Control-Allow-Origin', '*')
-			.set('Access-Control-Allow-Method','*');
 
 		return this.http.post<IHttpCommonResponse<any>>(
 			`${environment.UserService}Register`,
