@@ -10,7 +10,7 @@ export interface IRegisterUserPayload {
     ProfileImageId: string,
     ItemId?: string,
     Gender: string,
-    NidNumber: number,
+    NidNumber: string,
     PhoneNumber : number,
     FinancialInfo: UserFinancialInfo,
     BusinessPhoneNumber: number,

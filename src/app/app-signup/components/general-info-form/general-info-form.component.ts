@@ -81,6 +81,8 @@ export class GeneralInfoFormComponent implements OnInit {
 	getRegistrationCompatibleGeneralInfoFormData(): ISignupGeneralInfoFormDataForRegistration{
 
 		const formData: ISignUpGeneralInfoFormData = this.generalInfoForm.getRawValue();
+		formData.NidNumber = formData.NidNumber.toString();
+	
 		const DocuemntObject = {
 			NidFrontPartDocId : this.NidFrontPartDocId,
 			NidBackPartDocId: this.NidBackPartDocId,

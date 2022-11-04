@@ -5,7 +5,7 @@ export interface ISignUpGeneralInfoFormData {
     LastName: string;
     Gender: GenderEnum;
     DateOfBirth: string;
-    NidNumber: number;
+    NidNumber:string;
     Email: string;
     PhoneNumber: number;
     PasswordGroup: {
