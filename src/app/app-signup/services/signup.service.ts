@@ -45,7 +45,7 @@ export class SignupService {
 			{
 				headers: headers,
 				observe: 'response',
-				withCredentials : true
+			//	withCredentials : true
 			}
 		);
 	}
