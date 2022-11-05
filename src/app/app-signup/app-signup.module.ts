@@ -16,9 +16,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfessionalInfoFormComponent } from './components/professional-info-form/professional-info-form.component';
 import { BankInfoFormComponent } from './components/bank-info-form/bank-info-form.component';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+import { OtpFormComponent } from './components/otp-form/otp-form.component';
 
 const routes: Route[] = [
   { path: '', component: SignupStepperContainerComponent },
+  { path: 'verification/otp', component: OtpFormComponent },
 ];
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -30,7 +32,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [SignupStepperContainerComponent, GeneralInfoFormComponent, ProfessionalInfoFormComponent, BankInfoFormComponent],
+  declarations: [SignupStepperContainerComponent, GeneralInfoFormComponent, ProfessionalInfoFormComponent, BankInfoFormComponent, OtpFormComponent],
   imports: [
     CommonModule,
     FormsModule,

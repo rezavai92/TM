@@ -1,0 +1,16 @@
+@import "../../../../styles/themes/custom-palette.scss";
+@import "../../../../styles/utils/variables";
+@import "../../../../styles/shared/page-header.scss";
+@import "../../../../styles/utils/spacing";
+@import "../../../../styles/utils/singletone";
+.otp-container{
+
+  .w-20-p{
+    width: 20px !important;
+  }
+  width: 100%;
+    input{
+     
+        text-align: center;
+    }
+}

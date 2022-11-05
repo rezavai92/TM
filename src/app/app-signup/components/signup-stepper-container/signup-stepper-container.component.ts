@@ -8,6 +8,7 @@ import {
 	ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, take } from 'rxjs';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
@@ -50,10 +51,12 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
 		private _signupService: SignupService,
-		private _customToastService : CustomToastService
+		private _customToastService: CustomToastService,
+		private _router : Router
 	) {
 
 
+		
 		this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			console.log("from inside signup container")
 			this._translateService.use(lang);
@@ -142,6 +145,7 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 						console.log(res);
 						if (res && res.status) {
 							this._customToastService.openSnackBar('SIGNUP_REGISTRATION_SUCCESSFULL', true, "success");
+							this._router.navigateByUrl('/signup/verification/otp');
 						}
 						this.signupLoading = false;
 					},

@@ -4,6 +4,7 @@ import { PortalLanguagePipe } from './pipes/portal-language.pipe';
 import { TranslateMockPipe } from './pipes/translate-mock.pipe';
 import { AcceptFormatPipe } from './pipes/accept-format.pipe';
 import { CustomToastComponent } from './components/custom-toast/custom-toast.component';
+import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive';
 
 
 
@@ -13,7 +14,8 @@ import { CustomToastComponent } from './components/custom-toast/custom-toast.com
     PortalLanguagePipe,
     TranslateMockPipe,
     AcceptFormatPipe,
-    CustomToastComponent
+    CustomToastComponent,
+    BlockCopyPasteDirective
   ],
   imports: [
     CommonModule
