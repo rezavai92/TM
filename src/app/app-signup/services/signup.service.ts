@@ -34,7 +34,7 @@ export class SignupService {
 	) { }
 
 
-
+ 
 	registerUser(payload: IRegisterUserPayload) {
 		const headers: any = new HttpHeaders()
 			.set('content-type', 'application/json')
