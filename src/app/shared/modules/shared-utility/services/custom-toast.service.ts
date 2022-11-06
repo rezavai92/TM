@@ -16,13 +16,15 @@ export class CustomToastService {
   openSnackBar(key : string, translationReq =false, type : 'error' | 'success') {
 
     const matSnackBarConfig: MatSnackBarConfig = {
-      duration: 5000,
+     duration : 5000,
       data: {
         key: key,
         translationReq: translationReq,
         type : type
       },
-      panelClass: type==='error' ? ['error-snackbar'] : ['success-snackbar']
+      panelClass: type === 'error' ? ['error-snackbar'] : ['success-snackbar'],
+      horizontalPosition: 'end',
+      verticalPosition : 'bottom'
     }
 
     this.snackBar.openFromComponent(CustomToastComponent,matSnackBarConfig)

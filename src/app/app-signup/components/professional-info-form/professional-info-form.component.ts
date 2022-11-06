@@ -37,7 +37,8 @@ export class ProfessionalInfoFormComponent {
 		isDisabled: false,
 		isRequired: true,
 		showBorderBox: false,
-		customHintOnGivenRestriction: false
+		customHintOnGivenRestriction: false,
+		
 
 	};
 	constructor(
@@ -178,7 +179,22 @@ export class ProfessionalInfoFormComponent {
 
 
 
+	getDataCtx(delta : number) {
+		
+		const tag = this.getProfessionalDocumentTag(delta);
+		
+		let ctx = { ...this.documentUploadDataContext };
 
+		ctx.tags = [tag];
+
+		return ctx;
+	}
+
+
+	getProfessionalDocumentTag(documentIndex: number) {
+		const docFormGroupFromArray = this.findDocumentFormGroupAt(documentIndex);
+		return docFormGroupFromArray.controls['Tag'].value;
+	}
 
 
 }

@@ -220,6 +220,7 @@ export class GeneralInfoFormComponent implements OnInit {
 				isRequired: true,
 				showBorderBox: true,
 				customHintOnGivenRestriction: false,
+				tags : ['NidFrontPartDocumentId']
 
 			};
 		} else {
@@ -229,7 +230,8 @@ export class GeneralInfoFormComponent implements OnInit {
 				isDisabled: false,
 				isRequired: true,
 				showBorderBox: true,
-				customHintOnGivenRestriction: false
+				customHintOnGivenRestriction: false,
+				tags : ['NidBackPartDocumentId']
 			};
 		}
 	}

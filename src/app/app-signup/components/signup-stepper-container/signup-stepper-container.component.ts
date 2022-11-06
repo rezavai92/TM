@@ -52,11 +52,11 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 		private _sharedDataService: SharedDataService,
 		private _signupService: SignupService,
 		private _customToastService: CustomToastService,
-		private _router : Router
+		private _router: Router
 	) {
 
 
-		
+
 		this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			console.log("from inside signup container")
 			this._translateService.use(lang);
@@ -76,7 +76,7 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 
 	ngOnDestroy(): void {
 		this.languageSubscription.unsubscribe();
-	} 
+	}
 
 	ngAfterViewInit(): void {
 		// this.loadAllStepControls();
@@ -98,11 +98,13 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 
 
 	loadAllStepControls() {
-		this.generalInfoFormGroup = this.generalInfoFormComponent.generalInfoForm;
-		this.professionalInfoFormGroup = this.professionalInfoFormComponent.professionalInfoForm;
-		this.bankInfoFormGroup = this.bankInfoFormComponent.bankInfoForm;
-		this.bankFormGroup = this.bankInfoFormComponent.BankGroup;
-		this.mfsFormGroup = this.bankInfoFormComponent.MfsGroup;
+		if (!this.registrationCompleted) {
+			this.generalInfoFormGroup = this.generalInfoFormComponent ? this.generalInfoFormComponent.generalInfoForm : this.generalInfoFormGroup;
+			this.professionalInfoFormGroup =this.professionalInfoFormComponent ? this.professionalInfoFormComponent.professionalInfoForm :  this.professionalInfoFormGroup;
+			this.bankInfoFormGroup =this.bankInfoFormComponent ? this.bankInfoFormComponent.bankInfoForm : this.bankInfoFormGroup;
+			this.bankFormGroup =this.bankInfoFormComponent ? this.bankInfoFormComponent.BankGroup : this.bankFormGroup;
+			this.mfsFormGroup =this.bankInfoFormComponent ? this.bankInfoFormComponent.MfsGroup : this.mfsFormGroup;
+		}
 
 	}
 
@@ -115,7 +117,7 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 			this.generalInfoFormComponent.getRegistrationCompatibleGeneralInfoFormData();
 		let professionalInfoFormData: IProfessionalInfoFormDataForRegistration =
 			this.professionalInfoFormComponent.getRegistrationCompatibleProfessionalInfoFormData();
-	
+
 		let bankInfoFormData: IBankInfoForm = this.bankInfoFormGroup.getRawValue();
 		let hasBfs = bankInfoFormData.FinanceType === FinanceTypeEnum.Bank;
 		let hasMfs = bankInfoFormData.FinanceType === FinanceTypeEnum.Mfs;
@@ -153,11 +155,11 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 
 					},
 
-					error: (error : HttpErrorResponse) => {
+					error: (error: HttpErrorResponse) => {
 						this.signupLoading = false;
 						this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
 						this.registrationCompleted = true;
-					//	console.log(error.message);
+						//	console.log(error.message);
 					}
 				}
 			);
