@@ -26,5 +26,7 @@
 	"RESEND_OTP": "Resend OTP",
 	"PLEASE_ENTER_OTP_SENT_TO": "Please enter OTP sent to ",
 	"VERIFY" : "Verify",
-	"SIGNUP_REGISTRATION_SUCCESSFULL" : "Registration is successful"
+	"SIGNUP_REGISTRATION_SUCCESSFULL" : "Registration is successful",
+	"ENTER_VALID_NID_NUMBER" : "Enter a valid NID number"
+
 }

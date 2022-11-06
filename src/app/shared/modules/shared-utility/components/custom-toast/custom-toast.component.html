@@ -1,9 +1,15 @@
-<div class="custom-toast">
-    <div *ngIf="data.translationReq">
-        {{data.key | translate}}
+<div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="space-between">
+    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center">
+        <div>
+            <mat-icon style="margin-top: 4px;" class="mat-snackbar-success-icon">check_circle</mat-icon>
+        </div>
+        <div >
+            {{data.key}}
+        </div>
     </div>
-
-    <div *ngIf="!data.translationReq">
-        {{data.key}}
-    </div>
+    <button mat-icon-button>
+        <mat-icon  (click)="closeSnackBar()" class="mat-snackbar-success-icon">close</mat-icon>
+    </button>
 </div>
+
+

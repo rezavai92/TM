@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 import { CustomToastComponent } from '../components/custom-toast/custom-toast.component';
 
 @Injectable({
@@ -8,7 +9,10 @@ import { CustomToastComponent } from '../components/custom-toast/custom-toast.co
 export class CustomToastService {
 
   
-  constructor(private snackBar: MatSnackBar) {
+  constructor(
+    private snackBar: MatSnackBar,
+    private translateService : TranslateService
+  ) {
     
   }
   
@@ -16,9 +20,9 @@ export class CustomToastService {
   openSnackBar(key : string, translationReq =false, type : 'error' | 'success') {
 
     const matSnackBarConfig: MatSnackBarConfig = {
-     duration : 5000,
+     duration : 100000,
       data: {
-        key: key,
+        key:  translationReq ?  this.translateService.instant(key) : key,
         translationReq: translationReq,
         type : type
       },

@@ -19,7 +19,8 @@
     "DOCUMENT" : "Document",
     "BACK" : "Back",
     "NEXT"  : "Next",
-    "FILE_UPLOADING_FAILED" : "Sorry, File uploading has failed. please try again!",
-    "SOMETHING_WENT_WRONG" : "Something has went wrong!"
-
+    "FILE_UPLOADING_FAILED": "Sorry, File uploading has failed. please try again!",
+    "SOMETHING_WENT_WRONG": "Something went wrong!",
+    "FAILED_TO_UPLOAD_PHOTO": "Failed to upload photo",
+    "APP_CLOSE" : "Close"
  }

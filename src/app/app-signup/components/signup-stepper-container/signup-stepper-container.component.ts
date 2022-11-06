@@ -158,7 +158,7 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 					error: (error: HttpErrorResponse) => {
 						this.signupLoading = false;
 						this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
-						this.registrationCompleted = true;
+						//this.registrationCompleted = true;
 						//	console.log(error.message);
 					}
 				}

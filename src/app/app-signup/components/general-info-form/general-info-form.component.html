@@ -16,7 +16,7 @@
 		<ng-container *ngIf="profilePictureErrors && profilePictureErrors.length">
 			<div class="mb-16">
 				<div class="profile-pic-upload-error" *ngFor="let error of profilePictureErrors">
-					{{error}}
+					{{error | translate}}
 				</div>
 			</div>
 		</ng-container>

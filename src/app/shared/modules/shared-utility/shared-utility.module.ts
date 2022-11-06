@@ -5,9 +5,19 @@ import { TranslateMockPipe } from './pipes/translate-mock.pipe';
 import { AcceptFormatPipe } from './pipes/accept-format.pipe';
 import { CustomToastComponent } from './components/custom-toast/custom-toast.component';
 import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
+import { MaterialModule } from '../material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CustomToastService } from './services/custom-toast.service';
 
 
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new MultiTranslateHttpLoader(http, [
+    { prefix: "./assets/i18n/common/", suffix: ".json" },
+  ]);
+}
 
 @NgModule({
   declarations: [
@@ -18,8 +28,20 @@ import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive
     BlockCopyPasteDirective
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    FlexLayoutModule,
+    TranslateModule.forChild({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      isolate: true
+    }),
   ],
-  exports: [PortalLanguagePipe, AcceptFormatPipe]
+  exports: [PortalLanguagePipe, AcceptFormatPipe],
+  providers: [CustomToastService],
 })
 export class SharedUtilityModule { }
