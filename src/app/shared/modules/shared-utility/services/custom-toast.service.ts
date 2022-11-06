@@ -20,7 +20,7 @@ export class CustomToastService {
   openSnackBar(key : string, translationReq =false, type : 'error' | 'success') {
 
     const matSnackBarConfig: MatSnackBarConfig = {
-     duration : 100000,
+     duration : 5000,
       data: {
         key:  translationReq ?  this.translateService.instant(key) : key,
         translationReq: translationReq,
