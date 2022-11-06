@@ -7,6 +7,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { DoctorsProfessionalDocumentTags } from '../../constants/signup.constants';
 import { IProfessionalInfoFormDataForRegistration, ISignUpProfessionalInfoFormData } from '../../interfaces/professional-info.interface';
 import { ISignUpGeneralInfoFormData } from '../../interfaces/general-info.interface';
+import { SignupService } from '../../services/signup.service';
 
 @Component({
 	selector: 'app-professional-info-form',
@@ -39,7 +40,10 @@ export class ProfessionalInfoFormComponent {
 		customHintOnGivenRestriction: false
 
 	};
-	constructor(private _fb: FormBuilder) {
+	constructor(
+		private _fb: FormBuilder,
+		private _signupService : SignupService
+	) {
 		this.initProfessionalInfoForm();
 	}
 
@@ -155,6 +159,7 @@ export class ProfessionalInfoFormComponent {
 			const docFormGroupFromArray = this.findDocumentFormGroupAt(documentIndex);
 			docFormGroupFromArray.controls["Attachment"].setValue("document uploaded");
 			this.professionalInfoForm.updateValueAndValidity();	
+			this._signupService.storeUploadedDocumentIdsInSignup(event.metaData.uploadedFileId);
 		}
 		
 	}

@@ -21,6 +21,10 @@
      "GENERAL_INFORMATION" : "General Information",
      "PROFESSIONAL_INFORMATION" : "Professional Information",
      "FINANCIAL_INFORMATION" : "financial Information",
-     "COMPLETE_SIGNUP" : "Complete Sign up"
+     "COMPLETE_SIGNUP" : "Complete Sign up",
+     "NOT_RECEIVED_CODE_YET" : "Not recieved code yet?",
+     "RESEND_OTP" : "Resend OTP",
+     "PLEASE_ENTER_OTP_SENT_TO" : "Please enter OTP sent to ",
+     "VERIFY" : "Verify"
  
 }

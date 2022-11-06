@@ -29,9 +29,9 @@
 
             </div>
 
-            <button [disabled]="otpForm.invalid" type="submit" mat-raised-button color="primary">Verify</button>
+            <button [disabled]="otpForm.invalid" type="submit" mat-raised-button color="primary">{{'VERIFY' | translate}}</button>
 
-            <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="w-100-p" fxLayout="row"   fxLayoutGap="16px" fxLayoutAlign="center center">
                 <div>
                     {{'NOT_RECEIVED_CODE_YET' | translate}}
                 </div>

@@ -21,7 +21,7 @@ export class OtpFormComponent implements OnInit {
   fourth!: number;
 
   firstSubs$!: Subscription;
-  secondSUbs$!: Subscription;
+  secondSubs$!: Subscription;
   thirdSubs$!: Subscription;
   
   otpForm!: FormGroup;
@@ -37,82 +37,13 @@ export class OtpFormComponent implements OnInit {
     this.subscribeToInputBoxChanges();
 
 
-    // this.secondSUbs$ = fromEvent(this.secondBox.nativeElement, 'keyup').pipe(
-    //   map((event: any) => {
-    //     return event.target.value;
-    //   }),
-    //   debounceTime(50),
-    // ).subscribe((no) => {
-    //   if (no) {
-    //     this.thirdBox.nativeElement.focus();
-    //   }
-    // });
-
-
-    // this.thirdSubs$ = fromEvent(this.thirdBox.nativeElement, 'keyup').pipe(
-    //   map((event: any) => {
-    //     return event.target.value;
-    //   }),
-    //   debounceTime(50),
-    // ).subscribe((no) => {
-    //   if (no) {
-    //     this.fourthBox.nativeElement.focus();
-    //   }
-    // });
 
     
   }
 
 
 
-  // preventCopyPaste() {
-
-  //   this.firstBox.nativeElement.paste((e:any) => e.preventDefault());
-  //   this.secondBox.nativeElement.paste((e:any) => e.preventDefault());
-  //   this.thirdBox.nativeElement.paste((e:any) => e.preventDefault());
-  //   this.fourthBox.nativeElement.paste((e:any) => e.preventDefault());
-
-  // }
-
-
-  subscribeToInputBoxChanges() {
-    const ctrl1 = this.otpForm.controls['first'];
-    const ctrl2 = this.otpForm.controls['second'];
-    const ctrl3 = this.otpForm.controls['third'];
-  
-
-
-    this.firstSubs$ =  ctrl1.valueChanges.pipe(
-      debounceTime(10),
-    ).subscribe((no) => {
-      if (no && ctrl1.valid ) {
-        this.secondBox.nativeElement.focus();
-      }
-    
-
-    });
-
-    this.secondSUbs$ = ctrl2.valueChanges.pipe(
-     
-      debounceTime(10),
-    ).subscribe((no) => {
-      if (no && ctrl2.valid) {
-        this.thirdBox.nativeElement.focus();
-      }
-    });
-
-    this.thirdSubs$ =  ctrl3.valueChanges.pipe(
-     
-      debounceTime(10),
-    ).subscribe((no) => {
-      if (no && ctrl3.valid) {
-        this.fourthBox.nativeElement.focus();
-      }
-    });
-
-
-  }
-
+ 
 
   initOtpForm() {
     this.otpForm = this.fb.group({
@@ -137,16 +68,55 @@ export class OtpFormComponent implements OnInit {
 }
 
 
-  unsbuscribeAll() {
+subscribeToInputBoxChanges() {
+  const ctrl1 = this.otpForm.controls['first'];
+  const ctrl2 = this.otpForm.controls['second'];
+  const ctrl3 = this.otpForm.controls['third'];
+
+
+
+  this.firstSubs$ =  ctrl1.valueChanges.pipe(
+    debounceTime(10),
+  ).subscribe((no) => {
+    if (no && ctrl1.valid ) {
+      this.secondBox.nativeElement.focus();
+    }
+  
+
+  });
+
+  this.secondSubs$ = ctrl2.valueChanges.pipe(
+   
+    debounceTime(10),
+  ).subscribe((no) => {
+    if (no && ctrl2.valid) {
+      this.thirdBox.nativeElement.focus();
+    }
+  });
+
+  this.thirdSubs$ =  ctrl3.valueChanges.pipe(
+   
+    debounceTime(10),
+  ).subscribe((no) => {
+    if (no && ctrl3.valid) {
+      this.fourthBox.nativeElement.focus();
+    }
+  });
+
+
+}
+
+  
+  unSubscribeAll() {
     
     this.firstSubs$.unsubscribe();
-    this.secondSUbs$.unsubscribe();
+    this.secondSubs$.unsubscribe();
     this.thirdSubs$.unsubscribe();
 
   }
 
   ngOnDestroy() {
-    this.unsbuscribeAll();
+    this.unSubscribeAll();
 
   }
 }

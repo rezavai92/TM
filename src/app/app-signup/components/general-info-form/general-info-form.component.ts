@@ -26,6 +26,7 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import { ISignUpGeneralInfoFormData, ISignupGeneralInfoFormDataForRegistration } from '../../interfaces/general-info.interface';
+import { SignupService } from '../../services/signup.service';
 @Component({
 	selector: 'app-general-info-form',
 	templateUrl: './general-info-form.component.html',
@@ -54,7 +55,8 @@ export class GeneralInfoFormComponent implements OnInit {
 		private _fb: FormBuilder,
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
-		private _customToastService : CustomToastService
+		private _customToastService: CustomToastService,
+		private _signupService : SignupService
 	) {
 		this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
 			this._translateService.use(lang);
@@ -260,7 +262,9 @@ export class GeneralInfoFormComponent implements OnInit {
 				'uploaded'
 			);
 			this.generalInfoForm.updateValueAndValidity();	
-			this.NidBackPartDocId = event.metaData.uploadedFileId;
+			this.NidFrontPartDocId = event.metaData.uploadedFileId;
+
+			this._signupService.storeUploadedDocumentIdsInSignup(this.NidBackPartDocId);
 		}
 		else {
 			this.generalInfoForm.controls['FakeNidFrontPartControl'].markAsTouched();
@@ -276,6 +280,7 @@ export class GeneralInfoFormComponent implements OnInit {
 			);
 			this.generalInfoForm.updateValueAndValidity();	
 			this.NidBackPartDocId = event.metaData.uploadedFileId;
+			this._signupService.storeUploadedDocumentIdsInSignup(this.NidBackPartDocId);
 		}
 
 		else {
@@ -338,7 +343,8 @@ export class GeneralInfoFormComponent implements OnInit {
 	
 		if (event && event.status) {
 			
-			this.uploadedProfileImageId = event.metaData.uploadedFileId ?? this.uploadedProfileImageId ;
+			this.uploadedProfileImageId = event.metaData.uploadedFileId ?? this.uploadedProfileImageId;
+			this._signupService.storeUploadedDocumentIdsInSignup(this.uploadedProfileImageId);
 		}
 
 		else if (event && !event.status) {

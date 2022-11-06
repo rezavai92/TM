@@ -141,4 +141,22 @@ export class SignupService {
 		payload = this._util.trimStringPropFromAnObject(payload);
 		return payload;
 	}
+
+
+	storeUploadedDocumentIdsInSignup(id : string) {
+
+		const stored = window.localStorage.getItem('signupUploadedDocIds');
+		const parsedIds  : string[]= stored  ? JSON.parse(stored) : [];
+		parsedIds.push(id);
+		window.localStorage.setItem('signupUploadedDocIds', JSON.stringify(parsedIds));
+	}
+
+
+	cleanupUploadIdsFromStorage() {
+		const stored = window.localStorage.getItem('signupUploadedDocIds');
+
+		if (stored) {
+			window.localStorage.removeItem('signupUploadedDocIds');
+		}
+	}
 }

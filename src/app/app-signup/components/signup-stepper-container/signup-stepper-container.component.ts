@@ -46,7 +46,7 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	mergedFormData!: any;
 	isAllFormsValid: boolean = false;
 	signupLoading = false;
-
+	registrationCompleted = false;
 	constructor(
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
@@ -145,14 +145,18 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 						console.log(res);
 						if (res && res.status) {
 							this._customToastService.openSnackBar('SIGNUP_REGISTRATION_SUCCESSFULL', true, "success");
-							this._router.navigateByUrl('/signup/verification/otp');
+							this.registrationCompleted = true;
+							//this._router.navigateByUrl('/signup/verification/otp');
+							this._signupService.cleanupUploadIdsFromStorage();
 						}
 						this.signupLoading = false;
+
 					},
 
 					error: (error : HttpErrorResponse) => {
 						this.signupLoading = false;
 						this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
+						this.registrationCompleted = true;
 					//	console.log(error.message);
 					}
 				}
