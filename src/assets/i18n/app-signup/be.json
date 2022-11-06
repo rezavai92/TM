@@ -25,5 +25,6 @@
 	"NOT_RECEIVED_CODE_YET": "Not recieved code yet?",
 	"RESEND_OTP": "Resend OTP",
 	"PLEASE_ENTER_OTP_SENT_TO": "Please enter OTP sent to ",
-	"VERIFY" : "Verify"
+	"VERIFY" : "Verify",
+	"SIGNUP_REGISTRATION_SUCCESSFULL" : "Registration is successful"
 }
