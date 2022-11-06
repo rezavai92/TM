@@ -14,12 +14,17 @@ export class FileService {
 	}
 
 
+	preprocessBase64(encoded: string) {
+		return encoded.split('base64,')[1];
+	}
+
 	uploadFile<T>(payload: FileUploadPayload) {
+
+		payload.Base64 = this.preprocessBase64(payload.Base64);
+
 		const headers: any = new HttpHeaders()
 			.set('content-type', 'application/json')
-		//	.set('Access-Control-Allow-Origin', '*')
-		//	.set('Access-Control-Allow-Methods','GET, HEAD, POST, DELETE, PATCH, PUT, CONNECT, TRACE, OPTIONS');
-
+		
 		return this.http.post<IHttpCommonResponse<T>>(
 			`${environment.StorageService}UploadFile`,
 			payload,
