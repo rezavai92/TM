@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="w-100-p signup-page-container">
-	<div  *ngIf="registrationCompleted" class="sign-up-box" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start center">
+	<div  *ngIf="!registrationCompleted" class="sign-up-box" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start center">
 		<div class="page-header-1">
 			{{"SIGNUP" | translate}}
 		</div>
@@ -39,7 +39,7 @@
 
 	</div>
 
-	<div *ngIf="true" >
+	<div *ngIf="registrationCompleted" >
 		<app-otp-form></app-otp-form>
 	</div>
 </div>
