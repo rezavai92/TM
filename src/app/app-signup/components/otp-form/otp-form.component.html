@@ -1,9 +1,9 @@
-<div class="otp-container">
+<div  fxLayout="column"  fxLayoutGap="16px" fxLayoutAlign="start center" class="otp-container">
 
-    <form (ngSubmit)="otpForm.valid && verifyOtp(otpForm.value)" [formGroup]="otpForm">
+    <form  *ngIf="!timeOver" (ngSubmit)="otpForm.valid && verifyOtp(otpForm.value)" [formGroup]="otpForm">
 
         <div fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start center">
-            <div class="mt-16">{{"PLEASE_ENTER_OTP_SENT_TO" | translate}}</div>
+            <div class="mt-16 page-header-2">{{"PLEASE_ENTER_OTP_SENT_TO" | translate}}</div>
             <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
 
                 <mat-form-field [ngStyle.xs]="{'width' : '50px'}" [ngStyle.sm]="{'width': '80px'}" >
@@ -29,15 +29,31 @@
 
             </div>
 
-            <button [disabled]="otpForm.invalid" type="submit" mat-raised-button color="primary">{{'VERIFY' | translate}}</button>
-
-            <div class="w-100-p" fxLayout="row"   fxLayoutGap="16px" fxLayoutAlign="center center">
-                <div>
-                    {{'NOT_RECEIVED_CODE_YET' | translate}}
-                </div>
-
-                <button mat-button color="primary">{{ "RESEND_OTP" | translate}} </button>
+            <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="center center">
+                <button [disabled]="otpForm.invalid || resendOtpLoading || verifyLoading" type="submit" mat-raised-button color="primary">{{'VERIFY' | translate}}</button>
+                <mat-spinner diameter="20" *ngIf="verifyLoading"></mat-spinner>
             </div>
+          
+            
         </div>
     </form>
+
+
+    <div *ngIf="!timeOver && count>-1" class="page-header-3">
+        Your OTP will expire in <span style="color: red">{{count}}s</span>.
+    </div>
+    
+    <div class="page-header-3" *ngIf="timeOver">
+        Your OTP has been expired. 
+    </div>
+
+    <div class="w-100-p" fxLayout="row"   fxLayoutGap="16px" fxLayoutAlign="center center">
+        <div>
+            {{'NOT_RECEIVED_CODE_YET' | translate}}
+        </div>
+
+        <button [disabled]="resendOtpLoading || verifyLoading" (click)="resendOTP()" mat-button color="primary">{{ "RESEND_OTP" | translate}} </button>
+        <mat-spinner diameter="20" *ngIf="resendOtpLoading"></mat-spinner>
+    </div>
+
 </div>

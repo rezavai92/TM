@@ -23,9 +23,6 @@ export class CustomToastComponent implements OnInit {
 
 	}
 
-
-
-
 	ngOnInit(): void {
 	}
 
