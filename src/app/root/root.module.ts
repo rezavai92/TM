@@ -10,14 +10,15 @@ import {
 } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../shared/modules/material/material.module';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MainComponent } from './main/main.component';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';
-
+import { CookieService } from 'ngx-cookie-service';
+import { AuthInterceptor } from '../shared/interceptors/auth.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
@@ -47,7 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       isolate: true,
     }),
   ],
-  providers: [],
+  providers: [CookieService, {provide : HTTP_INTERCEPTORS , useClass : AuthInterceptor,multi : true } ],
   bootstrap: [RootDefaultComponent],
 })
 export class RootModule { }
