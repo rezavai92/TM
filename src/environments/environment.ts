@@ -3,5 +3,6 @@ export const environment = {
   production: false,
   baseUrl: `${baseUrl}`,
   UserService: `${baseUrl}/api/UserService/`,
-  StorageService : `${baseUrl}/api/StorageService/`
+  StorageService: `${baseUrl}/api/StorageService/`,
+  SmsService : `${baseUrl}/api/Sms/`
 };

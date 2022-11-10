@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="w-100-p signup-page-container">
-	<div  *ngIf="!registrationCompleted" class="sign-up-box" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start center">
+	<div  *ngIf="!allFormsFilledUp" class="sign-up-box" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start center">
 		<div class="page-header-1">
 			{{"SIGNUP" | translate}}
 		</div>
@@ -28,9 +28,9 @@
 					<ng-template matStepLabel> {{"FINANCIAL_INFORMATION" | translate}} </ng-template>
 					<app-bank-info-form #bankInfoForm></app-bank-info-form>
 					<div fxLayout="row" fxLayoutAlign="end center" fxLayoutAlign.xs="center  center" fxLayoutGap="8px">
-						<button [disabled]="!isAllFormsValid || signupLoading" mat-raised-button color="primary"
+						<button [disabled]="!isAllFormsValid || reqForOtpLoading" mat-raised-button color="primary"
 							(click)="submitForUserRegistration()">{{"COMPLETE_SIGNUP" | translate}}</button>
-							<mat-spinner *ngIf="signupLoading" diameter="20"></mat-spinner>
+							<mat-spinner *ngIf="reqForOtpLoading" diameter="20"></mat-spinner>
 					</div>
 				</mat-step>
 
@@ -39,7 +39,7 @@
 
 	</div>
 
-	<div *ngIf="registrationCompleted" >
+	<div *ngIf="allFormsFilledUp" >
 		<app-otp-form></app-otp-form>
 	</div>
 </div>

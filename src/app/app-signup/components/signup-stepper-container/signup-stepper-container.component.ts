@@ -8,17 +8,34 @@ import {
 	ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import {
+	ActivatedRoute,
+	ActivatedRouteSnapshot,
+	Router,
+} from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, take } from 'rxjs';
+import { UserRoles } from 'src/app/shared/constants/tm-config.constant';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 import { FinanceTypeEnum } from '../../constants/signup.constants';
-import { IBankInfoForm, IMobileFinancialServiceInfo, ITraditionalBankInfo } from '../../interfaces/bank-info.interface';
-import { ISignUpGeneralInfoFormData, ISignupGeneralInfoFormDataForRegistration } from '../../interfaces/general-info.interface';
-import { IProfessionalInfoFormDataForRegistration, ISignUpProfessionalInfoFormData } from '../../interfaces/professional-info.interface';
+import {
+	IBankInfoForm,
+	IMobileFinancialServiceInfo,
+	ITraditionalBankInfo,
+} from '../../interfaces/bank-info.interface';
+import {
+	ISignUpGeneralInfoFormData,
+	ISignupGeneralInfoFormDataForRegistration,
+} from '../../interfaces/general-info.interface';
+import { IProcessOtpPayload } from '../../interfaces/otp.interface';
+import {
+	IProfessionalInfoFormDataForRegistration,
+	ISignUpProfessionalInfoFormData,
+} from '../../interfaces/professional-info.interface';
 import { IRegisterUserPayload } from '../../interfaces/signup.interface';
 import { UserFinancialInfo } from '../../models/bank-information.model';
+import { OtpService } from '../../services/otp.service';
 import { SignupService } from '../../services/signup.service';
 import { BankInfoFormComponent } from '../bank-info-form/bank-info-form.component';
 import { GeneralInfoFormComponent } from '../general-info-form/general-info-form.component';
@@ -29,7 +46,9 @@ import { ProfessionalInfoFormComponent } from '../professional-info-form/profess
 	templateUrl: './signup-stepper-container.component.html',
 	styleUrls: ['./signup-stepper-container.component.scss'],
 })
-export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit, AfterViewChecked {
+export class SignupStepperContainerComponent
+	implements OnDestroy, AfterViewInit, AfterViewChecked
+{
 	@ViewChild('generalInfoForm')
 	generalInfoFormComponent!: GeneralInfoFormComponent;
 	@ViewChild('professionalInfoForm')
@@ -45,25 +64,22 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	languageSubscription!: Subscription;
 	mergedFormData!: any;
 	isAllFormsValid: boolean = false;
-	signupLoading = false;
-	registrationCompleted = false;
+	reqForOtpLoading = false;
+	allFormsFilledUp = false;
 	constructor(
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
 		private _signupService: SignupService,
 		private _customToastService: CustomToastService,
-		private _router: Router
+		private _router: Router,
+		private _otpService: OtpService
 	) {
-
-
-
-		this.languageSubscription = this._sharedDataService.getCurrentLang().subscribe((lang) => {
-			console.log("from inside signup container")
-			this._translateService.use(lang);
-		});
-
-
-
+		this.languageSubscription = this._sharedDataService
+			.getCurrentLang()
+			.subscribe((lang) => {
+				console.log('from inside signup container');
+				this._translateService.use(lang);
+			});
 	}
 
 	ngAfterViewChecked(): void {
@@ -71,7 +87,7 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 		this.formGroupsLoaded = true;
 		setTimeout(() => {
 			this.validateAllForms();
-		})
+		});
 	}
 
 	ngOnDestroy(): void {
@@ -81,44 +97,49 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 	ngAfterViewInit(): void {
 		// this.loadAllStepControls();
 		// this.formGroupsLoaded = true;
-
 	}
 
 	validateAllForms() {
-
-		const bankInfoFormData: IBankInfoForm = this.bankInfoFormGroup.getRawValue();
-		this.isAllFormsValid = (this.generalInfoFormGroup.valid &&
+		const bankInfoFormData: IBankInfoForm =
+			this.bankInfoFormGroup.getRawValue();
+		this.isAllFormsValid =
+			this.generalInfoFormGroup.valid &&
 			this.professionalInfoFormGroup.valid &&
 			this.bankInfoFormGroup.valid &&
-			(bankInfoFormData.FinanceType === FinanceTypeEnum.Bank ? this.bankFormGroup?.valid : this.mfsFormGroup?.valid)
-		)
-
-
+			(bankInfoFormData.FinanceType === FinanceTypeEnum.Bank
+				? this.bankFormGroup?.valid
+				: this.mfsFormGroup?.valid);
 	}
-
 
 	loadAllStepControls() {
-		if (!this.registrationCompleted) {
-			this.generalInfoFormGroup = this.generalInfoFormComponent ? this.generalInfoFormComponent.generalInfoForm : this.generalInfoFormGroup;
-			this.professionalInfoFormGroup =this.professionalInfoFormComponent ? this.professionalInfoFormComponent.professionalInfoForm :  this.professionalInfoFormGroup;
-			this.bankInfoFormGroup =this.bankInfoFormComponent ? this.bankInfoFormComponent.bankInfoForm : this.bankInfoFormGroup;
-			this.bankFormGroup =this.bankInfoFormComponent ? this.bankInfoFormComponent.BankGroup : this.bankFormGroup;
-			this.mfsFormGroup =this.bankInfoFormComponent ? this.bankInfoFormComponent.MfsGroup : this.mfsFormGroup;
+		if (!this.allFormsFilledUp) {
+			this.generalInfoFormGroup = this.generalInfoFormComponent
+				? this.generalInfoFormComponent.generalInfoForm
+				: this.generalInfoFormGroup;
+			this.professionalInfoFormGroup = this.professionalInfoFormComponent
+				? this.professionalInfoFormComponent.professionalInfoForm
+				: this.professionalInfoFormGroup;
+			this.bankInfoFormGroup = this.bankInfoFormComponent
+				? this.bankInfoFormComponent.bankInfoForm
+				: this.bankInfoFormGroup;
+			this.bankFormGroup = this.bankInfoFormComponent
+				? this.bankInfoFormComponent.BankGroup
+				: this.bankFormGroup;
+			this.mfsFormGroup = this.bankInfoFormComponent
+				? this.bankInfoFormComponent.MfsGroup
+				: this.mfsFormGroup;
 		}
-
 	}
 
-
-
 	submitForUserRegistration() {
-
-		this.signupLoading = true;
+		this.reqForOtpLoading = true;
 		let generalInfoFormData: ISignupGeneralInfoFormDataForRegistration =
 			this.generalInfoFormComponent.getRegistrationCompatibleGeneralInfoFormData();
 		let professionalInfoFormData: IProfessionalInfoFormDataForRegistration =
 			this.professionalInfoFormComponent.getRegistrationCompatibleProfessionalInfoFormData();
 
-		let bankInfoFormData: IBankInfoForm = this.bankInfoFormGroup.getRawValue();
+		let bankInfoFormData: IBankInfoForm =
+			this.bankInfoFormGroup.getRawValue();
 		let hasBfs = bankInfoFormData.FinanceType === FinanceTypeEnum.Bank;
 		let hasMfs = bankInfoFormData.FinanceType === FinanceTypeEnum.Mfs;
 		let bfsFormData: ITraditionalBankInfo | null = null;
@@ -132,38 +153,68 @@ export class SignupStepperContainerComponent implements OnDestroy, AfterViewInit
 			mfsFormData = this.mfsFormGroup.getRawValue();
 		}
 
-		const financialInfo: UserFinancialInfo = this._signupService.
-			prepareFinancialInfoModelFromFormData(bfsFormData, mfsFormData, bankInfoFormData.FinanceType)
+		const financialInfo: UserFinancialInfo =
+			this._signupService.prepareFinancialInfoModelFromFormData(
+				bfsFormData,
+				mfsFormData,
+				bankInfoFormData.FinanceType
+			);
 
 		const registrationPayload: IRegisterUserPayload =
-			this._signupService.prepareUserRegistrationPayload(generalInfoFormData, professionalInfoFormData, financialInfo);
-		console.log("reg payload ", registrationPayload);
-
-
-		this._signupService.registerUser(registrationPayload).pipe(take(1))
-			.subscribe(
-				{
-					next: (res) => {
-						console.log(res);
-						if (res && res.status) {
-							this._customToastService.openSnackBar('SIGNUP_REGISTRATION_SUCCESSFULL', true, "success");
-							this.registrationCompleted = true;
-							//this._router.navigateByUrl('/signup/verification/otp');
-							this._signupService.cleanupUploadIdsFromStorage();
-						}
-						this.signupLoading = false;
-
-					},
-
-					error: (error: HttpErrorResponse) => {
-						this.signupLoading = false;
-						this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
-						//this.registrationCompleted = true;
-						//	console.log(error.message);
-					}
-				}
+			this._signupService.prepareUserRegistrationPayload(
+				generalInfoFormData,
+				professionalInfoFormData,
+				financialInfo
 			);
+		console.log('reg payload ', registrationPayload);
+		window.localStorage.setItem(
+			'signupPayload',
+			JSON.stringify(registrationPayload)
+		);
+
+		const requestOtpPayload: IProcessOtpPayload = {
+			MobileNumber: registrationPayload.PhoneNumber.toString(),
+			Role: UserRoles.DOCTOR,
+		};
+		this._otpService
+			.requestForSendingOTP(requestOtpPayload)
+			.pipe(take(1))
+			.subscribe({
+				next: (res) => {
+					if (res && res.status) {
+						this.allFormsFilledUp = true;
+						this.reqForOtpLoading = false;
+					}
+				},
+				error: (res) => {
+					this.reqForOtpLoading = false;
+					this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
+
+				},
+			});
+
+		// this._signupService.registerUser(registrationPayload).pipe(take(1))
+		// 	.subscribe(
+		// 		{
+		// 			next: (res) => {
+		// 				console.log(res);
+		// 				if (res && res.status) {
+		// 					this._customToastService.openSnackBar('SIGNUP_REGISTRATION_SUCCESSFULL', true, "success");
+		// 					this.allFormsFilledUp = true;
+		// 					//this._router.navigateByUrl('/signup/verification/otp');
+		// 					this._signupService.cleanupUploadIdsFromStorage();
+		// 				}
+		// 				this.reqForOtpLoading = false;
+
+		// 			},
+
+		// 			error: (error: HttpErrorResponse) => {
+		// 				this.reqForOtpLoading = false;
+		// 				this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
+		// 				//this.allFormsFilledUp = true;
+		// 				//	console.log(error.message);
+		// 			}
+		// 		}
+		// 	);
 	}
-
-
 }
