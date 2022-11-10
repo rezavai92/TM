@@ -68,7 +68,7 @@
                         <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start"
                             fxLayoutGap="16px">
 
-                            <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="start center"
+                            <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center center"
                                 fxLayoutGap.gt-xs="8px" class="form-field-pairs w-100-p">
 
                                 <mat-form-field appearance="outline" class="w-100-p">
@@ -96,6 +96,7 @@
                                         </mat-error>
                                         <app-file-uploader style="margin-top: -20px;"
                                             (upload)="onDocumentUpload($event,i)"
+                                            (actionInProgressEmitter)="onActionInProgress($event,i)"
                                             (fileDelete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
                                             [dataContext]="getDataCtx(i)">
                                         </app-file-uploader>
@@ -103,6 +104,14 @@
                                     </mat-form-field>
 
                                 </div>
+
+                            
+                                <div class="close-btn">
+                                    <button  [disabled]="ProfessionalDocuments.controls.length<2" mat-icon-button (click)="removeOption(i)">
+                                        <mat-icon>remove</mat-icon>
+                                     </button>
+                                </div>
+                            
                             </div>
 
 

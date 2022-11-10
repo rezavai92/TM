@@ -18,7 +18,7 @@ export class OtpService {
 			.set('content-type', 'application/json')
 
 		return this.http.post<IHttpCommonResponse<any>>(
-			`${environment.UserService}ProcessOtp`,
+			`${environment.SmsService}ProcessOtp`,
 			payload,
 			{
 				headers: headers,
@@ -34,7 +34,7 @@ export class OtpService {
 			.set('content-type', 'application/json')
 
 		return this.http.post<IHttpCommonResponse<any>>(
-			`${environment.UserService}VerifyOtp`,
+			`${environment.SmsService}VerifyOtp`,
 			payload,
 			{
 				headers: headers,

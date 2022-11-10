@@ -6,6 +6,8 @@ import {
 	ElementRef,
 	AfterViewInit,
 	Input,
+	Output,
+	EventEmitter,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
@@ -21,9 +23,10 @@ import {
 	tap,
 	of,
 } from 'rxjs';
-import { UserRoles } from 'src/app/shared/constants/tm-config.constant';
-import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
+import { UserRoles } from '../../../shared/constants/tm-config.constant';
+import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import { numberRegexString } from '../../../shared/shared-data/constants';
+import { LocalStorageSignupKeys } from '../../constants/signup.constants';
 import { IVerifyOtpPayload } from '../../interfaces/otp.interface';
 import { OtpService } from '../../services/otp.service';
 import { SignupService } from '../../services/signup.service';
@@ -36,6 +39,7 @@ import { SignupService } from '../../services/signup.service';
 export class OtpFormComponent implements OnInit, AfterViewInit {
 	@Input() mobileNumber!: string;
 	@Input() role!: UserRoles;
+	@Output() complete : EventEmitter<boolean> = new EventEmitter();
 	@ViewChild('firstBox', { static: false }) firstBox!: ElementRef;
 	@ViewChild('secondBox', { static: false }) secondBox!: ElementRef;
 	@ViewChild('thirdBox', { static: false }) thirdBox!: ElementRef;
@@ -143,7 +147,7 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 	verifyOtpAndSignup() {
 		this.verifyLoading = true;
 		const otpPayload = this.getVerifyOtpPayload();
-		const storedSignupData = window.localStorage.getItem('signupPayload');
+		const storedSignupData = window.localStorage.getItem(LocalStorageSignupKeys.SIGNUP_PAYLOAD);
 		const signupPayload = storedSignupData
 			? JSON.parse(storedSignupData)
 			: null;
@@ -165,7 +169,7 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 					tap((res) => {
 						res &&
 						res.status &&
-						window.localStorage.removeItem('signupPayload');
+						window.localStorage.removeItem(LocalStorageSignupKeys.SIGNUP_PAYLOAD);
 					})
 				)
 				.subscribe({
@@ -180,8 +184,10 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 							);
 						}
 						this.verifyLoading = false;
+						this.complete.emit(true);
 					},
 					error: (error: HttpErrorResponse) => {
+						this.complete.emit(false);
 						this._customToastService.openSnackBar(
 							'REGISTRATION_FAILED',
 							true,
@@ -193,7 +199,7 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 		
 		else {
 			this._customToastService.openSnackBar(
-				'NULL_PAYLOAD',
+				'INSUFFICIENT_DATA',
 				true,
 				'error'
 			);

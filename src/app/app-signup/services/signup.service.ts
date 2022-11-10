@@ -134,7 +134,7 @@ export class SignupService {
 				generalInfoFormData,
 				professionalInfoFormData
 			),
-			ProfileImageId: '',
+			ProfileImageId: generalInfoFormData.ProfileImageId,
 			PhoneNumber: generalInfoFormData.PhoneNumber,
 		};
 

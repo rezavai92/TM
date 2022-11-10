@@ -167,16 +167,24 @@ export class ProfessionalInfoFormComponent {
 
 	onDocumentDelete(deleted: boolean, documentIndex: number) {
 		if (deleted) {
-			this.deleteDocument(documentIndex);
-			// const docFormGroupFromArray = this.findDocumentFormGroupAt(documentIndex);
-			// docFormGroupFromArray.controls["Attachment"].setValue("");
-			if (this.ProfessionalDocuments.length === 0) {
-				this.addDocument();
-			}
-			this.professionalInfoForm.updateValueAndValidity();
+			const docFormGroupFromArray = this.findDocumentFormGroupAt(documentIndex);
+			docFormGroupFromArray.controls["Attachment"].setValue("");
+			this.professionalInfoForm.updateValueAndValidity();	
+			// this.deleteDocument(documentIndex);
+			// // const docFormGroupFromArray = this.findDocumentFormGroupAt(documentIndex);
+			// // docFormGroupFromArray.controls["Attachment"].setValue("");
+			// if (this.ProfessionalDocuments.length === 0) {
+			// 	this.addDocument();
+			// }
+			// this.professionalInfoForm.updateValueAndValidity();
 		}
 	}
 
+	onActionInProgress(event: any, delta: number) {
+		if (event) {
+			
+		}
+	}
 
 
 	getDataCtx(delta : number) {
@@ -194,6 +202,17 @@ export class ProfessionalInfoFormComponent {
 	getProfessionalDocumentTag(documentIndex: number) {
 		const docFormGroupFromArray = this.findDocumentFormGroupAt(documentIndex);
 		return docFormGroupFromArray.controls['Tag'].value;
+	}
+
+	removeOption(delta: number) {
+		
+		console.log(delta);
+		this.deleteDocument(delta);
+		if (this.ProfessionalDocuments.length === 0) {
+			this.addDocument();
+		}
+		this.professionalInfoForm.updateValueAndValidity();
+
 	}
 
 

@@ -5,3 +5,8 @@ export enum FinanceTypeEnum {
     Mfs = "MFS"
 
 }
+
+
+export enum LocalStorageSignupKeys{
+    SIGNUP_PAYLOAD = 'SignupPayload'
+}

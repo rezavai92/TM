@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
 	IFileUploadConfig,
 	IFileUploadDataContext,
-} from 'src/app/shared/modules/file-uploader/interfaces/file-uploader.interface';
+} from '../../../shared/modules/file-uploader/interfaces/file-uploader.interface';
 import { SharedUtilityService } from '../../../shared/services/shared-utilities/shared-utility.service';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 import {

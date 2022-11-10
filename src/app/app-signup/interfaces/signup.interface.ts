@@ -1,4 +1,4 @@
-import { DoctorsSpecializationEnum } from "src/app/shared/shared-data/shared-enums";
+import { DoctorsSpecializationEnum } from "../../shared/shared-data/shared-enums";
 import { UserFinancialInfo } from "../models/bank-information.model";
 
 export interface IRegisterUserPayload {

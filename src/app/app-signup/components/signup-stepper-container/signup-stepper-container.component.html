@@ -29,7 +29,7 @@
 					<app-bank-info-form #bankInfoForm></app-bank-info-form>
 					<div fxLayout="row" fxLayoutAlign="end center" fxLayoutAlign.xs="center  center" fxLayoutGap="8px">
 						<button [disabled]="!isAllFormsValid || reqForOtpLoading" mat-raised-button color="primary"
-							(click)="submitForUserRegistration()">{{"COMPLETE_SIGNUP" | translate}}</button>
+							(click)="submitForUserRegistration()">{{"SEND_OTP" | translate}}</button>
 							<mat-spinner *ngIf="reqForOtpLoading" diameter="20"></mat-spinner>
 					</div>
 				</mat-step>
@@ -39,7 +39,7 @@
 
 	</div>
 
-	<div *ngIf="allFormsFilledUp" >
-		<app-otp-form></app-otp-form>
+	<div *ngIf="allFormsFilledUp && mobileNumberForOtp" >
+		<app-otp-form (complete)="onRegistrationComplete($event)" [mobileNumber]="mobileNumberForOtp"></app-otp-form>
 	</div>
 </div>

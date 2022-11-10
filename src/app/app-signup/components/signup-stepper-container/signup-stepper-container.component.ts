@@ -15,10 +15,10 @@ import {
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, take } from 'rxjs';
-import { UserRoles } from 'src/app/shared/constants/tm-config.constant';
+import { UserRoles } from '../../../shared/constants/tm-config.constant';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
-import { FinanceTypeEnum } from '../../constants/signup.constants';
+import { FinanceTypeEnum, LocalStorageSignupKeys } from '../../constants/signup.constants';
 import {
 	IBankInfoForm,
 	IMobileFinancialServiceInfo,
@@ -66,6 +66,7 @@ export class SignupStepperContainerComponent
 	isAllFormsValid: boolean = false;
 	reqForOtpLoading = false;
 	allFormsFilledUp = false;
+	mobileNumberForOtp = '01831309302';
 	constructor(
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
@@ -168,14 +169,17 @@ export class SignupStepperContainerComponent
 			);
 		console.log('reg payload ', registrationPayload);
 		window.localStorage.setItem(
-			'signupPayload',
+			LocalStorageSignupKeys.SIGNUP_PAYLOAD,
 			JSON.stringify(registrationPayload)
 		);
+
+		this.mobileNumberForOtp = generalInfoFormData.PhoneNumber.toString();
 
 		const requestOtpPayload: IProcessOtpPayload = {
 			MobileNumber: registrationPayload.PhoneNumber.toString(),
 			Role: UserRoles.DOCTOR,
 		};
+
 		this._otpService
 			.requestForSendingOTP(requestOtpPayload)
 			.pipe(take(1))
@@ -184,6 +188,7 @@ export class SignupStepperContainerComponent
 					if (res && res.status) {
 						this.allFormsFilledUp = true;
 						this.reqForOtpLoading = false;
+						this._customToastService.openSnackBar('OTP_SENT_TO_USERS_PNONE_NUMBER', true, "success");
 					}
 				},
 				error: (res) => {
@@ -216,5 +221,10 @@ export class SignupStepperContainerComponent
 		// 			}
 		// 		}
 		// 	);
+	}
+
+
+	onRegistrationComplete(completed: boolean) {
+		
 	}
 }

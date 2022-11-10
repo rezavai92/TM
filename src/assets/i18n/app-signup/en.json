@@ -25,7 +25,9 @@
      "NOT_RECEIVED_CODE_YET" : "Not recieved code yet?",
      "RESEND_OTP" : "Resend OTP",
      "PLEASE_ENTER_OTP_SENT_TO" : "Please enter OTP sent to ",
-     "VERIFY" : "Verify",
+     "VERIFY_AND_COMPLETE_SIGNUP" : "Verify & Complete Signup",
     "SIGNUP_REGISTRATION_SUCCESSFULL" : "Registration is successful",
-    "ENTER_VALID_NID_NUMBER" : "Enter a valid NID number"
+    "ENTER_VALID_NID_NUMBER" : "Enter a valid NID number",
+    "SEND_OTP" : "Send OTP",
+    "INSUFFICIENT_DATA" : "Insufficient data"
 }
