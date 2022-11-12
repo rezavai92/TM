@@ -144,7 +144,7 @@ export class GeneralInfoFormComponent implements OnInit {
 			DateOfBirth: new Date(),
 			NidNumber: 1111111111111111,
 			Email: 'rezaink1996@yopmail.com',
-			PhoneNumber: '01831309302',
+			PhoneNumber: '1831309302',
 			FakeNidFrontPartControl: 'uploaded',
 			FakeNidBackPartControl: 'uploaded',
 			PasswordGroup: {
