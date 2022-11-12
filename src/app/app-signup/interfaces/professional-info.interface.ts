@@ -1,7 +1,7 @@
 import { DoctorsSpecializationEnum } from "../../shared/shared-data/shared-enums";
 
 export interface ISignUpProfessionalInfoFormData {
-    BusinessPhoneNumber: number;
+    BusinessPhoneNumber: string;
     BusinessEmail: string,
     Specializations: DoctorsSpecializationEnum[],
     ProfessionalDocuments: IProfessionalDocument[]
@@ -15,7 +15,7 @@ export interface IProfessionalDocument{
 }
 
 export interface IProfessionalInfoFormDataForRegistration {
-    BusinessPhoneNumber: number;
+    BusinessPhoneNumber: string;
     BusinessEmail: string,
     Specializations: DoctorsSpecializationEnum[],
     ProfessionalDocumentIds : string[]

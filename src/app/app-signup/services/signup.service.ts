@@ -42,7 +42,7 @@ export class SignupService {
 			.set('content-type', 'application/json')
 
 		return this.http.post<IHttpCommonResponse<any>>(
-			`${environment.UserService}Register`,
+			`${environment.UserService}RegisterUserAsync`,
 			payload,
 			{
 				headers: headers,

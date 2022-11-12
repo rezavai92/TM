@@ -174,10 +174,10 @@ export class SignupStepperContainerComponent
 			JSON.stringify(registrationPayload)
 		);
 
-		this.mobileNumberForOtp = generalInfoFormData.PhoneNumber.toString();
+		this.mobileNumberForOtp = generalInfoFormData.PhoneNumber;
 
 		const requestOtpPayload: IProcessOtpPayload = {
-			MobileNumber: registrationPayload.PhoneNumber.toString(),
+			MobileNumber: registrationPayload.PhoneNumber,
 			Role: UserRoles.DOCTOR,
 		};
 

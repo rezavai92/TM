@@ -19,6 +19,6 @@ export interface ITraditionalBankInfo {
 }
 
 export interface IMobileFinancialServiceInfo {
-    PhoneNumber: number,
+    PhoneNumber: string,
     OperatorName: string
 }
