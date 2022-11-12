@@ -27,7 +27,8 @@ import { UserRoles } from '../../../shared/constants/tm-config.constant';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import { numberRegexString } from '../../../shared/shared-data/constants';
 import { LocalStorageSignupKeys } from '../../constants/signup.constants';
-import { IVerifyOtpPayload } from '../../interfaces/otp.interface';
+import { IProcessOtpPayload, IVerifyOtpPayload } from '../../interfaces/otp.interface';
+import { IRegisterUserPayload } from '../../interfaces/signup.interface';
 import { OtpService } from '../../services/otp.service';
 import { SignupService } from '../../services/signup.service';
 
@@ -38,7 +39,6 @@ import { SignupService } from '../../services/signup.service';
 })
 export class OtpFormComponent implements OnInit, AfterViewInit {
 	@Input() mobileNumber!: string;
-	@Input() role!: UserRoles;
 	@Output() complete : EventEmitter<boolean> = new EventEmitter();
 	@ViewChild('firstBox', { static: false }) firstBox!: ElementRef;
 	@ViewChild('secondBox', { static: false }) secondBox!: ElementRef;
@@ -58,7 +58,8 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 	otpForm!: FormGroup;
 	resendOtpLoading = false;
 	verifyLoading = false;
-
+	signupPayload! : IRegisterUserPayload;
+	role: any = null;
 	constructor(
 		private fb: FormBuilder,
 		private _otpService: OtpService,
@@ -70,6 +71,22 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 		this.timeOver = false;
 		this.startTimerForOTPtoOver();
 		this.initOtpForm();
+		this.loadStoredSignupData();
+		this.setRole();
+	}
+
+
+	setRole() {
+		if (this.signupPayload && this.signupPayload.Specializations && this.signupPayload.Specializations.length) {
+			this.role = this._signupService.getUserRoleFromSpecialization(this.signupPayload.Specializations[0]);
+		}
+	}
+
+	loadStoredSignupData() {
+		const storedSignupData = window.localStorage.getItem(LocalStorageSignupKeys.SIGNUP_PAYLOAD);
+		this.signupPayload = storedSignupData
+			? JSON.parse(storedSignupData)
+			: null;
 	}
 
 	ngAfterViewInit(): void {
@@ -147,19 +164,18 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 	verifyOtpAndSignup() {
 		this.verifyLoading = true;
 		const otpPayload = this.getVerifyOtpPayload();
-		const storedSignupData = window.localStorage.getItem(LocalStorageSignupKeys.SIGNUP_PAYLOAD);
-		const signupPayload = storedSignupData
-			? JSON.parse(storedSignupData)
-			: null;
+		
+		console.log('otp payload', otpPayload);
+		console.log('signup payload', this.signupPayload);
 
-		if (otpPayload && signupPayload) {
+		if (otpPayload && this.signupPayload) {
 			this._otpService
 				.verifyOTP(otpPayload)
 				.pipe(
 					switchMap((res) => {
-						if (res && res.status) {
+						if (res && res.isSucceed) {
 							return this._signupService.registerUser(
-								signupPayload
+								this.signupPayload
 							);
 						}
 						return of(null);
@@ -168,15 +184,17 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 				.pipe(
 					tap((res) => {
 						res &&
-						res.status &&
+						res.isSucceed &&
 						window.localStorage.removeItem(LocalStorageSignupKeys.SIGNUP_PAYLOAD);
 					})
 				)
 				.subscribe({
 					next: (res) => {
-						if (res && res.status) {
+						if (res && res.isSucceed) {
+							this.complete.emit(true);
 							console.log('reg successful');
 						} else {
+							this.complete.emit(false);
 							this._customToastService.openSnackBar(
 								'REGISTRATION_FAILED',
 								true,
@@ -184,9 +202,10 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 							);
 						}
 						this.verifyLoading = false;
-						this.complete.emit(true);
+						
 					},
 					error: (error: HttpErrorResponse) => {
+						this.verifyLoading = false;
 						this.complete.emit(false);
 						this._customToastService.openSnackBar(
 							'REGISTRATION_FAILED',
@@ -250,9 +269,9 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 	startTimerForOTPtoOver() {
 		this.timeOver = false;
 		this.otpCountInterval$ = interval(1000)
-			.pipe(take(60))
+			.pipe(take(120))
 			.subscribe((number) => {
-				this.count = 59 - number;
+				this.count = 119 - number;
 
 				if (this.count === 0) {
 					this.timeOver = true;
@@ -270,14 +289,34 @@ export class OtpFormComponent implements OnInit, AfterViewInit {
 
 	resendOTP() {
 		this.resendOtpLoading = true;
-
-		setTimeout(() => {
-			this.resendOtpLoading = false;
-			this.resetCount();
-			this.unSubscribeOtpTimerAndInterval();
-			this.resetOtpForm();
-			this.startTimerForOTPtoOver();
-		}, 500);
+		const payload: IProcessOtpPayload = {
+			MobileNumber: this.mobileNumber,
+			Role : this.role
+		}
+		this._otpService.requestForSendingOTP(payload).pipe(take(1))
+			.subscribe({
+				next: (res) => {
+					if (res && res.isSucceed) {
+						this.resetCount();
+						this.unSubscribeOtpTimerAndInterval();
+						this.resetOtpForm();
+						this.resendOtpLoading = false;
+						this.startTimerForOTPtoOver();
+						
+					}
+					else {
+						this._customToastService.openSnackBar('FAILED_TO_SEND_OTP_TRY_AGAIN', true, 'error');
+						this.resendOtpLoading = false;
+					}
+					
+				},
+				error: (err) => {
+					this._customToastService.openSnackBar('FAILED_TO_SEND_OTP_TRY_AGAIN', true, 'error');
+					this.resendOtpLoading = false;
+				}
+				
+		})
+		
 	}
 
 	unSubscribeOtpTimerAndInterval() {

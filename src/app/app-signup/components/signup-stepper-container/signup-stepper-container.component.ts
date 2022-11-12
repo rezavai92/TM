@@ -67,6 +67,7 @@ export class SignupStepperContainerComponent
 	reqForOtpLoading = false;
 	allFormsFilledUp = false;
 	mobileNumberForOtp = '01831309302';
+	otpVerified = false;
 	constructor(
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
@@ -185,10 +186,14 @@ export class SignupStepperContainerComponent
 			.pipe(take(1))
 			.subscribe({
 				next: (res) => {
-					if (res && res.status) {
+					if (res && res.isSucceed) {
 						this.allFormsFilledUp = true;
 						this.reqForOtpLoading = false;
 						this._customToastService.openSnackBar('OTP_SENT_TO_USERS_PNONE_NUMBER', true, "success");
+					}
+					else {
+						this.reqForOtpLoading = false;
+						this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
 					}
 				},
 				error: (res) => {
@@ -198,33 +203,11 @@ export class SignupStepperContainerComponent
 				},
 			});
 
-		// this._signupService.registerUser(registrationPayload).pipe(take(1))
-		// 	.subscribe(
-		// 		{
-		// 			next: (res) => {
-		// 				console.log(res);
-		// 				if (res && res.status) {
-		// 					this._customToastService.openSnackBar('SIGNUP_REGISTRATION_SUCCESSFULL', true, "success");
-		// 					this.allFormsFilledUp = true;
-		// 					//this._router.navigateByUrl('/signup/verification/otp');
-		// 					this._signupService.cleanupUploadIdsFromStorage();
-		// 				}
-		// 				this.reqForOtpLoading = false;
-
-		// 			},
-
-		// 			error: (error: HttpErrorResponse) => {
-		// 				this.reqForOtpLoading = false;
-		// 				this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
-		// 				//this.allFormsFilledUp = true;
-		// 				//	console.log(error.message);
-		// 			}
-		// 		}
-		// 	);
+		
 	}
 
 
 	onRegistrationComplete(completed: boolean) {
-		
+		this.otpVerified = completed;
 	}
 }

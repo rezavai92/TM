@@ -22,7 +22,7 @@ export class OtpService {
 			payload,
 			{
 				headers: headers,
-				observe: 'response',
+				observe: 'body',
 			//	withCredentials : true
 			}
 		);
@@ -38,7 +38,7 @@ export class OtpService {
 			payload,
 			{
 				headers: headers,
-				observe: 'response',
+				observe: 'body',
 			//	withCredentials : true
 			}
 		);

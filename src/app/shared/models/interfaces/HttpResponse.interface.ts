@@ -1,6 +1,6 @@
 export interface IHttpCommonResponse <T>{
-    StatusCode: number, 
-    ResponseData: T,
-    ResponseMessage : string,
-    IsSucceed : boolean
+    statusCode: number, 
+    responseData: T,
+    responseMessage : string,
+    isSucceed : boolean
 }

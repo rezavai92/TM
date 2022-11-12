@@ -1,4 +1,4 @@
-import { GenderEnum, PortalLanguageEnum } from './shared-enums';
+import { GenderEnum, PortalLanguageEnum , DoctorsSpecializationEnum} from './shared-enums';
 
 export const Genders = Object.freeze([
 	{
@@ -46,3 +46,5 @@ export const MfsList = [
 		Value: 'Nagad',
 	},
 ];
+
+

@@ -23,6 +23,8 @@ import {
 import * as moment from 'moment';
 import { SharedUtilityService } from '../../shared/services/shared-utilities/shared-utility.service';
 import { IHttpCommonResponse } from '../../shared/models/interfaces/HttpResponse.interface';
+import { SpecializationRoleMapList, UserRoles } from '../../shared/constants/tm-config.constant';
+import { DoctorsSpecializationEnum } from 'src/app/shared/shared-data/shared-enums';
 
 @Injectable({
 	providedIn: 'root',
@@ -44,7 +46,7 @@ export class SignupService {
 			payload,
 			{
 				headers: headers,
-				observe: 'response',
+				observe: 'body',
 			//	withCredentials : true
 			}
 		);
@@ -158,5 +160,13 @@ export class SignupService {
 		if (stored) {
 			window.localStorage.removeItem('signupUploadedDocIds');
 		}
+	}
+
+
+	getUserRoleFromSpecialization(desig: DoctorsSpecializationEnum) {
+		
+		const got = SpecializationRoleMapList.filter((item) => item.specialization === desig);
+
+		return got && got.length ? got[0].role : null
 	}
 }
