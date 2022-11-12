@@ -15,11 +15,10 @@ export class LoginService {
   login(payload : ILoginPayload) {
     
     const headers: HttpHeaders = new HttpHeaders().set('content-type', 'application/json');
-    const params: HttpParams = new HttpParams().set('UserName', payload.UserName).set('Password', payload.Password);
+   // const params: HttpParams = new HttpParams().set('userName ', payload.UserName).set('password', payload.Password);
 
-    return this.http.get<IHttpCommonResponse<any>>(environment.UserService + 'LoginAsync', {
+    return this.http.post<IHttpCommonResponse<any>>(environment.UserService + 'LoginAsync',payload, {
       headers,
-      params,
       observe : 'body'
     })
   }

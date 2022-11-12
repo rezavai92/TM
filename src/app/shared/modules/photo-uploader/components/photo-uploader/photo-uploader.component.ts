@@ -129,8 +129,8 @@ export class PhotoUploaderComponent implements OnInit,OnChanges {
 		}
 
 		else {
-			this.errorMessages.push("FILE_NOT_SELECTED_PROPERLY");
-			this.emitAllErrorMessages();
+			//this.errorMessages.push("FILE_NOT_SELECTED_PROPERLY");
+			//this.emitAllErrorMessages();
 		}
 
 
@@ -146,6 +146,10 @@ export class PhotoUploaderComponent implements OnInit,OnChanges {
 		};
 
 		reader.readAsDataURL(this.selectedFile as File);
+	}
+
+	onClickFileInput(event : any) {
+		event.target.value = "";
 	}
 
 

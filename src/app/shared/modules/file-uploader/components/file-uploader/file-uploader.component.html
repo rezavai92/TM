@@ -16,7 +16,7 @@
                 style="display: none;" 
                 #fileUploadInput 
                 type="file"
-                (click)="$event.stopPropagation();emitControlTouch(); " 
+                (click)="onClickFileInput($event);$event.stopPropagation();emitControlTouch(); " 
                 (change)="onFileChange($event)">
                 
             <button mat-button [disabled]="fileDeleting || fileUploading"

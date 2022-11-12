@@ -88,6 +88,10 @@ export class FileUploaderComponent implements OnInit,OnChanges {
 		this.errorMessages = [];
 	}
 
+	onClickFileInput(event : any) {
+		event.target.value = "";
+	}
+	
 	onFileChange(event: any) {
 		const fileInfo = event.target as HTMLInputElement;
 		const file: File | null =
@@ -106,8 +110,8 @@ export class FileUploaderComponent implements OnInit,OnChanges {
 				this.emitErrorMessages.emit(this.errorMessages);
 			}
 		} else {
-			this.errorMessages.push('FILE_NOT_SELECTED_PROPERLY');
-			this.emitAllErrorMessages();
+			//this.errorMessages.push('FILE_NOT_SELECTED_PROPERLY');
+			//this.emitAllErrorMessages();
 		}
 	}
 
