@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
+import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import {
 	emailRegexString,
@@ -14,6 +15,8 @@ import {
 } from '../../../shared/shared-data/constants';
 import { ILoginPayload } from '../../interfaces/login.interface';
 import { LoginService } from '../../services/login.service';
+import { UserToken } from '../../../shared/models/classes/user.model';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
 	selector: 'app-login-form',
@@ -27,7 +30,9 @@ export class LoginFormComponent implements OnInit {
 		private _fb: FormBuilder,
 		private _router: Router,
 		private loginService: LoginService,
-		private customToastService: CustomToastService
+		private customToastService: CustomToastService,
+		private sharedDataService: SharedDataService,
+		private cookie : CookieService
 	) {}
 
 	ngOnInit(): void {
@@ -74,7 +79,6 @@ export class LoginFormComponent implements OnInit {
 	login() {
 		this.loginLoading = true;
 		const payload = this.loginPayload;
-		console.log("login payload", payload);
 		if (payload) {
 			this.loginService
 				.login(payload)
@@ -82,7 +86,10 @@ export class LoginFormComponent implements OnInit {
 				.subscribe({
 					next: (res) => {
 						if (res && res.isSucceed) {
-
+							const token = res.responseData;
+							this.cookie.set('token', token);
+							this.sharedDataService.setLoggedInUserToken(token);
+							
 							this._router.navigateByUrl('/my-profile');
 
 						} else {

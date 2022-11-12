@@ -28,9 +28,10 @@ export class SharedDataService {
   }
 
 
-  setLoggedInUser(token : UserToken) {
+  setLoggedInUserToken(token : string) {
     
-    this.userToken$.next(token);
+    const  userToken =  new UserToken(token)
+    this.userToken$.next(userToken);
   }
 
 

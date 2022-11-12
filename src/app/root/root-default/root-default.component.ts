@@ -7,7 +7,9 @@ import {
   Router,
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
+import { UserToken } from 'src/app/shared/models/classes/user.model';
 import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
 @Component({
   selector: 'app-root-default',
@@ -24,12 +26,14 @@ export class RootDefaultComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private _translateService: TranslateService,
-    private _sharedDataService: SharedDataService
+    private _sharedDataService: SharedDataService,
+    private cookie : CookieService
   ) {
 
     router.initialNavigation();
     this.setTranslationConfig();
     this.onRouteChangeEvent();
+    this.loadUserTokenFromCookie();
 
   }
 
@@ -79,6 +83,18 @@ export class RootDefaultComponent {
     }
     if (hideSideNav) {
       this.hideSideNavigation = hideSideNav;
+    }
+  }
+
+
+  loadUserTokenFromCookie() {
+    const token = this.cookie.get('token');
+    token && this.broadCastUserToken(token)
+  }
+
+  broadCastUserToken(token: string) {
+    if (token) {
+      this._sharedDataService.setLoggedInUserToken(token);
     }
   }
 

@@ -28,10 +28,10 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 		| UrlTree {
 		
 		
-		return this.passGuard(route);
+		return this.passGuardAsync(route);
 	}
 
-	hasTokenPromise(
+	hasTokenAsync(
 		tokenSub: BehaviorSubject<UserToken | null>
 	) {
 		return new Promise<boolean>((resolve, ) => {
@@ -55,12 +55,12 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 		this.router.navigateByUrl(redirectUrl);
 	}
 
-	passGuard(route : ActivatedRouteSnapshot){
+	passGuardAsync(route : ActivatedRouteSnapshot){
 		const token = this.data.getLoggedInUserToken();
-		return this.hasTokenPromise(token).then((response) => {
+		return this.hasTokenAsync(token).then((response) => {
 			if (response) {
 				return new Promise<boolean>((resolve, ) => {
-					if (this.hasPermissionForThisFeature()) {
+					if (this.hasPermissionForThisFeature(route)) {
 						resolve(true);
 					}
 					else {
@@ -78,7 +78,13 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 		});
 	}
 
-	hasPermissionForThisFeature() {
+	hasPermissionForThisFeature(route : ActivatedRouteSnapshot) {
 		return true;
+	}
+
+
+	// has to fetch all features for currently loggedin user
+	getFeaturesForLoggedInUser() {
+		
 	}
 }
