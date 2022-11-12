@@ -29,9 +29,12 @@
             <div class="w-100-p txt-algn-r">
                 <ng-content></ng-content>
             </div>
-            <button class="w-100-p mt-8" mat-raised-button color="primary" (click)="login()">
-                {{"LOGIN" | translate}}
-            </button>
+            <div class="w-100-p" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="center center">
+                <button  [disabled]="loginLoading || loginForm.invalid" class="w-100-p mt-8" mat-raised-button color="primary" (click)="login()">
+                    {{"LOGIN" | translate}}
+                </button>
+                <mat-spinner class="mt-4" *ngIf="loginLoading" diameter="20"></mat-spinner>
+            </div>
         </div>
 
     </form>
