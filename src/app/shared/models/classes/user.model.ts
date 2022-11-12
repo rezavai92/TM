@@ -1,12 +1,7 @@
-export class User{
+export class UserToken{
 
-    private _userToken!: any;
     constructor(
-        public ItemId: string,
-        public FirstName: string,
-        public LastName: string,
-        public Email: string,
-        public Roles : string[]
+        private _userToken : string
     ) {
         
     }

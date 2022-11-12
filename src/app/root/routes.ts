@@ -1,4 +1,5 @@
 import { Route } from "@angular/router";
+import { TMFeatureCanActivateGuard } from "../shared/services/auth-services/tmfeature-can-activate.guard";
 import { RootDefaultComponent } from "./root-default/root-default.component";
 
 export const routes: Route[] = [
@@ -34,6 +35,21 @@ export const routes: Route[] = [
 			isPublic: true,
 			hideToolBar: false,
 			hideSideNavigation: true
+		}
+
+	},
+
+	{
+		path: 'my-profile',
+		loadChildren: () => import('../app-user-profile/app-user-profile.module').then(m => m.AppUserProfileModule),
+		canActivate: [TMFeatureCanActivateGuard],
+		data: {
+			isFullScreen: true,
+			requiredFeature: 'my-profile',
+			authFailRedirection: "/login",
+			isPublic: true,
+			hideToolBar: false,
+			hideSideNavigation: false
 		}
 
 	},

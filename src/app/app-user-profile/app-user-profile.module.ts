@@ -8,7 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';
-import { MyProfileComponent } from './my-profile/my-profile.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 
 const routes: Route[] = [
@@ -47,4 +47,4 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ]
 })
-export class UserProfileModule { }
+export class AppUserProfileModule { }

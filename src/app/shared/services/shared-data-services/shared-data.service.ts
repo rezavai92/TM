@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { User } from '../../models/classes/user.model';
+import {  UserToken } from '../../models/classes/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class SharedDataService {
     'en'
   );
 
-  private loggedInUser: Subject<User> = new Subject<User>();
+  private userToken$: BehaviorSubject<UserToken | null> = new BehaviorSubject<UserToken | null>(null);
   constructor() {
     this.currentLang$.next('en');
   }
@@ -23,14 +23,14 @@ export class SharedDataService {
     return this.currentLang$;
   }
 
-  getLoggedInUser() {
-    return this.loggedInUser;
+  getLoggedInUserToken() {
+    return this.userToken$;
   }
 
 
-  setLoggedInUser(user: User) {
+  setLoggedInUser(token : UserToken) {
     
-    this.loggedInUser.next(user);
+    this.userToken$.next(token);
   }
 
 
