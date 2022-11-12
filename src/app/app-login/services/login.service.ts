@@ -17,7 +17,7 @@ export class LoginService {
     const headers: HttpHeaders = new HttpHeaders().set('content-type', 'application/json');
    // const params: HttpParams = new HttpParams().set('userName ', payload.UserName).set('password', payload.Password);
 
-    return this.http.post<IHttpCommonResponse<any>>(environment.UserService + 'LoginAsync',payload, {
+    return this.http.post<IHttpCommonResponse<any>>(environment.UserService + 'Login',payload, {
       headers,
       observe : 'body'
     })
