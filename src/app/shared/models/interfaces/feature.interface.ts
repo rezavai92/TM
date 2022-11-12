@@ -4,7 +4,7 @@ export interface Navigation {
     translate: string,
     type?: string,
     url: string,
-    iconType: string,
-    icon: string,
+    iconType?: string,
+    icon?: string,
     isVisible?: boolean
 }

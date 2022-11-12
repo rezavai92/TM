@@ -5,4 +5,5 @@ export const environment = {
   UserService: `${baseUrl}/api/UserService/`,
   StorageService: `${baseUrl}/api/StorageService/`,
   SmsService: `${baseUrl}/api/Sms/`,
+  AppCatalogue : `${baseUrl}/api/AppCatalogue/`
 };

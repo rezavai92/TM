@@ -44,7 +44,7 @@ export class MainComponent implements OnInit, OnChanges, OnDestroy {
     this.destroyAll$.next(true);
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('toolbar sidenav', this.hideSideNavigation, this.hideToolBar);
+    console.log('toolbar sidenav',changes);
   }
 
   ngOnInit(): void {
