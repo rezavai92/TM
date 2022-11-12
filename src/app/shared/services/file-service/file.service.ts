@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { FileUploadPayload } from '../../models/interfaces/file-service.interface';
@@ -22,7 +22,7 @@ export class FileService {
 
 		payload.Base64 = this.preprocessBase64(payload.Base64);
 
-		const headers: any = new HttpHeaders()
+		const headers: HttpHeaders = new HttpHeaders()
 			.set('content-type', 'application/json')
 		
 		return this.http.post<IHttpCommonResponse<T>>(
@@ -30,9 +30,19 @@ export class FileService {
 			payload,
 			{
 				headers: headers,
-				observe: 'response'
+				observe: 'body'
 			});
 
+	}
+
+
+	deleteFile(fileId : string) {
+
+		const headers: HttpHeaders = new HttpHeaders()
+			.set('content-type', 'application/json');
+		
+		const params: HttpParams = new HttpParams().set('fileId', fileId);
+		return this.http.delete<IHttpCommonResponse<any>>(`${environment.StorageService}DeleteFile`, { headers, params,observe: 'body' });
 	}
 
 }

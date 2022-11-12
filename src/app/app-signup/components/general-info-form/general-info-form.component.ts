@@ -291,15 +291,15 @@ export class GeneralInfoFormComponent implements OnInit {
 		
 	}
 
-	onNidFrontPartDelete(event: any) {
-		if (event) {
+	onNidFrontPartDelete(event : { status: boolean, metaData: any }) {
+		if (event && event.status) {
 			this.generalInfoForm.controls['FakeNidFrontPartControl'].setValue('');
 			this.generalInfoForm.updateValueAndValidity();
 		}
 	}
 
-	onNidBackPartDelete(event: any) {
-		if (event) {
+	onNidBackPartDelete(event: { status: boolean, metaData: any }) {
+		if (event && event.status) {
 			this.generalInfoForm.controls['FakeNidBackPartControl'].setValue('');
 			this.generalInfoForm.updateValueAndValidity();
 		}

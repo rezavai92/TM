@@ -1,20 +1,19 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges,OnChanges } from '@angular/core';
 import { Subject, take } from 'rxjs';
 import { FileUploadPayload } from '../.././../../../shared/models/interfaces/file-service.interface';
 import { SharedUtilityService } from '../../../../../shared/services/shared-utilities/shared-utility.service';
 import { FileService } from '../../../../../shared/services/file-service/file.service';
 import { FileUploaderComponent } from '../../../file-uploader/components/file-uploader/file-uploader.component';
 import { IFileUploadConfig, IFileUploadDataContext } from '../../../file-uploader/interfaces/file-uploader.interface';
+import { HttpErrorResponse } from '@angular/common/http';
+import { CustomToastService } from '../../../shared-utility/services/custom-toast.service';
 
 
 type fileOperationEmitResponse ={
 	status: boolean,
 	metaData : any
 }
-
-
-
 
 
 @Component({
@@ -24,15 +23,16 @@ type fileOperationEmitResponse ={
 })
 	
 	
-export class PhotoUploaderComponent {
+export class PhotoUploaderComponent implements OnInit,OnChanges {
 
-	selectedFile!: File;
+	selectedFile!: File | null;
+	selectedFileId!: any;
 	toPreview!: any;
 	@Input()
 	dataContext!: IFileUploadDataContext;
 	@Input()
 	config!: IFileUploadConfig;
-
+	@Input() attachmentId!: string;
 	@Output() upload = new EventEmitter<fileOperationEmitResponse>();
 	@Output() delete = new EventEmitter<fileOperationEmitResponse>();
 	@Output() preview = new EventEmitter();
@@ -47,9 +47,27 @@ export class PhotoUploaderComponent {
 	uploadErrorMessage = "";
 	deleteErrorMessage = "";
 	constructor(private fileService: FileService,
-		private sharedUtilityService : SharedUtilityService
+		private sharedUtilityService: SharedUtilityService,
+		private customToastService : CustomToastService
 	) { }
 
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes) {
+			this.setSelectedFileId();
+		}
+	}
+	
+
+	ngOnInit(): void {
+		
+	}
+
+
+
+	setSelectedFileId() {
+		this.selectedFileId = this.attachmentId;
+	}
 
 
 	 convertFileToBase64String(file: File) {
@@ -127,7 +145,7 @@ export class PhotoUploaderComponent {
 			this.preview.emit(this.toPreview);
 		};
 
-		reader.readAsDataURL(this.selectedFile);
+		reader.readAsDataURL(this.selectedFile as File);
 	}
 
 
@@ -140,7 +158,7 @@ export class PhotoUploaderComponent {
 			console.log("base 64", this.selectedFile);
 			const payload: FileUploadPayload = {
 				Base64: base,
-				FileName: this.dataContext && this.dataContext.fileName ? this.dataContext.fileName : this.selectedFile.name,
+				FileName: this.dataContext && this.dataContext.fileName ? this.dataContext.fileName : (this.selectedFile as File).name,
 				Tags: this.dataContext && this.dataContext.tags  && this.dataContext.tags.length ? this.dataContext.tags : ["other"],
 				FileId:  this.dataContext.fileId || this.sharedUtilityService.getNewGuid(),
 			};
@@ -176,10 +194,69 @@ export class PhotoUploaderComponent {
 			
 		};
 
-		reader.readAsDataURL(this.selectedFile);
+		reader.readAsDataURL(this.selectedFile as File);
 
 	}
 
+
+	deleteFile() {
+		this.fileDeleting = true;
+		this.actionInProgressEmitter.emit(this.fileDeleting);
+		
+		this.fileService
+			.deleteFile(this.selectedFileId)
+			.pipe(take(1))
+			.subscribe({
+				next: (res) => {
+					this.fileDeleting = false;
+					if (res && res.isSucceed) {
+						const emitData = {
+							metaData: {
+								deletedFileId: this.selectedFileId,
+								deletedFile: {...this.selectedFile},
+							},
+							status: true,
+						}
+						this.delete.emit(emitData);
+						this.selectedFile = null;
+						this.uploadedFile = this.selectedFile;
+						this.customToastService.openSnackBar('FILE_DELETED_SUCCESSFULLY',true,'success')
+						
+					} else {
+						const emitData = {
+							metaData: {
+								errorMessage: 'FILE_DELETING_FAILED',
+								error: res.responseMessage,
+							},
+							status: false,
+						}
+						
+						this.delete.emit(emitData);
+						this.deleteErrorMessage = 'FILE_DELETING_FAILED';
+						this.errorMessages.push(this.deleteErrorMessage);
+						this.emitAllErrorMessages();
+						
+					}
+					this.actionInProgressEmitter.emit(this.fileDeleting);
+					
+				},
+				error: (err: HttpErrorResponse) => {
+					const emitData = {
+						metaData: {
+							errorMessage: 'FILE_DELETING_FAILED',
+							error: err.message,
+						},
+						status: false,
+					}
+					this.delete.emit(emitData);
+					this.deleteErrorMessage = 'FILE_DELETING_FAILED';
+					this.errorMessages.push(this.deleteErrorMessage);
+					this.emitAllErrorMessages();
+					this.actionInProgressEmitter.emit(this.fileDeleting);
+					
+				},
+			});
+	}
 
 	isSelectedFileValid() {
 		const candidateFile = this.selectedFile as File;

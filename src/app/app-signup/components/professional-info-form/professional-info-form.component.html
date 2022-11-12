@@ -97,7 +97,7 @@
                                         <app-file-uploader style="margin-top: -20px;"
                                             (upload)="onDocumentUpload($event,i)"
                                             (actionInProgressEmitter)="onActionInProgress($event,i)"
-                                            (fileDelete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
+                                            (delete)="onDocumentDelete($event,i)" [config]="documentUploadConfig"
                                             [dataContext]="getDataCtx(i)">
                                         </app-file-uploader>
 

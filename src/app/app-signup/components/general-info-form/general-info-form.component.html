@@ -167,7 +167,7 @@
 					<app-file-uploader 
 						class="w-100-p" 
 						(upload)="onNidFrontPartUpload($event)"
-						(fileDelete)="onNidFrontPartDelete($event)" 
+						(delete)="onNidFrontPartDelete($event)" 
 						[config]="NidFrontPartUploadConfig"
 						[dataContext]="NidFrontPartUploadDataContext">
 					</app-file-uploader>
@@ -188,7 +188,7 @@
 					<div class="w-100-p">
 						<app-file-uploader 
 							(upload)="onNidBackPartUpload($event)"
-							(fileDelete)="onNidBackPartDelete($event)" 
+							(delete)="onNidBackPartDelete($event)" 
 							[config]="NidBackPartUploadConfig"
 							[dataContext]="NidBackPartUploadDataContext">
 						</app-file-uploader>
