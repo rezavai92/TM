@@ -32,7 +32,7 @@ export class LoginFormComponent implements OnInit {
 		private loginService: LoginService,
 		private customToastService: CustomToastService,
 		private sharedDataService: SharedDataService,
-		private cookie : CookieService
+		private cookie: CookieService
 	) {}
 
 	ngOnInit(): void {
@@ -88,10 +88,9 @@ export class LoginFormComponent implements OnInit {
 						if (res && res.isSucceed) {
 							const token = res.responseData;
 							this.cookie.set('token', token);
-							this.sharedDataService.setLoggedInUserToken(token);
-							
-							this._router.navigateByUrl('/my-profile');
+							//this.sharedDataService.setLoggedInUserToken(token);
 
+							this._router.navigateByUrl('/my-profile');
 						} else {
 							this.customToastService.openSnackBar(
 								'LOGIN_FAILED',
@@ -101,7 +100,6 @@ export class LoginFormComponent implements OnInit {
 						}
 
 						this.loginLoading = false;
-			
 					},
 
 					error: (err) => {

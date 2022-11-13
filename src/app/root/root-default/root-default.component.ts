@@ -9,15 +9,18 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
-import { UserToken } from 'src/app/shared/models/classes/user.model';
+import { FeatureProviderService } from '../../shared/services/feature-provider/feature-provider.service';
+import { UserToken } from '../../shared/models/classes/user.model';
+import { Navigation } from '../../shared/models/interfaces/feature.interface';
 import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
+import { navigations } from '../navigation';
 @Component({
   selector: 'app-root-default',
   templateUrl: './root-default.component.html',
   styleUrls: ['./root-default.component.scss'],
 })
-export class RootDefaultComponent {
-  navigations = [];
+export class RootDefaultComponent implements OnInit {
+  sideNavigations! : Navigation[];
   loading = true;
   hideToolBar = true;
   hideSideNavigation = true;
@@ -27,7 +30,8 @@ export class RootDefaultComponent {
     private activatedRoute: ActivatedRoute,
     private _translateService: TranslateService,
     private _sharedDataService: SharedDataService,
-    private cookie : CookieService
+    private cookie: CookieService,
+    private featureProviderService : FeatureProviderService
   ) {
 
     router.initialNavigation();
@@ -35,6 +39,12 @@ export class RootDefaultComponent {
     this.onRouteChangeEvent();
     this.loadUserTokenFromCookie();
 
+  }
+
+
+  ngOnInit(): void {
+    
+    this.setSideNavigationForApp();
   }
 
   onRouteChangeEvent() {
@@ -74,7 +84,13 @@ export class RootDefaultComponent {
   }
 
   setSideNavigationForApp() {
-    this.navigations = [];
+    this.featureProviderService.features$.subscribe((res) => {
+      
+      this.sideNavigations = navigations.filter((item) => res.indexOf((app : any)=>app.featureId === item.id)>-1 );
+    
+      console.log("side nav",navigations, res,this.sideNavigations)
+
+    })
   }
 
   setMainAppConfig(hideToolBar: boolean, hideSideNav: boolean) {
@@ -94,7 +110,7 @@ export class RootDefaultComponent {
 
   broadCastUserToken(token: string) {
     if (token) {
-      this._sharedDataService.setLoggedInUserToken(token);
+     // this._sharedDataService.setLoggedInUserToken(token);
     }
   }
 

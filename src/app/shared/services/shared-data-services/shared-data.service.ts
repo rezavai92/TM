@@ -10,7 +10,7 @@ export class SharedDataService {
     'en'
   );
 
-  private userToken$: BehaviorSubject<UserToken | null> = new BehaviorSubject<UserToken | null>(null);
+  //private userToken$: BehaviorSubject<UserToken | null> = new BehaviorSubject<UserToken | null>(null);
   constructor() {
     this.currentLang$.next('en');
   }
@@ -23,16 +23,16 @@ export class SharedDataService {
     return this.currentLang$;
   }
 
-  getLoggedInUserToken() {
-    return this.userToken$;
-  }
+  // getLoggedInUserToken() {
+  //   return this.userToken$;
+  // }
 
 
-  setLoggedInUserToken(token : string) {
+  // setLoggedInUserToken(token : string) {
     
-    const  userToken =  new UserToken(token)
-    this.userToken$.next(userToken);
-  }
+  //   const  userToken =  new UserToken(token)
+  //   this.userToken$.next(userToken);
+  // }
 
 
 }

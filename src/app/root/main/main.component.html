@@ -35,18 +35,11 @@
             [opened]="isDrawerOpened">
             <mat-list role="list">
 
-                <mat-list-item>Hello</mat-list-item>
-                <mat-list-item>Hello Hello</mat-list-item>
-                <mat-list-item>Hello Hello Hello Hello</mat-list-item>
-                <!-- <ng-container *ngFor ="let option of sideNavMenu" >
-                <mat-list-item role="listitem" routerLink={{option.path}} [routerLinkActive]="['is-active']"  >
-                    <span class="material-icons">{{option.icon}}</span>
-                    <span>&nbsp; &nbsp;</span>
-                    <span fxHide.lt-sm > {{option.name}}</span>
-                 
+                <mat-list-item *ngFor="let navigation of navigations">
+                    <span><mat-icon>{{navigation.icon}}</mat-icon></span>
+                    {{navigation.translate | translate}}
                 </mat-list-item>
-               
-               </ng-container> -->
+        
             </mat-list>
 
 
