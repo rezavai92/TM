@@ -8,3 +8,11 @@ export interface Navigation {
     icon?: string,
     isVisible?: boolean
 }
+
+
+export interface IGetAppsPayload{
+
+    featureId: string,
+    appName: string,
+    featureName : string
+}

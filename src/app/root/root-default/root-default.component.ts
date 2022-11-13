@@ -11,7 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { FeatureProviderService } from '../../shared/services/feature-provider/feature-provider.service';
 import { UserToken } from '../../shared/models/classes/user.model';
-import { Navigation } from '../../shared/models/interfaces/feature.interface';
+import { IGetAppsPayload, Navigation } from '../../shared/models/interfaces/feature.interface';
 import { SharedDataService } from '../../shared/services/shared-data-services/shared-data.service';
 import { navigations } from '../navigation';
 @Component({
@@ -86,7 +86,10 @@ export class RootDefaultComponent implements OnInit {
   setSideNavigationForApp() {
     this.featureProviderService.features$.subscribe((res) => {
       
-      this.sideNavigations = navigations.filter((item) => res.indexOf((app : any)=>app.featureId === item.id)>-1 );
+      this.sideNavigations = navigations.filter((nav) => {
+        const foundFeatureIndex = res.findIndex((element: IGetAppsPayload) => { return element.featureId === nav.id });
+        return foundFeatureIndex > -1;
+      })
     
       console.log("side nav",navigations, res,this.sideNavigations)
 

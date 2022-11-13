@@ -10,14 +10,15 @@ import {
 	tap,
 } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { IGetAppsPayload } from '../../models/interfaces/feature.interface';
 import { IHttpCommonResponse } from '../../models/interfaces/HttpResponse.interface';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class FeatureProviderService {
-	features: any[] = [];
-	features$: BehaviorSubject<any> = new BehaviorSubject<any>(this.features);
+	features: IGetAppsPayload[] = [];
+	features$: BehaviorSubject<IGetAppsPayload[]> = new BehaviorSubject<IGetAppsPayload[]>(this.features);
 	constructor(private http: HttpClient) {}
 
 	getFeatures() {
@@ -42,7 +43,7 @@ export class FeatureProviderService {
 			'application/json'
 		);
 		return this.http
-			.get<IHttpCommonResponse<any>>(
+			.get<IHttpCommonResponse<IGetAppsPayload[]>>(
 				environment.AppCatalogue + 'GetApps',
 				{ headers, observe: 'body' }
 			)
