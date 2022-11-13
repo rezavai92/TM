@@ -17,9 +17,21 @@
 	.side-nav {
 		//min-width: 200px;
 		width: 250px;
-		background-color: map-get($mat-bs-primary, 300 );
-		color : white;
-		font-size: 16px;
+		box-sizing: border-box;
+		// &:hover{
+		// 	overflow-y: scroll;
+		// }
+		background-color: white;
+		.module-btn{
+			width: 250px;
+			margin-left: -30px;
+			border-radius: 30px ;
+			font-weight: bold;
+			//font-size: 20px;
+			//text-align: center;
+			padding: 6px 0px 6px 0px;
+			
+		}
 	}
 }
 :host {

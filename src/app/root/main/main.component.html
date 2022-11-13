@@ -1,52 +1,76 @@
 <div class="main-container">
-    <mat-toolbar class="app-toolbar" style="position : sticky;" *ngIf="!hideToolBar" color="primary">
-        <button *ngIf="!hideSideNavigation" mat-icon-button (click)="toggleDrawer()"
-            aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span>Shifa Telemedicine</span>
+	<mat-toolbar
+		class="app-toolbar"
+		style="position: sticky"
+		*ngIf="!hideToolBar"
+		color="primary"
+	>
+		<button
+			*ngIf="!hideSideNavigation"
+			mat-icon-button
+			(click)="toggleDrawer()"
+			aria-label="Example icon-button with menu icon"
+		>
+			<mat-icon>menu</mat-icon>
+		</button>
+		<span>Shifa Telemedicine</span>
 
-        <div class="w-100-p" fxLayout.gt-xs="row" fxLayoutAlign="end center" fxLayoutGap="32px">
-            <div>
-                <button mat-button [matMenuTriggerFor]="menu">
-                    <mat-icon style="margin-top: -2px;" fontIcon="language"></mat-icon>
-                    <span> {{selectedLanguageValue | portalLanguage | translate}}</span>
-                </button>
-                <mat-menu #menu="matMenu">
-                    <ng-container *ngFor="let lang of portalLanguages">
-                        <button (click)="setPortalLanguage(lang)" mat-menu-item> {{lang.Key | translate}}</button>
-                    </ng-container>
+		<div
+			class="w-100-p"
+			fxLayout.gt-xs="row"
+			fxLayoutAlign="end center"
+			fxLayoutGap="32px"
+		>
+			<div>
+				<button mat-button [matMenuTriggerFor]="menu">
+					<mat-icon
+						style="margin-top: -2px"
+						fontIcon="language"
+					></mat-icon>
+					<span>
+						{{
+							selectedLanguageValue | portalLanguage | translate
+						}}</span
+					>
+				</button>
+				<mat-menu #menu="matMenu">
+					<ng-container *ngFor="let lang of portalLanguages">
+						<button (click)="setPortalLanguage(lang)" mat-menu-item>
+							{{ lang.Key | translate }}
+						</button>
+					</ng-container>
+				</mat-menu>
+			</div>
+		</div>
+	</mat-toolbar>
 
-                </mat-menu>
-                <!-- <mat-select [(value)]="selectedLanguage" (selectionChange)="setPortalLanguage()">
-                    <mat-option *ngFor="let lang of portalLanguages" aria-selected="true" [value]="lang.Value">
-                        {{lang.Key | translate}}
-                    </mat-option>
-                </mat-select> -->
-            </div>
-
-        </div>
-    </mat-toolbar>
-
-
-
-    <mat-drawer-container fxFlexFill>
-        <mat-drawer *ngIf="!hideToolBar && !hideSideNavigation" #drawer class="side-nav" [mode]="drawerMode"
-            [opened]="isDrawerOpened">
-            <mat-list role="list">
-
-                <mat-list-item *ngFor="let navigation of navigations">
-                    <span><mat-icon>{{navigation.icon}}</mat-icon></span>
-                    {{navigation.translate | translate}}
-                </mat-list-item>
-        
-            </mat-list>
-
-
-        </mat-drawer>
-        <mat-drawer-content>
-            <ng-content></ng-content>
-        </mat-drawer-content>
-    </mat-drawer-container>
-
+	<mat-drawer-container fxFlexFill>
+		<mat-drawer
+			*ngIf="!hideToolBar && !hideSideNavigation"
+			#drawer
+			class="side-nav"
+			[mode]="drawerMode"
+			[opened]="isDrawerOpened"
+		>
+			<mat-list role="list">
+				<mat-list-item
+					class="w-100-p"
+					*ngFor="let navigation of navigations"
+				>
+					<a [routerLink]="navigation.url">
+						<button color="primary" class="module-btn" mat-button>
+							<mat-icon *ngIf="navigation?.icon">{{
+								navigation.icon
+							}}</mat-icon>
+							&nbsp;
+							{{ navigation.translate | translate }}
+						</button>
+					</a>
+				</mat-list-item>
+			</mat-list>
+		</mat-drawer>
+		<mat-drawer-content>
+			<ng-content></ng-content>
+		</mat-drawer-content>
+	</mat-drawer-container>
 </div>

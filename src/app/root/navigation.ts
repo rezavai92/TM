@@ -1,9 +1,10 @@
-import { Navigation } from "../shared/models/interfaces/feature.interface";
+import { Navigation } from '../shared/models/interfaces/feature.interface';
 
-export const navigations: Navigation[] = [{
-    icon: 'user',
-    id: 'my-profile',
-    translate: 'MY_PROFILE',
-    url : '/my-profile'
-    
-}]
+export const navigations: Navigation[] = [
+	{
+		icon: 'person',
+		id: 'my-profile',
+		translate: 'MY_PROFILE',
+		url: '/login',
+	},
+];
