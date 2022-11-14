@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
+import { GenericTableModule } from '../shared/modules/generic-table/generic-table.module';
 
 
 const routes: Route[] = [
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MaterialModule,
     PhotoUploaderModule,
     FileUploaderModule,
+    GenericTableModule,
     TranslateModule.forChild({
       defaultLanguage: 'en',
       loader: {

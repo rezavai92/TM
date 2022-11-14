@@ -1,1 +1,28 @@
-<p>appointment-list works!</p>
+<div
+	fxLayout="column"
+	fxLayoutGap="8px"
+	fxLayoutAlign="start start"
+	class="w-100-p appointment-list"
+>
+	<div fxLayout="row" fxLayoutAlign="space-between start" class="w-100-p">
+		<div class="w-100-p page-header-1">
+			{{ "ALL_APPOINTMENTS" | translate }}
+		</div>
+	</div>
+
+    <div class="w-100-p">
+        <mat-progress-bar
+		*ngIf="loading"
+		mode="indeterminate"
+	></mat-progress-bar>
+
+	<app-generic-data-table
+		class="w-100-p"
+		(fetchData)="onFetchTableData($event)"
+		[dataSource]="tableData"
+		[displayedColumns]="tableColumns"
+		[paginationConfig]="paginationConfig"
+	></app-generic-data-table>
+    </div>
+	
+</div>
