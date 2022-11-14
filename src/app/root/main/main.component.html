@@ -59,11 +59,14 @@
 				>
 					<a [routerLink]="navigation.url">
 						<button  routerLinkActive="active" color="primary" class="module-btn" mat-button>
-							<mat-icon *ngIf="navigation?.icon">{{
-								navigation.icon
-							}}</mat-icon>
-							&nbsp;
-							{{ navigation.translate | translate }}
+							<div fxLayoutGap="8px" style="margin-left: 40px ;" fxLayout="row" fxLayoutAlign="start center">
+								<mat-icon style="margin-top:-4px" *ngIf="navigation?.icon">{{
+									navigation.icon
+								}}</mat-icon>
+							
+								<span>{{ navigation.translate | translate }}</span>
+							</div>
+							
 						</button>
 					</a>
 				</mat-list-item>

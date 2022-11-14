@@ -7,5 +7,11 @@ export const navigations: Navigation[] = [
 		translate: 'MY_PROFILE',
 		url: '/my-profile',
 	},
+	{
+		icon: 'calendar_month',
+		id: 'appointments',
+		translate: 'APP_APPOINTMENTS',
+		url: '/appointments',
+	},
 
 ];

@@ -47,7 +47,22 @@ export const routes: Route[] = [
 			isFullScreen: true,
 			requiredFeature: 'my-profile',
 			authFailRedirection: "/login",
-			isPublic: true,
+			isPublic: false,
+			hideToolBar: false,
+			hideSideNavigation: false
+		}
+
+	},
+
+	{
+		path: 'appointments',
+		loadChildren: () => import('../app-appointments/app-appointments.module').then(m => m.AppAppointmentsModule),
+		canActivate: [TMFeatureCanActivateGuard],
+		data: {
+			isFullScreen: true,
+			requiredFeature: 'appointments',
+			authFailRedirection: "/my-profile",
+			isPublic: false,
 			hideToolBar: false,
 			hideSideNavigation: false
 		}
