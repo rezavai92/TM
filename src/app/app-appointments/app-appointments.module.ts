@@ -21,6 +21,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
 
     { prefix: "./assets/i18n/common/", suffix: ".json" },
+    { prefix: "./assets/i18n/app-appointments/", suffix: ".json" },
 
   ]);
 }
