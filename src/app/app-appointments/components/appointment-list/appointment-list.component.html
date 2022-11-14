@@ -1,50 +1,70 @@
 <div
 	fxLayout="column"
-	fxLayoutGap="8px"
+	fxLayoutGap="16px"
 	fxLayoutAlign="start start"
 	class="w-100-p appointment-list"
 >
-	<div fxLayout="row" fxLayoutAlign="space-between start" class="w-100-p">
+	<div
+		fxLayout="row"
+		fxLayoutAlign="space-between center"
+		fxLayoutGap="16px"
+		class="w-100-p"
+	>
 		<div class="w-100-p page-header-1">
 			{{ "ALL_APPOINTMENTS" | translate }}
 		</div>
+		<div
+			fxLayout="row"
+			fxLayoutAlign="start center"
+			fxLayoutGap="8px"
+			class="w-100-p search"
+		>
+			<mat-icon>search</mat-icon>
+			<input class="w-100-p" type="text" matInput />
+
+			<button
+				[color]="filterOpen ? 'primary' : ''"
+				mat-icon-button
+				(click)="filterOpen = !filterOpen"
+			>
+				<mat-icon>filter_list</mat-icon>
+			</button>
+		</div>
 	</div>
 
-    <div class="w-100-p">
-        <mat-progress-bar
-		*ngIf="loading"
-		mode="indeterminate"
-	></mat-progress-bar>
+	<div class="w-100-p">
+		<mat-progress-bar
+			*ngIf="loading"
+			mode="indeterminate"
+		></mat-progress-bar>
 
-	<app-generic-data-table
-		class="w-100-p"
-		*ngIf="!loading"
-		(fetchData)="onFetchTableData($event)"
-		[dataSource]="tableData"
-		[displayedColumns]="tableColumns"
-		[paginationConfig]="paginationConfig"
-	></app-generic-data-table>
-    </div>
-	
+		<app-generic-data-table
+			class="w-100-p"
+			*ngIf="!loading"
+			(fetchData)="onFetchTableData($event)"
+			[dataSource]="tableData"
+			[displayedColumns]="tableColumns"
+			[paginationConfig]="paginationConfig"
+		></app-generic-data-table>
+	</div>
 </div>
 
-
-<ng-template #patientNameTemplate let-row ="row" let-column="column">
-	<span>{{row.PatientName}}</span>
+<ng-template #patientNameTemplate let-row="row" let-column="column">
+	<span>{{ row.PatientName }}</span>
 </ng-template>
 
-<ng-template #requestTypeTemplate let-row ="row" let-column="column">
-	<span>{{row.RequestType}}</span>
+<ng-template #requestTypeTemplate let-row="row" let-column="column">
+	<span>{{ row.RequestType }}</span>
 </ng-template>
 
-<ng-template #serviceStartDateTemplate let-row ="row" let-column="column">
-	<span>{{row.ServiceStartDate | date: 'MM.dd.YY'}}</span>
+<ng-template #serviceStartDateTemplate let-row="row" let-column="column">
+	<span>{{ row.ServiceStartDate | date: "MM.dd.YY" }}</span>
 </ng-template>
 
-<ng-template #serviceEndDateTemplate let-row ="row" let-column="column">
-	<span>{{row.ServiceEndDate | date: 'MM.dd.YY'}}</span>
+<ng-template #serviceEndDateTemplate let-row="row" let-column="column">
+	<span>{{ row.ServiceEndDate | date: "MM.dd.YY" }}</span>
 </ng-template>
 
-<ng-template #serviceStatusTemplate let-row ="row" let-column="column">
-	<span>{{row.ServiceStatus}}</span>
+<ng-template #serviceStatusTemplate let-row="row" let-column="column">
+	<span>{{ row.ServiceStatus }}</span>
 </ng-template>

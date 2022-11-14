@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild,TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import {
 	IPaginationConfig,
 	ITableColumn,
@@ -10,17 +10,25 @@ import {
 	styleUrls: ['./appointment-list.component.scss'],
 })
 export class AppointmentListComponent implements OnInit {
-	tableData: any[]=[];
-	tableColumns: ITableColumn[]=[];
+	tableData: any[] = [];
+	tableColumns: ITableColumn[] = [];
 	loading = true;
 	paginationConfig!: IPaginationConfig;
 	currentPageNumber = 0;
-	@ViewChild('patientNameTemplate', { static: true }) patientNameTemplate: TemplateRef<any>| undefined ;
-	@ViewChild('requestTypeTemplate',{static : true}) requestTypeTemplate: TemplateRef<any> | undefined ;
-	@ViewChild('serviceStartDateTemplate',{static : true}) serviceStartDateTemplate: TemplateRef<any> | undefined;
-	@ViewChild('serviceEndDateTemplate',{static : true}) serviceEndDateTemplate: TemplateRef<any>| undefined
-	@ViewChild('serviceStatusTemplate',{static : true}) serviceStatusTemplate: TemplateRef<any>|  undefined
- 
+	filterOpen = false;
+	@ViewChild('patientNameTemplate', { static: true }) patientNameTemplate:
+		| TemplateRef<any>
+		| undefined;
+	@ViewChild('requestTypeTemplate', { static: true }) requestTypeTemplate:
+		| TemplateRef<any>
+		| undefined;
+	@ViewChild('serviceStartDateTemplate', { static: true })
+	serviceStartDateTemplate: TemplateRef<any> | undefined;
+	@ViewChild('serviceEndDateTemplate', { static: true })
+	serviceEndDateTemplate: TemplateRef<any> | undefined;
+	@ViewChild('serviceStatusTemplate', { static: true })
+	serviceStatusTemplate: TemplateRef<any> | undefined;
+
 	constructor() {}
 
 	ngOnInit(): void {
@@ -102,33 +110,32 @@ export class AppointmentListComponent implements OnInit {
 				},
 			];
 
-			const columns : ITableColumn[] = [
+			const columns: ITableColumn[] = [
 				{
 					key: 'PATIENT_NAME',
 					name: 'PatientName',
-					cellTemplate : this.patientNameTemplate
-					
+					cellTemplate: this.patientNameTemplate,
 				},
 
 				{
 					key: 'REQUEST_TYPE',
 					name: 'RequestType',
-					cellTemplate : this.requestTypeTemplate
+					cellTemplate: this.requestTypeTemplate,
 				},
 				{
 					key: 'SERVICE_START_DATE',
 					name: 'ServiceStartDate',
-					cellTemplate : this.serviceStartDateTemplate
+					cellTemplate: this.serviceStartDateTemplate,
 				},
 				{
 					key: 'SERVICE_END_DATE',
 					name: 'ServiceEndDate',
-					cellTemplate : this.serviceEndDateTemplate
+					cellTemplate: this.serviceEndDateTemplate,
 				},
 				{
 					key: 'SERVICE_STATUS',
 					name: 'ServiceStatus',
-					cellTemplate : this.serviceStatusTemplate
+					cellTemplate: this.serviceStatusTemplate,
 				},
 			];
 			const pagination: IPaginationConfig = {

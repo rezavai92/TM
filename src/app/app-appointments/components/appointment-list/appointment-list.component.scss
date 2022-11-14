@@ -6,4 +6,13 @@
 
 .appointment-list{
     padding : 40px ;
+
+    .search{
+        background-color: white;
+        box-sizing: border-box;
+        padding: 4px 8px;
+        input{
+            border : 0px;
+        }
+    }
 }
