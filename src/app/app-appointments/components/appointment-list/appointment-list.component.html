@@ -27,3 +27,24 @@
     </div>
 	
 </div>
+
+
+<ng-template #patientNameTemplate let-row ="row" let-column="column">
+	<span>{{row.PatientName}}</span>
+</ng-template>
+
+<ng-template #requestTypeTemplate let-row ="row" let-column="column">
+	<span>{{row.RequestType}}</span>
+</ng-template>
+
+<ng-template #serviceStartDateTemplate let-row ="row" let-column="column">
+	<span>{{row.ServiceStartDate}}</span>
+</ng-template>
+
+<ng-template #serviceEndDateTemplate let-row ="row" let-column="column">
+	<span>{{row.ServiceEndDate}}</span>
+</ng-template>
+
+<ng-template #serviceStatusTemplate let-row ="row" let-column="column">
+	<span>{{row.ServiceStatus}}</span>
+</ng-template>

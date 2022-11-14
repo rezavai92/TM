@@ -6,7 +6,17 @@
 		>
 			<th mat-header-cell *matHeaderCellDef>{{ column.key }}</th>
 			<td mat-cell *matCellDef="let element">
-				{{ element[column.name] }}
+
+				<span *ngIf="column && !column.cellTemplate">
+					{{  element[column.name] }}
+				</span>
+				
+
+				<ng-template
+					*ngIf="column && column.cellTemplate"
+					[ngTemplateOutlet]="column.cellTemplate"
+					[ngTemplateOutletContext]="{ row : element,column : column }"
+				></ng-template>
 			</td>
 		</ng-container>
 

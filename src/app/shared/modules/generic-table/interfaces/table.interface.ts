@@ -1,3 +1,5 @@
+import { TemplateRef } from "@angular/core"
+
 export interface IPaginationConfig{
     pageSizeOptions: number[],
     length: number,
@@ -6,5 +8,7 @@ export interface IPaginationConfig{
 
 export interface ITableColumn{
     name: string,
-    key : string
+    key: string,
+    cellTemplate?: TemplateRef<any>,
+    headerTemplate? : TemplateRef<any>
 }
