@@ -58,7 +58,7 @@
 					*ngFor="let navigation of navigations"
 				>
 					<a [routerLink]="navigation.url">
-						<button color="primary" class="module-btn" mat-button>
+						<button  routerLinkActive="active" color="primary" class="module-btn" mat-button>
 							<mat-icon *ngIf="navigation?.icon">{{
 								navigation.icon
 							}}</mat-icon>

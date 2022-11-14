@@ -5,6 +5,7 @@ export const navigations: Navigation[] = [
 		icon: 'person',
 		id: 'my-profile',
 		translate: 'MY_PROFILE',
-		url: '/login',
+		url: '/my-profile',
 	},
+
 ];

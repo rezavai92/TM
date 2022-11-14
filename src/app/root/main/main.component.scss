@@ -14,6 +14,11 @@
 		z-index: 1000;
 	}
 
+	.active{
+		background-color: map-get($mat-bs-primary , 500 ) !important;
+		color: white !important;
+	}
+
 	.side-nav {
 		//min-width: 200px;
 		width: 250px;
@@ -22,16 +27,16 @@
 		// 	overflow-y: scroll;
 		// }
 		background-color: white;
+
 		.module-btn{
 			width: 250px;
-			margin-left: -30px;
+			margin-left: -40px;
 			border-radius: 30px ;
 			font-weight: bold;
-			//font-size: 20px;
-			//text-align: center;
-			padding: 6px 0px 6px 0px;
-			
+			padding: 4px 0px 4px 0px;			
 		}
+
+
 	}
 }
 :host {
@@ -42,4 +47,6 @@
 	.mat-drawer-container {
 		background-color: map-get($mat-bs-accent, 50) !important;
 	}
+
+	
 }

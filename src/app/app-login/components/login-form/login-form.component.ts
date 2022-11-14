@@ -17,7 +17,7 @@ import { ILoginPayload } from '../../interfaces/login.interface';
 import { LoginService } from '../../services/login.service';
 import { UserToken } from '../../../shared/models/classes/user.model';
 import { CookieService } from 'ngx-cookie-service';
-
+import * as moment from 'moment';
 @Component({
 	selector: 'app-login-form',
 	templateUrl: './login-form.component.html',
@@ -87,7 +87,9 @@ export class LoginFormComponent implements OnInit {
 					next: (res) => {
 						if (res && res.isSucceed) {
 							const token = res.responseData;
-							this.cookie.set('token', token);
+							const date = moment();
+							
+							this.cookie.set('token', token,date.add(30,'days').toDate());
 							//this.sharedDataService.setLoggedInUserToken(token);
 
 							this._router.navigateByUrl('/my-profile');
