@@ -147,4 +147,11 @@ export class AppointmentListComponent implements OnInit {
 			this.loading = false;
 		}, 2000);
 	}
+
+	onClickSearchFilter() {
+		this.filterOpen = !this.filterOpen;
+
+	}
+
+	
 }

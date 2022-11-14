@@ -6,14 +6,18 @@
 >
 	<div
 		fxLayout="row"
+		fxLayout.xs="column"
 		fxLayoutAlign="space-between center"
-		fxLayoutGap="16px"
+		fxLayoutAlign.xs="start center"
+		fxLayoutGap.gt-xs="16px"
+		fxLayoutGap.xs="4px"
 		class="w-100-p"
 	>
-		<div class="w-100-p page-header-1">
+		<div class="w-100-p page-header-1" ngClass.sm="page-header-2" ngClass.xs="page-header-3">
 			{{ "ALL_APPOINTMENTS" | translate }}
 		</div>
-		<div
+		<div class="w-100-p search-filter-container">
+			<div
 			fxLayout="row"
 			fxLayoutAlign="start center"
 			fxLayoutGap="8px"
@@ -25,10 +29,16 @@
 			<button
 				[color]="filterOpen ? 'primary' : ''"
 				mat-icon-button
-				(click)="filterOpen = !filterOpen"
+				(click)="onClickSearchFilter()"
 			>
 				<mat-icon>filter_list</mat-icon>
-			</button>
+			</button>	
+		</div>
+		<div class="w-100-p" *ngIf="filterOpen" class="filter">
+			<div>
+				Hello
+			</div>
+		</div>
 		</div>
 	</div>
 
