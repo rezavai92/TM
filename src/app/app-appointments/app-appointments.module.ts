@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { GenericTableModule } from '../shared/modules/generic-table/generic-table.module';
+import { AppointmentsSearchFilterComponent } from './components/appointments-search-filter/appointments-search-filter.component';
 
 
 const routes: Route[] = [
@@ -29,7 +30,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppointmentListComponent
+    AppointmentListComponent,
+    AppointmentsSearchFilterComponent
   ],
   imports: [
     CommonModule,

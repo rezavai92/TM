@@ -1,0 +1,42 @@
+<div class="w-100-p" fxLayout="column" fxLayoutAlign="start start">
+    <div class="w-100-p" fxLayout="row" fxLayoutAlign="space-between center">
+        <button color="accent" mat-button>{{'CANCEL' | translate}}</button>
+        <div fxLayout="row" fxLayoutGap="4px">
+            <button  color="warn" mat-button>{{'CLEAR' | translate}}</button>
+      
+            <button color="primary" mat-button>{{'APPLY' | translate}}</button>
+        </div>
+    </div>
+	<form class="w-100-p">
+		<div fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="center center">
+			<div class="w-100-p">
+				<div class="page-header-5 mb-4">{{'SERVICE_TYPE' | translate}}</div>
+				<mat-form-field appearance="outline">
+					<mat-label>{{'SERVICE_STATUS' | translate}}</mat-label> 
+					<mat-select>
+						<mat-option
+							*ngFor="let type of typeList"
+							[value]="type"
+						>
+							{{ type | uppercase | translate }}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+            <div class="w-100-p">
+                <div class="page-header-5 mb-4">{{'SERVICE_STATUS' | translate}}</div>
+				<mat-form-field appearance="outline">
+					<mat-label>{{'SERVICE_STATUS' | translate}}</mat-label>
+					<mat-select>
+						<mat-option
+							*ngFor="let status of statusList"
+							[value]="status"
+						>
+							{{ status | uppercase | translate }}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+	</form>
+</div>
