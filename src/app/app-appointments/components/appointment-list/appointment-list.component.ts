@@ -10,8 +10,8 @@ import {
 	styleUrls: ['./appointment-list.component.scss'],
 })
 export class AppointmentListComponent implements OnInit {
-	tableData!: any[];
-	tableColumns!: ITableColumn[];
+	tableData: any[]=[];
+	tableColumns: ITableColumn[]=[];
 	loading = true;
 	paginationConfig!: IPaginationConfig;
 	currentPageNumber = 0;

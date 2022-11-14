@@ -18,6 +18,7 @@
 
 	<app-generic-data-table
 		class="w-100-p"
+		*ngIf="!loading"
 		(fetchData)="onFetchTableData($event)"
 		[dataSource]="tableData"
 		[displayedColumns]="tableColumns"

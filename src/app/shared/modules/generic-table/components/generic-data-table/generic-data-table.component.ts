@@ -20,8 +20,9 @@ export class GenericDataTableComponent implements OnInit ,OnChanges{
   ngOnInit(): void {
   }
 
-  ngOnChanges(changes : any) {
-    if (changes) {
+  ngOnChanges(changes: any) {
+    console.log("changes",changes)
+    if (changes && changes.dataSource && changes.displayedColumns) {
       this.setColumns();
     }
   }
