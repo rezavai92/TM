@@ -157,10 +157,11 @@ export class AppointmentListComponent implements OnInit {
 			.subscribe({
 				next: (response) => {
 					if (response && response.isSucceed) {
-						const data = response.responseData;
+						const data = response.responseData.apppointmentResponses;
+						const total = response.responseData.totalCount;
 						this.loading = false;
 						this.setTableColumns();
-						this.setPaginationConfig(200, this.pageSize);
+						this.setPaginationConfig(total, this.pageSize);
 						this.setTableConfig(data);
 					} else {
 						this.handleFailedFetchRequest();

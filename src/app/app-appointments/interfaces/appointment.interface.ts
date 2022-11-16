@@ -13,6 +13,10 @@ export interface IFetchAppointmentPayload{
 }
 
 
+export interface AppointmentResponse{
+    apppointmentResponses: AppointmentResponseData[],
+    totalCount : number
+}
 export interface AppointmentResponseData{
     id: string,
     applicantDisplayName: string,

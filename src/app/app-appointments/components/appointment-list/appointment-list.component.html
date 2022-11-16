@@ -58,21 +58,23 @@
 </div>
 
 <ng-template #applicantDisplayNameTemplate let-row="row" let-column="column">
-	<span>{{ row.applicantDisplayName }}</span>
+	<span *ngIf="row && row.applicantDisplayName; else empty" >{{ row.applicantDisplayName }}</span>
 </ng-template>
 
 <ng-template #serviceTypeTemplate let-row="row" let-column="column">
-	<span>{{ row.serviceType }}</span>
+	<span *ngIf="row && row.serviceType; else empty" [class]="[row.serviceType|lowercase, 'status-box']">{{ row.serviceType }}</span>
 </ng-template>
 
 <ng-template #serviceStartDateTemplate let-row="row" let-column="column">
-	<span>{{ row.startDate | date: "MM.dd.YY" }}</span>
+	<span  *ngIf="row && row.startDate; else empty">{{ row.startDate | date: "MM.dd.YY" }}</span>
 </ng-template>
 
 <ng-template #serviceEndDateTemplate let-row="row" let-column="column">
-	<span>{{ row.endDate | date: "MM.dd.YY" }}</span>
+	<span  *ngIf="row && row.endDate; else empty">{{ row.endDate | date: "MM.dd.YY" }}</span>
 </ng-template>
 
 <ng-template #serviceStatusTemplate let-row="row" let-column="column">
-	<span>{{ row.status }}</span>
+	<span  *ngIf="row && row.status; else empty" [class]="[row.status|lowercase, 'status-box']" >{{ row.status }}</span>
 </ng-template>
+
+<ng-template #empty>--</ng-template>

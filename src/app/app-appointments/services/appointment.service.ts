@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, of } from 'rxjs';
 import { IHttpCommonResponse } from 'src/app/shared/models/interfaces/HttpResponse.interface';
 import { environment } from 'src/environments/environment';
-import { AppointmentResponseData, IAppointmentSearchFilter, IFetchAppointmentPayload } from '../interfaces/appointment.interface';
+import { AppointmentResponse, AppointmentResponseData, IAppointmentSearchFilter, IFetchAppointmentPayload } from '../interfaces/appointment.interface';
 
 @Injectable({
 	providedIn: 'root',
@@ -40,11 +40,14 @@ export class AppointmentService {
 		const url = environment.Appointment + 'GetAppointments';
 		const { SearchFilter, SearchKey, PageNo, PageSize } = payload;
 		const params: HttpParams = this.getQueryParamsForAppointmentFetch(SearchFilter,SearchKey,PageNo,PageSize);
-		return this.http.get<IHttpCommonResponse<AppointmentResponseData[]>>(url, { params: params, observe: 'body' }).pipe(catchError((error) => {
+		return this.http.get<IHttpCommonResponse<AppointmentResponse>>(url, { params: params, observe: 'body' }).pipe(catchError((error) => {
 			
 			return of({
 				isSucceed : false,
-				responseData: []
+				responseData: {
+					apppointmentResponses: [],
+					totalCount: 0
+				}
 			})
 
 		}) )
