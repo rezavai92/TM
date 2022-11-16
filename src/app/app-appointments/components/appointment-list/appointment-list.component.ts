@@ -48,7 +48,7 @@ export class AppointmentListComponent implements OnInit {
 	@ViewChild('serviceStatusTemplate', { static: true })
 	serviceStatusTemplate: TemplateRef<any> | undefined;
 	@ViewChild('searchInput', { static: true })
-	searchInputTemplate: ElementRef | undefined;
+	searchInput: ElementRef | undefined;
 
 	constructor(
 		private appointmentService: AppointmentService,
@@ -56,7 +56,7 @@ export class AppointmentListComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		fromEvent(this.searchInputTemplate?.nativeElement, 'keyup')
+		fromEvent(this.searchInput?.nativeElement, 'keyup')
 			.pipe(
 				map((event: any) => {
 					return event.target.value;
@@ -139,6 +139,13 @@ export class AppointmentListComponent implements OnInit {
 		this.currentFilterObject = { ...filter };
 	}
 
+	clearSearch() {
+	
+		this.resetCurrentPageNumber();
+		this.searchKey = this.searchInput?.nativeElement.value;
+		this.loadAppointmentListData();
+	}
+	
 	loadAppointmentListData() {
 		this.loading = true;
 

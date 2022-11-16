@@ -24,8 +24,8 @@
 			class="w-100-p search"
 		>
 			<mat-icon>search</mat-icon>
-			<input #searchInput [placeholder]="'SEARCH_BY_PATIENT_NAME' | translate" class="w-100-p" type="text" matInput />
-
+			<input  #searchInput [placeholder]="'SEARCH_BY_PATIENT_NAME' | translate" class="w-100-p" type="text" matInput />
+			<button (click)="searchInput.value=''; clearSearch()" *ngIf="searchInput.value" class="cross-btn" mat-icon-button> <mat-icon>close</mat-icon></button>
 			<button
 				[color]="filterOpen ? 'primary' : ''"
 				mat-icon-button

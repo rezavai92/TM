@@ -11,13 +11,16 @@
         position: relative;
         .search{
             background-color: white;
+           // position: relative;
             box-sizing: border-box;
             padding: 4px 8px;
             border-radius: 4px;
             input{
                 border : 0px;
             }
+           .cross-btn{
            
+           }
         }
         .filter{
             position: absolute;
