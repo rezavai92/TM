@@ -20,7 +20,7 @@
 							{{ type | uppercase | translate }}
 						</mat-option>
 					</mat-select>
-					<button mat-icon-button (click)="$event.stopPropagation();clearDropdown('AppointmentType')" class="cross-over-dropdown"><mat-icon>close</mat-icon></button>
+					<button *ngIf ="FormControls['AppointmentType'].value" mat-icon-button (click)="$event.stopPropagation();clearDropdown('AppointmentType')" class="cross-over-dropdown"><mat-icon>close</mat-icon></button>
 				</mat-form-field>
 			</div>
             <div class="w-100-p dropdown">
@@ -36,7 +36,7 @@
 						</mat-option>
 						
 					</mat-select>
-					<button mat-icon-button (click)="$event.stopPropagation();clearDropdown('AppointmentStatus')" class="cross-over-dropdown"><mat-icon>close</mat-icon></button>
+					<button *ngIf ="FormControls['AppointmentStatus'].value" mat-icon-button (click)="$event.stopPropagation();clearDropdown('AppointmentStatus')" class="cross-over-dropdown"><mat-icon>close</mat-icon></button>
 				</mat-form-field>
 			</div>
 		</div>
