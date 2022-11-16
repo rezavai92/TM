@@ -27,7 +27,9 @@
     "CANCEL" : "Cancel",
     "CLEAR_ALL" : "Clear All",
     "APPLY" : "Apply",
-    "ONGLOING" : "Ongoing",
+    "ONGOING" : "Ongoing",
     "PENDING" : "Pending",
-    "RESOLVED" : "Resolved"
+    "RESOLVED" : "Resolved",
+    "ONLINE" : "Online",
+    "OFFLINE" : "Offline"
  }

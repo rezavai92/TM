@@ -4,7 +4,7 @@
 			*ngFor="let column of displayedColumns"
 			[matColumnDef]="column.name"
 		>
-			<th mat-header-cell *matHeaderCellDef>{{ column.key }}</th>
+			<th mat-header-cell *matHeaderCellDef>{{ column.key | translate}}</th>
 			<td mat-cell *matCellDef="let element">
 
 				<span *ngIf="column && !column.cellTemplate">

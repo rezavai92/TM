@@ -104,17 +104,17 @@ export class AppointmentListComponent implements OnInit {
 			},
 
 			{
-				key: 'REQUEST_TYPE',
+				key: 'SERVICE_TYPE',
 				name: 'serviceType',
 				cellTemplate: this.serviceTypeTemplate,
 			},
 			{
-				key: 'SERVICE_START_DATE',
+				key: 'START_DATE',
 				name: 'startDate',
 				cellTemplate: this.serviceStartDateTemplate,
 			},
 			{
-				key: 'SERVICE_END_DATE',
+				key: 'END_DATE',
 				name: 'endDate',
 				cellTemplate: this.serviceEndDateTemplate,
 			},
