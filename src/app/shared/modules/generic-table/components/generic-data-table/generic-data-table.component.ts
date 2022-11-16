@@ -1,5 +1,5 @@
-import { Component, OnInit,Input,Output,EventEmitter,OnChanges } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { Component, OnInit,Input,Output,EventEmitter,OnChanges, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { IPaginationConfig, ITableColumn } from '../../interfaces/table.interface';
 
 @Component({
@@ -12,7 +12,9 @@ export class GenericDataTableComponent implements OnInit ,OnChanges{
   @Input() displayedColumns!: ITableColumn[];
   @Input() dataSource!: any[];
   @Input() paginationConfig!: IPaginationConfig;
+  @Input() loading!: boolean;
   @Output() fetchData: EventEmitter<any> = new EventEmitter();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   columns!: string[];
   constructor() { }
@@ -24,12 +26,18 @@ export class GenericDataTableComponent implements OnInit ,OnChanges{
     console.log("changes",changes)
     if (changes && changes.dataSource && changes.displayedColumns) {
       this.setColumns();
+      this.setPageIndex();
+    }
+  }
+
+  setPageIndex() {
+    if (this.paginationConfig && this.paginationConfig.pageIndex === 0) {
+      this.paginator.firstPage();
     }
   }
 
   onRequestToFetchData(pageEventData : PageEvent) {
-    const pageIndex = pageEventData.pageIndex;
-    this.fetchData.emit(pageIndex);
+    this.fetchData.emit(pageEventData);
   }
 
   onPage(event : PageEvent) {

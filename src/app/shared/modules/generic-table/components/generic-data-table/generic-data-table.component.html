@@ -25,9 +25,9 @@
 	</table>
 
 	<mat-paginator
-		[length]="paginationConfig.length"
-		[pageSize]="paginationConfig.pageSize"
-		[pageSizeOptions]="paginationConfig.pageSizeOptions"
+		[length]="paginationConfig ? paginationConfig.length : 100"
+		[pageSize]="paginationConfig? paginationConfig.pageSize : 10"
+		[pageSizeOptions]="paginationConfig ? paginationConfig.pageSizeOptions :[5,10,15]"
 		(page)="onPage($event)"
 		aria-label="Select page"
 	>

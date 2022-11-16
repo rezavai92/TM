@@ -6,6 +6,7 @@ export enum AppointmentTypeEnum {
 export enum AppointmentStatusEnum {
 	PENDING = 'Pending',
 	ONGOING = 'Ongoing',
+	RESOLVED = 'Resolved'
 }
 
 export const AppointmentTypeList = [
@@ -16,5 +17,6 @@ export const AppointmentTypeList = [
 
 export const AppointmentStatusList = [
     AppointmentStatusEnum.ONGOING,
-    AppointmentStatusEnum.PENDING
+	AppointmentStatusEnum.PENDING,
+	AppointmentStatusEnum.RESOLVED
 ]

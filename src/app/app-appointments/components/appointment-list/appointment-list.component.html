@@ -20,11 +20,11 @@
 			<div
 			fxLayout="row"
 			fxLayoutAlign="start center"
-			fxLayoutGap="8px"
+			fxLayoutGap="16px"
 			class="w-100-p search"
 		>
 			<mat-icon>search</mat-icon>
-			<input class="w-100-p" type="text" matInput />
+			<input #searchInput [placeholder]="'SEARCH_BY_PATIENT_NAME' | translate" class="w-100-p" type="text" matInput />
 
 			<button
 				[color]="filterOpen ? 'primary' : ''"
@@ -35,7 +35,7 @@
 			</button>	
 		</div>
 		<div class="w-100-p" *ngIf="filterOpen" class="filter">
-			<app-appointments-search-filter></app-appointments-search-filter>
+			<app-appointments-search-filter [searchFilter]="currentFilterObject" (apply)="applySearchFilter($event)" (close)="closeSearchFilter($event)" ></app-appointments-search-filter>
 		</div>
 		</div>
 	</div>
@@ -48,7 +48,7 @@
 
 		<app-generic-data-table
 			class="w-100-p"
-			*ngIf="!loading"
+			
 			(fetchData)="onFetchTableData($event)"
 			[dataSource]="tableData"
 			[displayedColumns]="tableColumns"
@@ -57,22 +57,22 @@
 	</div>
 </div>
 
-<ng-template #patientNameTemplate let-row="row" let-column="column">
-	<span>{{ row.PatientName }}</span>
+<ng-template #applicantDisplayNameTemplate let-row="row" let-column="column">
+	<span>{{ row.applicantDisplayName }}</span>
 </ng-template>
 
-<ng-template #requestTypeTemplate let-row="row" let-column="column">
-	<span>{{ row.RequestType }}</span>
+<ng-template #serviceTypeTemplate let-row="row" let-column="column">
+	<span>{{ row.serviceType }}</span>
 </ng-template>
 
 <ng-template #serviceStartDateTemplate let-row="row" let-column="column">
-	<span>{{ row.ServiceStartDate | date: "MM.dd.YY" }}</span>
+	<span>{{ row.startDate | date: "MM.dd.YY" }}</span>
 </ng-template>
 
 <ng-template #serviceEndDateTemplate let-row="row" let-column="column">
-	<span>{{ row.ServiceEndDate | date: "MM.dd.YY" }}</span>
+	<span>{{ row.endDate | date: "MM.dd.YY" }}</span>
 </ng-template>
 
 <ng-template #serviceStatusTemplate let-row="row" let-column="column">
-	<span>{{ row.ServiceStatus }}</span>
+	<span>{{ row.status }}</span>
 </ng-template>

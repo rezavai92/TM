@@ -1,8 +1,25 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	ViewChild,
+	TemplateRef,
+	ElementRef,
+} from '@angular/core';
+import { debounceTime, distinctUntilChanged, fromEvent, map, take } from 'rxjs';
+import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import {
 	IPaginationConfig,
 	ITableColumn,
 } from '../../../shared/modules/generic-table/interfaces/table.interface';
+import {
+	AppointmentResponseData,
+	IAppointmentSearchFilter,
+	IFetchAppointmentPayload,
+} from '../../interfaces/appointment.interface';
+import { AppointmentService } from '../../services/appointment.service';
+import { numberRegexString } from 'src/app/shared/shared-data/constants';
+import { PageEvent } from '@angular/material/paginator';
+import { debounce } from 'lodash';
 
 @Component({
 	selector: 'app-appointment-list',
@@ -12,14 +29,16 @@ import {
 export class AppointmentListComponent implements OnInit {
 	tableData: any[] = [];
 	tableColumns: ITableColumn[] = [];
-	loading = true;
+	loading = false;
 	paginationConfig!: IPaginationConfig;
 	currentPageNumber = 0;
+	pageSize = 10;
 	filterOpen = false;
-	@ViewChild('patientNameTemplate', { static: true }) patientNameTemplate:
-		| TemplateRef<any>
-		| undefined;
-	@ViewChild('requestTypeTemplate', { static: true }) requestTypeTemplate:
+	searchKey = '';
+	currentFilterObject!: IAppointmentSearchFilter;
+	@ViewChild('applicantDisplayNameTemplate', { static: true })
+	applicantDisplayNameTemplate: TemplateRef<any> | undefined;
+	@ViewChild('serviceTypeTemplate', { static: true }) serviceTypeTemplate:
 		| TemplateRef<any>
 		| undefined;
 	@ViewChild('serviceStartDateTemplate', { static: true })
@@ -28,130 +47,154 @@ export class AppointmentListComponent implements OnInit {
 	serviceEndDateTemplate: TemplateRef<any> | undefined;
 	@ViewChild('serviceStatusTemplate', { static: true })
 	serviceStatusTemplate: TemplateRef<any> | undefined;
+	@ViewChild('searchInput', { static: true })
+	searchInputTemplate: ElementRef | undefined;
 
-	constructor() {}
+	constructor(
+		private appointmentService: AppointmentService,
+		private customToastService: CustomToastService
+	) {}
 
 	ngOnInit(): void {
+		fromEvent(this.searchInputTemplate?.nativeElement, 'keyup')
+			.pipe(
+				map((event: any) => {
+					return event.target.value;
+				}),
+				debounceTime(1500),
+				distinctUntilChanged()
+			)
+			.subscribe((key) => {
+				this.resetCurrentPageNumber();
+				this.searchKey = key;
+				this.loadAppointmentListData();
+			});
+
 		this.loadAppointmentListData();
 	}
 
-	setTableConfig(
-		data: any[],
-		columns: ITableColumn[],
-		pagination: IPaginationConfig
-	) {
+	setTableConfig(data: AppointmentResponseData[]) {
 		this.setTableData(data);
-		this.setTableColumns(columns);
-		this.setPaginationConfig(pagination);
 	}
 
-	setPaginationConfig(config: IPaginationConfig) {
-		this.paginationConfig = { ...config };
+	setPaginationConfig(
+		total: number,
+		pageSize: number,
+		pageSizeOptions?: number[]
+	) {
+		const pagination: IPaginationConfig = {
+			length: total,
+			pageSize: pageSize,
+			pageSizeOptions: [5, 10, 15, 20],
+			pageIndex : this.currentPageNumber
+		};
+		this.paginationConfig = { ...pagination };
 	}
 
 	setTableData(data: any[]) {
 		this.tableData = [...data];
 	}
 
-	setTableColumns(columns: ITableColumn[]) {
+	setTableColumns() {
+		const columns: ITableColumn[] = [
+			{
+				key: 'PATIENT_NAME',
+				name: 'applicantDisplayName',
+				cellTemplate: this.applicantDisplayNameTemplate,
+			},
+
+			{
+				key: 'REQUEST_TYPE',
+				name: 'serviceType',
+				cellTemplate: this.serviceTypeTemplate,
+			},
+			{
+				key: 'SERVICE_START_DATE',
+				name: 'startDate',
+				cellTemplate: this.serviceStartDateTemplate,
+			},
+			{
+				key: 'SERVICE_END_DATE',
+				name: 'endDate',
+				cellTemplate: this.serviceEndDateTemplate,
+			},
+			{
+				key: 'SERVICE_STATUS',
+				name: 'status',
+				cellTemplate: this.serviceStatusTemplate,
+			},
+		];
+
 		this.tableColumns = [...columns];
 	}
 
-	onFetchTableData(pageIndex: number) {
-		this.currentPageNumber = pageIndex;
+	onFetchTableData(pageEvent: PageEvent) {
+		this.currentPageNumber = pageEvent.pageIndex;
+		this.pageSize = pageEvent.pageSize;
+
 		this.loadAppointmentListData();
 	}
 
+	updateCurrentSearchFilter(filter: IAppointmentSearchFilter) {
+		this.currentFilterObject = { ...filter };
+	}
+
 	loadAppointmentListData() {
-		setTimeout(() => {
-			const data = [
-				{
-					PatientName: 'W.B Bush',
-					RequestType: 'online',
-					ServiceStartDate: new Date(),
-					ServiceEndDate: new Date(),
-					ServiceStatus: 'pending',
-				},
+		this.loading = true;
 
-				{
-					PatientName: 'W.B Bush',
-					RequestType: 'online',
-					ServiceStartDate: new Date(),
-					ServiceEndDate: new Date(),
-					ServiceStatus: 'pending',
-				},
-				{
-					PatientName: 'W.B Bush',
-					RequestType: 'online',
-					ServiceStartDate: new Date(),
-					ServiceEndDate: new Date(),
-					ServiceStatus: 'pending',
-				},
-				{
-					PatientName: 'W.B Bush',
-					RequestType: 'online',
-					ServiceStartDate: new Date(),
-					ServiceEndDate: new Date(),
-					ServiceStatus: 'pending',
-				},
-				{
-					PatientName: 'W.B Bush',
-					RequestType: 'online',
-					ServiceStartDate: new Date(),
-					ServiceEndDate: new Date(),
-					ServiceStatus: 'pending',
-				},
-				{
-					PatientName: 'W.B Bush',
-					RequestType: 'online',
-					ServiceStartDate: new Date(),
-					ServiceEndDate: new Date(),
-					ServiceStatus: 'pending',
-				},
-			];
+		const payload: IFetchAppointmentPayload = {
+			SearchFilter: this.currentFilterObject
+				? this.currentFilterObject
+				: null,
+			SearchKey: this.searchKey,
+			PageNo: this.currentPageNumber,
+			PageSize: this.pageSize,
+		};
 
-			const columns: ITableColumn[] = [
-				{
-					key: 'PATIENT_NAME',
-					name: 'PatientName',
-					cellTemplate: this.patientNameTemplate,
+		this.appointmentService
+			.fetchAppointments(payload)
+			.pipe(take(1))
+			.subscribe({
+				next: (response) => {
+					if (response && response.isSucceed) {
+						const data = response.responseData;
+						this.loading = false;
+						this.setTableColumns();
+						this.setPaginationConfig(200, this.pageSize);
+						this.setTableConfig(data);
+					} else {
+						this.handleFailedFetchRequest();
+					}
 				},
-
-				{
-					key: 'REQUEST_TYPE',
-					name: 'RequestType',
-					cellTemplate: this.requestTypeTemplate,
+				error: (error) => {
+					this.handleFailedFetchRequest();
 				},
-				{
-					key: 'SERVICE_START_DATE',
-					name: 'ServiceStartDate',
-					cellTemplate: this.serviceStartDateTemplate,
-				},
-				{
-					key: 'SERVICE_END_DATE',
-					name: 'ServiceEndDate',
-					cellTemplate: this.serviceEndDateTemplate,
-				},
-				{
-					key: 'SERVICE_STATUS',
-					name: 'ServiceStatus',
-					cellTemplate: this.serviceStatusTemplate,
-				},
-			];
-			const pagination: IPaginationConfig = {
-				length: 100,
-				pageSize: 10,
-				pageSizeOptions: [5, 10, 15, 20],
-			};
-			this.setTableConfig(data, columns, pagination);
-			this.loading = false;
-		}, 2000);
+			});
 	}
 
 	onClickSearchFilter() {
 		this.filterOpen = !this.filterOpen;
-
 	}
 
-	
+	closeSearchFilter(closed: any) {
+		if (closed) {
+			this.filterOpen = false;
+		}
+	}
+
+	applySearchFilter(filter: IAppointmentSearchFilter) {
+		this.resetCurrentPageNumber();
+		this.updateCurrentSearchFilter(filter);
+		this.loadAppointmentListData();
+		this.closeSearchFilter(true);
+	}
+
+	resetCurrentPageNumber() {
+		this.currentPageNumber = 0;
+	}
+
+	handleFailedFetchRequest() {
+		this.loading = false;
+		//	this.customToastService.openSnackBar('SOMETHING_WENT_WRONG',true,'error')
+	}
 }
