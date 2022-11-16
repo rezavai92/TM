@@ -1,3 +1,9 @@
 {
-    "ALL_APPOINTMENTS" : "All Appointments"
+    "ALL_APPOINTMENTS" : "All Appointments",
+    "SERVICE_TYPE" : "Service Type",
+    "SERVICE_STATUS" : "Service Status",
+    "PATIENT_NAME" : "Patient Name",
+    "START_DATE" : "Start Date",
+    "END_DATE" : "End Date",
+    "STATUS" : "Status"
 }
