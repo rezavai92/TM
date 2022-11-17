@@ -1,22 +1,18 @@
 import { Route } from "@angular/router";
 import { TMFeatureCanActivateGuard } from "../shared/services/auth-services/tmfeature-can-activate.guard";
-import { RootDefaultComponent } from "./root-default/root-default.component";
+
 
 export const routes: Route[] = [
-	{
-		path: '',
-		redirectTo: '/login',
-		pathMatch: 'full',
-	},
 
 	{
 		path: 'login',
 		loadChildren: () => import('../app-login/app-login.module').then(m => m.AppLoginModule),
-		canActivate: [],
+		//canActivate: [],
+	//	pathMatch : 'full',
 		data: {
 			isFullScreen: true,
-			requiredFeature: 'login',
-			authFailRedirection: "",
+		//	requiredFeature: 'login',
+		//	authFailRedirection: "",
 			isPublic: true,
 			hideToolBar: true,
 			hideSideNavigation: true
@@ -28,10 +24,11 @@ export const routes: Route[] = [
 		path: 'signup',
 		loadChildren: () => import('../app-signup/app-signup.module').then(m => m.AppSignupModule),
 		canActivate: [],
+	//	pathMatch : "full",
 		data: {
 			isFullScreen: true,
-			requiredFeature: 'login',
-			authFailRedirection: "",
+			//requiredFeature: 'login',
+			//authFailRedirection: "",
 			isPublic: true,
 			hideToolBar: false,
 			hideSideNavigation: true
@@ -41,6 +38,7 @@ export const routes: Route[] = [
 
 	{
 		path: 'my-profile',
+	//	pathMatch : "full",
 		loadChildren: () => import('../app-user-profile/app-user-profile.module').then(m => m.AppUserProfileModule),
 		canActivate: [TMFeatureCanActivateGuard],
 		data: {
@@ -56,6 +54,7 @@ export const routes: Route[] = [
 
 	{
 		path: 'appointments',
+	//	pathMatch : "full",
 		loadChildren: () => import('../app-appointments/app-appointments.module').then(m => m.AppAppointmentsModule),
 		canActivate: [TMFeatureCanActivateGuard],
 		data: {
@@ -68,5 +67,22 @@ export const routes: Route[] = [
 		}
 
 	},
+
+	{
+		path: '',
+		redirectTo: '/my-profile',
+		pathMatch: 'full',
+	},
+
+	
+
+	{
+        path: '**',
+        redirectTo: '/login',
+        data: {
+            isFullScreen: false,
+            isPublic: false
+        }
+    }
 
 ]

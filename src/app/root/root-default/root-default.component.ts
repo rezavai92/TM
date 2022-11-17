@@ -91,7 +91,7 @@ export class RootDefaultComponent implements OnInit {
         return foundFeatureIndex > -1;
       })
     
-      console.log("side nav",navigations, res,this.sideNavigations)
+   //   console.log("side nav",navigations, res,this.sideNavigations)
 
     })
   }

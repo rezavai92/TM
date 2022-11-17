@@ -23,9 +23,6 @@ export class LoginDefaultComponent implements OnDestroy {
 		private cookie: CookieService
 	) {
 		const token = this.cookie.get('token');
-		if (token) {
-			this._router.navigateByUrl('/my-profile');
-		}
 
 		this.languageSubscription = this._sharedDataService
 			.getCurrentLang()

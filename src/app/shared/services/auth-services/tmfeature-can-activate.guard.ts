@@ -29,6 +29,8 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 		| Promise<boolean | UrlTree>
 		| boolean
 		| UrlTree {
+		debugger;
+		console.log("route is", route);
 		return this.passGuardAsync(route);
 	}
 
@@ -46,7 +48,6 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 	passGuardAsync(route: ActivatedRouteSnapshot) {
 		//const token = this.data.getLoggedInUserToken();
 		return this.hasTokenAsync().pipe(
-			take(1),
 			switchMap((response) => {
 				if (response) {
 					return this.hasPermissionForThisFeatureAsync(route).pipe(
@@ -73,7 +74,7 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 				if (found && found.length > 0) {
 					return true;
 				} else {
-					//	this.redirectWhenFails(route)
+					this.redirectWhenFails(route)
 					return false;
 				}
 			})
