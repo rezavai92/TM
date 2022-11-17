@@ -91,6 +91,7 @@ export class LoginFormComponent implements OnInit {
 						}
 					},
 					error: (err) => {
+						this.loginLoading = false;
 						this.loginService.handleLoginFail();
 					},
 				});

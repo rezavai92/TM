@@ -34,11 +34,12 @@ export class AuthService {
 	afterLogin(token: string) {
 		const date = moment();
 		this.cookie.set('token', token, date.add(30, 'days').toDate());
+		this.loadLoggedInUserData();
 		this.router.navigateByUrl('/my-profile');
 	}
 
 	loadLoggedInUserData() {
 		
-		
+
 	}
 }
