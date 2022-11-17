@@ -6,18 +6,14 @@ import {
 	Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
-import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
+import { take, tap } from 'rxjs';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import {
-	emailRegexString,
 	numberRegexString,
 } from '../../../shared/shared-data/constants';
 import { ILoginPayload } from '../../interfaces/login.interface';
 import { LoginService } from '../../services/login.service';
-import { UserToken } from '../../../shared/models/classes/user.model';
-import { CookieService } from 'ngx-cookie-service';
-import * as moment from 'moment';
+import { AuthService } from '../../../shared/services/auth-services/auth.service';
 @Component({
 	selector: 'app-login-form',
 	templateUrl: './login-form.component.html',
@@ -28,11 +24,9 @@ export class LoginFormComponent implements OnInit {
 	loginLoading = false;
 	constructor(
 		private _fb: FormBuilder,
-		private _router: Router,
 		private loginService: LoginService,
 		private customToastService: CustomToastService,
-		private sharedDataService: SharedDataService,
-		private cookie: CookieService
+		private auth: AuthService,
 	) {}
 
 	ngOnInit(): void {
@@ -76,41 +70,28 @@ export class LoginFormComponent implements OnInit {
 		return null;
 	}
 
+
+	
+
 	login() {
 		this.loginLoading = true;
 		const payload = this.loginPayload;
 		if (payload) {
 			this.loginService
 				.login(payload)
-				.pipe(take(1))
+				.pipe(take(1), tap(() => { this.loginLoading = false }))
 				.subscribe({
 					next: (res) => {
 						if (res && res.isSucceed) {
 							const token = res.responseData;
-							const date = moment();
+							this.auth.afterLogin(token);
 							
-							this.cookie.set('token', token,date.add(30,'days').toDate());
-							//this.sharedDataService.setLoggedInUserToken(token);
-
-							this._router.navigateByUrl('/my-profile');
 						} else {
-							this.customToastService.openSnackBar(
-								'LOGIN_FAILED',
-								true,
-								'error'
-							);
+							this.loginService.handleLoginFail();
 						}
-
-						this.loginLoading = false;
 					},
-
 					error: (err) => {
-						this.loginLoading = false;
-						this.customToastService.openSnackBar(
-							'LOGIN_FAILED',
-							true,
-							'error'
-						);
+						this.loginService.handleLoginFail();
 					},
 				});
 		} else {
