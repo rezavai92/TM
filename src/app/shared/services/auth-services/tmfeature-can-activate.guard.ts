@@ -8,8 +8,10 @@ import {
 } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { map, Observable, of, switchMap, take } from 'rxjs';
+import { CustomToastService } from '../../modules/shared-utility/services/custom-toast.service';
 import { FeatureProviderService } from '../feature-provider/feature-provider.service';
 import { SharedDataService } from '../shared-data-services/shared-data.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -19,7 +21,9 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 		private data: SharedDataService,
 		private router: Router,
 		private fps: FeatureProviderService,
-		private cookie: CookieService
+		private cookie: CookieService,
+		private auth: AuthService,
+		private toast: CustomToastService
 	) {}
 	canActivate(
 		route: ActivatedRouteSnapshot,
@@ -30,7 +34,7 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 		| boolean
 		| UrlTree {
 		debugger;
-		console.log("route is", route);
+		console.log('route is', route);
 		return this.passGuardAsync(route);
 	}
 
@@ -65,6 +69,15 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 		return this.fps.getFeatures().pipe(
 			take(1),
 			map((res: any[]) => {
+				if (!res || !res.length) {
+					this.toast.openSnackBar(
+						'SOMETHING_WENT_WRONG_TRY_LATER',
+						true,
+						'error'
+					);
+					this.auth.logout();
+					//the logged in user has no feature. a red alert for the application
+				}
 				const requiredFeature = route.data['requiredFeature'];
 				//debugger;
 				const found = res.filter((item) => {
@@ -74,7 +87,7 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 				if (found && found.length > 0) {
 					return true;
 				} else {
-					this.redirectWhenFails(route)
+					this.redirectWhenFails(route);
 					return false;
 				}
 			})
