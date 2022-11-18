@@ -5,44 +5,37 @@ import { FileUploadPayload } from '../../models/interfaces/file-service.interfac
 import { IHttpCommonResponse } from '../../models/interfaces/HttpResponse.interface';
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class FileService {
+	private headers: HttpHeaders = new HttpHeaders().set(
+		'content-type',
+		'application/json'
+	);
 
-	constructor(private http: HttpClient) {
-
-	}
-
+	constructor(private http: HttpClient) {}
 
 	preprocessBase64(encoded: string) {
 		return encoded.split('base64,')[1];
 	}
 
 	uploadFile<T>(payload: FileUploadPayload) {
-
 		payload.Base64 = this.preprocessBase64(payload.Base64);
-
-		const headers: HttpHeaders = new HttpHeaders()
-			.set('content-type', 'application/json')
-		
 		return this.http.post<IHttpCommonResponse<T>>(
 			`${environment.StorageService}UploadFile`,
 			payload,
 			{
-				headers: headers,
-				observe: 'body'
-			});
-
+				headers: this.headers,
+				observe: 'body',
+			}
+		);
 	}
 
-
-	deleteFile(fileId : string) {
-
-		const headers: HttpHeaders = new HttpHeaders()
-			.set('content-type', 'application/json');
-		
+	deleteFile(fileId: string) {
 		const params: HttpParams = new HttpParams().set('fileId', fileId);
-		return this.http.delete<IHttpCommonResponse<any>>(`${environment.StorageService}DeleteFile`, { headers, params,observe: 'body' });
+		return this.http.delete<IHttpCommonResponse<any>>(
+			`${environment.StorageService}DeleteFile`,
+			{ headers: this.headers, params, observe: 'body' }
+		);
 	}
-
 }

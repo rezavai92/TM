@@ -20,10 +20,28 @@
 			fxLayoutAlign="end center"
 			fxLayoutGap="32px"
 		>
+			<div>
+				<button mat-button [matMenuTriggerFor]="myProfileMenu">
+					<span>
+						{{ user.firstName | displayName: user.lastName }}</span
+					>
+				</button>
+				<mat-menu #myProfileMenu="matMenu">
+					<div fxLayout="column" fxLayoutGap="8px">
+						<ng-container>
+							<button mat-button (click)="onLogout()">
+								Log out
+							</button>
+						</ng-container>
+						<ng-container>
+							<button (click)="goToMyProfile()" mat-button>
+								My profile
+							</button>
+						</ng-container>
+					</div>
+				</mat-menu>
+			</div>
 
-		<div *ngIf="user">
-			
-		</div>
 			<div>
 				<button mat-button [matMenuTriggerFor]="menu">
 					<mat-icon
@@ -61,15 +79,28 @@
 					*ngFor="let navigation of navigations"
 				>
 					<a [routerLink]="navigation.url">
-						<button  routerLinkActive="active" color="primary" class="module-btn" mat-button>
-							<div fxLayoutGap="8px" style="margin-left: 40px ;" fxLayout="row" fxLayoutAlign="start center">
-								<mat-icon style="margin-top:-4px" *ngIf="navigation?.icon">{{
-									navigation.icon
-								}}</mat-icon>
-							
-								<span>{{ navigation.translate | translate }}</span>
+						<button
+							routerLinkActive="active"
+							color="primary"
+							class="module-btn"
+							mat-button
+						>
+							<div
+								fxLayoutGap="8px"
+								style="margin-left: 40px"
+								fxLayout="row"
+								fxLayoutAlign="start center"
+							>
+								<mat-icon
+									style="margin-top: -4px"
+									*ngIf="navigation?.icon"
+									>{{ navigation.icon }}</mat-icon
+								>
+
+								<span>{{
+									navigation.translate | translate
+								}}</span>
 							</div>
-							
 						</button>
 					</a>
 				</mat-list-item>

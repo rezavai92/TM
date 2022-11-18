@@ -33,7 +33,7 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 		| Promise<boolean | UrlTree>
 		| boolean
 		| UrlTree {
-		debugger;
+		//debugger;
 		console.log('route is', route);
 		return this.passGuardAsync(route);
 	}

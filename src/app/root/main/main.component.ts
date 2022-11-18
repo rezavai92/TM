@@ -16,6 +16,8 @@ import { PortalLanguages } from '../../shared/shared-data/constants';
 import { Portal } from '@angular/cdk/portal';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../shared/services/auth-services/auth.service';
+import { GetUserResponse } from '../../shared/models/interfaces/user.interface';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-main',
@@ -30,7 +32,7 @@ export class MainComponent implements OnInit, OnChanges, OnDestroy {
 	screenHeight!: number;
 	screenWidth!: number;
 	isDrawerOpened = true;
-	user!: any;
+	user!: GetUserResponse;
 	@Input() hideToolBar: boolean = true;
 	@Input() hideSideNavigation: boolean = true;
 	@Input() navigations!: Navigation[];
@@ -39,7 +41,8 @@ export class MainComponent implements OnInit, OnChanges, OnDestroy {
 	destroyAll$: Subject<any> = new Subject();
 	constructor(
 		private _sharedDataService: SharedDataService,
-		private _auth: AuthService
+		private _auth: AuthService,
+		private _router : Router
 	) {
 		this._auth
 			.getLoggedInUser()
@@ -94,5 +97,14 @@ export class MainComponent implements OnInit, OnChanges, OnDestroy {
 
 	setPortalLanguage(language: any) {
 		this._sharedDataService.setCurrentLang(language.Value);
+	}
+
+	onLogout() {
+		
+		this._auth.logout();
+	}
+
+	goToMyProfile() {
+		this._router.navigateByUrl('/my-profile');
 	}
 }

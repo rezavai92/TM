@@ -84,7 +84,7 @@ export class LoginFormComponent implements OnInit {
 					next: (res) => {
 						if (res && res.isSucceed) {
 							const token = res.responseData;
-							this.auth.afterLogin(token);
+							this.auth.afterLogin(token,payload.UserName);
 							
 						} else {
 							this.loginService.handleLoginFail();
