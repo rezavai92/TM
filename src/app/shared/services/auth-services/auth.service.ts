@@ -25,7 +25,7 @@ export class AuthService {
 		this.loggedInUser.next(user);
 	}
 
-	getLoggedInUser(logout =true) {
+	getLoggedInUser(logout =false) {
 		const storedUser = window.localStorage.getItem('user');
 		if (storedUser) {
 			this.loggedInUser.next(JSON.parse(storedUser));
@@ -72,7 +72,7 @@ export class AuthService {
 			.subscribe({
 				next : (res) => {
 					if (res && res.isSucceed ) {
-						window.localStorage.setItem('user', JSON.stringify(res.responseData as GetUserResponse) );
+					//	window.localStorage.setItem('user', JSON.stringify(res.responseData as GetUserResponse) );
 						this.setLoggedInUser(res.responseData as GetUserResponse)
 					}
 				},
