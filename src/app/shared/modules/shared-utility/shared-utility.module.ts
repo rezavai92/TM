@@ -11,6 +11,7 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { MaterialModule } from '../material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CustomToastService } from './services/custom-toast.service';
+import { DisplayNamePipe } from './pipes/display-name.pipe';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -25,7 +26,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateMockPipe,
     AcceptFormatPipe,
     CustomToastComponent,
-    BlockCopyPasteDirective
+    BlockCopyPasteDirective,
+    DisplayNamePipe
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       isolate: true
     }),
   ],
-  exports: [PortalLanguagePipe, AcceptFormatPipe],
+  exports: [PortalLanguagePipe, AcceptFormatPipe,DisplayNamePipe],
   providers: [CustomToastService],
 })
 export class SharedUtilityModule { }
