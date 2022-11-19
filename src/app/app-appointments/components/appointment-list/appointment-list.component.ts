@@ -103,8 +103,8 @@ export class AppointmentListComponent implements OnInit {
 	}
 
 	onSelectTableRow(row: any) {
-		//const url = '/appointments/' + row.id;
-		this.router.navigate(['details', row.id], { relativeTo: this.route });
+		const url = '/appointments/details/' + row.id;
+		this.router.navigateByUrl(url);
 		console.log('selected row ', row);
 	}
 

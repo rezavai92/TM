@@ -77,8 +77,9 @@ export class AppointmentService {
 	}
 
 	getLatestAppointmentDetails(applicantUserId: string) {
+		//debugger;
 		const url = environment.Appointment + 'GetLatestAppointmentDetails';
-		const params = new HttpParams().set('applicantUserId', applicantUserId);
+		const params = new HttpParams().set('patientId', applicantUserId);
 		return this.http
 			.get<IHttpCommonResponse<any>>(url, {
 				params: params,

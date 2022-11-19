@@ -42,12 +42,15 @@ export class MainComponent implements OnInit, OnChanges, OnDestroy {
 	constructor(
 		private _sharedDataService: SharedDataService,
 		private _auth: AuthService,
-		private _router : Router
+		private _router: Router
 	) {
+		console.log('main app');
 		this._auth
 			.getLoggedInUser()
 			.pipe(takeUntil(this.destroyAll$))
-			.subscribe((user) => {this.user = user});
+			.subscribe((user) => {
+				this.user = user;
+			});
 
 		this._sharedDataService
 			.getCurrentLang()
@@ -100,7 +103,6 @@ export class MainComponent implements OnInit, OnChanges, OnDestroy {
 	}
 
 	onLogout() {
-		
 		this._auth.logout();
 	}
 

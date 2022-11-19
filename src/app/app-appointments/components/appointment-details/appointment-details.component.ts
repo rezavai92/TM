@@ -14,9 +14,12 @@ export class AppointmentDetailsComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private appointmentService: AppointmentService
-	) {}
+	) {
+		console.log('created details');
+	}
 
 	ngOnInit(): void {
+		//debugger;
 		const applicantUserid = this.route.snapshot.params['id'];
 		this.loadLatestAppointmentDetails(applicantUserid);
 	}
