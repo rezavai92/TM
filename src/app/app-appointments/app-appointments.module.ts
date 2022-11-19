@@ -13,45 +13,45 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { GenericTableModule } from '../shared/modules/generic-table/generic-table.module';
 import { AppointmentsSearchFilterComponent } from './components/appointments-search-filter/appointments-search-filter.component';
-
+import { AppointmentDetailsComponent } from './components/appointment-details/appointment-details.component';
 
 const routes: Route[] = [
-  { path: '', component: AppointmentListComponent }, 
+	{ path: '', component: AppointmentListComponent },
+	{ path: 'details/:id', component: AppointmentDetailsComponent },
 ];
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new MultiTranslateHttpLoader(http, [
-
-    { prefix: "./assets/i18n/common/", suffix: ".json" },
-    { prefix: "./assets/i18n/app-appointments/", suffix: ".json" },
-
-  ]);
+	return new MultiTranslateHttpLoader(http, [
+		{ prefix: './assets/i18n/common/', suffix: '.json' },
+		{ prefix: './assets/i18n/app-appointments/', suffix: '.json' },
+	]);
 }
 
 @NgModule({
-  declarations: [
-    AppointmentListComponent,
-    AppointmentsSearchFilterComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(routes),
-    FlexLayoutModule,
-    MaterialModule,
-    PhotoUploaderModule,
-    FileUploaderModule,
-    GenericTableModule,
-    TranslateModule.forChild({
-      defaultLanguage: 'en',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      isolate: true
-    }),
-  ]
+	declarations: [
+		AppointmentListComponent,
+		AppointmentsSearchFilterComponent,
+		AppointmentDetailsComponent,
+	],
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		RouterModule.forChild(routes),
+		FlexLayoutModule,
+		MaterialModule,
+		PhotoUploaderModule,
+		FileUploaderModule,
+		GenericTableModule,
+		TranslateModule.forChild({
+			defaultLanguage: 'en',
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient],
+			},
+			isolate: true,
+		}),
+	],
 })
-export class AppAppointmentsModule { }
+export class AppAppointmentsModule {}
