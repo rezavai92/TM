@@ -20,6 +20,11 @@ import { AppointmentService } from '../../services/appointment.service';
 import { numberRegexString } from 'src/app/shared/shared-data/constants';
 import { PageEvent } from '@angular/material/paginator';
 import { debounce } from 'lodash';
+import {
+	ActivatedRoute,
+	ActivatedRouteSnapshot,
+	Router,
+} from '@angular/router';
 
 @Component({
 	selector: 'app-appointment-list',
@@ -52,7 +57,9 @@ export class AppointmentListComponent implements OnInit {
 
 	constructor(
 		private appointmentService: AppointmentService,
-		private customToastService: CustomToastService
+		private customToastService: CustomToastService,
+		private router: Router,
+		private route: ActivatedRoute
 	) {}
 
 	ngOnInit(): void {
@@ -86,13 +93,19 @@ export class AppointmentListComponent implements OnInit {
 			length: total,
 			pageSize: pageSize,
 			pageSizeOptions: [5, 10, 15, 20],
-			pageIndex : this.currentPageNumber
+			pageIndex: this.currentPageNumber,
 		};
 		this.paginationConfig = { ...pagination };
 	}
 
 	setTableData(data: any[]) {
 		this.tableData = [...data];
+	}
+
+	onSelectTableRow(row: any) {
+		//const url = '/appointments/' + row.id;
+		this.router.navigate([row.id], { relativeTo: this.route });
+		console.log('selected row ', row);
 	}
 
 	setTableColumns() {
@@ -140,12 +153,11 @@ export class AppointmentListComponent implements OnInit {
 	}
 
 	clearSearch() {
-	
 		this.resetCurrentPageNumber();
 		this.searchKey = this.searchInput?.nativeElement.value;
 		this.loadAppointmentListData();
 	}
-	
+
 	loadAppointmentListData() {
 		this.loading = true;
 
@@ -164,7 +176,8 @@ export class AppointmentListComponent implements OnInit {
 			.subscribe({
 				next: (response) => {
 					if (response && response.isSucceed) {
-						const data = response.responseData.apppointmentResponses;
+						const data =
+							response.responseData.apppointmentResponses;
 						const total = response.responseData.totalCount;
 						this.loading = false;
 						this.setTableColumns();

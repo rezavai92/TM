@@ -1,80 +1,57 @@
-<div
-	fxLayout="column"
-	fxLayoutGap="16px"
-	fxLayoutAlign="start start"
-	class="w-100-p appointment-list"
->
-	<div
-		fxLayout="row"
-		fxLayout.xs="column"
-		fxLayoutAlign="space-between center"
-		fxLayoutAlign.xs="start center"
-		fxLayoutGap.gt-xs="16px"
-		fxLayoutGap.xs="4px"
-		class="w-100-p"
-	>
+<div fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start start" class="w-100-p appointment-list">
+	<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start center"
+		fxLayoutGap.gt-xs="16px" fxLayoutGap.xs="4px" class="w-100-p">
 		<div class="w-100-p page-header-1" ngClass.sm="page-header-2" ngClass.xs="page-header-3">
 			{{ "ALL_APPOINTMENTS" | translate }}
 		</div>
 		<div class="w-100-p search-filter-container">
-			<div
-			fxLayout="row"
-			fxLayoutAlign="start center"
-			fxLayoutGap="16px"
-			class="w-100-p search"
-		>
-			<mat-icon>search</mat-icon>
-			<input  #searchInput [placeholder]="'SEARCH_BY_PATIENT_NAME' | translate" class="w-100-p" type="text" matInput />
-			<button (click)="searchInput.value=''; clearSearch()" *ngIf="searchInput.value" class="cross-btn" mat-icon-button> <mat-icon>close</mat-icon></button>
-			<button
-				[color]="filterOpen ? 'primary' : ''"
-				mat-icon-button
-				(click)="onClickSearchFilter()"
-			>
-				<mat-icon>filter_list</mat-icon>
-			</button>	
-		</div>
-		<div class="w-100-p" *ngIf="filterOpen" class="filter">
-			<app-appointments-search-filter [searchFilter]="currentFilterObject" (apply)="applySearchFilter($event)" (close)="closeSearchFilter($event)" ></app-appointments-search-filter>
-		</div>
+			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" class="w-100-p search">
+				<mat-icon>search</mat-icon>
+				<input #searchInput [placeholder]="'SEARCH_BY_PATIENT_NAME' | translate" class="w-100-p" type="text"
+					matInput />
+				<button (click)="searchInput.value=''; clearSearch()" *ngIf="searchInput.value" class="cross-btn"
+					mat-icon-button>
+					<mat-icon>close</mat-icon>
+				</button>
+				<button [color]="filterOpen ? 'primary' : ''" mat-icon-button (click)="onClickSearchFilter()">
+					<mat-icon>filter_list</mat-icon>
+				</button>
+			</div>
+			<div class="w-100-p" *ngIf="filterOpen" class="filter">
+				<app-appointments-search-filter [searchFilter]="currentFilterObject" (apply)="applySearchFilter($event)"
+					(close)="closeSearchFilter($event)"></app-appointments-search-filter>
+			</div>
 		</div>
 	</div>
 
 	<div class="w-100-p">
-		<mat-progress-bar
-			*ngIf="loading"
-			mode="indeterminate"
-		></mat-progress-bar>
+		<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 
-		<app-generic-data-table
-			class="w-100-p"
-			
-			(fetchData)="onFetchTableData($event)"
-			[dataSource]="tableData"
-			[displayedColumns]="tableColumns"
-			[paginationConfig]="paginationConfig"
-		></app-generic-data-table>
+		<app-generic-data-table class="w-100-p" (selectRow)="onSelectTableRow($event)"
+			(fetchData)="onFetchTableData($event)" [dataSource]="tableData" [displayedColumns]="tableColumns"
+			[paginationConfig]="paginationConfig"></app-generic-data-table>
 	</div>
 </div>
 
 <ng-template #applicantDisplayNameTemplate let-row="row" let-column="column">
-	<span *ngIf="row && row.applicantDisplayName; else empty" >{{ row.applicantDisplayName }}</span>
+	<span *ngIf="row && row.applicantDisplayName; else empty">{{ row.applicantDisplayName }}</span>
 </ng-template>
 
 <ng-template #serviceTypeTemplate let-row="row" let-column="column">
-	<span *ngIf="row && row.serviceType; else empty" [class]="[row.serviceType|lowercase, 'status-box']">{{ row.serviceType }}</span>
+	<span *ngIf="row && row.serviceType; else empty" [class]="[row.serviceType|lowercase, 'status-box']">{{
+		row.serviceType }}</span>
 </ng-template>
 
 <ng-template #serviceStartDateTemplate let-row="row" let-column="column">
-	<span  *ngIf="row && row.startDate; else empty">{{ row.startDate | date: "MM.dd.YY" }}</span>
+	<span *ngIf="row && row.startDate; else empty">{{ row.startDate | date: "MM.dd.YY" }}</span>
 </ng-template>
 
 <ng-template #serviceEndDateTemplate let-row="row" let-column="column">
-	<span  *ngIf="row && row.endDate; else empty">{{ row.endDate | date: "MM.dd.YY" }}</span>
+	<span *ngIf="row && row.endDate; else empty">{{ row.endDate | date: "MM.dd.YY" }}</span>
 </ng-template>
 
 <ng-template #serviceStatusTemplate let-row="row" let-column="column">
-	<span  *ngIf="row && row.status; else empty" [class]="[row.status|lowercase, 'status-box']" >{{ row.status }}</span>
+	<span *ngIf="row && row.status; else empty" [class]="[row.status|lowercase, 'status-box']">{{ row.status }}</span>
 </ng-template>
 
 <ng-template #empty>--</ng-template>
