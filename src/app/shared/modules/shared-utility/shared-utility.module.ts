@@ -12,6 +12,8 @@ import { MaterialModule } from '../material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CustomToastService } from './services/custom-toast.service';
 import { DisplayNamePipe } from './pipes/display-name.pipe';
+import { TmPdfViewerComponent } from './components/tm-pdf-viewer/tm-pdf-viewer.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -27,12 +29,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     AcceptFormatPipe,
     CustomToastComponent,
     BlockCopyPasteDirective,
-    DisplayNamePipe
+    DisplayNamePipe,
+    TmPdfViewerComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
+    NgxExtendedPdfViewerModule,
     TranslateModule.forChild({
       defaultLanguage: 'en',
       loader: {
