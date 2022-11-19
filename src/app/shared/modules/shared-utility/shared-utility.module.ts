@@ -14,40 +14,46 @@ import { CustomToastService } from './services/custom-toast.service';
 import { DisplayNamePipe } from './pipes/display-name.pipe';
 import { TmPdfViewerComponent } from './components/tm-pdf-viewer/tm-pdf-viewer.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-
+import { Base64StringPipe } from './pipes/base64-string.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new MultiTranslateHttpLoader(http, [
-    { prefix: "./assets/i18n/common/", suffix: ".json" },
-  ]);
+	return new MultiTranslateHttpLoader(http, [
+		{ prefix: './assets/i18n/common/', suffix: '.json' },
+	]);
 }
 
 @NgModule({
-  declarations: [
-    PortalLanguagePipe,
-    TranslateMockPipe,
-    AcceptFormatPipe,
-    CustomToastComponent,
-    BlockCopyPasteDirective,
-    DisplayNamePipe,
-    TmPdfViewerComponent
-  ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    FlexLayoutModule,
-    NgxExtendedPdfViewerModule,
-    TranslateModule.forChild({
-      defaultLanguage: 'en',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      isolate: true
-    }),
-  ],
-  exports: [PortalLanguagePipe, AcceptFormatPipe,DisplayNamePipe],
-  providers: [CustomToastService],
+	declarations: [
+		PortalLanguagePipe,
+		TranslateMockPipe,
+		AcceptFormatPipe,
+		CustomToastComponent,
+		BlockCopyPasteDirective,
+		DisplayNamePipe,
+		TmPdfViewerComponent,
+		Base64StringPipe,
+	],
+	imports: [
+		CommonModule,
+		MaterialModule,
+		FlexLayoutModule,
+		NgxExtendedPdfViewerModule,
+		TranslateModule.forChild({
+			defaultLanguage: 'en',
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient],
+			},
+			isolate: true,
+		}),
+	],
+	exports: [
+		PortalLanguagePipe,
+		AcceptFormatPipe,
+		DisplayNamePipe,
+		Base64StringPipe,
+	],
+	providers: [CustomToastService],
 })
-export class SharedUtilityModule { }
+export class SharedUtilityModule {}

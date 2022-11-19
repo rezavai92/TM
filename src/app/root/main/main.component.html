@@ -1,39 +1,29 @@
 <div class="main-container">
-	<mat-toolbar
-		class="app-toolbar"
-		style="position: sticky"
-		*ngIf="!hideToolBar"
-		color="primary"
-	>
-		
-		<div
-			class="w-100-p"
-			fxLayout="row"
-			fxLayoutAlign="space-between center"
-		>
+	<mat-toolbar class="app-toolbar" style="position: sticky" *ngIf="!hideToolBar" color="primary">
 
-		<div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="center center">
-		<button
-			*ngIf="!hideSideNavigation"
-			mat-icon-button
-			(click)="toggleDrawer()"
-			aria-label="Example icon-button with menu icon"
-		>
-			<mat-icon>menu</mat-icon>
-		</button>
-		<div class="page-header-3" fxHide.xs>Shifa BD</div>
-		<div class="page-header-3" fxHide.gt-xs>Shifa BD</div>
-		</div>
-			<div fxLayout="row" fxLayoutGap.xs="8px" fxLayoutGap="16px">
+		<div class="w-100-p" fxLayout="row" fxLayoutAlign="space-between center">
+
+			<div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="center center">
+				<button *ngIf="!hideSideNavigation" mat-icon-button (click)="toggleDrawer()"
+					aria-label="Example icon-button with menu icon">
+					<mat-icon>menu</mat-icon>
+				</button>
+				<div class="page-header-3" fxHide.xs>Shifa BD</div>
+				<div class="page-header-3" fxHide.gt-xs>Shifa BD</div>
+			</div>
+			<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap.xs="4px" fxLayoutGap.gt-xs="8px">
 				<div *ngIf="user">
 					<button mat-button [matMenuTriggerFor]="myProfileMenu">
-						<span  fxHide.xs>
+
+						<img *ngIf="user.profileImageId" style="margin-top: -4px;" height="32" width="32"
+							[src]="user.profileImageId | base64String: 'image'|async">
+
+						<img style="margin-top: -4px;" height="32" width="32" *ngIf="!user.profileImageId"
+							src="../../../assets/images/user.png" alt="">
+						<span fxHide.xs>
 							{{ user.firstName | displayName: user.lastName }}
 						</span>
-	
-						<span fxHide.gt-xs >
-							profile
-						</span>
+
 					</button>
 					<mat-menu #myProfileMenu="matMenu">
 						<div fxLayout="column" fxLayoutGap="8px">
@@ -50,18 +40,14 @@
 						</div>
 					</mat-menu>
 				</div>
-	
+
 				<div>
 					<button mat-button [matMenuTriggerFor]="menu">
-						<mat-icon
-							style="margin-top: -2px"
-							fontIcon="language"
-						></mat-icon>
+						<mat-icon style="margin-top: -4px" fontIcon="language"></mat-icon>
 						<span>
 							{{
-								selectedLanguageValue | portalLanguage | translate
-							}}</span
-						>
+							selectedLanguageValue | portalLanguage | translate
+							}}</span>
 					</button>
 					<mat-menu #menu="matMenu">
 						<ng-container *ngFor="let lang of portalLanguages">
@@ -76,40 +62,20 @@
 	</mat-toolbar>
 
 	<mat-drawer-container fxFlexFill>
-		<mat-drawer
-			*ngIf="!hideToolBar && !hideSideNavigation"
-			#drawer
-			class="side-nav"
-			[mode]="drawerMode"
-			[opened]="isDrawerOpened"
-		>
+		<mat-drawer *ngIf="!hideToolBar && !hideSideNavigation" #drawer class="side-nav" [mode]="drawerMode"
+			[opened]="isDrawerOpened">
 			<mat-list role="list">
-				<mat-list-item
-					class="w-100-p"
-					*ngFor="let navigation of navigations"
-				>
+				<mat-list-item class="w-100-p" *ngFor="let navigation of navigations">
 					<a [routerLink]="navigation.url">
-						<button
-							routerLinkActive="active"
-							color="primary"
-							class="module-btn"
-							mat-button
-						>
-							<div
-								fxLayoutGap="8px"
-								style="margin-left: 40px"
-								fxLayout="row"
-								fxLayoutAlign="start center"
-							>
-								<mat-icon
-									style="margin-top: -4px"
-									*ngIf="navigation?.icon"
-									>{{ navigation.icon }}</mat-icon
-								>
+						<button routerLinkActive="active" color="primary" class="module-btn" mat-button>
+							<div fxLayoutGap="8px" style="margin-left: 40px" fxLayout="row"
+								fxLayoutAlign="start center">
+								<mat-icon style="margin-top: -4px" *ngIf="navigation?.icon">{{ navigation.icon }}
+								</mat-icon>
 
 								<span>{{
 									navigation.translate | translate
-								}}</span>
+									}}</span>
 							</div>
 						</button>
 					</a>
