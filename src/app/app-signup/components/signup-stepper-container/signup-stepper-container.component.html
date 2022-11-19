@@ -1,5 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="w-100-p signup-page-container">
-	<div  *ngIf="!otpVerified && !allFormsFilledUp" class="sign-up-box" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start center">
+	<div *ngIf="!otpVerified && !allFormsFilledUp" class="sign-up-box" fxLayout="column" fxLayoutGap="16px"
+		fxLayoutAlign="start center">
 		<div class="page-header-1">
 			{{"SIGNUP" | translate}}
 		</div>
@@ -30,7 +31,7 @@
 					<div fxLayout="row" fxLayoutAlign="end center" fxLayoutAlign.xs="center  center" fxLayoutGap="8px">
 						<button [disabled]="!isAllFormsValid || reqForOtpLoading" mat-raised-button color="primary"
 							(click)="submitForUserRegistration()">{{"SEND_OTP" | translate}}</button>
-							<mat-spinner *ngIf="reqForOtpLoading" diameter="20"></mat-spinner>
+						<mat-spinner *ngIf="reqForOtpLoading" diameter="20"></mat-spinner>
 					</div>
 				</mat-step>
 
@@ -39,11 +40,11 @@
 
 	</div>
 
-	<div *ngIf="allFormsFilledUp && mobileNumberForOtp && !otpVerified" >
+	<div *ngIf="allFormsFilledUp && mobileNumberForOtp && !otpVerified">
 		<app-otp-form (complete)="onRegistrationComplete($event)" [mobileNumber]="mobileNumberForOtp"></app-otp-form>
 	</div>
 
 	<div class="page-header-3" *ngIf="otpVerified">
-		Your registration has been successful. We are logging you in ...
+		Your registration has been successful. You can <a routerLink="/login">Login</a> now.
 	</div>
 </div>

@@ -4,8 +4,8 @@ import { catchError, of } from 'rxjs';
 import { IHttpCommonResponse } from 'src/app/shared/models/interfaces/HttpResponse.interface';
 import { environment } from 'src/environments/environment';
 import {
-	AppointmentResponse,
-	AppointmentResponseData,
+	AppointmentListResponse,
+	AppointmentListResponseData,
 	IAppointmentSearchFilter,
 	IFetchAppointmentPayload,
 } from '../interfaces/appointment.interface';
@@ -58,7 +58,7 @@ export class AppointmentService {
 			PageSize
 		);
 		return this.http
-			.get<IHttpCommonResponse<AppointmentResponse>>(url, {
+			.get<IHttpCommonResponse<AppointmentListResponse>>(url, {
 				headers: this.headers,
 				params: params,
 				observe: 'body',
@@ -76,11 +76,12 @@ export class AppointmentService {
 			);
 	}
 
-	getLatestAppointmentDetails() {
+	getLatestAppointmentDetails(applicantUserId: string) {
 		const url = environment.Appointment + 'GetLatestAppointmentDetails';
-
-		this.http
+		const params = new HttpParams().set('applicantUserId', applicantUserId);
+		return this.http
 			.get<IHttpCommonResponse<any>>(url, {
+				params: params,
 				headers: this.headers,
 				observe: 'body',
 			})

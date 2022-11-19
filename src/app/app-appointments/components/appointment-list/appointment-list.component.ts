@@ -12,7 +12,7 @@ import {
 	ITableColumn,
 } from '../../../shared/modules/generic-table/interfaces/table.interface';
 import {
-	AppointmentResponseData,
+	AppointmentListResponseData,
 	IAppointmentSearchFilter,
 	IFetchAppointmentPayload,
 } from '../../interfaces/appointment.interface';
@@ -80,7 +80,7 @@ export class AppointmentListComponent implements OnInit {
 		this.loadAppointmentListData();
 	}
 
-	setTableConfig(data: AppointmentResponseData[]) {
+	setTableConfig(data: AppointmentListResponseData[]) {
 		this.setTableData(data);
 	}
 

@@ -23,7 +23,10 @@ import {
 import * as moment from 'moment';
 import { SharedUtilityService } from '../../shared/services/shared-utilities/shared-utility.service';
 import { IHttpCommonResponse } from '../../shared/models/interfaces/HttpResponse.interface';
-import { SpecializationRoleMapList, UserRoles } from '../../shared/constants/tm-config.constant';
+import {
+	SpecializationRoleMapList,
+	UserRoles,
+} from '../../shared/constants/tm-config.constant';
 import { DoctorsSpecializationEnum } from 'src/app/shared/shared-data/shared-enums';
 
 @Injectable({
@@ -33,13 +36,13 @@ export class SignupService {
 	constructor(
 		private http: HttpClient,
 		private _util: SharedUtilityService
-	) { }
+	) {}
 
-
- 
 	registerUser(payload: IRegisterUserPayload) {
-		const headers: any = new HttpHeaders()
-			.set('content-type', 'application/json')
+		const headers: any = new HttpHeaders().set(
+			'content-type',
+			'application/json'
+		);
 
 		return this.http.post<IHttpCommonResponse<any>>(
 			`${environment.UserService}RegisterUser`,
@@ -47,20 +50,16 @@ export class SignupService {
 			{
 				headers: headers,
 				observe: 'body',
-			//	withCredentials : true
+				//	withCredentials : true
 			}
 		);
 	}
-
-
 
 	getDateOnlyString(date: Date) {
 		const momentObject = moment(date);
 		const d = momentObject.format('yyyy-MM-DD');
 		return d.toString();
 	}
-
-
 
 	prepareFinancialInfoModelFromFormData(
 		bankGroupFormData: ITraditionalBankInfo | null,
@@ -87,8 +86,6 @@ export class SignupService {
 		return financialInfo;
 	}
 
-
-
 	mergeAllDocumentIds(
 		generalInfoFormData: ISignupGeneralInfoFormDataForRegistration,
 		professionalInfoFormData: IProfessionalInfoFormDataForRegistration
@@ -102,13 +99,9 @@ export class SignupService {
 		return documentIds;
 	}
 
-
-
 	parsePasswordFromGroup(groupData: any) {
 		return groupData.Password;
 	}
-
-	
 
 	prepareUserRegistrationPayload(
 		generalInfoFormData: ISignupGeneralInfoFormDataForRegistration,
@@ -138,21 +131,26 @@ export class SignupService {
 			),
 			ProfileImageId: generalInfoFormData.ProfileImageId,
 			PhoneNumber: generalInfoFormData.PhoneNumber,
+			Roles: [
+				this.getUserRoleFromSpecialization(
+					professionalInfoFormData.Specializations[0]
+				) as string,
+			],
 		};
 
 		payload = this._util.trimStringPropFromAnObject(payload);
 		return payload;
 	}
 
-
-	storeUploadedDocumentIdsInSignup(id : string) {
-
+	storeUploadedDocumentIdsInSignup(id: string) {
 		const stored = window.localStorage.getItem('signupUploadedDocIds');
-		const parsedIds  : string[]= stored  ? JSON.parse(stored) : [];
+		const parsedIds: string[] = stored ? JSON.parse(stored) : [];
 		parsedIds.push(id);
-		window.localStorage.setItem('signupUploadedDocIds', JSON.stringify(parsedIds));
+		window.localStorage.setItem(
+			'signupUploadedDocIds',
+			JSON.stringify(parsedIds)
+		);
 	}
-
 
 	cleanupUploadIdsFromStorage() {
 		const stored = window.localStorage.getItem('signupUploadedDocIds');
@@ -162,11 +160,11 @@ export class SignupService {
 		}
 	}
 
-
 	getUserRoleFromSpecialization(desig: DoctorsSpecializationEnum) {
-		
-		const got = SpecializationRoleMapList.filter((item) => item.specialization === desig);
+		const got = SpecializationRoleMapList.filter(
+			(item) => item.specialization === desig
+		);
 
-		return got && got.length ? got[0].role : null
+		return got && got.length ? got[0].role : null;
 	}
 }

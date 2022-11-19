@@ -18,7 +18,10 @@ import { Subscription, take } from 'rxjs';
 import { UserRoles } from '../../../shared/constants/tm-config.constant';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
-import { FinanceTypeEnum, LocalStorageSignupKeys } from '../../constants/signup.constants';
+import {
+	FinanceTypeEnum,
+	LocalStorageSignupKeys,
+} from '../../constants/signup.constants';
 import {
 	IBankInfoForm,
 	IMobileFinancialServiceInfo,
@@ -189,23 +192,30 @@ export class SignupStepperContainerComponent
 					if (res && res.isSucceed) {
 						this.allFormsFilledUp = true;
 						this.reqForOtpLoading = false;
-						this._customToastService.openSnackBar('OTP_SENT_TO_USERS_PNONE_NUMBER', true, "success");
-					}
-					else {
+						this._customToastService.openSnackBar(
+							'OTP_SENT_TO_USERS_PNONE_NUMBER',
+							true,
+							'success'
+						);
+					} else {
 						this.reqForOtpLoading = false;
-						this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
+						this._customToastService.openSnackBar(
+							'SOMETHING_WENT_WRONG',
+							true,
+							'error'
+						);
 					}
 				},
 				error: (res) => {
 					this.reqForOtpLoading = false;
-					this._customToastService.openSnackBar('SOMETHING_WENT_WRONG', true, "error");
-
+					this._customToastService.openSnackBar(
+						'SOMETHING_WENT_WRONG',
+						true,
+						'error'
+					);
 				},
 			});
-
-		
 	}
-
 
 	onRegistrationComplete(completed: boolean) {
 		this.otpVerified = completed;
