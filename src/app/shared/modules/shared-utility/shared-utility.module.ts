@@ -19,6 +19,10 @@ import { CustomDialogComponent } from './components/custom-dialog/custom-dialog.
 import { CustomDialogService } from './services/custom-dialog.service';
 import { NgxExtendedPdfViewerCommonModule } from 'ngx-extended-pdf-viewer/lib/ngx-extended-pdf-viewer-common.module';
 import { TmMediaPlayerComponent } from './components/tm-media-player/tm-media-player.component';
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 
 export function HttpLoaderFactory(http: HttpClient) {
 	return new MultiTranslateHttpLoader(http, [
@@ -37,13 +41,17 @@ export function HttpLoaderFactory(http: HttpClient) {
 		TmPdfViewerComponent,
 		Base64StringPipe,
 		CustomDialogComponent,
-  TmMediaPlayerComponent,
+		TmMediaPlayerComponent,
 	],
 	imports: [
 		CommonModule,
 		MaterialModule,
 		FlexLayoutModule,
 		NgxExtendedPdfViewerModule,
+		VgCoreModule,
+		VgControlsModule,
+		VgOverlayPlayModule,
+		VgBufferingModule,
 		TranslateModule.forChild({
 			defaultLanguage: 'en',
 			loader: {
@@ -61,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		Base64StringPipe,
 		TmPdfViewerComponent,
 		CustomDialogComponent,
+		TmMediaPlayerComponent,
 	],
 	providers: [CustomToastService, CustomDialogService],
 })

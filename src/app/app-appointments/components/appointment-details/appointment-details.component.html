@@ -1,8 +1,14 @@
 <div class="w-100-p details">
-    <button (click)="showPdf()" mat-button>Load</button>
+    <button (click)="showPdf()" mat-button>load pdf</button>
+    <button (click)="playVideo()" mat-button>load video</button>
+
 
 </div>
 
+
+<ng-template #videoDialog>
+    <app-tm-media-player class="w-100-p"></app-tm-media-player>
+</ng-template>
 <ng-template #pdfDialog>
     <app-tm-pdf-viewer [pdfStorageId]="''"></app-tm-pdf-viewer>
 </ng-template>

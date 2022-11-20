@@ -14,6 +14,8 @@ import { AppointmentService } from '../../services/appointment.service';
 export class AppointmentDetailsComponent implements OnInit {
 	latestAppointment!: any;
 	@ViewChild('pdfDialog') pdfDialog!: TemplateRef<any>;
+	@ViewChild('videoDialog') videoDialog!: TemplateRef<any>;
+	play = false;
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -51,6 +53,22 @@ export class AppointmentDetailsComponent implements OnInit {
 				body: this.pdfDialog,
 				defaultHeader: true,
 				headerTitle: 'PATIENT_DATA',
+			},
+			hasBackdrop: true,
+		};
+		this.customDialogService.open(config);
+	}
+
+	playVideo() {
+		const onClose = function () {};
+		const config: CustomDialogConfig = {
+			width: '700px',
+			panelClass: 'modal-80-p',
+			onClose: onClose.bind(this),
+			data: {
+				body: this.videoDialog,
+				defaultHeader: true,
+				headerTitle: 'PATIENT_VIDEO',
 			},
 			hasBackdrop: true,
 		};
