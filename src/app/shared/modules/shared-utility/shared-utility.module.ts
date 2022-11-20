@@ -15,6 +15,9 @@ import { DisplayNamePipe } from './pipes/display-name.pipe';
 import { TmPdfViewerComponent } from './components/tm-pdf-viewer/tm-pdf-viewer.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { Base64StringPipe } from './pipes/base64-string.pipe';
+import { CustomDialogComponent } from './components/custom-dialog/custom-dialog.component';
+import { CustomDialogService } from './services/custom-dialog.service';
+import { NgxExtendedPdfViewerCommonModule } from 'ngx-extended-pdf-viewer/lib/ngx-extended-pdf-viewer-common.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
 	return new MultiTranslateHttpLoader(http, [
@@ -32,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		DisplayNamePipe,
 		TmPdfViewerComponent,
 		Base64StringPipe,
+		CustomDialogComponent,
 	],
 	imports: [
 		CommonModule,
@@ -53,7 +57,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 		AcceptFormatPipe,
 		DisplayNamePipe,
 		Base64StringPipe,
+		TmPdfViewerComponent,
+		CustomDialogComponent,
 	],
-	providers: [CustomToastService],
+	providers: [CustomToastService, CustomDialogService],
 })
 export class SharedUtilityModule {}
