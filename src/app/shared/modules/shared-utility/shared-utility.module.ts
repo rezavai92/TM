@@ -18,6 +18,7 @@ import { Base64StringPipe } from './pipes/base64-string.pipe';
 import { CustomDialogComponent } from './components/custom-dialog/custom-dialog.component';
 import { CustomDialogService } from './services/custom-dialog.service';
 import { NgxExtendedPdfViewerCommonModule } from 'ngx-extended-pdf-viewer/lib/ngx-extended-pdf-viewer-common.module';
+import { TmMediaPlayerComponent } from './components/tm-media-player/tm-media-player.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
 	return new MultiTranslateHttpLoader(http, [
@@ -36,6 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		TmPdfViewerComponent,
 		Base64StringPipe,
 		CustomDialogComponent,
+  TmMediaPlayerComponent,
 	],
 	imports: [
 		CommonModule,
