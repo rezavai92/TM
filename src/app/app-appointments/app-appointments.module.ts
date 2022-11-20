@@ -14,6 +14,7 @@ import { AppointmentListComponent } from './components/appointment-list/appointm
 import { GenericTableModule } from '../shared/modules/generic-table/generic-table.module';
 import { AppointmentsSearchFilterComponent } from './components/appointments-search-filter/appointments-search-filter.component';
 import { AppointmentDetailsComponent } from './components/appointment-details/appointment-details.component';
+import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';
 
 const routes: Route[] = [
 	{ path: '', component: AppointmentListComponent },
@@ -43,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		PhotoUploaderModule,
 		FileUploaderModule,
 		GenericTableModule,
+		SharedUtilityModule,
 		TranslateModule.forChild({
 			defaultLanguage: 'en',
 			loader: {

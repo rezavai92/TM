@@ -11,11 +11,12 @@ import { CustomToastService } from '../../services/custom-toast.service';
 })
 export class TmPdfViewerComponent implements OnInit {
 	@Input() pdfStorageId: NullableString = null;
-	base64 = '';
+	src =
+		'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
 	constructor(private fs: FileService, private toast: CustomToastService) {}
 
 	ngOnInit(): void {
-		this.fetchPdfBase64FromStorage();
+		//this.fetchPdfBase64FromStorage();
 	}
 
 	fetchPdfBase64FromStorage() {
@@ -27,7 +28,6 @@ export class TmPdfViewerComponent implements OnInit {
 				.subscribe({
 					next: (res) => {
 						if (res && res.isSucceed) {
-							this.base64 = res.responseData;
 						} else {
 							this.toast.openSnackBar(
 								'UNABLE_TO_SHOW_ANY_PDF',

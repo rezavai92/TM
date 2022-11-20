@@ -9,208 +9,220 @@
 // }
 
 html {
-    letter-spacing: 0 !important;
+	letter-spacing: 0 !important;
 }
 
-
 .legacy-bold {
-    font-family: $custom-font-family !important;
+	font-family: $custom-font-family !important;
 }
 
 .italic {
-    font-family: $custom-font-family !important;
+	font-family: $custom-font-family !important;
 }
 
 .primary-text-color {
-    color: mat-color($mat-bs-primary, 500) !important;
+	color: mat-color($mat-bs-primary, 500) !important;
 }
 
 .calibri-font-bold {
-    font-family: $custom-font-family !important;
+	font-family: $custom-font-family !important;
 }
 
 .calibri-font-regular {
-    font-family: $custom-font-family !important;
+	font-family: $custom-font-family !important;
 }
 
 .text-uppercase {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 .text-lowercase {
-    text-transform: lowercase;
+	text-transform: lowercase;
 }
 
 .border-bottom-1 {
-    border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
 
 .border-top-1 {
-    border-top: 1px solid #ddd;
+	border-top: 1px solid #ddd;
 }
 
 .display-block {
-    display: block !important;
+	display: block !important;
 }
 
 .display-inline-block {
-    display: inline-block !important;
+	display: inline-block !important;
 }
 
 .display-none {
-    display: none !important;
+	display: none !important;
 }
 
 .p-r {
-    position: relative;
+	position: relative;
 }
 
 .p-a {
-    position: absolute;
+	position: absolute;
 }
 
 .line-height-40 {
-    line-height: 40px !important;
+	line-height: 40px !important;
 }
 
 .word-break {
-    word-break: break-word !important;
+	word-break: break-word !important;
 }
 
 .mat-white-bg {
-    border-radius: 2px;
+	border-radius: 2px;
 }
 
 .clearfix {
-    overflow: auto;
+	overflow: auto;
 }
 
 .clearfix {
-    &::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
+	&::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
 }
 
 .float-right {
-    float: right;
+	float: right;
 }
 
 .float-left {
-    float: left;
+	float: left;
 }
 
 .opacity-6 {
-    opacity: 0.6;
+	opacity: 0.6;
 }
 
 .modal-container {
-    max-height: 600px !important;
-    overflow-y: auto !important;
-    padding: 24px !important;
+	max-height: 600px !important;
+	overflow-y: auto !important;
+	padding: 24px !important;
 }
-
-
-
-
 
 .phone-number {
-    .mat-icon-button {
-        height: 30px !important;
-        width: 30px !important;
-        line-height: 30px !important;
-    }
+	.mat-icon-button {
+		height: 30px !important;
+		width: 30px !important;
+		line-height: 30px !important;
+	}
 }
 
+.modal-100-p {
+	height: 100%;
+}
+.modal-90-p {
+	height: 90%;
+}
+.modal-80-p {
+	height: 80%;
+}
+.modal-70-p {
+	height: 70%;
+}
+.modal-60-p {
+	height: 60%;
+}
+.modal-50-p {
+	height: 50%;
+}
 
-
+.modal-500 {
+	height: 500px !important;
+}
+.modal-600 {
+	height: 600px !important;
+}
+.modal-700 {
+	height: 700px !important;
+}
+.modal-800 {
+	height: 800px !important;
+}
+.modal-900 {
+	height: 900px !important;
+}
+.modal-1000 {
+	height: 1000px !important;
+}
 
 .transition {
-    transition: all 0.75s ease;
+	transition: all 0.75s ease;
 }
 
-
-
-
 .success-snackbar {
-    background: map-get($mat-bs-success , dark ) !important;
-    border-radius: 4px !important;
-    min-height: 44px !important;
+	background: map-get($mat-bs-success, dark) !important;
+	border-radius: 4px !important;
+	min-height: 44px !important;
 }
 
 .error-snackbar {
-    background: map-get($mat-bs-error , dark) ;
-    border-radius: 4px !important;
-    min-height: 44px !important;
+	background: map-get($mat-bs-error, dark);
+	border-radius: 4px !important;
+	min-height: 44px !important;
 }
 
-
-
-
 .photo-upload-config {
-    max-width: 100vw;
-    width: 720px;
+	max-width: 100vw;
+	width: 720px;
 }
 
 .letter-spacing-2 {
-    letter-spacing: 2px;
+	letter-spacing: 2px;
 }
 
 .bold-text {
-    font-weight: bold;
+	font-weight: bold;
 }
-
-
-
 
 .cus-avatar {
-    position: relative;
-    overflow: hidden;
-    height: 40px;
-    width: 40px;
-    min-width: 40px !important;
-    min-height: 40px !important;
-    line-height: 40px;
-    border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+	height: 40px;
+	width: 40px;
+	min-width: 40px !important;
+	min-height: 40px !important;
+	line-height: 40px;
+	border-radius: 50%;
 
-    img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        margin: auto;
-        height: 40px;
-        width: 40px;
-    }
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		margin: auto;
+		height: 40px;
+		width: 40px;
+	}
 }
-
-
-
 
 international-phone-number {
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 
-    div.input-group {
-        input[type="text"] {
-            padding-left: 0px !important;
-        }
-    }
+	div.input-group {
+		input[type="text"] {
+			padding-left: 0px !important;
+		}
+	}
 }
 
-
-
-
-
-
-.confirmation-modal{
-    width: auto !important;
-    min-width: 600px;
-    @media only screen and (max-width: 768px) {
-        min-width: auto;
-        width: auto !important;
-    }
+.confirmation-modal {
+	width: auto !important;
+	min-width: 600px;
+	@media only screen and (max-width: 768px) {
+		min-width: auto;
+		width: auto !important;
+	}
 }
-

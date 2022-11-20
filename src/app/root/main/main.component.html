@@ -26,15 +26,18 @@
 
 					</button>
 					<mat-menu #myProfileMenu="matMenu">
-						<div fxLayout="column" fxLayoutGap="8px">
+						<div fxLayoutAlign="start start" fxLayout="column" fxLayoutGap="8px">
+
 							<ng-container>
-								<button mat-button (click)="onLogout()">
-									Log out
+								<button class="w-100-p" (click)="goToMyProfile()" mat-button>
+									<mat-icon>account_circle</mat-icon>
+									My profile
 								</button>
 							</ng-container>
 							<ng-container>
-								<button (click)="goToMyProfile()" mat-button>
-									My profile
+								<button class="w-100-p" mat-button (click)="onLogout()">
+									<mat-icon>logout</mat-icon>
+									Log out
 								</button>
 							</ng-container>
 						</div>

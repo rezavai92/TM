@@ -1,3 +1,8 @@
-<div>
-    Appointment details
+<div class="w-100-p details">
+    <button (click)="showPdf()" mat-button>Load</button>
+
 </div>
+
+<ng-template #pdfDialog>
+    <app-tm-pdf-viewer [pdfStorageId]="''"></app-tm-pdf-viewer>
+</ng-template>
