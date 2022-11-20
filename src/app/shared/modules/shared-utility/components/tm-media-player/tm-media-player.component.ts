@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { take } from 'rxjs';
+import { FileService } from '../../../../../shared/services/file-service/file.service';
+import { CustomToastService } from '../../services/custom-toast.service';
 
 @Component({
   selector: 'app-tm-media-player',
@@ -7,9 +10,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TmMediaPlayerComponent implements OnInit {
 
-  constructor() { }
+  @Input() fileStorageId!: string;
+  constructor(private fs : FileService,private toast : CustomToastService) { }
 
   ngOnInit(): void {
   }
+
+  fetchFileFromStorage() {
+		const fileId = this.fileStorageId;
+		if (fileId) {
+			this.fs
+				.getFile(fileId)
+				.pipe(take(1))
+				.subscribe({
+					next: (res) => {
+						if (res && res.isSucceed) {
+						} else {
+							this.toast.openSnackBar(
+								'UNABLE_TO_FETCH_FILE',
+								true,
+								'error'
+							);
+						}
+					},
+					error: (err) => {
+						this.toast.openSnackBar(
+							'SOMETHING_WENT_WRONG',
+							true,
+							'error'
+						);
+					},
+				});
+		} else {
+			this.toast.openSnackBar('EMPTY_FILE', true, 'error');
+		}
+	}
+  
 
 }

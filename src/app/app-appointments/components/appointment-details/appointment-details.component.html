@@ -1,4 +1,35 @@
-<div class="w-100-p details">
+<div class="w-100-p details" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start start">
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100-p top-header">
+       
+        <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="center center">
+            <button style="margin-top: -4px;" mat-icon-button> <mat-icon style="font-size: 32px;">keyboard_arrow_left</mat-icon> </button>
+            <div class="applicant-name"> {{'Patient name'}}</div>
+        </div>
+        <div>
+            <button mat-raised-button color="primary">{{"RESOLVE" | translate}}</button> &nbsp; &nbsp;
+            <button mat-raised-button color="accent" >{{"FEEDBACK" | translate}}</button>
+        </div>
+    </div>
+
+    <div class="w-100-p data-tab">
+        <mat-tab-group  mat-stretch-tabs="false" mat-align-tabs="start">
+            <mat-tab   label="First"> 
+                
+                <div class="current-data">
+                    {{'CURRENT_DATA' | translate}}
+                </div>
+              
+            
+            </mat-tab>
+            <mat-tab label="Second"> {{'HISTORY' | translate}} </mat-tab>
+
+          </mat-tab-group>
+          
+    </div>
+
+
+
     <button (click)="showPdf()" mat-button>load pdf</button>
     <button (click)="playVideo()" mat-button>load video</button>
 
