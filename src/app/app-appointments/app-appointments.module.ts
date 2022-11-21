@@ -16,6 +16,9 @@ import { AppointmentsSearchFilterComponent } from './components/appointments-sea
 import { AppointmentDetailsComponent } from './components/appointment-details/appointment-details.component';
 import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';
 import { AppointmentCapsuleComponent } from './components/appointment-capsule/appointment-capsule.component';
+import { HealthMonitorReadSectionComponent } from './components/health-monitor-read-section/health-monitor-read-section.component';
+import { StethoscopeReadSectionComponent } from './components/stethoscope-read-section/stethoscope-read-section.component';
+import { OtoscopeReadSectionComponent } from './components/otoscope-read-section/otoscope-read-section.component';
 
 const routes: Route[] = [
 	{ path: '', component: AppointmentListComponent },
@@ -35,6 +38,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 		AppointmentsSearchFilterComponent,
 		AppointmentDetailsComponent,
   AppointmentCapsuleComponent,
+  HealthMonitorReadSectionComponent,
+  StethoscopeReadSectionComponent,
+  OtoscopeReadSectionComponent,
 	],
 	imports: [
 		CommonModule,
