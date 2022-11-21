@@ -5,7 +5,7 @@ import { IHttpCommonResponse } from 'src/app/shared/models/interfaces/HttpRespon
 import { environment } from 'src/environments/environment';
 import {
 	AppointmentListResponse,
-	AppointmentListResponseData,
+	IAppointmentDetailsResponse,
 	IAppointmentSearchFilter,
 	IFetchAppointmentPayload,
 } from '../interfaces/appointment.interface';
@@ -76,12 +76,14 @@ export class AppointmentService {
 			);
 	}
 
-	getLatestAppointmentDetails(applicantUserId: string) {
+	getAppointmentDetails(appointmentId: string, patientId: string) {
 		//debugger;
-		const url = environment.Appointment + 'GetLatestAppointmentDetails';
-		const params = new HttpParams().set('patientId', applicantUserId);
+		const url = environment.Appointment + 'GetAppointmentDetails';
+		const params = new HttpParams()
+			.set('patientId', patientId)
+			.set('appointmentId', appointmentId);
 		return this.http
-			.get<IHttpCommonResponse<any>>(url, {
+			.get<IHttpCommonResponse<IAppointmentDetailsResponse>>(url, {
 				params: params,
 				headers: this.headers,
 				observe: 'body',

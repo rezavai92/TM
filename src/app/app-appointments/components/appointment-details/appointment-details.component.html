@@ -1,10 +1,10 @@
 <div class="w-100-p details" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start start">
-
+    <mat-progress-bar mode="indeterminate" *ngIf="detailsLoading"></mat-progress-bar>
     <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100-p top-header">
        
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="center center">
-            <button style="margin-top: -4px;" mat-icon-button> <mat-icon style="font-size: 32px;">keyboard_arrow_left</mat-icon> </button>
-            <div class="applicant-name"> {{'Patient name'}}</div>
+            <button  (click)="goBackToListPage()" style="margin-top: -4px;" mat-icon-button> <mat-icon style="font-size: 32px;">keyboard_arrow_left</mat-icon> </button>
+            <div class="applicant-name"> {{currentAppointmentDetails?.applicantDisplayName}}</div>
         </div>
         <div>
             <button mat-raised-button color="primary">{{"RESOLVE" | translate}}</button> &nbsp; &nbsp;

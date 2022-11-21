@@ -15,10 +15,11 @@ import { GenericTableModule } from '../shared/modules/generic-table/generic-tabl
 import { AppointmentsSearchFilterComponent } from './components/appointments-search-filter/appointments-search-filter.component';
 import { AppointmentDetailsComponent } from './components/appointment-details/appointment-details.component';
 import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';
+import { AppointmentCapsuleComponent } from './components/appointment-capsule/appointment-capsule.component';
 
 const routes: Route[] = [
 	{ path: '', component: AppointmentListComponent },
-	{ path: 'details/:id', component: AppointmentDetailsComponent },
+	{ path: 'details/:appointmentId/:applicantUserId', component: AppointmentDetailsComponent },
 ];
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		AppointmentListComponent,
 		AppointmentsSearchFilterComponent,
 		AppointmentDetailsComponent,
+  AppointmentCapsuleComponent,
 	],
 	imports: [
 		CommonModule,

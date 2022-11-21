@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { CustomDialogConfig } from 'src/app/shared/models/interfaces/custom-dialog-config.interface';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
+import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
 import { AppointmentService } from '../../services/appointment.service';
 
 @Component({
@@ -12,7 +13,8 @@ import { AppointmentService } from '../../services/appointment.service';
 	styleUrls: ['./appointment-details.component.scss'],
 })
 export class AppointmentDetailsComponent implements OnInit {
-	latestAppointment!: any;
+	currentAppointmentDetails!: any;
+	detailsLoading = true;
 	@ViewChild('pdfDialog') pdfDialog!: TemplateRef<any>;
 	@ViewChild('videoDialog') videoDialog!: TemplateRef<any>;
 	play = false;
@@ -20,25 +22,38 @@ export class AppointmentDetailsComponent implements OnInit {
 		private router: Router,
 		private route: ActivatedRoute,
 		private appointmentService: AppointmentService,
-		private customDialogService: CustomDialogService
+		private customDialogService: CustomDialogService,
+		private toast: CustomToastService
 	) {
 		console.log('created details');
 	}
 
 	ngOnInit(): void {
 		//debugger;
-		const applicantUserid = this.route.snapshot.params['id'];
-		this.loadLatestAppointmentDetails(applicantUserid);
+		const applicantUserid = this.route.snapshot.params['applicantUserId'];
+		const appointmentId = this.route.snapshot.params['appointmentId'];
+		this.loadAppointmentDetails(appointmentId, applicantUserid);
 	}
 
-	loadLatestAppointmentDetails(applicantUserId: string) {
+	goBackToListPage() {
+		this.router.navigateByUrl('/appointments');
+	}
+
+	loadAppointmentDetails(appointmentId: string, applicantUserId: string) {
 		this.appointmentService
-			.getLatestAppointmentDetails(applicantUserId)
+			.getAppointmentDetails(appointmentId, applicantUserId)
 			.pipe(take(1))
 			.subscribe((res) => {
 				if (res && res.isSucceed) {
-					this.latestAppointment = res.responseData;
+					this.currentAppointmentDetails = res.responseData;
+				} else {
+					this.toast.openSnackBar(
+						'FAILED_TO_LOAD_DATA',
+						true,
+						'error'
+					);
 				}
+				this.detailsLoading = false;
 			});
 	}
 
