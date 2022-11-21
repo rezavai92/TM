@@ -19,13 +19,16 @@
             <mat-tab [label]="'CURRENT_DATA' | translate">
 
                 <div class="current-data">
-                    {{'CURRENT_DATA' | translate}}
                     <app-appointment-capsule></app-appointment-capsule>
                 </div>
 
 
             </mat-tab>
-            <mat-tab [label]="'HISTORY'|translate"> {{'HISTORY' | translate}} </mat-tab>
+            <mat-tab [label]="'HISTORY'|translate"> 
+                <div fxLayout="column" fxLayoutAlign="center center" class="history">
+                    <div class="page-header-1">Under construction...</div>    
+                </div>
+            </mat-tab>
 
         </mat-tab-group>
 

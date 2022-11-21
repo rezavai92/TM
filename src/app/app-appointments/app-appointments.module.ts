@@ -19,10 +19,14 @@ import { AppointmentCapsuleComponent } from './components/appointment-capsule/ap
 import { HealthMonitorReadSectionComponent } from './components/health-monitor-read-section/health-monitor-read-section.component';
 import { StethoscopeReadSectionComponent } from './components/stethoscope-read-section/stethoscope-read-section.component';
 import { OtoscopeReadSectionComponent } from './components/otoscope-read-section/otoscope-read-section.component';
+import { AppointmentCapsuleGenericItemComponent } from './components/appointment-capsule-generic-item/appointment-capsule-generic-item.component';
 
 const routes: Route[] = [
 	{ path: '', component: AppointmentListComponent },
-	{ path: 'details/:appointmentId/:applicantUserId', component: AppointmentDetailsComponent },
+	{
+		path: 'details/:appointmentId/:applicantUserId',
+		component: AppointmentDetailsComponent,
+	},
 ];
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,10 +41,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 		AppointmentListComponent,
 		AppointmentsSearchFilterComponent,
 		AppointmentDetailsComponent,
-  AppointmentCapsuleComponent,
-  HealthMonitorReadSectionComponent,
-  StethoscopeReadSectionComponent,
-  OtoscopeReadSectionComponent,
+		AppointmentCapsuleComponent,
+		HealthMonitorReadSectionComponent,
+		StethoscopeReadSectionComponent,
+		OtoscopeReadSectionComponent,
+  AppointmentCapsuleGenericItemComponent,
 	],
 	imports: [
 		CommonModule,
