@@ -1,9 +1,9 @@
 <div fxLayout="column" fxLayoutAlign="start start" class="w-100-p capsule-generic-item">
     <div class="w-100-p title-box">
-        {{'SIX_IN_ONE_HEALTH_MONITOR' | translate}}
+        {{ title | translate}}
     </div>
 
-    <div *ngIf="capsuleData" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="8px" class="body">
+    <div *ngIf="capsuleData;else empty" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="8px" class="body">
         <ng-container *ngFor="let data of capsuleData">
             <div [ngSwitch]="data.type">
                 <ng-container *ngSwitchCase="'plain'">
@@ -22,4 +22,7 @@
         </ng-container>
     </div>
 
+    <ng-template #empty>
+        <span class="page-header-1">Under Construction</span>
+    </ng-template>
 </div>

@@ -17,7 +17,10 @@
      "FEEDBACK" : "Feedback",
      "CURRENT_DATA" : "Current Data",
      "HISTORY" : "History",
-     "SIX_IN_ONE_HEALTH_MONITOR" : "Six In One Health Monitor"
+     "SIX_IN_ONE_HEALTH_MONITOR" : "Six In One Health Monitor",
+     "STETHOSCOPE" : "Stethoscope",
+     "OTOSCOPE" : "Otoscope",
+     "DOCTORS_FEEDBACK" : "Doctor's Feedback"
 
 
 }

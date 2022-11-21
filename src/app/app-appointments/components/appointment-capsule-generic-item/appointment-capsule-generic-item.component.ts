@@ -9,6 +9,7 @@ import { ICapsuleItemData } from '../../interfaces/capsule.interface';
 export class AppointmentCapsuleGenericItemComponent implements OnInit {
 	customTemplate!: TemplateRef<any>;
 	@Input() capsuleData!: ICapsuleItemData[];
+	@Input() title = '';
 	constructor() {}
 
 	ngOnInit(): void {
