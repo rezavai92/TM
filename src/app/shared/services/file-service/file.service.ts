@@ -2,7 +2,10 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, of } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { FileUploadPayload } from '../../models/interfaces/file-service.interface';
+import {
+	FileUploadPayload,
+	IGetFileResponse,
+} from '../../models/interfaces/file-service.interface';
 import { IHttpCommonResponse } from '../../models/interfaces/HttpResponse.interface';
 
 @Injectable({
@@ -43,7 +46,7 @@ export class FileService {
 	getFile(fileId: string) {
 		const params: HttpParams = new HttpParams().set('fileId', fileId);
 		return this.http
-			.get<IHttpCommonResponse<any>>(
+			.get<IHttpCommonResponse<IGetFileResponse>>(
 				`${environment.StorageService}GetFile`,
 				{ headers: this.headers, params, observe: 'body' }
 			)

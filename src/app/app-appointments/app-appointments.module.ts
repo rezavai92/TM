@@ -20,6 +20,7 @@ import { HealthMonitorReadSectionComponent } from './components/health-monitor-r
 import { StethoscopeReadSectionComponent } from './components/stethoscope-read-section/stethoscope-read-section.component';
 import { OtoscopeReadSectionComponent } from './components/otoscope-read-section/otoscope-read-section.component';
 import { AppointmentCapsuleGenericItemComponent } from './components/appointment-capsule-generic-item/appointment-capsule-generic-item.component';
+import { AppointmentCapsuleGenericService } from './services/appointment-capsule-generic.service';
 
 const routes: Route[] = [
 	{ path: '', component: AppointmentListComponent },
@@ -45,7 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		HealthMonitorReadSectionComponent,
 		StethoscopeReadSectionComponent,
 		OtoscopeReadSectionComponent,
-  AppointmentCapsuleGenericItemComponent,
+		AppointmentCapsuleGenericItemComponent,
 	],
 	imports: [
 		CommonModule,
@@ -58,6 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		FileUploaderModule,
 		GenericTableModule,
 		SharedUtilityModule,
+
 		TranslateModule.forChild({
 			defaultLanguage: 'en',
 			loader: {
@@ -68,5 +70,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 			isolate: true,
 		}),
 	],
+	providers: [AppointmentCapsuleGenericService],
 })
 export class AppAppointmentsModule {}

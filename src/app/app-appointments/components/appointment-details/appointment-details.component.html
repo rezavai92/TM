@@ -1,16 +1,17 @@
 <div class="w-100-p details" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start start">
     <mat-progress-bar mode="indeterminate" *ngIf="detailsLoading"></mat-progress-bar>
-    <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100-p top-header">
+    <div *ngIf="currentAppointmentDetails" fxLayout="row" fxLayoutAlign="space-between center"
+        class="w-100-p top-header">
 
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="center center">
             <button (click)="goBackToListPage()" style="margin-top: -4px;" mat-icon-button>
                 <mat-icon style="font-size: 32px;">keyboard_arrow_left</mat-icon>
             </button>
-            <div class="applicant-name"> {{currentAppointmentDetails?.applicantDisplayName}}</div>
+            <div class="applicant-name"> {{currentAppointmentDetails.applicantDisplayName}}</div>
         </div>
         <div>
             <button mat-raised-button color="primary">{{"RESOLVE" | translate}}</button> &nbsp; &nbsp;
-            <button mat-raised-button color="accent">{{"FEEDBACK" | translate}}</button>
+            <button mat-raised-button color="accent" (click)="onFeedback()">{{"FEEDBACK" | translate}}</button>
         </div>
     </div>
 
@@ -19,14 +20,15 @@
             <mat-tab [label]="'CURRENT_DATA' | translate">
 
                 <div class="current-data">
-                    <app-appointment-capsule></app-appointment-capsule>
+                    <app-appointment-capsule *ngIf="currentAppointmentDetails"
+                        [appointmentData]="currentAppointmentDetails"></app-appointment-capsule>
                 </div>
 
 
             </mat-tab>
-            <mat-tab [label]="'HISTORY'|translate"> 
+            <mat-tab [label]="'HISTORY'|translate">
                 <div fxLayout="column" fxLayoutAlign="center center" class="history">
-                    <div class="page-header-1">Under construction...</div>    
+                    <div class="page-header-1">Under construction...</div>
                 </div>
             </mat-tab>
 
@@ -46,6 +48,10 @@
 <ng-template #videoDialog>
     <app-tm-media-player class="w-100-p"></app-tm-media-player>
 </ng-template>
-<ng-template #pdfDialog>
-    <app-tm-pdf-viewer [pdfStorageId]="''"></app-tm-pdf-viewer>
+
+
+<ng-template #feedbackDialog>
+    <div fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="center center" class="page-header-1 feedback-dialog">
+        Under Construction...
+    </div>
 </ng-template>

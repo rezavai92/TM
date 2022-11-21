@@ -6,5 +6,16 @@
     "START_DATE" : "Start Date",
     "END_DATE" : "End Date",
     "STATUS" : "Status",
-    "SEARCH_BY_PATIENT_NAME" : "Search by patient name"
+    "SEARCH_BY_PATIENT_NAME" : "Search by patient name",
+    "ECG" : "ECG",
+    "SPO2" : "spO2",
+    "TEMPERATURE" : "Temparature",
+    "HEART_RATE" : "Heart Rate",
+    "GLUCOSE_MONITORING" : "Glucose Monitoring",
+    "BLOOD_PRESSURE" :  "Blood Pressure",
+     "RESOLVE" : "Resolve",
+     "FEEDBACK" : "Feedback",
+     "CURRENT_DATA" : "Current Data",
+     "HISTORY" : "History",
+     "SIX_IN_ONE_HEALTH_MONITOR" : "Six In One Health Monitor"
 }

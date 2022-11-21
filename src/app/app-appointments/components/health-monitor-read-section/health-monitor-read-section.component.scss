@@ -5,3 +5,19 @@
 :host {
 	width: 100%;
 }
+.label {
+	font-size: 12px;
+	font-weight: 600;
+}
+.bp-template {
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+	table,
+	th,
+	td {
+		border: 1px solid #ddd;
+		padding: 8px;
+	}
+}

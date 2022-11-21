@@ -16,7 +16,7 @@
 					<button mat-button [matMenuTriggerFor]="myProfileMenu">
 
 						<img *ngIf="user.profileImageId" style="margin-top: -4px;" height="32" width="32"
-							[src]="user.profileImageId | base64String: 'image'|async">
+							[src]="user.profileImageId | base64String |async">
 
 						<img style="margin-top: -4px;" height="32" width="32" *ngIf="!user.profileImageId"
 							src="../../../assets/images/user.png" alt="">

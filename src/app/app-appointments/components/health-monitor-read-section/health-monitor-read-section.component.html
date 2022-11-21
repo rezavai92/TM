@@ -1,3 +1,46 @@
 <div class="health-monitor">
-    <app-appointment-capsule-generic-item></app-appointment-capsule-generic-item>
+    <app-appointment-capsule-generic-item [capsuleData]="capsuleData"></app-appointment-capsule-generic-item>
 </div>
+
+
+
+<ng-template #ecgTemplate>
+    <div class="ecg-template" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+        <div class="label">
+            {{"ECG" | translate}} &nbsp; : &nbsp;
+        </div>
+        <div>
+            {{healthMonitorData.ecgPdfFileName}}
+        </div>
+
+        <div>
+            <button mat-raised-button color="primary" (click)="openEcgPdf()">View Pdf</button>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #bpTemplate>
+    <div class="bp-template" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+        <div class="label">
+            {{"BLOOD_PRESSURE" | translate}} &nbsp; : &nbsp;
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Systolic</th>
+                    <th>Diastolic</th>
+                </tr>
+
+                <tr>
+                    <td>{{healthMonitorData.bloodPressureHigh}} </td>
+                    <td> {{healthMonitorData.bloodPressureLow}} </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #ecgPdfDialog>
+    <app-tm-pdf-viewer [url]="$any(healthMonitorData.ecgPdfFileId)"></app-tm-pdf-viewer>
+</ng-template>

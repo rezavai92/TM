@@ -3,27 +3,23 @@
         {{'SIX_IN_ONE_HEALTH_MONITOR' | translate}}
     </div>
 
-    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="8px" class="body">
-        <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start start" class="ecg">
-            <div class="label">ECG</div>
-            <div class="value">xyz.pdf</div>
-            <div>view pdf</div>
-        </div>
-        <div class="spo2">
+    <div *ngIf="capsuleData" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="8px" class="body">
+        <ng-container *ngFor="let data of capsuleData">
+            <div [ngSwitch]="data.type">
+                <ng-container *ngSwitchCase="'plain'">
+                    <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start start" class="ecg">
+                        <div *ngIf="data && data.labelKey" class="label">{{ $any(data.labelKey) | translate}} &nbsp; :
+                            &nbsp; </div>
+                        <div *ngIf="data" class="value">{{data.value }}</div>
+                    </div>
+                </ng-container>
 
-        </div>
-        <div class="temparature">
+                <ng-container *ngSwitchCase="'template'">
+                    <ng-container [ngTemplateOutlet]="$any(data.customTemplate)"></ng-container>
+                </ng-container>
 
-        </div>
-        <div class="bp">
-
-        </div>
-
-        <div class="heart-rate">
-
-        </div>
-        <div class="glucose-monitor">
-
-        </div>
+            </div>
+        </ng-container>
     </div>
+
 </div>

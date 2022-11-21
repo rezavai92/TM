@@ -5,6 +5,7 @@ import { take } from 'rxjs';
 import { CustomDialogConfig } from 'src/app/shared/models/interfaces/custom-dialog-config.interface';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
 import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
+import { IAppointmentDetailsResponse } from '../../interfaces/appointment.interface';
 import { AppointmentService } from '../../services/appointment.service';
 
 @Component({
@@ -13,10 +14,11 @@ import { AppointmentService } from '../../services/appointment.service';
 	styleUrls: ['./appointment-details.component.scss'],
 })
 export class AppointmentDetailsComponent implements OnInit {
-	currentAppointmentDetails!: any;
+	currentAppointmentDetails!: IAppointmentDetailsResponse;
 	detailsLoading = true;
 	@ViewChild('pdfDialog') pdfDialog!: TemplateRef<any>;
 	@ViewChild('videoDialog') videoDialog!: TemplateRef<any>;
+	@ViewChild('feedbackDialog') feedbackDialog!: TemplateRef<any>;
 	play = false;
 	constructor(
 		private router: Router,
@@ -45,7 +47,8 @@ export class AppointmentDetailsComponent implements OnInit {
 			.pipe(take(1))
 			.subscribe((res) => {
 				if (res && res.isSucceed) {
-					this.currentAppointmentDetails = res.responseData;
+					this.currentAppointmentDetails =
+						res.responseData as IAppointmentDetailsResponse;
 				} else {
 					this.toast.openSnackBar(
 						'FAILED_TO_LOAD_DATA',
@@ -84,6 +87,22 @@ export class AppointmentDetailsComponent implements OnInit {
 				body: this.videoDialog,
 				defaultHeader: true,
 				headerTitle: 'PATIENT_VIDEO',
+			},
+			hasBackdrop: true,
+		};
+		this.customDialogService.open(config);
+	}
+
+	onFeedback() {
+		const onClose = function () {};
+		const config: CustomDialogConfig = {
+			width: '700px',
+			panelClass: 'modal-80-p',
+			onClose: onClose.bind(this),
+			data: {
+				body: this.feedbackDialog,
+				defaultHeader: true,
+				headerTitle: 'DOCTORS_FEEDBACK',
 			},
 			hasBackdrop: true,
 		};

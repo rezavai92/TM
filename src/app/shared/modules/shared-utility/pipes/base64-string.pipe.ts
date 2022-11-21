@@ -7,16 +7,13 @@ import { FileService } from 'src/app/shared/services/file-service/file.service';
 })
 export class Base64StringPipe implements PipeTransform {
 	constructor(private fs: FileService) {}
-	transform(imageStorageId: string | null, format: 'image' | 'application') {
+	transform(imageStorageId: string | null) {
 		if (imageStorageId) {
 			return this.fs.getFile(imageStorageId).pipe(
 				map((res) => {
-					if (res && res.isSucceed && res.responseData.base64) {
-						const extension =
-							res.responseData.fileName.split('.')[1];
-						const base64code = res.responseData.base64;
-						const str = `data:${format}/${extension};base64, ${base64code}`;
-						return str;
+					if (res && res.isSucceed && res.responseData?.url) {
+						const url = res.responseData.url;
+						return url;
 					} else {
 						return null;
 					}

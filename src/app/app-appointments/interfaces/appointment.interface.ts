@@ -35,10 +35,10 @@ export interface PatientFile {
 }
 
 export interface ISixInOneMonitor {
-	ecgFileName: string;
-	ecgFileId: string;
+	ecgPdfFileName: string;
+	ecgPdfFileId: string;
 	spO2: number;
-	temerature: number;
+	temperature: number;
 	bloodPressureLow: number;
 	bloodPressureHigh: number;
 	heartRate: number;

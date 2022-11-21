@@ -22,7 +22,7 @@
 			//padding: 16px 24px;
 		}
 
-		.history{
+		.history {
 			padding: 16px;
 			height: 300px;
 		}
@@ -31,4 +31,9 @@
 
 :host {
 	height: 100%;
+}
+
+.feedback-dialog {
+	height: 100%;
+	width: 100%;
 }
