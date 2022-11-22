@@ -33,5 +33,7 @@
     "ONLINE" : "Online",
     "OFFLINE" : "Offline",
     "NO_PDF_FILE_FOUND" : "No pdf file found",
-    "EMPTY_FILE" : "Empty file"
+    "EMPTY_FILE" : "Empty file",
+    "NO_MEDIA_FILE_FOUND" : "No file found",
+    "PLAY" : "Play"
 }

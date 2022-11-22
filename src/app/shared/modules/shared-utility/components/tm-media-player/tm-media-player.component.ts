@@ -11,6 +11,7 @@ import { CustomToastService } from '../../services/custom-toast.service';
 export class TmMediaPlayerComponent implements OnInit {
 	@Input() fileStorageId!: string;
 	src = '';
+	loading = true;
 	@Input() type!: 'audio' | 'video';
 	constructor(private fs: FileService, private toast: CustomToastService) {}
 
@@ -36,8 +37,10 @@ export class TmMediaPlayerComponent implements OnInit {
 								'error'
 							);
 						}
+						this.loading = false;
 					},
 					error: (err) => {
+						this.loading = false;
 						this.toast.openSnackBar(
 							'SOMETHING_WENT_WRONG',
 							true,
@@ -46,6 +49,7 @@ export class TmMediaPlayerComponent implements OnInit {
 					},
 				});
 		} else {
+			this.loading = false;
 			this.toast.openSnackBar('EMPTY_FILE', true, 'error');
 		}
 	}

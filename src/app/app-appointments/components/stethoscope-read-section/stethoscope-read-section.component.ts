@@ -5,6 +5,7 @@ import {
 	TemplateRef,
 	ViewChild,
 } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CustomDialogConfig } from 'src/app/shared/models/interfaces/custom-dialog-config.interface';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
 import { IStethoscope } from '../../interfaces/appointment.interface';
@@ -23,7 +24,10 @@ export class StethoscopeReadSectionComponent implements OnInit {
 	capsuleData!: ICapsuleItemData[];
 	heartSoundStorageId = '';
 	audioFileStorageId = '';
-	constructor(private customDialogService: CustomDialogService) {}
+	constructor(
+		private customDialogService: CustomDialogService,
+		private translateService: TranslateService
+	) {}
 
 	ngOnInit(): void {
 		this.prepareCapsuleData();
@@ -91,7 +95,7 @@ export class StethoscopeReadSectionComponent implements OnInit {
 			data: {
 				body: this.mediaDialog,
 				defaultHeader: true,
-				headerTitle: value.labelKey,
+				headerTitle: this.translateService.instant(value.labelKey),
 			},
 			hasBackdrop: true,
 		};

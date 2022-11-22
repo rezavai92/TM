@@ -21,7 +21,10 @@
      "STETHOSCOPE" : "Stethoscope",
      "OTOSCOPE" : "Otoscope",
      "DOCTORS_FEEDBACK" : "Doctor's Feedback",
-     "PATIENT_ECG_DATA" : "ECG Data"
+     "PATIENT_ECG_DATA" : "ECG Data",
+     "OTOSCOPE_VIDEO" : "Video from Otoscope",
+     "HEART_SOUND" : "Heart Sound",
+     "LUNG_SOUND" : "Lung Sound"
 
 
 }

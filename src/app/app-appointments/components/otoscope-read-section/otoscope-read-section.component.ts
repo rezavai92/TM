@@ -5,6 +5,7 @@ import {
 	TemplateRef,
 	ViewChild,
 } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CustomDialogConfig } from 'src/app/shared/models/interfaces/custom-dialog-config.interface';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
 import { IOtoscope } from '../../interfaces/appointment.interface';
@@ -23,7 +24,10 @@ export class OtoscopeReadSectionComponent implements OnInit {
 
 	capsuleData!: ICapsuleItemData[];
 	videoFileStorageId!: string;
-	constructor(private dialog: CustomDialogService) {}
+	constructor(
+		private dialog: CustomDialogService,
+		private translateService: TranslateService
+	) {}
 
 	ngOnInit(): void {
 		this.prepareCapsuleData();
@@ -73,12 +77,12 @@ export class OtoscopeReadSectionComponent implements OnInit {
 		const onClose = function () {};
 		const config: CustomDialogConfig = {
 			width: '600px',
-			panelClass: 'modal-50-p',
+			panelClass: 'modal-60-p',
 			onClose: onClose.bind(this),
 			data: {
 				body: this.mediaDialog,
 				defaultHeader: true,
-				headerTitle: value.labelKey,
+				headerTitle: this.translateService.instant(value.labelKey),
 			},
 			hasBackdrop: true,
 		};
