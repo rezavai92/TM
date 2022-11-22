@@ -1,4 +1,30 @@
 <div class="otoscope">
-    <app-appointment-capsule-generic-item [title]="'OTOSCOPE'">
+    <app-appointment-capsule-generic-item [title]="'OTOSCOPE'" [capsuleData]="capsuleData">
     </app-appointment-capsule-generic-item>
 </div>
+
+<ng-template let-value="value" #videoTemplate>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+        <div class="label">
+            {{value.labelKey | translate}} &nbsp; : &nbsp;
+        </div>
+
+        <div>
+            {{value.fileName}}
+        </div>
+
+        <div>
+            <button (click)="playVideo(value)" color="primary" mat-icon-button>
+                <mat-icon>play_circle</mat-icon> &nbsp;
+                <span>{{'PLAY' | translate}}</span>
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #mediaDialog>
+    <div fxLayout="row" fxLayoutAlign="center center" class="media-dialog">
+        <app-tm-media-player [type]="'video'" [fileStorageId]="videoFileStorageId">
+        </app-tm-media-player>
+    </div>
+</ng-template>

@@ -15,7 +15,8 @@
                 </ng-container>
 
                 <ng-container *ngSwitchCase="'template'">
-                    <ng-container [ngTemplateOutlet]="$any(data.customTemplate)"></ng-container>
+                    <ng-container [ngTemplateOutlet]="$any(data.customTemplate)"
+                        [ngTemplateOutletContext]="{ value : data.value }"></ng-container>
                 </ng-container>
 
             </div>

@@ -1,4 +1,30 @@
 <div class="stethoscope">
-    <app-appointment-capsule-generic-item [title]="'STETHOSCOPE'">
+    <app-appointment-capsule-generic-item [title]="'STETHOSCOPE'" [capsuleData]="capsuleData">
     </app-appointment-capsule-generic-item>
 </div>
+
+<ng-template let-value="value" #mp3Template>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+        <div class="label">
+            {{value.labelKey | translate}} &nbsp; : &nbsp;
+        </div>
+
+        <div>
+            {{value.fileName}}
+        </div>
+
+        <div>
+            <button (click)="playAudio(value)" color="primary" mat-icon-button>
+                <mat-icon>play_circle</mat-icon> &nbsp;
+                <span>{{'PLAY' | translate}}</span>
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #mediaDialog>
+    <div fxLayout="row" fxLayoutAlign="center center" class="media-dialog">
+        <app-tm-media-player [type]="'audio'" [fileStorageId]="audioFileStorageId">
+        </app-tm-media-player>
+    </div>
+</ng-template>

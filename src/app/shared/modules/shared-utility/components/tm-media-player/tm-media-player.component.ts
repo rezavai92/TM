@@ -4,19 +4,21 @@ import { FileService } from '../../../../../shared/services/file-service/file.se
 import { CustomToastService } from '../../services/custom-toast.service';
 
 @Component({
-  selector: 'app-tm-media-player',
-  templateUrl: './tm-media-player.component.html',
-  styleUrls: ['./tm-media-player.component.scss']
+	selector: 'app-tm-media-player',
+	templateUrl: './tm-media-player.component.html',
+	styleUrls: ['./tm-media-player.component.scss'],
 })
 export class TmMediaPlayerComponent implements OnInit {
+	@Input() fileStorageId!: string;
+	src = '';
+	@Input() type!: 'audio' | 'video';
+	constructor(private fs: FileService, private toast: CustomToastService) {}
 
-  @Input() fileStorageId!: string;
-  constructor(private fs : FileService,private toast : CustomToastService) { }
+	ngOnInit(): void {
+		this.fetchFileFromStorage();
+	}
 
-  ngOnInit(): void {
-  }
-
-  fetchFileFromStorage() {
+	fetchFileFromStorage() {
 		const fileId = this.fileStorageId;
 		if (fileId) {
 			this.fs
@@ -25,6 +27,8 @@ export class TmMediaPlayerComponent implements OnInit {
 				.subscribe({
 					next: (res) => {
 						if (res && res.isSucceed) {
+							this.src = res.responseData?.url as string;
+							console.log('src', this.src);
 						} else {
 							this.toast.openSnackBar(
 								'UNABLE_TO_FETCH_FILE',
@@ -45,6 +49,4 @@ export class TmMediaPlayerComponent implements OnInit {
 			this.toast.openSnackBar('EMPTY_FILE', true, 'error');
 		}
 	}
-  
-
 }
