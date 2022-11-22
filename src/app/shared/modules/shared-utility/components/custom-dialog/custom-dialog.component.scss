@@ -12,8 +12,10 @@
 	overflow-y: hidden;
 
 	.dialog-header {
+		box-sizing: border-box;
 		padding: 8px 24px;
-		background-color: map-get($mat-bs-primary, 100);
+		background-color: map-get($mat-bs-primary, 700);
+		color: white;
 	}
 	.body {
 		overflow-y: scroll;

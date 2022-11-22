@@ -31,5 +31,7 @@
     "PENDING" : "Pending",
     "RESOLVED" : "Resolved",
     "ONLINE" : "Online",
-    "OFFLINE" : "Offline"
+    "OFFLINE" : "Offline",
+    "NO_PDF_FILE_FOUND" : "No pdf file found",
+    "EMPTY_FILE" : "Empty file"
  }

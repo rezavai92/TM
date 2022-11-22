@@ -20,5 +20,7 @@
      "SIX_IN_ONE_HEALTH_MONITOR" : "Six In One Health Monitor",
      "STETHOSCOPE" : "Stethoscope",
      "OTOSCOPE" : "Otoscope",
-     "DOCTORS_FEEDBACK" : "Doctor's Feedback"
+     "DOCTORS_FEEDBACK" : "Doctor's Feedback",
+     "PATIENT_ECG_DATA" : "ECG Data"
+
 }

@@ -5,6 +5,7 @@ import {
 	ViewChild,
 	TemplateRef,
 } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CustomDialogConfig } from '../../../shared/models/interfaces/custom-dialog-config.interface';
 import { CustomDialogService } from '../../../shared/modules/shared-utility/services/custom-dialog.service';
 import { ISixInOneMonitor } from '../../interfaces/appointment.interface';
@@ -21,7 +22,10 @@ export class HealthMonitorReadSectionComponent implements OnInit {
 	@ViewChild('bpTemplate', { static: true }) bpTemplate!: TemplateRef<any>;
 	@ViewChild('ecgTemplate', { static: true }) ecgTemplate!: TemplateRef<any>;
 	capsuleData!: ICapsuleItemData[];
-	constructor(private customDialogService: CustomDialogService) {}
+	constructor(
+		private customDialogService: CustomDialogService,
+		private translateService: TranslateService
+	) {}
 
 	ngOnInit(): void {
 		this.prepareCapsuleData();
@@ -102,7 +106,7 @@ export class HealthMonitorReadSectionComponent implements OnInit {
 			data: {
 				body: this.ecgPdfDialog,
 				defaultHeader: true,
-				headerTitle: 'PATIENT_ECG_DATA',
+				headerTitle: this.translateService.instant('PATIENT_ECG_DATA'),
 			},
 			hasBackdrop: true,
 		};

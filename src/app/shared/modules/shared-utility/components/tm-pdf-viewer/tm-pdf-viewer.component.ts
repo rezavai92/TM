@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { take } from 'rxjs';
 import { NullableString } from '../../../../../shared/models/interfaces/common.interfaces';
 import { FileService } from '../../../../../shared/services/file-service/file.service';
@@ -10,9 +11,14 @@ import { CustomToastService } from '../../services/custom-toast.service';
 	styleUrls: ['./tm-pdf-viewer.component.scss'],
 })
 export class TmPdfViewerComponent implements OnInit {
+	loading = true;
 	@Input() url!: string;
 	src = '';
-	constructor(private fs: FileService, private toast: CustomToastService) {}
+	constructor(
+		private fs: FileService,
+		private toast: CustomToastService,
+		private translateService: TranslateService
+	) {}
 
 	ngOnInit(): void {
 		this.fetchPdfBase64FromStorage();
@@ -37,6 +43,7 @@ export class TmPdfViewerComponent implements OnInit {
 								true,
 								'error'
 							);
+							this.loading = false;
 						}
 					},
 					error: (err) => {
@@ -45,10 +52,13 @@ export class TmPdfViewerComponent implements OnInit {
 							true,
 							'error'
 						);
+
+						this.loading = false;
 					},
 				});
 		} else {
 			this.toast.openSnackBar('EMPTY_FILE', true, 'error');
+			this.loading = false;
 		}
 	}
 }

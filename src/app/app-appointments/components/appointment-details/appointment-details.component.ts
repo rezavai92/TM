@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { take } from 'rxjs';
 import { CustomDialogConfig } from 'src/app/shared/models/interfaces/custom-dialog-config.interface';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
@@ -25,7 +26,8 @@ export class AppointmentDetailsComponent implements OnInit {
 		private route: ActivatedRoute,
 		private appointmentService: AppointmentService,
 		private customDialogService: CustomDialogService,
-		private toast: CustomToastService
+		private toast: CustomToastService,
+		private translateService: TranslateService
 	) {
 		console.log('created details');
 	}
@@ -102,7 +104,7 @@ export class AppointmentDetailsComponent implements OnInit {
 			data: {
 				body: this.feedbackDialog,
 				defaultHeader: true,
-				headerTitle: 'DOCTORS_FEEDBACK',
+				headerTitle: this.translateService.instant('DOCTORS_FEEDBACK'),
 			},
 			hasBackdrop: true,
 		};

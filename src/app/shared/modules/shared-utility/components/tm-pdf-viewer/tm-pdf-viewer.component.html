@@ -3,3 +3,12 @@
         [handTool]="false" [showHandToolButton]="true">
     </ngx-extended-pdf-viewer>
 </div>
+
+<div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center" class="tm-pdf-viewer-loader">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center" style="color : red; font-size : 14px " *ngIf="!(loading && src)"
+    class="tm-pdf-viewer-loader">
+    {{"NO_PDF_FILE_FOUND" | translate}}
+</div>
