@@ -28,8 +28,8 @@
 
             </mat-tab>
             <mat-tab [label]="'HISTORY'|translate">
-                <div fxLayout="column" fxLayoutAlign="center center" class="history">
-                    <div class="page-header-1">Under construction...</div>
+                <div fxLayout="column" fxLayoutAlign="center center" class="history w-100-p">
+                    <app-applicant-appointment-history [applicantUserId]="applicantUserId" [appointmentId]="appointmentId"></app-applicant-appointment-history>
                 </div>
             </mat-tab>
 

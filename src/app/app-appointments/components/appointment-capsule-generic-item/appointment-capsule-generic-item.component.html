@@ -8,9 +8,12 @@
             <div [ngSwitch]="data.type">
                 <ng-container *ngSwitchCase="'plain'">
                     <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start start" class="ecg">
-                        <div *ngIf="data && data.labelKey" class="label">{{ $any(data.labelKey) | translate}} &nbsp; :
-                            &nbsp; </div>
-                        <div *ngIf="data" class="value">{{data.value }}</div>
+                        <div *ngIf="data && data.labelKey" class="label">{{ $any(data.labelKey) | translate}} 
+                             </div>
+
+                            <div>:</div>
+                        
+                        <div *ngIf="data && data.value!=null && data.value!==undefined && data.value !=='' ; else empty" class="value">{{data.value }}</div>
                     </div>
                 </ng-container>
 
@@ -23,7 +26,9 @@
         </ng-container>
     </div>
 
-    <ng-template #empty>
-        <span class="page-header-1">Under Construction</span>
-    </ng-template>
+
 </div>
+
+<ng-template #empty>
+    N/A
+</ng-template>

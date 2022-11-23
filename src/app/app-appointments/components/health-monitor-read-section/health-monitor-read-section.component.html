@@ -6,17 +6,21 @@
 
 
 <ng-template #ecgTemplate>
-    <div class="ecg-template" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <div class="ecg-template" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="16px">
         <div class="label">
-            {{"ECG" | translate}} &nbsp; : &nbsp;
+            {{"ECG" | translate}} 
         </div>
+
+        <div>:</div>
+       <div *ngIf="healthMonitorData?.ecgPdfFileName; else empty" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
         <div>
-            {{healthMonitorData.ecgPdfFileName}}
+           <span > {{healthMonitorData.ecgPdfFileName}}</span>
         </div>
 
         <div>
-            <button mat-raised-button color="primary" (click)="openEcgPdf()">View Pdf</button>
+            <button *ngIf="healthMonitorData?.ecgPdfFileName" mat-raised-button color="primary" (click)="openEcgPdf()">View Pdf</button>
         </div>
+       </div>
     </div>
 </ng-template>
 
@@ -44,4 +48,8 @@
 
 <ng-template #ecgPdfDialog>
     <app-tm-pdf-viewer [url]="$any(healthMonitorData.ecgPdfFileId)"></app-tm-pdf-viewer>
+</ng-template>
+
+<ng-template #empty>
+    N/A
 </ng-template>

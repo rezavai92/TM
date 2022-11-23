@@ -4,20 +4,24 @@
 </div>
 
 <ng-template let-value="value" #videoTemplate>
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <div fxLayout="row " fxLayoutAlign="start center" fxLayoutGap="16px">
         <div class="label">
-            {{value.labelKey | translate}} &nbsp; : &nbsp;
+            {{value.labelKey | translate}} 
         </div>
-
         <div>
-            {{value.fileName}}
+            :
         </div>
-
-        <div>
-            <button (click)="playVideo(value)" color="primary" mat-icon-button>
-                <mat-icon>play_circle</mat-icon> &nbsp;
-                <span>{{'PLAY' | translate}}</span>
-            </button>
+        <div  *ngIf="value && value.fileName; else empty" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="16px">
+            <div>
+                {{value.fileName}}
+            </div>
+    
+            <div>
+                <button (click)="playVideo(value)" color="primary" mat-icon-button>
+                    <mat-icon>play_circle</mat-icon> &nbsp;
+                    <!-- <span>{{'PLAY' | translate}}</span> -->
+                </button>
+            </div>
         </div>
     </div>
 </ng-template>
@@ -27,4 +31,8 @@
         <app-tm-media-player [type]="'video'" [fileStorageId]="videoFileStorageId">
         </app-tm-media-player>
     </div>
+</ng-template>
+
+<ng-template #empty>
+    N/A
 </ng-template>

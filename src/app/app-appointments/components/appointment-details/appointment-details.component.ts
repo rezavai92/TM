@@ -16,7 +16,10 @@ import { AppointmentService } from '../../services/appointment.service';
 })
 export class AppointmentDetailsComponent implements OnInit {
 	currentAppointmentDetails!: IAppointmentDetailsResponse;
+	appointmentHistory!: IAppointmentDetailsResponse[];
 	detailsLoading = true;
+	applicantUserId!: string;
+	appointmentId!: string;
 	@ViewChild('pdfDialog') pdfDialog!: TemplateRef<any>;
 	@ViewChild('videoDialog') videoDialog!: TemplateRef<any>;
 	@ViewChild('feedbackDialog') feedbackDialog!: TemplateRef<any>;
@@ -34,18 +37,19 @@ export class AppointmentDetailsComponent implements OnInit {
 
 	ngOnInit(): void {
 		//debugger;
-		const applicantUserid = this.route.snapshot.params['applicantUserId'];
-		const appointmentId = this.route.snapshot.params['appointmentId'];
-		this.loadAppointmentDetails(appointmentId, applicantUserid);
+		 this.applicantUserId = this.route.snapshot.params['applicantUserId'];
+		this.appointmentId = this.route.snapshot.params['appointmentId'];
+		this.loadAppointmentDetails();
+	//	this.loadAppointmentHistory();
 	}
 
 	goBackToListPage() {
 		this.router.navigateByUrl('/appointments');
 	}
 
-	loadAppointmentDetails(appointmentId: string, applicantUserId: string) {
+	loadAppointmentDetails() {
 		this.appointmentService
-			.getAppointmentDetails(appointmentId, applicantUserId)
+			.getAppointmentDetails(this.appointmentId, this.applicantUserId)
 			.pipe(take(1))
 			.subscribe((res) => {
 				if (res && res.isSucceed) {
@@ -61,6 +65,8 @@ export class AppointmentDetailsComponent implements OnInit {
 				this.detailsLoading = false;
 			});
 	}
+
+	
 
 	showPdf() {
 		const onClose = function () {};
