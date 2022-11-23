@@ -97,4 +97,31 @@ export class AppointmentService {
 				})
 			);
 	}
+
+	getAppointmentHistory(appointmentId: string, patientId: string, pageNumber?: number, pageSize?: number) {
+		const attemptedPageNumber = pageNumber || 0;
+		const attemptedPageSize = pageSize || 5;
+		const url = environment.Appointment + 'GetAppointmentHistory';
+		const params = new HttpParams()
+			.set('patientId', patientId)
+			.set('currentAppointmentId', appointmentId)
+			.set('pageNumber', attemptedPageNumber)
+			.set('pageSize', attemptedPageSize);
+		return this.http
+			.get<IHttpCommonResponse<IAppointmentDetailsResponse[]>>(url, {
+				params: params,
+				headers: this.headers,
+				observe: 'body',
+			})
+			.pipe(
+				catchError((error) => {
+					return of({
+						isSucceed: false,
+						responseData: [],
+					});
+				})
+			);
+	}
+
+
 }
