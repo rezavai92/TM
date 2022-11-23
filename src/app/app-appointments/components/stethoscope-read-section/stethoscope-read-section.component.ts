@@ -90,7 +90,7 @@ export class StethoscopeReadSectionComponent implements OnInit {
 		const onClose = function () {};
 		const config: CustomDialogConfig = {
 			width: '600px',
-			panelClass: 'modal-50-p',
+			panelClass: 'modal-60-p',
 			onClose: onClose.bind(this),
 			data: {
 				body: this.mediaDialog,
