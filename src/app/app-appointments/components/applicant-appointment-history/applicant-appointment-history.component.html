@@ -1,0 +1,6 @@
+<div  class="history" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="center">
+    
+    <div class="appointment-segment" *ngFor="let appointment of appointmentHistory">
+        <app-appointment-capsule [appointmentData]="appointment"></app-appointment-capsule>
+    </div>
+</div>
