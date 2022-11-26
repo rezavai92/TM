@@ -23,6 +23,7 @@ import { AppointmentCapsuleGenericItemComponent } from './components/appointment
 import { AppointmentCapsuleGenericService } from './services/appointment-capsule-generic.service';
 import { ApplicantAppointmentHistoryComponent } from './components/applicant-appointment-history/applicant-appointment-history.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { AppointmentFeedbackComponent } from './components/appointment-feedback/appointment-feedback.component';
 
 const routes: Route[] = [
 	{ path: '', component: AppointmentListComponent },
@@ -50,6 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		OtoscopeReadSectionComponent,
 		AppointmentCapsuleGenericItemComponent,
 		ApplicantAppointmentHistoryComponent,
+  AppointmentFeedbackComponent,
 	],
 	imports: [
 		CommonModule,

@@ -1,0 +1,123 @@
+<div class="feedback-container">
+    <form [formGroup]="feedbackForm">
+        <div fxLayout="column">
+
+
+            <div fxLayout="column" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start" class="w-100-p pt-10">
+
+                <ng-container formArrayName="Medicines">
+                    <ng-container *ngFor="let document  of MedicineFormArray.controls;let i=index">
+                        <div class="w-100-p" [formGroup]="findMedicineFormGroupAt(i)">
+                            <div class="page-header-4 mb-10" ngClass.xs="mb-10">{{"MEDICINE" | translate}} {{i+1}} :
+                            </div>
+                            <div class="w-100-p" fxLayout.lt-md="column" fxLayout="row" fxLayoutAlign="start"
+                                fxLayoutGap="16px">
+
+                                <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center center"
+                                    fxLayoutGap.gt-xs="8px" class="form-field-pairs w-100-p">
+
+                                    <mat-form-field appearance="outline" class="w-100-p">
+                                        <mat-label>{{'MEDICINE_NAME' | translate}}</mat-label>
+                                        <input type="text" matInput formControlName="MedicineName">
+                                        <mat-error
+                                            *ngIf="hasError(findMedicineFormGroupAt(i).controls['MedicineName'] )">
+                                            <span
+                                                *ngIf="findMedicineFormGroupAt(i).controls['MedicineName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                                |translate}}</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+
+                                    <div class="file-uploader-form-field w-100-p">
+                                        <mat-form-field appearance="outline" class="w-100-p">
+                                            <input type="text" matInput formControlName="Instruction" required />
+                                            <mat-error
+                                                *ngIf="hasError(findMedicineFormGroupAt(i).controls['Instruction'] )">
+                                                <span
+                                                    *ngIf="findMedicineFormGroupAt(i).controls['Instruction']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                                    |translate}}</span>
+                                            </mat-error>
+
+
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div class="close-btn">
+                                        <button [disabled]="MedicineFormArray.controls.length<2" mat-icon-button
+                                            (click)="removeOption(i)">
+                                            <mat-icon>remove</mat-icon>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <mat-divider class="w-100-p"></mat-divider>
+                    </ng-container>
+                </ng-container>
+                <div style="text-align: center;" class="w-100-p mt-10">
+                    <button [disabled]="MedicineFormArray.invalid"
+                        (click)="$event.preventDefault(); onAddNewMedicineToArray()"
+                        [class.add-more-doc-btn-valid]="MedicineFormArray.valid"
+                        [class.add-more-doc-btn-invalid]="MedicineFormArray.invalid" mat-icon-button>
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>{{"PRESCRIBED_TESTS" | translate}}</mat-label>
+                <mat-select formControlName="PrescribedMediclTests" multiple>
+                    <mat-option *ngFor="let test of neededMedicalTestList" [value]="test.value">
+                        {{test.key | translate}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="w-100-p">
+                <div fxLayout="row" fxLayoutAlign="space-between" class="w-100-p page-header-5">
+                    <div>
+                        {{"ADDITIONAL_COMMENT" | translate}}
+                    </div>
+                    <div>
+                        {{FormControls['AdditionalComment'].value.length}}/
+                        250
+                    </div>
+                </div>
+                <mat-form-field class="w-100-p" appearance="outline">
+
+                    <mat-label>{{"ADDITIONAL_COMMENT" | translate}}</mat-label>
+
+                    <textarea maxlength="250" matInput formControlName="AdditionalComment"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="w-100-p" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+                <div class="w-100-p">
+                    <mat-form-field class="w-100-p" appearance="outline">
+                        <mat-label>{{"OVERALL_HEALTH_CONDITION" | translate}}</mat-label>
+                        <mat-select formControlName="PatientOverallCondition">
+                            <mat-option *ngFor="let test of neededMedicalTestList" [value]="test.value">
+                                {{test.key | translate}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="w-100-p" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                    <mat-form-field class="w-100-p" appearance="outline">
+                        <mat-label>{{"FOLLOW_UP_DAYS" | translate}}</mat-label>
+                        <input matInput formControlName="FollowUpDays" type="number">
+                    </mat-form-field>
+                    <div>{{'DAYS' | translate}}</div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+</div>

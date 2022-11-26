@@ -29,7 +29,8 @@
             </mat-tab>
             <mat-tab [label]="'HISTORY'|translate">
                 <div fxLayout="column" fxLayoutAlign="center center" class="history w-100-p">
-                    <app-applicant-appointment-history [applicantUserId]="applicantUserId" [appointmentId]="appointmentId"></app-applicant-appointment-history>
+                    <app-applicant-appointment-history [applicantUserId]="applicantUserId"
+                        [appointmentId]="appointmentId"></app-applicant-appointment-history>
                 </div>
             </mat-tab>
 
@@ -52,7 +53,7 @@
 
 
 <ng-template #feedbackDialog>
-    <div fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="center center" class="page-header-1 feedback-dialog">
-        Under Construction...
-    </div>
+
+    <app-appointment-feedback></app-appointment-feedback>
+
 </ng-template>

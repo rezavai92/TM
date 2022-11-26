@@ -37,10 +37,10 @@ export class AppointmentDetailsComponent implements OnInit {
 
 	ngOnInit(): void {
 		//debugger;
-		 this.applicantUserId = this.route.snapshot.params['applicantUserId'];
+		this.applicantUserId = this.route.snapshot.params['applicantUserId'];
 		this.appointmentId = this.route.snapshot.params['appointmentId'];
 		this.loadAppointmentDetails();
-	//	this.loadAppointmentHistory();
+		//	this.loadAppointmentHistory();
 	}
 
 	goBackToListPage() {
@@ -65,8 +65,6 @@ export class AppointmentDetailsComponent implements OnInit {
 				this.detailsLoading = false;
 			});
 	}
-
-	
 
 	showPdf() {
 		const onClose = function () {};
@@ -105,7 +103,7 @@ export class AppointmentDetailsComponent implements OnInit {
 		const onClose = function () {};
 		const config: CustomDialogConfig = {
 			width: '700px',
-			panelClass: 'modal-80-p',
+			panelClass: ['modal-80-p', 'feedback-modal'],
 			onClose: onClose.bind(this),
 			data: {
 				body: this.feedbackDialog,

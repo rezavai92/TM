@@ -3,35 +3,21 @@
 @import "../../../../styles/shared/page-header.scss";
 @import "../../../../styles/utils/spacing";
 @import "../../../../styles/utils/singletone";
-
-.details {
-	padding: 40px;
+.feedback-container {
 	width: 100%;
-	height: 100%;
+	padding: 16px;
 	box-sizing: border-box;
-	//overflow-y: scroll;
 
-	.applicant-name {
-		font-weight: bold;
-		font-size: 20px;
+	.add-more-doc-btn-valid {
+		background-color: map-get($mat-bs-primary, 500);
+		color: white;
 	}
 
-	.data-tab {
-		background-color: white;
+	.add-more-doc-btn-invalid {
+		background-color: map-get($mat-bs-primary, 500);
+		color: $light-disabled-text;
 	}
 }
-
 :host {
-	height: 100%;
-}
-
-.feedback-dialog {
-	height: 100%;
 	width: 100%;
-}
-
-::ng-deep {
-	.feedback-modal {
-		overflow-y: auto !important;
-	}
 }

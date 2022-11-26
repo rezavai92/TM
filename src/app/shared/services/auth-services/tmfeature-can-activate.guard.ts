@@ -75,7 +75,7 @@ export class TMFeatureCanActivateGuard implements CanActivate {
 						true,
 						'error'
 					);
-					this.auth.logout();
+					//this.auth.logout();
 					return false;
 					//the logged in user has no feature. a red alert for the application
 				}
