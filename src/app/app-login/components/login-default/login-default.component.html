@@ -1,7 +1,7 @@
 <div fxFlexFill fxLayout="row" fxLayoutAlign="start" class="login-page-container w-100-p">
 
 	<div fxHide.lt-lg fxShow.gt-md>
-		<div fxFlex="75" class="bannner-container">
+		<div fxFlex="75" class="banner-container">
 			<img src="../../../assets/images/banner2.jpg" width="100%" height="100%" alt="Unable to show banner">
 		</div>
 		<div fxFlex="25" class="login-box-lg-screen">
@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-	<div fxHide.gt-md fxShow.lt-lg class="w-100-p max-tab-view" fxLayout="column" fxLayoutAlign="center center">
+	<div fxHide.gt-md fxShow.lt-lg class="w-100-p max-tab-view v-h-100" fxLayout="column" fxLayoutAlign="center center">
 		<div [ngClass.md]="{'w-40-p' : true}" [ngClass.lt-md]="{'w-60-p' : true}" class="login-box-sm-screen">
 			<app-login-form>
 				<button (click)="$event.preventDefault();" mat-button color="primary">Forgot password?
@@ -49,5 +49,5 @@
 		<mat-icon fontIcon="language"></mat-icon>
 		{{ value | portalLanguage | translate}}
 	</button>
-	
+
 </ng-template>

@@ -1,6 +1,7 @@
 @import "./utils/variables";
 @import "./utils/spacing";
 @import "utils/typography";
+@import "themes/custom-palette.scss";
 @import "~@angular/material/theming";
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
 
@@ -154,6 +155,11 @@ html {
 }
 .modal-1000 {
 	height: 1000px !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 0px;
 }
 
 .transition {

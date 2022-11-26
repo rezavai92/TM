@@ -6,7 +6,8 @@
 
 .signup-page-container {
 	padding: 64px 32px;
-	margin-bottom: 64px;
+	height: 100%;
+	//margin-bottom: 64px;
 	width: 100%;
 	box-sizing: border-box;
 	background-color: map-get($mat-bs-accent, 50) !important;
@@ -27,5 +28,5 @@
 }
 
 :host {
-	//height: 100%;
+	height: 100%;
 }

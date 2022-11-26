@@ -2,8 +2,33 @@
 @import "../../../styles/themes/custom-palette.scss";
 
 .root-default-container {
-	height: 100%;
-//	overflow-y: hidden;
-	background-color: map-get($mat-bs-accent, 50) !important;
+	//	overflow-y: hidden;
+	//background-color: map-get($mat-bs-accent, 50) !important;
 	box-sizing: border-box;
+}
+
+:host {
+	height: 100%;
+}
+:host ::ng-deep {
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: #f1f1f1;
+		padding: 4px;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: #888;
+		border-radius: 4px;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
 }
