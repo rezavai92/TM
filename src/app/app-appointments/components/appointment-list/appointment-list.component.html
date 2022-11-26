@@ -45,11 +45,18 @@
 <ng-template #serviceStartDateTemplate let-row="row" let-column="column">
 	<span *ngIf="row && row.startDate; else empty">{{ row.startDate | date: "MM.dd.YY" }}</span>
 </ng-template>
+<ng-template #serviceStartTimeTemplate let-row="row" let-column="column">
+	<span *ngIf="row && row.startTime; else empty">{{ row.startTime }}</span>
+</ng-template>
+
 
 <ng-template #serviceEndDateTemplate let-row="row" let-column="column">
 	<span *ngIf="row && row.endDate; else empty">{{ row.endDate | date: "MM.dd.YY" }}</span>
 </ng-template>
 
+<ng-template #serviceEndTimeTemplate let-row="row" let-column="column">
+	<span *ngIf="row && row.endTime; else empty">{{ row.endTime }}</span>
+</ng-template>
 <ng-template #serviceStatusTemplate let-row="row" let-column="column">
 	<span *ngIf="row && row.status; else empty" [class]="[row.status|lowercase, 'status-box']">{{ row.status }}</span>
 </ng-template>

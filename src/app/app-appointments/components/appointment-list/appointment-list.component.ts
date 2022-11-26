@@ -49,8 +49,12 @@ export class AppointmentListComponent implements OnInit {
 		| undefined;
 	@ViewChild('serviceStartDateTemplate', { static: true })
 	serviceStartDateTemplate: TemplateRef<any> | undefined;
+	@ViewChild('serviceStartTimeTemplate', { static: true })
+	serviceStartTimeTemplate: TemplateRef<any> | undefined;
 	@ViewChild('serviceEndDateTemplate', { static: true })
 	serviceEndDateTemplate: TemplateRef<any> | undefined;
+	@ViewChild('serviceEndTimeTemplate', { static: true })
+	serviceEndTimeTemplate: TemplateRef<any> | undefined;
 	@ViewChild('serviceStatusTemplate', { static: true })
 	serviceStatusTemplate: TemplateRef<any> | undefined;
 	@ViewChild('searchInput', { static: true })
@@ -104,7 +108,8 @@ export class AppointmentListComponent implements OnInit {
 	}
 
 	onSelectTableRow(row: AppointmentListResponseData) {
-		const url = '/appointments/details/' + row.id+'/'+row.applicantUserId;
+		const url =
+			'/appointments/details/' + row.id + '/' + row.applicantUserId;
 		this.router.navigateByUrl(url);
 		console.log('selected row ', row);
 	}
@@ -128,9 +133,19 @@ export class AppointmentListComponent implements OnInit {
 				cellTemplate: this.serviceStartDateTemplate,
 			},
 			{
+				key: 'START_TIME',
+				name: 'startTime',
+				cellTemplate: this.serviceStartTimeTemplate,
+			},
+			{
 				key: 'END_DATE',
 				name: 'endDate',
 				cellTemplate: this.serviceEndDateTemplate,
+			},
+			{
+				key: 'END_TIME',
+				name: 'endTime',
+				cellTemplate: this.serviceEndTimeTemplate,
 			},
 			{
 				key: 'SERVICE_STATUS',
