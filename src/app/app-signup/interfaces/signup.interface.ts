@@ -8,7 +8,7 @@ export interface IRegisterUserPayload {
 	Email: string;
 	Dob: string;
 	ProfileImageId: string;
-	ItemId?: string;
+	UserId?: string;
 	Gender: string;
 	NidNumber: string;
 	PhoneNumber: string;
