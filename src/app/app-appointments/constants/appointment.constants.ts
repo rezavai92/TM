@@ -25,6 +25,13 @@ export enum MedicalTestEnum {
 	GLUCOSE_TEST = 'GlucoseTest',
 	KEDNEY_TEST = 'KedneyTest',
 }
+
+export enum PatientHealthConditionEnum {
+	NORMAL = 'Normal',
+	SEVERE = 'Severe',
+	MEDIUM = 'Medium',
+}
+
 export const MedicalTests = Object.freeze([
 	{
 		key: 'BLOOD_TEST',
@@ -37,5 +44,20 @@ export const MedicalTests = Object.freeze([
 	{
 		key: 'KEDNEY_TEST',
 		value: MedicalTestEnum.KEDNEY_TEST,
+	},
+]);
+
+export const HealthConditionList = Object.freeze([
+	{
+		key: 'NORMAL',
+		value: PatientHealthConditionEnum.NORMAL,
+	},
+	{
+		key: 'SEVERE',
+		value: PatientHealthConditionEnum.SEVERE,
+	},
+	{
+		key: 'MEDIUM',
+		value: PatientHealthConditionEnum.MEDIUM,
 	},
 ]);

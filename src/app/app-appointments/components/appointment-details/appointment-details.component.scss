@@ -4,12 +4,23 @@
 @import "../../../../styles/utils/spacing";
 @import "../../../../styles/utils/singletone";
 
-.details {
+.p-20 {
+	padding: 20px;
+}
+
+.p-40 {
 	padding: 40px;
+}
+.details {
+	//	padding: 40px;
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
 	//overflow-y: scroll;
+	.back-btn {
+		margin-top: -4px;
+		margin-left: -16px;
+	}
 
 	.applicant-name {
 		font-weight: bold;

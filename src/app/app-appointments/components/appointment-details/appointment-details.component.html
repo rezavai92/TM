@@ -1,10 +1,11 @@
-<div class="w-100-p details" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="start start">
+<div class="w-100-p details" fxLayout="column" ngClass.gt-xs="p-40" ngClass.xs="p-20" fxLayoutGap="16px"
+    fxLayoutAlign="start start">
     <mat-progress-bar mode="indeterminate" *ngIf="detailsLoading"></mat-progress-bar>
     <div *ngIf="currentAppointmentDetails" fxLayout="row" fxLayoutAlign="space-between center"
         class="w-100-p top-header">
 
         <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="center center">
-            <button (click)="goBackToListPage()" style="margin-top: -4px;" mat-icon-button>
+            <button class="back-btn" (click)="goBackToListPage()" mat-icon-button>
                 <mat-icon style="font-size: 32px;">keyboard_arrow_left</mat-icon>
             </button>
             <div class="applicant-name"> {{currentAppointmentDetails.applicantDisplayName}}</div>

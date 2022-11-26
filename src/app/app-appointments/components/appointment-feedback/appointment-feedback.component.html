@@ -102,8 +102,8 @@
                     <mat-form-field class="w-100-p" appearance="outline">
                         <mat-label>{{"OVERALL_HEALTH_CONDITION" | translate}}</mat-label>
                         <mat-select formControlName="PatientOverallCondition">
-                            <mat-option *ngFor="let test of neededMedicalTestList" [value]="test.value">
-                                {{test.key | translate}}
+                            <mat-option *ngFor="let condition of overallHealthConditionTypes" [value]="condition.value">
+                                {{condition.key | translate}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

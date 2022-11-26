@@ -6,7 +6,10 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { MedicalTests } from '../../constants/appointment.constants';
+import {
+	HealthConditionList,
+	MedicalTests,
+} from '../../constants/appointment.constants';
 
 @Component({
 	selector: 'app-appointment-feedback',
@@ -16,6 +19,7 @@ import { MedicalTests } from '../../constants/appointment.constants';
 export class AppointmentFeedbackComponent implements OnInit {
 	feedbackForm!: FormGroup;
 	neededMedicalTestList = [...MedicalTests];
+	overallHealthConditionTypes = [...HealthConditionList];
 	constructor(private fb: FormBuilder) {}
 
 	ngOnInit(): void {
