@@ -67,7 +67,7 @@
 	<mat-drawer-container fxFlexFill>
 		<mat-drawer *ngIf="!hideToolBar && !hideSideNavigation" #drawer class="side-nav" [mode]="drawerMode"
 			[opened]="isDrawerOpened">
-			<mat-list role="list">
+			<mat-list fxLayout="column" fxLayoutGap="8px" role="list">
 				<mat-list-item class="w-100-p" *ngFor="let navigation of navigations">
 					<a [routerLink]="navigation.url">
 						<button routerLinkActive="active" color="primary" class="module-btn" mat-button>

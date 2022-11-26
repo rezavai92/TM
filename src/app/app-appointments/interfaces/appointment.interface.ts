@@ -27,6 +27,9 @@ export interface AppointmentListResponseData {
 	startDate: string;
 	endDate: string;
 	status: AppointmentStatusEnum;
+	serviceRequestDate: string;
+	startTime: string;
+	endTime: string;
 }
 
 export interface PatientFile {
@@ -61,6 +64,7 @@ export interface IAppointmentDetailsResponse {
 	applicantDisplayName: string;
 	serviceType: string;
 	startDate: string;
+	serviceRequestDate: string;
 	endDate: string;
 	status: string;
 	applicantComment: string;
@@ -68,4 +72,9 @@ export interface IAppointmentDetailsResponse {
 	sixInOneMonitorData: ISixInOneMonitor;
 	stethoscope: IStethoscope;
 	otoscope: IOtoscope;
+}
+
+export interface IAppointmentDetailListResponse {
+	totalCount: number;
+	appointmentDetailsList: IAppointmentDetailsResponse[];
 }

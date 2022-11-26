@@ -5,6 +5,7 @@ import { IHttpCommonResponse } from 'src/app/shared/models/interfaces/HttpRespon
 import { environment } from 'src/environments/environment';
 import {
 	AppointmentListResponse,
+	IAppointmentDetailListResponse,
 	IAppointmentDetailsResponse,
 	IAppointmentSearchFilter,
 	IFetchAppointmentPayload,
@@ -98,7 +99,12 @@ export class AppointmentService {
 			);
 	}
 
-	getAppointmentHistory(appointmentId: string, patientId: string, pageNumber?: number, pageSize?: number) {
+	getAppointmentHistory(
+		appointmentId: string,
+		patientId: string,
+		pageNumber?: number,
+		pageSize?: number
+	) {
 		const attemptedPageNumber = pageNumber || 0;
 		const attemptedPageSize = pageSize || 5;
 		const url = environment.Appointment + 'GetAppointmentHistory';
@@ -108,7 +114,7 @@ export class AppointmentService {
 			.set('pageNumber', attemptedPageNumber)
 			.set('pageSize', attemptedPageSize);
 		return this.http
-			.get<IHttpCommonResponse<IAppointmentDetailsResponse[]>>(url, {
+			.get<IHttpCommonResponse<IAppointmentDetailListResponse>>(url, {
 				params: params,
 				headers: this.headers,
 				observe: 'body',
@@ -117,11 +123,12 @@ export class AppointmentService {
 				catchError((error) => {
 					return of({
 						isSucceed: false,
-						responseData: [],
+						responseData: {
+							appointmentDetailsList: [],
+							totalCount: 0,
+						},
 					});
 				})
 			);
 	}
-
-
 }

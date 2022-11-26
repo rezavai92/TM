@@ -8,19 +8,21 @@
 <ng-template #ecgTemplate>
     <div class="ecg-template" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="16px">
         <div class="label">
-            {{"ECG" | translate}} 
+            {{"ECG" | translate}}
         </div>
 
         <div>:</div>
-       <div *ngIf="healthMonitorData?.ecgPdfFileName; else empty" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
-        <div>
-           <span > {{healthMonitorData.ecgPdfFileName}}</span>
-        </div>
+        <div *ngIf="healthMonitorData?.ecgPdfFileName; else empty" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="16px">
+            <div>
+                <span> {{healthMonitorData.ecgPdfFileName}}</span>
+            </div>
 
-        <div>
-            <button *ngIf="healthMonitorData?.ecgPdfFileName" mat-raised-button color="primary" (click)="openEcgPdf()">View Pdf</button>
+            <div>
+                <button *ngIf="healthMonitorData?.ecgPdfFileName" mat-raised-button color="primary"
+                    (click)="openEcgPdf()">View Pdf</button>
+            </div>
         </div>
-       </div>
     </div>
 </ng-template>
 
@@ -31,7 +33,7 @@
             {{"BLOOD_PRESSURE" | translate}} &nbsp; : &nbsp;
         </div>
         <div>
-            <table>
+            <table style="overflow: scroll;">
                 <tr>
                     <th>Systolic</th>
                     <th>Diastolic</th>
