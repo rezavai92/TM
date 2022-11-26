@@ -2,48 +2,59 @@ import { Component, OnInit, Input } from '@angular/core';
 import { take } from 'rxjs';
 import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
 import { IAppointmentDetailsResponse } from '../../interfaces/appointment.interface';
-import { AppointmentService, } from '../../services/appointment.service';
+import { AppointmentService } from '../../services/appointment.service';
 
 @Component({
-  selector: 'app-applicant-appointment-history',
-  templateUrl: './applicant-appointment-history.component.html',
-  styleUrls: ['./applicant-appointment-history.component.scss']
+	selector: 'app-applicant-appointment-history',
+	templateUrl: './applicant-appointment-history.component.html',
+	styleUrls: ['./applicant-appointment-history.component.scss'],
 })
 export class ApplicantAppointmentHistoryComponent implements OnInit {
+	@Input() appointmentId!: string;
+	@Input() applicantUserId!: string;
+	totalCount = 0;
+	appointmentHistory: IAppointmentDetailsResponse[] = [];
+	historyLoading!: boolean;
+	currentPageNumber = 0;
+	constructor(
+		private appointmentService: AppointmentService,
+		private toast: CustomToastService
+	) {}
 
-  @Input() appointmentId!: string;
-  @Input() applicantUserId!: string;
-  appointmentHistory!: IAppointmentDetailsResponse[];
-  historyLoading!: boolean;
-  currentPageNumber = 0;
-  constructor(private appointmentService : AppointmentService, private toast : CustomToastService) { }
+	ngOnInit(): void {
+		this.loadAppointmentHistory();
+	}
 
-  ngOnInit(): void {
-    this.loadAppointmentHistory();
-  }
+	setCurrentPageNumber(pageNo: number) {
+		this.currentPageNumber = pageNo;
+	}
 
+	resetPage() {
+		this.currentPageNumber = 0;
+	}
 
+	onScroll() {
+		//debugger;
 
-  
-  setCurrentPageNumber(pageNo : number) {
-    this.currentPageNumber = pageNo;
-  }
+		this.setCurrentPageNumber(this.currentPageNumber + 1);
+		this.loadAppointmentHistory();
+	}
 
-  resetPage() {
-    this.currentPageNumber = 0;
-  }
-
-  
-
-  loadAppointmentHistory() {
-    this.historyLoading = true;
-    this.appointmentService
-      .getAppointmentHistory(this.appointmentId, this.applicantUserId, this.currentPageNumber)
+	loadAppointmentHistory() {
+		this.historyLoading = true;
+		this.appointmentService
+			.getAppointmentHistory(
+				this.appointmentId,
+				this.applicantUserId,
+				this.currentPageNumber
+			)
 			.pipe(take(1))
 			.subscribe((res) => {
 				if (res && res.isSucceed) {
-					this.appointmentHistory =
-						res.responseData as IAppointmentDetailsResponse[];
+					this.totalCount = res.responseData.totalCount;
+					this.appointmentHistory = this.appointmentHistory.concat(
+						res.responseData.appointmentDetailsList
+					);
 				} else {
 					this.appointmentHistory = [];
 					this.toast.openSnackBar(
@@ -54,7 +65,5 @@ export class ApplicantAppointmentHistoryComponent implements OnInit {
 				}
 				this.historyLoading = false;
 			});
-		
 	}
-
 }

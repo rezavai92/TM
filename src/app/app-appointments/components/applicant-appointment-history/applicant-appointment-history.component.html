@@ -1,6 +1,32 @@
-<div  class="history" fxLayout="column" fxLayoutGap="16px" fxLayoutAlign="center">
-    
-    <div class="appointment-segment" *ngFor="let appointment of appointmentHistory">
-        <app-appointment-capsule [appointmentData]="appointment"></app-appointment-capsule>
+<div class="history">
+    <mat-spinner class="loader" *ngIf="historyLoading" diameter="40"></mat-spinner>
+    <div fxLayout="row" fxLayoutGap.gt-sm="50px" fxLayoutGap="32px" fxLayoutAlign="start stretch">
+
+        <div class="scroll-container" infiniteScroll [infiniteScrollDistance]="1.8" [infiniteScrollThrottle]="300"
+            (scrolled)="onScroll()" [scrollWindow]="false" fxFlex="100" fxLayout="column" fxLayoutGap="40px"
+            fxLayoutAlign="space-between stretch">
+
+
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="60px"
+                *ngFor="let appointment of appointmentHistory;let i =index;">
+                <div fxLayout="column" fxLayoutAlign="center center" class="circle">
+                    <div class="date">{{appointment.serviceRequestDate | date: 'MM.dd.yyyy'}}</div>
+                    <div *ngIf="i!==totalCount-1" class="line">
+
+                    </div>
+                    <mat-icon color="primary">radio_button_checked</mat-icon>
+
+                </div>
+                <div [ngClass]=" {'last' : i ===totalCount-1, 'appointment-segment' : true }">
+                    <app-appointment-capsule [appointmentData]="appointment">
+                    </app-appointment-capsule>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 </div>
