@@ -17,6 +17,9 @@
 		background-color: map-get($mat-bs-primary, 500);
 		color: $light-disabled-text;
 	}
+	.close-btn {
+		margin-top: -20px;
+	}
 }
 :host {
 	width: 100%;

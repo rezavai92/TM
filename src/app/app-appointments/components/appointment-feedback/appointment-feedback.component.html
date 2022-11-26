@@ -18,7 +18,7 @@
 
                                     <mat-form-field appearance="outline" class="w-100-p">
                                         <mat-label>{{'MEDICINE_NAME' | translate}}</mat-label>
-                                        <input type="text" matInput formControlName="MedicineName">
+                                        <input type="text" matInput required formControlName="MedicineName">
                                         <mat-error
                                             *ngIf="hasError(findMedicineFormGroupAt(i).controls['MedicineName'] )">
                                             <span
@@ -28,8 +28,9 @@
                                     </mat-form-field>
 
 
-                                    <div class="file-uploader-form-field w-100-p">
+                                    <div class=" w-100-p">
                                         <mat-form-field appearance="outline" class="w-100-p">
+                                            <mat-label>{{'MEDICINE_INSTRUCTION' | translate}}</mat-label>
                                             <input type="text" matInput formControlName="Instruction" required />
                                             <mat-error
                                                 *ngIf="hasError(findMedicineFormGroupAt(i).controls['Instruction'] )">
@@ -96,7 +97,7 @@
                 </mat-form-field>
             </div>
 
-            <div class="w-100-p" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+            <div class="w-100-p" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start center" fxLayoutGap="16px">
                 <div class="w-100-p">
                     <mat-form-field class="w-100-p" appearance="outline">
                         <mat-label>{{"OVERALL_HEALTH_CONDITION" | translate}}</mat-label>
