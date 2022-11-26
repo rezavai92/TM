@@ -24,6 +24,16 @@
      "PATIENT_ECG_DATA" : "ECG Data",
      "OTOSCOPE_VIDEO" : "Video from Otoscope",
      "HEART_SOUND" : "Heart Sound",
-     "LUNG_SOUND" : "Lung Sound"
+     "LUNG_SOUND" : "Lung Sound",
+     "START_TIME" : "Start Time",
+     "END_TIME" : "End Time",
+     "MEDICINE" : "Medicine",
+     "MEDICINE_NAME" : "Medicine Name",
+     "MEDICINE_INSTRUCTION" : "Instruction",
+     "PRESCRIBED_TESTS" : "Prescribed tests",
+     "ADDITIONAL_COMMENT" : "Additional comment",
+     "OVERALL_HEALTH_CONDITION" : "Overall health condition",
+     "FOLLOW_UP_DAYS" : "Follow up days",
+     "DAYS" :"Days"
 
 }
