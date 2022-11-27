@@ -20,10 +20,16 @@ export class AppointmentDetailsComponent implements OnInit {
 	detailsLoading = true;
 	applicantUserId!: string;
 	appointmentId!: string;
+	applicantInfo!: any;
+	doctorInfo!: any;
 	@ViewChild('pdfDialog') pdfDialog!: TemplateRef<any>;
 	@ViewChild('videoDialog') videoDialog!: TemplateRef<any>;
 	@ViewChild('feedbackDialog') feedbackDialog!: TemplateRef<any>;
+
+	
 	play = false;
+
+	
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
@@ -47,6 +53,20 @@ export class AppointmentDetailsComponent implements OnInit {
 		this.router.navigateByUrl('/appointments');
 	}
 
+
+	updateFeedbackComponentInputs() {
+		this.doctorInfo = {
+			DoctorUserId: '',
+			DoctorDisplayName: ''
+		}
+
+		this.applicantInfo = {
+			ApplicantUserId: this.currentAppointmentDetails.applicantUserId,
+			ApplicantDisplayName: this.currentAppointmentDetails.applicantDisplayName,
+			PatientPhoneNumber : '',
+		}
+	}
+
 	loadAppointmentDetails() {
 		this.appointmentService
 			.getAppointmentDetails(this.appointmentId, this.applicantUserId)
@@ -55,6 +75,7 @@ export class AppointmentDetailsComponent implements OnInit {
 				if (res && res.isSucceed) {
 					this.currentAppointmentDetails =
 						res.responseData as IAppointmentDetailsResponse;
+					this.updateFeedbackComponentInputs();
 				} else {
 					this.toast.openSnackBar(
 						'FAILED_TO_LOAD_DATA',

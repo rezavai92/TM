@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
 	AbstractControl,
 	FormArray,
@@ -6,10 +6,13 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
+import { take } from 'rxjs';
 import {
 	HealthConditionList,
 	MedicalTests,
 } from '../../constants/appointment.constants';
+import { IDoctorFeedbackModel } from '../../interfaces/feedback.interface';
+import { AppointmentFeedbackService } from '../../services/appointment-feedback.service';
 
 @Component({
 	selector: 'app-appointment-feedback',
@@ -17,10 +20,16 @@ import {
 	styleUrls: ['./appointment-feedback.component.scss'],
 })
 export class AppointmentFeedbackComponent implements OnInit {
+
+	@Input() doctorInfo!: any;
+	@Input() applicantInfo!: any;
 	feedbackForm!: FormGroup;
 	neededMedicalTestList = [...MedicalTests];
 	overallHealthConditionTypes = [...HealthConditionList];
-	constructor(private fb: FormBuilder) {}
+	constructor(
+		private fb: FormBuilder,
+		private feedbackService : AppointmentFeedbackService
+	) { }
 
 	ngOnInit(): void {
 		this.initForm();
@@ -28,11 +37,11 @@ export class AppointmentFeedbackComponent implements OnInit {
 
 	initForm() {
 		this.feedbackForm = this.fb.group({
-			Medicines: this.fb.array([]),
-			PrescribedMediclTests: [''],
+			PrescribedMedicines: this.fb.array([]),
+			PrescribedTests: [''],
 			AdditionalComment: ['', Validators.maxLength(250)],
-			FollowUpDays: [''],
-			PatientOverallCondition: [''],
+			FollowUpAfter: [''],
+			PatientCondition: [''],
 		});
 
 		this.addMedicine();
@@ -47,7 +56,7 @@ export class AppointmentFeedbackComponent implements OnInit {
 	}
 
 	get MedicineFormArray() {
-		return this.FormControls['Medicines'] as FormArray;
+		return this.FormControls['PrescribedMedicines'] as FormArray;
 	}
 
 	onAddNewMedicineToArray() {
@@ -62,7 +71,7 @@ export class AppointmentFeedbackComponent implements OnInit {
 
 	addMedicine() {
 		const doc = this.fb.group({
-			MedicineName: ['', Validators.required],
+			Name: ['', Validators.required],
 			Instruction: ['', Validators.required],
 		});
 
@@ -79,5 +88,27 @@ export class AppointmentFeedbackComponent implements OnInit {
 			this.addMedicine();
 		}
 		this.feedbackForm.updateValueAndValidity();
+	}
+
+
+
+	submitFeedback() {
+		const formData: IDoctorFeedbackModel = this.feedbackForm.getRawValue();
+		const otherInfo = {
+			ApplicantUserId: this.applicantInfo.UserId,
+			ApplicantDisplayName: this.applicantInfo.DisplayName,
+			PatientPhoneNumber: this.applicantInfo.PhoneNumber,
+			DoctorUserId: this.doctorInfo.UserId,
+			DoctorDisplayName: this.doctorInfo.DisplayName
+		}
+		this.feedbackService.submitAppointmentFeedback(formData,otherInfo).pipe(take(1)).subscribe({
+			next: (response) => {
+				
+			},
+			error: (error) => {
+				
+			}
+		})
+
 	}
 }

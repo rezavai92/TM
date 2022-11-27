@@ -5,7 +5,7 @@
 
             <div fxLayout="column" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start" class="w-100-p pt-10">
 
-                <ng-container formArrayName="Medicines">
+                <ng-container formArrayName="PrescribedMedicines">
                     <ng-container *ngFor="let document  of MedicineFormArray.controls;let i=index">
                         <div class="w-100-p" [formGroup]="findMedicineFormGroupAt(i)">
                             <div class="page-header-4 mb-10" ngClass.xs="mb-10">{{"MEDICINE" | translate}} {{i+1}} :
@@ -18,11 +18,11 @@
 
                                     <mat-form-field appearance="outline" class="w-100-p">
                                         <mat-label>{{'MEDICINE_NAME' | translate}}</mat-label>
-                                        <input type="text" matInput required formControlName="MedicineName">
+                                        <input type="text" matInput required formControlName="Name">
                                         <mat-error
-                                            *ngIf="hasError(findMedicineFormGroupAt(i).controls['MedicineName'] )">
+                                            *ngIf="hasError(findMedicineFormGroupAt(i).controls['Name'] )">
                                             <span
-                                                *ngIf="findMedicineFormGroupAt(i).controls['MedicineName']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                                *ngIf="findMedicineFormGroupAt(i).controls['Name']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
                                                 |translate}}</span>
                                         </mat-error>
                                     </mat-form-field>
@@ -72,7 +72,7 @@
 
             <mat-form-field appearance="outline">
                 <mat-label>{{"PRESCRIBED_TESTS" | translate}}</mat-label>
-                <mat-select formControlName="PrescribedMediclTests" multiple>
+                <mat-select formControlName="PrescribedTests" multiple>
                     <mat-option *ngFor="let test of neededMedicalTestList" [value]="test.value">
                         {{test.key | translate}}
                     </mat-option>
@@ -101,7 +101,7 @@
                 <div class="w-100-p">
                     <mat-form-field class="w-100-p" appearance="outline">
                         <mat-label>{{"OVERALL_HEALTH_CONDITION" | translate}}</mat-label>
-                        <mat-select formControlName="PatientOverallCondition">
+                        <mat-select formControlName="PatientCondition">
                             <mat-option *ngFor="let condition of overallHealthConditionTypes" [value]="condition.value">
                                 {{condition.key | translate}}
                             </mat-option>
@@ -111,14 +111,16 @@
                 <div class="w-100-p" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
                     <mat-form-field class="w-100-p" appearance="outline">
                         <mat-label>{{"FOLLOW_UP_DAYS" | translate}}</mat-label>
-                        <input matInput formControlName="FollowUpDays" type="number">
+                        <input matInput formControlName="followUpAfter" type="number">
                     </mat-form-field>
                     <div>{{'DAYS' | translate}}</div>
                 </div>
             </div>
 
 
-
+            <div class="w-100-p" fxLayout="row" fxLayoutAlign="end center">
+                <button  color="primary" mat-button (click)="submitFeedback()">{{'SUBMIT_FEEDBACK' | translate}}</button>
+            </div>
         </div>
     </form>
 </div>
