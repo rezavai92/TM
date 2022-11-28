@@ -1,3 +1,4 @@
+import { IfStmt } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import {
 	AbstractControl,
@@ -6,7 +7,9 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
-import { take } from 'rxjs';
+import { take, tap } from 'rxjs';
+import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
+import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
 import {
 	HealthConditionList,
 	MedicalTests,
@@ -20,16 +23,18 @@ import { AppointmentFeedbackService } from '../../services/appointment-feedback.
 	styleUrls: ['./appointment-feedback.component.scss'],
 })
 export class AppointmentFeedbackComponent implements OnInit {
-
-	@Input() doctorInfo!: any;
+	
 	@Input() applicantInfo!: any;
 	feedbackForm!: FormGroup;
 	neededMedicalTestList = [...MedicalTests];
 	overallHealthConditionTypes = [...HealthConditionList];
+	loading = false;
 	constructor(
 		private fb: FormBuilder,
-		private feedbackService : AppointmentFeedbackService
-	) { }
+		private feedbackService: AppointmentFeedbackService,
+		private toast: CustomToastService,
+		private dialog : CustomDialogService
+	) {}
 
 	ngOnInit(): void {
 		this.initForm();
@@ -38,10 +43,10 @@ export class AppointmentFeedbackComponent implements OnInit {
 	initForm() {
 		this.feedbackForm = this.fb.group({
 			PrescribedMedicines: this.fb.array([]),
-			PrescribedTests: [''],
+			PrescribedTests: [[]],
 			AdditionalComment: ['', Validators.maxLength(250)],
 			FollowUpAfter: [''],
-			PatientCondition: [''],
+			PatientCondition: ['Normal', Validators.required],
 		});
 
 		this.addMedicine();
@@ -71,8 +76,8 @@ export class AppointmentFeedbackComponent implements OnInit {
 
 	addMedicine() {
 		const doc = this.fb.group({
-			Name: ['', Validators.required],
-			Instruction: ['', Validators.required],
+			Name: [''],
+			Instruction: [''],
 		});
 
 		this.MedicineFormArray.push(doc);
@@ -90,25 +95,39 @@ export class AppointmentFeedbackComponent implements OnInit {
 		this.feedbackForm.updateValueAndValidity();
 	}
 
-
-
 	submitFeedback() {
+		this.loading = true;
 		const formData: IDoctorFeedbackModel = this.feedbackForm.getRawValue();
 		const otherInfo = {
-			ApplicantUserId: this.applicantInfo.UserId,
-			ApplicantDisplayName: this.applicantInfo.DisplayName,
-			PatientPhoneNumber: this.applicantInfo.PhoneNumber,
-			DoctorUserId: this.doctorInfo.UserId,
-			DoctorDisplayName: this.doctorInfo.DisplayName
-		}
-		this.feedbackService.submitAppointmentFeedback(formData,otherInfo).pipe(take(1)).subscribe({
-			next: (response) => {
+			ApplicantUserId: this.applicantInfo ? (this.applicantInfo.ApplicantUserId?? '') : '',
+			ApplicantDisplayName: this.applicantInfo ? (this.applicantInfo.ApplicantDisplayName?? '') : '',
+			ApplicantPhoneNumber: this.applicantInfo ? (this.applicantInfo.ApplicantPhoneNumber ?? '') : '',
+		
+		};
+		this.feedbackService
+			.submitAppointmentFeedback(formData, otherInfo)
+			.pipe(
+				take(1),
+				tap(() => {
+					this.loading = false;
+					
+				})
+			)
+			.subscribe({
+				next: (response) => {
+					if (response && response.isSucceed) {
+						this.toast.openSnackBar('FEEDBACK_HAS_BEEN_SENT_SUCCESSFULLY', true, 'success');
+						this.dialog.close();
+					}
+					else {
+						this.toast.openSnackBar('FAILED_TO_SEND_FEEDBACK',true, 'error')
+					}
 				
-			},
-			error: (error) => {
-				
-			}
-		})
-
+				},
+				error: (error) => {
+					this.loading = false;
+					this.toast.openSnackBar('FAILED_TO_SEND_FEEDBACK',true, 'error')
+				},
+			});
 	}
 }

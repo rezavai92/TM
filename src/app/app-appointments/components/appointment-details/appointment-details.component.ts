@@ -21,7 +21,7 @@ export class AppointmentDetailsComponent implements OnInit {
 	applicantUserId!: string;
 	appointmentId!: string;
 	applicantInfo!: any;
-	doctorInfo!: any;
+
 	@ViewChild('pdfDialog') pdfDialog!: TemplateRef<any>;
 	@ViewChild('videoDialog') videoDialog!: TemplateRef<any>;
 	@ViewChild('feedbackDialog') feedbackDialog!: TemplateRef<any>;
@@ -55,15 +55,12 @@ export class AppointmentDetailsComponent implements OnInit {
 
 
 	updateFeedbackComponentInputs() {
-		this.doctorInfo = {
-			DoctorUserId: '',
-			DoctorDisplayName: ''
-		}
+		
 
 		this.applicantInfo = {
 			ApplicantUserId: this.currentAppointmentDetails.applicantUserId,
 			ApplicantDisplayName: this.currentAppointmentDetails.applicantDisplayName,
-			PatientPhoneNumber : '',
+			ApplicantPhoneNumber : this.currentAppointmentDetails.applicantPhoneNumber,
 		}
 	}
 

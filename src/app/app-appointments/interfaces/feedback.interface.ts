@@ -13,8 +13,7 @@ export interface IDoctorFeedbackPayload extends IDoctorFeedbackModel{
     ApplicantUserId: string,
     ApplicantDisplayName: string,
     PatientPhoneNumber: string,
-    DoctorUserId: string,
-    DoctorDisplayName: string
+   
 }
   
 

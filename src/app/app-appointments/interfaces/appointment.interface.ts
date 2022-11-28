@@ -62,6 +62,7 @@ export interface IOtoscope {
 export interface IAppointmentDetailsResponse {
 	applicantUserId: string;
 	applicantDisplayName: string;
+	applicantPhoneNumber: string;
 	serviceType: string;
 	startDate: string;
 	serviceRequestDate: string;

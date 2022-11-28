@@ -34,6 +34,7 @@
      "ADDITIONAL_COMMENT" : "Additional comment",
      "OVERALL_HEALTH_CONDITION" : "Overall health condition",
      "FOLLOW_UP_DAYS" : "Follow up days",
-     "DAYS" :"Days"
+     "DAYS" :"Days",
+     "SUBMIT_FEEDBACK" : "Submit"
 
 }

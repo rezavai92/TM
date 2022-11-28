@@ -13,6 +13,7 @@ export class CustomDialogService {
 	constructor(private dilaog: MatDialog) {}
 
 	open(config: CustomDialogConfig) {
+		config.disableClose = true;
 		this.dialogRef = this.dilaog.open(CustomDialogComponent, config);
 		this.dialogRef.afterClosed().subscribe((result: any) => {
 			config.onClose();
