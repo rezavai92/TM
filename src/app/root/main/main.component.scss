@@ -12,6 +12,9 @@
 		position: -webkit-sticky;
 		top: 0;
 		z-index: 1000;
+		.logo-container {
+			width: 225px;
+		}
 	}
 
 	.active {
