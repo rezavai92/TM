@@ -7,6 +7,7 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { take, tap } from 'rxjs';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
 import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
@@ -16,6 +17,7 @@ import {
 } from '../../constants/appointment.constants';
 import { IDoctorFeedbackModel } from '../../interfaces/feedback.interface';
 import { AppointmentFeedbackService } from '../../services/appointment-feedback.service';
+import { AppointmentService } from '../../services/appointment.service';
 
 @Component({
 	selector: 'app-appointment-feedback',
@@ -33,7 +35,9 @@ export class AppointmentFeedbackComponent implements OnInit {
 		private fb: FormBuilder,
 		private feedbackService: AppointmentFeedbackService,
 		private toast: CustomToastService,
-		private dialog : CustomDialogService
+		private dialog: CustomDialogService,
+		private translateService: TranslateService,
+		private appointmentService : AppointmentService
 	) {}
 
 	ngOnInit(): void {
@@ -116,17 +120,18 @@ export class AppointmentFeedbackComponent implements OnInit {
 			.subscribe({
 				next: (response) => {
 					if (response && response.isSucceed) {
-						this.toast.openSnackBar('FEEDBACK_HAS_BEEN_SENT_SUCCESSFULLY', true, 'success');
+						this.appointmentService.refresh$.next(true);
+						this.toast.openSnackBar(this.translateService.instant('FEEDBACK_HAS_BEEN_SENT_SUCCESSFULLY'), false, 'success');
 						this.dialog.close();
 					}
 					else {
-						this.toast.openSnackBar('FAILED_TO_SEND_FEEDBACK',true, 'error')
+						
 					}
 				
 				},
 				error: (error) => {
 					this.loading = false;
-					this.toast.openSnackBar('FAILED_TO_SEND_FEEDBACK',true, 'error')
+					this.toast.openSnackBar(this.translateService.instant('FAILED_TO_SEND_FEEDBACK'),false, 'error')
 				},
 			});
 	}

@@ -94,6 +94,12 @@
                     <mat-label>{{"ADDITIONAL_COMMENT" | translate}}</mat-label>
 
                     <textarea maxlength="250" matInput formControlName="AdditionalComment"></textarea>
+                    <mat-error
+                    *ngIf="hasError(FormControls['AdditionalComment'] )">
+                    <span
+                        *ngIf="FormControls['AdditionalComment']?.errors?.['maxlength']">{{"MAX_LENGTH_EXCEEDS"
+                        |translate}}</span>
+                </mat-error>
                 </mat-form-field>
             </div>
 

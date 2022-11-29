@@ -35,6 +35,8 @@
      "OVERALL_HEALTH_CONDITION" : "Overall health condition",
      "FOLLOW_UP_DAYS" : "Follow up days",
      "DAYS" :"Days",
-     "SUBMIT_FEEDBACK" : "Submit"
+     "SUBMIT_FEEDBACK" : "Submit",
+     "FEEDBACK_HAS_BEEN_SENT_SUCCESSFULLY" : "Feedback has been sent successfully",
+     "FAILED_TO_SEND_FEEDBACK" : "Failed to send feedback, try again"
 
 }

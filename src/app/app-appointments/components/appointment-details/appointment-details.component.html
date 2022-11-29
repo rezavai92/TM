@@ -12,8 +12,8 @@
         </div>
         <div fxLayout.xs="column" fxLayoutAlign.xs="end center" fxLayout="row" fxLayoutAlign="start start"
             fxLayoutGap="6px">
-            <button mat-raised-button color="primary">{{"RESOLVE" | translate}}</button>
-            <button mat-raised-button color="accent" (click)="onFeedback()">{{"FEEDBACK" | translate}}</button>
+            <!-- <button mat-raised-button color="primary">{{"RESOLVE" | translate}}</button> -->
+            <button [disabled]="currentAppointmentDetails.status ==='Resolved'" mat-raised-button color="accent" (click)="onFeedback()">{{"FEEDBACK" | translate}}</button>
         </div>
     </div>
 

@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { CustomDialogConfig } from 'src/app/shared/models/interfaces/custom-dialog-config.interface';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
 import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
@@ -21,6 +21,7 @@ export class AppointmentDetailsComponent implements OnInit {
 	applicantUserId!: string;
 	appointmentId!: string;
 	applicantInfo!: any;
+	refreshSubscription!: Subscription;
 
 	@ViewChild('pdfDialog') pdfDialog!: TemplateRef<any>;
 	@ViewChild('videoDialog') videoDialog!: TemplateRef<any>;
@@ -38,7 +39,8 @@ export class AppointmentDetailsComponent implements OnInit {
 		private toast: CustomToastService,
 		private translateService: TranslateService
 	) {
-		console.log('created details');
+		
+		this.setRefreshSubscription();
 	}
 
 	ngOnInit(): void {
@@ -53,6 +55,17 @@ export class AppointmentDetailsComponent implements OnInit {
 		this.router.navigateByUrl('/appointments');
 	}
 
+
+	setRefreshSubscription() {
+
+		this.refreshSubscription = this.appointmentService.refresh$.subscribe((response) => {
+			if (response) {
+				this.loadAppointmentDetails();	
+			}
+			
+		})
+
+	}
 
 	updateFeedbackComponentInputs() {
 		
@@ -131,5 +144,10 @@ export class AppointmentDetailsComponent implements OnInit {
 			hasBackdrop: true,
 		};
 		this.customDialogService.open(config);
+	}
+
+
+	ngOnDestroy() {
+		this.refreshSubscription.unsubscribe();
 	}
 }

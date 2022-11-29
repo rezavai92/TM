@@ -15,3 +15,7 @@ export enum GenderEnum {
   Female = "Female",
   Other = "Other"
 }
+
+export enum AppointmentStatusEnum{
+  Resolved = "Resolved"
+}

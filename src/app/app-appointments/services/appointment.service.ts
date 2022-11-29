@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, of } from 'rxjs';
+import { catchError, of, Subject } from 'rxjs';
 import { IHttpCommonResponse } from 'src/app/shared/models/interfaces/HttpResponse.interface';
 import { environment } from 'src/environments/environment';
 import {
@@ -11,6 +11,7 @@ import {
 	IFetchAppointmentPayload,
 } from '../interfaces/appointment.interface';
 
+
 @Injectable({
 	providedIn: 'root',
 })
@@ -20,6 +21,7 @@ export class AppointmentService {
 		'application/json'
 	);
 
+	refresh$: Subject<boolean> = new Subject<boolean>();
 	constructor(private http: HttpClient) {}
 
 	getQueryParamsForAppointmentFetch(

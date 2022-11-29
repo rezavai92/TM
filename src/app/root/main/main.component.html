@@ -3,13 +3,23 @@
 
 		<div class="w-100-p" fxLayout="row" fxLayoutAlign="space-between center">
 
-			<div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="center center">
-				<button *ngIf="!hideSideNavigation" mat-icon-button (click)="toggleDrawer()"
+			<div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center">
+				
+				
+					<img  fxShow.gt-sm fxHide.lt-md  height="50" width="100" *ngIf="isSideNavOpened"
+					src="../../../assets/images/shifa-bd-logo.jpeg" alt="">
+
+					<img  fxShow.sm fxHide.xs fxHide.gt-sm  height="48" width="96"   *ngIf="isSideNavOpened"
+					src="../../../assets/images/shifa-bd-logo.jpeg" alt="">
+
+					<img  fxShow.xs  fxHide.gt-xs  height="32" width="64"   *ngIf="isSideNavOpened"
+					src="../../../assets/images/shifa-bd-logo.jpeg" alt="">
+				
+					<button *ngIf="!hideSideNavigation" mat-icon-button (click)="toggleDrawer()"
 					aria-label="Example icon-button with menu icon">
 					<mat-icon>menu</mat-icon>
 				</button>
-				<div class="page-header-3" fxHide.xs>Shifa BD</div>
-				<div class="page-header-3" fxHide.gt-xs>Shifa BD</div>
+				
 			</div>
 			<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap.xs="4px" fxLayoutGap.gt-xs="8px">
 				<div *ngIf="user">
@@ -66,7 +76,7 @@
 
 	<mat-drawer-container fxFlexFill>
 		<mat-drawer *ngIf="!hideToolBar && !hideSideNavigation" #drawer class="side-nav" [mode]="drawerMode"
-			[opened]="isDrawerOpened">
+			[opened]="isDrawerOpened" (openedChange)="onDrawerOpenStatusChange($event)" >
 			<mat-list fxLayout="column" fxLayoutGap="8px" role="list">
 				<mat-list-item class="w-100-p" *ngFor="let navigation of navigations">
 					<a [routerLink]="navigation.url">

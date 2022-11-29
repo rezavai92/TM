@@ -32,6 +32,7 @@ export class MainComponent implements OnInit, OnChanges, OnDestroy {
 	screenHeight!: number;
 	screenWidth!: number;
 	isDrawerOpened = true;
+	isSideNavOpened!: boolean;
 	user!: GetUserResponse;
 	@Input() hideToolBar: boolean = true;
 	@Input() hideSideNavigation: boolean = true;
@@ -73,8 +74,10 @@ export class MainComponent implements OnInit, OnChanges, OnDestroy {
 	setCurrentDrawerMode() {
 		if (this.screenWidth >= 900) {
 			this.drawerMode = 'side';
+			this.isSideNavOpened = true;
 		} else {
 			this.drawerMode = 'over';
+			this.isSideNavOpened = false;
 		}
 	}
 
@@ -96,6 +99,11 @@ export class MainComponent implements OnInit, OnChanges, OnDestroy {
 
 	toggleDrawer() {
 		this.drawerRef.toggle();
+		
+	}
+
+	onDrawerOpenStatusChange(event : boolean) {
+		this.isSideNavOpened = event;
 	}
 
 	setPortalLanguage(language: any) {
