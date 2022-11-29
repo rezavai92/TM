@@ -7,8 +7,9 @@ import {
 	FormGroup,
 	Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { take, tap } from 'rxjs';
+import { of, switchMap, take, tap } from 'rxjs';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
 import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
 import {
@@ -25,22 +26,24 @@ import { AppointmentService } from '../../services/appointment.service';
 	styleUrls: ['./appointment-feedback.component.scss'],
 })
 export class AppointmentFeedbackComponent implements OnInit {
-	
 	@Input() applicantInfo!: any;
 	feedbackForm!: FormGroup;
 	neededMedicalTestList = [...MedicalTests];
 	overallHealthConditionTypes = [...HealthConditionList];
 	loading = false;
+	appointmentId!: string;
 	constructor(
 		private fb: FormBuilder,
+		private route: ActivatedRoute,
 		private feedbackService: AppointmentFeedbackService,
 		private toast: CustomToastService,
 		private dialog: CustomDialogService,
 		private translateService: TranslateService,
-		private appointmentService : AppointmentService
+		private appointmentService: AppointmentService
 	) {}
 
 	ngOnInit(): void {
+		this.appointmentId = this.route.snapshot.params['appointmentId'];
 		this.initForm();
 	}
 
@@ -103,35 +106,59 @@ export class AppointmentFeedbackComponent implements OnInit {
 		this.loading = true;
 		const formData: IDoctorFeedbackModel = this.feedbackForm.getRawValue();
 		const otherInfo = {
-			ApplicantUserId: this.applicantInfo ? (this.applicantInfo.ApplicantUserId?? '') : '',
-			ApplicantDisplayName: this.applicantInfo ? (this.applicantInfo.ApplicantDisplayName?? '') : '',
-			ApplicantPhoneNumber: this.applicantInfo ? (this.applicantInfo.ApplicantPhoneNumber ?? '') : '',
-		
+			ApplicantUserId: this.applicantInfo
+				? this.applicantInfo.ApplicantUserId ?? ''
+				: '',
+			ApplicantDisplayName: this.applicantInfo
+				? this.applicantInfo.ApplicantDisplayName ?? ''
+				: '',
+			ApplicantPhoneNumber: this.applicantInfo
+				? this.applicantInfo.ApplicantPhoneNumber ?? ''
+				: '',
 		};
 		this.feedbackService
 			.submitAppointmentFeedback(formData, otherInfo)
 			.pipe(
+				switchMap((res) => {
+					if (res) {
+						return this.appointmentService.resolveAppointment(
+							this.appointmentId
+						);
+					}
+					return of(null);
+				})
+			)
+			.pipe(
 				take(1),
 				tap(() => {
 					this.loading = false;
-					
 				})
 			)
 			.subscribe({
 				next: (response) => {
+					console.log('res', response);
 					if (response && response.isSucceed) {
 						this.appointmentService.refresh$.next(true);
-						this.toast.openSnackBar(this.translateService.instant('FEEDBACK_HAS_BEEN_SENT_SUCCESSFULLY'), false, 'success');
+						this.toast.openSnackBar(
+							this.translateService.instant(
+								'FEEDBACK_HAS_BEEN_SENT_SUCCESSFULLY'
+							),
+							false,
+							'success'
+						);
 						this.dialog.close();
+					} else {
 					}
-					else {
-						
-					}
-				
 				},
 				error: (error) => {
 					this.loading = false;
-					this.toast.openSnackBar(this.translateService.instant('FAILED_TO_SEND_FEEDBACK'),false, 'error')
+					this.toast.openSnackBar(
+						this.translateService.instant(
+							'FAILED_TO_SEND_FEEDBACK'
+						),
+						false,
+						'error'
+					);
 				},
 			});
 	}

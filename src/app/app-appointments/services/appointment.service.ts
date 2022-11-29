@@ -11,7 +11,6 @@ import {
 	IFetchAppointmentPayload,
 } from '../interfaces/appointment.interface';
 
-
 @Injectable({
 	providedIn: 'root',
 })
@@ -132,5 +131,13 @@ export class AppointmentService {
 					});
 				})
 			);
+	}
+
+	resolveAppointment(serviceId: string) {
+		return this.http.put<IHttpCommonResponse<any>>(
+			environment.Appointment + 'ResolveAppointment',
+			{ serviceId: serviceId },
+			{ headers: this.headers, observe: 'body' }
+		);
 	}
 }
