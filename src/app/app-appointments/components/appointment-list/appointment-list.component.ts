@@ -5,7 +5,16 @@ import {
 	TemplateRef,
 	ElementRef,
 } from '@angular/core';
-import { debounceTime, distinctUntilChanged, fromEvent, map, take } from 'rxjs';
+import {
+	debounceTime,
+	distinctUntilChanged,
+	fromEvent,
+	map,
+	Subject,
+	Subscription,
+	take,
+	takeUntil,
+} from 'rxjs';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import {
 	IPaginationConfig,
@@ -26,6 +35,8 @@ import {
 	ActivatedRouteSnapshot,
 	Router,
 } from '@angular/router';
+import { SharedDataService } from 'src/app/shared/services/shared-data-services/shared-data.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-appointment-list',
@@ -42,6 +53,9 @@ export class AppointmentListComponent implements OnInit {
 	filterOpen = false;
 	searchKey = '';
 	currentFilterObject!: IAppointmentSearchFilter;
+	languageSubscription!: Subscription;
+	searchSubscription!: Subscription;
+	destroAll$: Subject<any> = new Subject();
 	@ViewChild('applicantDisplayNameTemplate', { static: true })
 	applicantDisplayNameTemplate: TemplateRef<any> | undefined;
 	@ViewChild('serviceTypeTemplate', { static: true }) serviceTypeTemplate:
@@ -64,17 +78,35 @@ export class AppointmentListComponent implements OnInit {
 		private appointmentService: AppointmentService,
 		private customToastService: CustomToastService,
 		private router: Router,
-		private route: ActivatedRoute
-	) {}
+		private route: ActivatedRoute,
+		private sharedDataService: SharedDataService,
+		private translateService: TranslateService
+	) {
+		this.languageSubscription = this.sharedDataService
+			.getCurrentLang()
+			.pipe(takeUntil(this.destroAll$))
+			.subscribe((lang) => {
+				console.log('from inside signup container');
+				this.translateService.use(lang);
+			});
+	}
+
+	ngOnDestroy() {
+		this.destroAll$.next(true);
+	}
 
 	ngOnInit(): void {
-		fromEvent(this.searchInput?.nativeElement, 'keyup')
+		this.searchSubscription = fromEvent(
+			this.searchInput?.nativeElement,
+			'keyup'
+		)
 			.pipe(
 				map((event: any) => {
 					return event.target.value;
 				}),
 				debounceTime(1500),
-				distinctUntilChanged()
+				distinctUntilChanged(),
+				takeUntil(this.destroAll$)
 			)
 			.subscribe((key) => {
 				this.resetCurrentPageNumber();
