@@ -23,6 +23,7 @@ import { VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { IsDefaultDatePipe } from './pipes/is-default-date.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
 	return new MultiTranslateHttpLoader(http, [
@@ -42,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		Base64StringPipe,
 		CustomDialogComponent,
 		TmMediaPlayerComponent,
+		IsDefaultDatePipe,
 	],
 	imports: [
 		CommonModule,
@@ -70,6 +72,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		TmPdfViewerComponent,
 		CustomDialogComponent,
 		TmMediaPlayerComponent,
+		IsDefaultDatePipe,
 	],
 	providers: [CustomToastService, CustomDialogService],
 })

@@ -43,7 +43,8 @@
 </ng-template>
 
 <ng-template #serviceStartDateTemplate let-row="row" let-column="column">
-	<span *ngIf="row && row.startDate; else empty">{{ row.startDate | date: "MM.dd.YY" }}</span>
+	<span *ngIf="row && row.startDate && !(row.startDate|isDefaultDate); else empty">{{ row.startDate | date: "MM.dd.YY"
+		}}</span>
 </ng-template>
 <ng-template #serviceStartTimeTemplate let-row="row" let-column="column">
 	<span *ngIf="row && row.startTime; else empty">{{ row.startTime }}</span>
@@ -51,7 +52,8 @@
 
 
 <ng-template #serviceEndDateTemplate let-row="row" let-column="column">
-	<span *ngIf="row && row.endDate; else empty">{{ row.endDate | date: "MM.dd.YY" }}</span>
+	<span *ngIf="row && row.endDate && !(row.endDate|isDefaultDate); else empty">{{ row.endDate | date: "MM.dd.YY"
+		}}</span>
 </ng-template>
 
 <ng-template #serviceEndTimeTemplate let-row="row" let-column="column">
