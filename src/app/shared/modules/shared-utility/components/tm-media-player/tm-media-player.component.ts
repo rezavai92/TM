@@ -29,7 +29,7 @@ export class TmMediaPlayerComponent implements OnInit {
 					next: (res) => {
 						if (res && res.isSucceed) {
 							this.src = res.responseData?.url as string;
-							console.log('src', this.src);
+							this.loading = false;
 						} else {
 							this.toast.openSnackBar(
 								'UNABLE_TO_FETCH_FILE',

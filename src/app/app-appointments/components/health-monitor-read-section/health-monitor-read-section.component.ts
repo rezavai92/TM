@@ -99,9 +99,9 @@ export class HealthMonitorReadSectionComponent implements OnInit {
 	openEcgPdf() {
 		const onClose = function () {};
 		const config: CustomDialogConfig = {
-			width: '700px',
+			width: '70vw',
 
-			panelClass: 'modal-80-p',
+			panelClass: 'modal-90-p',
 			onClose: onClose.bind(this),
 			data: {
 				body: this.ecgPdfDialog,

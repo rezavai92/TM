@@ -89,7 +89,8 @@ export class StethoscopeReadSectionComponent implements OnInit {
 		this.audioFileStorageId = value.fileId;
 		const onClose = function () {};
 		const config: CustomDialogConfig = {
-			width: '600px',
+			minWidth: '50vw',
+			//maxWidth: '600px',
 			panelClass: 'modal-60-p',
 			onClose: onClose.bind(this),
 			data: {

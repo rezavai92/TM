@@ -37,6 +37,7 @@ export class TmPdfViewerComponent implements OnInit {
 								res && res.responseData
 									? res.responseData.url
 									: this.src;
+							this.loading = false;
 						} else {
 							this.toast.openSnackBar(
 								'UNABLE_TO_SHOW_ANY_PDF',

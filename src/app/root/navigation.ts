@@ -8,10 +8,15 @@ export const navigations: Navigation[] = [
 	// 	url: '/my-profile',
 	// },
 	{
+		icon: 'medical_services',
+		id: 'doctor-services',
+		translate: 'APP_SERVICES',
+		url: '/services',
+	},
+	{
 		icon: 'calendar_month',
 		id: 'appointments',
 		translate: 'APP_APPOINTMENTS',
 		url: '/appointments',
 	},
-
 ];

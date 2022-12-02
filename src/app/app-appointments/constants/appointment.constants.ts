@@ -4,7 +4,7 @@ export enum AppointmentTypeEnum {
 }
 
 export enum AppointmentStatusEnum {
-	PENDING = 'Pending',
+	UPCOMING = 'Upcoming',
 	ONGOING = 'Ongoing',
 	RESOLVED = 'Resolved',
 }
@@ -16,7 +16,7 @@ export const AppointmentTypeList = [
 
 export const AppointmentStatusList = [
 	AppointmentStatusEnum.ONGOING,
-	AppointmentStatusEnum.PENDING,
+	AppointmentStatusEnum.UPCOMING,
 	AppointmentStatusEnum.RESOLVED,
 ];
 
@@ -53,11 +53,71 @@ export const HealthConditionList = Object.freeze([
 		value: PatientHealthConditionEnum.NORMAL,
 	},
 	{
+		key: 'MEDIUM',
+		value: PatientHealthConditionEnum.MEDIUM,
+	},
+	{
 		key: 'SEVERE',
 		value: PatientHealthConditionEnum.SEVERE,
+	},
+]);
+
+export const EcgConditionList = Object.freeze([
+	{
+		key: 'NORMAL',
+		value: PatientHealthConditionEnum.NORMAL,
 	},
 	{
 		key: 'MEDIUM',
 		value: PatientHealthConditionEnum.MEDIUM,
+	},
+	{
+		key: 'SEVERE',
+		value: PatientHealthConditionEnum.SEVERE,
+	},
+]);
+
+export const OtoscopeConditionList = Object.freeze([
+	{
+		key: 'NORMAL',
+		value: PatientHealthConditionEnum.NORMAL,
+	},
+	{
+		key: 'MEDIUM',
+		value: PatientHealthConditionEnum.MEDIUM,
+	},
+	{
+		key: 'SEVERE',
+		value: PatientHealthConditionEnum.SEVERE,
+	},
+]);
+
+export const HeartConditionList = Object.freeze([
+	{
+		key: 'NORMAL',
+		value: PatientHealthConditionEnum.NORMAL,
+	},
+	{
+		key: 'MEDIUM',
+		value: PatientHealthConditionEnum.MEDIUM,
+	},
+	{
+		key: 'SEVERE',
+		value: PatientHealthConditionEnum.SEVERE,
+	},
+]);
+
+export const LungConditionList = Object.freeze([
+	{
+		key: 'NORMAL',
+		value: PatientHealthConditionEnum.NORMAL,
+	},
+	{
+		key: 'MEDIUM',
+		value: PatientHealthConditionEnum.MEDIUM,
+	},
+	{
+		key: 'SEVERE',
+		value: PatientHealthConditionEnum.SEVERE,
 	},
 ]);

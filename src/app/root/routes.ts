@@ -57,7 +57,7 @@ export const routes: Route[] = [
 	},
 
 	{
-		path: 'appointments',
+		path: 'services',
 		//	pathMatch : "full",
 		loadChildren: () =>
 			import('../app-appointments/app-appointments.module').then(
@@ -66,7 +66,7 @@ export const routes: Route[] = [
 		canActivate: [TMFeatureCanActivateGuard],
 		data: {
 			isFullScreen: true,
-			requiredFeature: 'appointments',
+			requiredFeature: 'doctor-services',
 			authFailRedirection: '/my-profile',
 			isPublic: false,
 			hideToolBar: false,

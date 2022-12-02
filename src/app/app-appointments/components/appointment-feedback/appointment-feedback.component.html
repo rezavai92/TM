@@ -1,6 +1,6 @@
 <div class="feedback-container">
     <form [formGroup]="feedbackForm">
-        <div fxLayout="column" >
+        <div fxLayout="column">
 
 
             <div fxLayout="column" fxLayoutGap.gt-xs="4px" fxLayoutALign="start start" class="w-100-p pt-10">
@@ -18,7 +18,7 @@
 
                                     <mat-form-field appearance="outline" class="w-100-p">
                                         <mat-label>{{'MEDICINE_NAME' | translate}}</mat-label>
-                                        <input type="text" matInput  formControlName="Name">
+                                        <input type="text" matInput formControlName="Name">
                                         <!-- <mat-error
                                             *ngIf="hasError(findMedicineFormGroupAt(i).controls['Name'] )">
                                             <span
@@ -31,7 +31,7 @@
                                     <div class=" w-100-p">
                                         <mat-form-field appearance="outline" class="w-100-p">
                                             <mat-label>{{'MEDICINE_INSTRUCTION' | translate}}</mat-label>
-                                            <input type="text" matInput formControlName="Instruction"  />
+                                            <input type="text" matInput formControlName="Instruction" />
                                             <!-- <mat-error
                                                 *ngIf="hasError(findMedicineFormGroupAt(i).controls['Instruction'] )">
                                                 <span
@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <mat-form-field  class="mt-16" appearance="outline">
+            <mat-form-field class="mt-16" appearance="outline">
                 <mat-label>{{"PRESCRIBED_TESTS" | translate}}</mat-label>
                 <mat-select formControlName="PrescribedTests" multiple>
                     <mat-option *ngFor="let test of neededMedicalTestList" [value]="test.value">
@@ -94,15 +94,84 @@
                     <mat-label>{{"ADDITIONAL_COMMENT" | translate}}</mat-label>
 
                     <textarea maxlength="250" matInput formControlName="AdditionalComment"></textarea>
-                    <mat-error
-                    *ngIf="hasError(FormControls['AdditionalComment'] )">
-                    <span
-                        *ngIf="FormControls['AdditionalComment']?.errors?.['maxlength']">{{"MAX_LENGTH_EXCEEDS"
-                        |translate}}</span>
-                </mat-error>
+                    <mat-error *ngIf="hasError(FormControls['AdditionalComment'] )">
+                        <span *ngIf="FormControls['AdditionalComment']?.errors?.['maxlength']">{{"MAX_LENGTH_EXCEEDS"
+                            |translate}}</span>
+                    </mat-error>
                 </mat-form-field>
             </div>
+            <!--Ecg and Heart  condtion-->
 
+            <div class="w-100-p" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start center" fxLayoutGap="16px">
+                <div class="w-100-p">
+                    <mat-form-field class="w-100-p" appearance="outline">
+                        <mat-label>{{"ECG_CONDITION" | translate}}</mat-label>
+                        <mat-select formControlName="EcgCondition" required>
+                            <mat-option *ngFor="let condition of ecgConditons" [value]="condition.value">
+                                {{condition.key | translate}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError(FormControls['EcgCondition'] )">
+                            <span *ngIf="FormControls['EcgCondition']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                |translate}}</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="w-100-p">
+                    <mat-form-field class="w-100-p" appearance="outline">
+                        <mat-label>{{"HEART_CONDITION" | translate}}</mat-label>
+                        <mat-select formControlName="HeartCondition" required>
+                            <mat-option *ngFor="let condition of heartConditions" [value]="condition.value">
+                                {{condition.key | translate}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError(FormControls['HeartCondition'] )">
+                            <span *ngIf="FormControls['HeartCondition']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                |translate}}</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <!--Lung  and otoscope  condtion-->
+
+            <div class="w-100-p" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start center" fxLayoutGap="16px">
+                <div class="w-100-p">
+                    <mat-form-field class="w-100-p" appearance="outline">
+                        <mat-label>{{"LUNG_CONDITION" | translate}}</mat-label>
+                        <mat-select formControlName="LungConition" required>
+                            <mat-option *ngFor="let condition of lungConditions" [value]="condition.value">
+                                {{condition.key | translate}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError(FormControls['LungConition'] )">
+                            <span *ngIf="FormControls['LungConition']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                |translate}}</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="w-100-p">
+                    <mat-form-field class="w-100-p" appearance="outline">
+                        <mat-label>{{"OTOSCOPE_CONDITION" | translate}}</mat-label>
+                        <mat-select formControlName="OtoscopeConition" required>
+                            <mat-option *ngFor="let condition of otoscopeConditions" [value]="condition.value">
+                                {{condition.key | translate}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="hasError(FormControls['OtoscopeConition'] )">
+                            <span *ngIf="FormControls['OtoscopeConition']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                |translate}}</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+
+            <!--follow up days  && Overall Helath COndition-->
             <div class="w-100-p" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="start center" fxLayoutGap="16px">
                 <div class="w-100-p">
                     <mat-form-field class="w-100-p" appearance="outline">
@@ -112,12 +181,10 @@
                                 {{condition.key | translate}}
                             </mat-option>
                         </mat-select>
-                        <mat-error
-                        *ngIf="hasError(FormControls['PatientCondition'] )">
-                        <span
-                            *ngIf="FormControls['PatientCondition']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
-                            |translate}}</span>
-                    </mat-error>
+                        <mat-error *ngIf="hasError(FormControls['PatientCondition'] )">
+                            <span *ngIf="FormControls['PatientCondition']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
+                                |translate}}</span>
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="w-100-p" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
@@ -131,7 +198,8 @@
 
 
             <div class="w-100-p" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end center">
-                <button [disabled]="loading || feedbackForm.invalid" color="primary" mat-raised-button (click)="submitFeedback()">{{'SUBMIT_FEEDBACK' | translate}}</button>
+                <button [disabled]="loading || feedbackForm.invalid" color="primary" mat-raised-button
+                    (click)="submitFeedback()">{{'SUBMIT_FEEDBACK' | translate}}</button>
                 <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
             </div>
         </div>

@@ -49,7 +49,7 @@
     <mat-spinner diameter="40"></mat-spinner>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="center center" style="color : red; font-size : 14px " *ngIf="!(loading && src)"
+<div fxLayout="row" fxLayoutAlign="center center" style="color : red; font-size : 14px " *ngIf="!(loading || src)"
     class="tm-pdf-viewer-loader">
     {{"NO_MEDIA_FILE_FOUND" | translate}}
 </div>

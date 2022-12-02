@@ -1,6 +1,6 @@
 <div *ngIf="src" class="tm-pdf-viewer">
-    <ngx-extended-pdf-viewer [src]="src" backgroundColor="#ffffff" [height]="'90vh'" [useBrowserLocale]="true"
-        [handTool]="false" [showHandToolButton]="true">
+    <ngx-extended-pdf-viewer [textLayer]="true" [src]="src" backgroundColor="#ffffff" [height]="'90vh'"
+        [useBrowserLocale]="true" [handTool]="true" [showHandToolButton]="true">
     </ngx-extended-pdf-viewer>
 </div>
 
@@ -8,7 +8,7 @@
     <mat-spinner [diameter]="50"></mat-spinner>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="center center" style="color : red; font-size : 14px " *ngIf="!(loading && src)"
+<div fxLayout="row" fxLayoutAlign="center center" style="color : red; font-size : 14px " *ngIf="!(loading || src)"
     class="tm-pdf-viewer-loader">
     {{"NO_PDF_FILE_FOUND" | translate}}
 </div>

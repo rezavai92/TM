@@ -59,7 +59,7 @@ export class AppointmentDetailsComponent implements OnInit {
 	}
 
 	goBackToListPage() {
-		this.router.navigateByUrl('/appointments');
+		this.router.navigateByUrl('/services');
 	}
 
 	setRefreshSubscription() {
@@ -100,39 +100,6 @@ export class AppointmentDetailsComponent implements OnInit {
 				}
 				this.detailsLoading = false;
 			});
-	}
-
-	showPdf() {
-		const onClose = function () {};
-		const config: CustomDialogConfig = {
-			width: '700px',
-
-			panelClass: 'modal-80-p',
-			onClose: onClose.bind(this),
-			data: {
-				body: this.pdfDialog,
-				defaultHeader: true,
-				headerTitle: 'PATIENT_DATA',
-			},
-			hasBackdrop: true,
-		};
-		this.customDialogService.open(config);
-	}
-
-	playVideo() {
-		const onClose = function () {};
-		const config: CustomDialogConfig = {
-			width: '700px',
-			panelClass: 'modal-80-p',
-			onClose: onClose.bind(this),
-			data: {
-				body: this.videoDialog,
-				defaultHeader: true,
-				headerTitle: 'PATIENT_VIDEO',
-			},
-			hasBackdrop: true,
-		};
-		this.customDialogService.open(config);
 	}
 
 	onFeedback() {

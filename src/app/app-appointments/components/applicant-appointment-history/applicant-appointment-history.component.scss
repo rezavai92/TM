@@ -2,7 +2,7 @@
 
 .history {
 	box-sizing: border-box;
-	padding: 24px 10px 24px 10px;
+	padding: 24px;
 	height: 100%;
 	width: 100%;
 	position: relative;
@@ -13,6 +13,11 @@
 		left: 48%;
 	}
 	//    margin: 0% 20%;
+
+	.date {
+		color: map-get($mat-bs-accent, 700);
+		font-weight: 600;
+	}
 
 	.vl {
 		border-left: 4px solid map-get($mat-bs-accent, 700);
@@ -41,14 +46,14 @@
 			position: relative;
 			height: 100%;
 
-			.date {
-				position: absolute;
-				top: 44%;
-				//		z-index: 40000;
-				left: 5%;
-				color: map-get($mat-bs-accent, 700);
-				font-weight: 600;
-			}
+			// .date {
+			// 	position: absolute;
+			// 	top: 44%;
+			// 	//		z-index: 40000;
+			// 	left: 5%;
+			// 	color: map-get($mat-bs-accent, 700);
+			// 	font-weight: 600;
+			// }
 			.line {
 				position: absolute;
 				top: 50%;

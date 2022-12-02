@@ -6,10 +6,10 @@
 @import "../../../../../../styles/shared/snackbar-custom.style.scss";
 
 .custom-dialog {
-	width: 100%;
+	width: fit-content;
 	height: 100%;
 	box-sizing: border-box;
-	overflow-y: auto;
+	overflow: auto;
 
 	.dialog-header {
 		box-sizing: border-box;
@@ -22,7 +22,7 @@
 		top: 0;
 	}
 	.body {
-		overflow-y: scroll;
+		overflow: auto;
 	}
 }
 

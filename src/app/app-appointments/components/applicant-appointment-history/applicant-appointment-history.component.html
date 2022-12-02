@@ -8,16 +8,21 @@
 
 
 
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="60px"
+            <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px"
                 *ngFor="let appointment of appointmentHistory;let i =index;">
-                <div fxLayout="column" fxLayoutAlign="center center" class="circle">
+                <!-- <div fxLayout="column" fxLayoutAlign="center center" class="circle">
                     <div class="date">{{appointment.serviceRequestDate | date: 'MM.dd.yyyy'}}</div>
                     <div *ngIf="i!==totalCount-1" class="line">
 
                     </div>
                     <mat-icon color="primary">radio_button_checked</mat-icon>
 
+                </div> -->
+
+                <div class="date">
+                    {{appointment.serviceRequestDate | date : 'MMM d, y'}}
                 </div>
+
                 <div [ngClass]=" {'last' : i ===totalCount-1, 'appointment-segment' : true }">
 
                     <app-appointment-capsule [appointmentData]="appointment">

@@ -37,7 +37,17 @@
      "DAYS" :"Days",
      "SUBMIT_FEEDBACK" : "Submit",
      "FEEDBACK_HAS_BEEN_SENT_SUCCESSFULLY" : "Feedback has been sent successfully",
-     "FAILED_TO_SEND_FEEDBACK" : "Failed to send feedback, try again"
+     "FAILED_TO_SEND_FEEDBACK" : "Failed to send feedback, try again",
+    
+     "ALL_SERVICES" : "সেবার তালিকা",
+     "ECG_CONDITION" : "ECG Condition",
+     "HEART_CONDITION" : "Heart Condition",
+     "LUNG_CONDITION" : "Lung Condition",
+     "OTOSCOPE_CONDITION": "Otoscope Condition",
+     "NORMAL" : "Normal",
+     "SEVERE" : "Severe",
+     "MEDIUM" : "Medium"
+
 
 
 }

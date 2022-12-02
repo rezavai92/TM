@@ -2,7 +2,7 @@
 	<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start center"
 		fxLayoutGap.gt-xs="16px" fxLayoutGap.xs="4px" class="w-100-p">
 		<div class="w-100-p page-header-1" ngClass.sm="page-header-2" ngClass.xs="page-header-3">
-			{{ "ALL_APPOINTMENTS" | translate }}
+			{{ "ALL_SERVICES" | translate }}
 		</div>
 		<div class="w-100-p search-filter-container">
 			<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" class="w-100-p search">
@@ -43,21 +43,21 @@
 </ng-template>
 
 <ng-template #serviceStartDateTemplate let-row="row" let-column="column">
-	<span *ngIf="row && row.startDate && !(row.startDate|isDefaultDate); else empty">{{ row.startDate | date: "MM.dd.YY"
+	<span *ngIf="row && row.startDate && !(row.startDate|isDefaultDate); else empty">{{ row.startDate | date: 'MMM d, y'
 		}}</span>
 </ng-template>
 <ng-template #serviceStartTimeTemplate let-row="row" let-column="column">
-	<span *ngIf="row && row.startTime; else empty">{{ row.startTime }}</span>
+	<span *ngIf="row && row.startDate; else empty">{{ row.startDate | date : 'h:mm a' }}</span>
 </ng-template>
 
 
 <ng-template #serviceEndDateTemplate let-row="row" let-column="column">
-	<span *ngIf="row && row.endDate && !(row.endDate|isDefaultDate); else empty">{{ row.endDate | date: "MM.dd.YY"
+	<span *ngIf="row && row.endDate && !(row.endDate|isDefaultDate); else empty">{{ row.endDate | date: 'MMM d, y'
 		}}</span>
 </ng-template>
 
 <ng-template #serviceEndTimeTemplate let-row="row" let-column="column">
-	<span *ngIf="row && row.endTime; else empty">{{ row.endTime }}</span>
+	<span *ngIf="row && row.endDate; else empty">{{ row.endDate | date : 'h:mm a' }}</span>
 </ng-template>
 <ng-template #serviceStatusTemplate let-row="row" let-column="column">
 	<span *ngIf="row && row.status; else empty" [class]="[row.status|lowercase, 'status-box']">{{ row.status }}</span>

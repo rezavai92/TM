@@ -76,7 +76,7 @@ export class OtoscopeReadSectionComponent implements OnInit {
 		this.videoFileStorageId = value.fileId;
 		const onClose = function () {};
 		const config: CustomDialogConfig = {
-			width: '600px',
+			width: '50vw',
 			panelClass: 'modal-60-p',
 			onClose: onClose.bind(this),
 			data: {

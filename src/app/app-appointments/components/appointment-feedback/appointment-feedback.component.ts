@@ -13,8 +13,12 @@ import { of, switchMap, take, tap } from 'rxjs';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
 import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
 import {
+	EcgConditionList,
 	HealthConditionList,
 	MedicalTests,
+	OtoscopeConditionList,
+	HeartConditionList,
+	LungConditionList,
 } from '../../constants/appointment.constants';
 import { IDoctorFeedbackModel } from '../../interfaces/feedback.interface';
 import { AppointmentFeedbackService } from '../../services/appointment-feedback.service';
@@ -30,6 +34,11 @@ export class AppointmentFeedbackComponent implements OnInit {
 	feedbackForm!: FormGroup;
 	neededMedicalTestList = [...MedicalTests];
 	overallHealthConditionTypes = [...HealthConditionList];
+	ecgConditons = [...EcgConditionList];
+	heartConditions = [...HeartConditionList];
+	lungConditions = [...LungConditionList];
+	otoscopeConditions = [...OtoscopeConditionList];
+
 	loading = false;
 	appointmentId!: string;
 	constructor(
@@ -54,6 +63,10 @@ export class AppointmentFeedbackComponent implements OnInit {
 			AdditionalComment: ['', Validators.maxLength(250)],
 			FollowUpAfter: [''],
 			PatientCondition: ['Normal', Validators.required],
+			EcgCondition: ['Normal', Validators.required],
+			HeartCondition: ['Normal', Validators.required],
+			LungConition: ['Normal', Validators.required],
+			OtoscopeConition: ['Normal', Validators.required],
 		});
 
 		this.addMedicine();

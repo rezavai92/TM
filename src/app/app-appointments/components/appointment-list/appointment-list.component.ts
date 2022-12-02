@@ -140,8 +140,7 @@ export class AppointmentListComponent implements OnInit {
 	}
 
 	onSelectTableRow(row: AppointmentListResponseData) {
-		const url =
-			'/appointments/details/' + row.id + '/' + row.applicantUserId;
+		const url = '/services/details/' + row.id + '/' + row.applicantUserId;
 		this.router.navigateByUrl(url);
 		console.log('selected row ', row);
 	}
