@@ -2,10 +2,11 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription, take } from 'rxjs';
+import { Subject, Subscription, take, takeUntil } from 'rxjs';
 import { CustomDialogConfig } from 'src/app/shared/models/interfaces/custom-dialog-config.interface';
 import { CustomDialogService } from 'src/app/shared/modules/shared-utility/services/custom-dialog.service';
 import { CustomToastService } from 'src/app/shared/modules/shared-utility/services/custom-toast.service';
+import { SharedDataService } from 'src/app/shared/services/shared-data-services/shared-data.service';
 import { IAppointmentDetailsResponse } from '../../interfaces/appointment.interface';
 import { AppointmentService } from '../../services/appointment.service';
 
@@ -22,25 +23,31 @@ export class AppointmentDetailsComponent implements OnInit {
 	appointmentId!: string;
 	applicantInfo!: any;
 	refreshSubscription!: Subscription;
-
+	languageSubscription!: Subscription;
+	destroAll$: Subject<any> = new Subject();
 	@ViewChild('pdfDialog') pdfDialog!: TemplateRef<any>;
 	@ViewChild('videoDialog') videoDialog!: TemplateRef<any>;
 	@ViewChild('feedbackDialog') feedbackDialog!: TemplateRef<any>;
 
-	
 	play = false;
 
-	
 	constructor(
 		private router: Router,
 		private route: ActivatedRoute,
 		private appointmentService: AppointmentService,
 		private customDialogService: CustomDialogService,
 		private toast: CustomToastService,
-		private translateService: TranslateService
+		private translateService: TranslateService,
+		private sharedDataService: SharedDataService
 	) {
-		
 		this.setRefreshSubscription();
+		this.languageSubscription = this.sharedDataService
+			.getCurrentLang()
+			.pipe(takeUntil(this.destroAll$))
+			.subscribe((lang) => {
+				console.log('from inside signup container');
+				this.translateService.use(lang);
+			});
 	}
 
 	ngOnInit(): void {
@@ -55,26 +62,24 @@ export class AppointmentDetailsComponent implements OnInit {
 		this.router.navigateByUrl('/appointments');
 	}
 
-
 	setRefreshSubscription() {
-
-		this.refreshSubscription = this.appointmentService.refresh$.subscribe((response) => {
-			if (response) {
-				this.loadAppointmentDetails();	
+		this.refreshSubscription = this.appointmentService.refresh$.subscribe(
+			(response) => {
+				if (response) {
+					this.loadAppointmentDetails();
+				}
 			}
-			
-		})
-
+		);
 	}
 
 	updateFeedbackComponentInputs() {
-		
-
 		this.applicantInfo = {
 			ApplicantUserId: this.currentAppointmentDetails.applicantUserId,
-			ApplicantDisplayName: this.currentAppointmentDetails.applicantDisplayName,
-			ApplicantPhoneNumber : this.currentAppointmentDetails.applicantPhoneNumber,
-		}
+			ApplicantDisplayName:
+				this.currentAppointmentDetails.applicantDisplayName,
+			ApplicantPhoneNumber:
+				this.currentAppointmentDetails.applicantPhoneNumber,
+		};
 	}
 
 	loadAppointmentDetails() {
@@ -146,8 +151,8 @@ export class AppointmentDetailsComponent implements OnInit {
 		this.customDialogService.open(config);
 	}
 
-
 	ngOnDestroy() {
 		this.refreshSubscription.unsubscribe();
+		this.destroAll$.next(true);
 	}
 }
