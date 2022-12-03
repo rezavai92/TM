@@ -1,24 +1,25 @@
-import { FinanceTypeEnum } from "../constants/signup.constants"
+import { FinanceTypeEnum } from '../constants/signup.constants';
 
 export interface IBankInfoForm {
-    FinanceType: FinanceTypeEnum
+	FinanceType: FinanceTypeEnum;
 }
 
-export interface IBankInformation<T extends IMobileFinancialServiceInfo | ITraditionalBankInfo> {
-    Type: string,
-    Info: T
+export interface IBankInformation<
+	T extends IMobileFinancialServiceInfo | ITraditionalBankInfo
+> {
+	Type: string;
+	Info: T;
 }
 
 export interface ITraditionalBankInfo {
-    BankName: string,
-    BranchName: string,
-    AccountHolderName: string,
-    AccountNumber: string,
-    RoutingNumber?: string
-
+	BankName: string;
+	BranchName: string;
+	AccountHolderName: string;
+	AccountNumber: number;
+	RoutingNumber?: string;
 }
 
 export interface IMobileFinancialServiceInfo {
-    PhoneNumber: string,
-    OperatorName: string
+	PhoneNumber: string;
+	OperatorName: string;
 }

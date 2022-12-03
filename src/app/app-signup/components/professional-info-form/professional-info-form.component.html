@@ -1,6 +1,6 @@
 <div class="professional-info-form-wrapper" ngClass.lt-md="pt-5 pb-5 pl-15 pr-15"
     ngClass.gt-sm="pt-10 pb-20 pl-40 pr-40">
-    <button (click)="autoPopulateForm()" mat-button>Auto populate</button>
+    <!-- <button (click)="autoPopulateForm()" mat-button>Auto populate</button> -->
     <form class="professional-info-form" [formGroup]="professionalInfoForm">
         <div fxLayout.xs="column" fxLayout="row" fxLayoutGap.gt-xs="16px" fxLayoutALign="start start"
             class="form-field-pairs">
@@ -105,13 +105,14 @@
 
                                 </div>
 
-                            
+
                                 <div class="close-btn">
-                                    <button  [disabled]="ProfessionalDocuments.controls.length<2" mat-icon-button (click)="removeOption(i)">
+                                    <button [disabled]="ProfessionalDocuments.controls.length<2" mat-icon-button
+                                        (click)="removeOption(i)">
                                         <mat-icon>remove</mat-icon>
-                                     </button>
+                                    </button>
                                 </div>
-                            
+
                             </div>
 
 
