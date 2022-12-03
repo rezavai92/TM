@@ -33,7 +33,7 @@
               }
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles/themes/theme-default.scss",
               "src/styles.scss",
               "src/styles/styles.scss",
               "node_modules/@videogular/ngx-videogular/fonts/videogular.css"

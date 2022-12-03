@@ -1,6 +1,5 @@
-@use 'sass:map';
+@use "sass:map";
 @import "~@angular/material/theming";
-
 
 // Color palettes from the Material Design spec.
 // See https://material.io/design/color/
@@ -8,7 +7,6 @@
 // Contrast colors are hard-coded because it is too difficult (probably impossible) to
 // calculate them. These contrast colors are pulled from the public Material Design spec swatches.
 // While the contrast colors in the spec are not prescriptive, we use them for convenience.
-
 
 // @deprecated renamed to $dark-primary-text.
 // @breaking-change 8.0.0
@@ -40,126 +38,122 @@ $light-disabled-text: rgba(white, 0.5);
 $light-dividers: rgba(white, 0.12);
 $light-focused: rgba(white, 0.12);
 
-
-
-
 $mat-bs-primary: (
-  50: #e8eaf6,
-  100: #c5cae9,
-  200: #9fa8da,
-  300: #7986cb,
-  400: #5c6bc0,
-  500: #3f51b5,
-  600: #3949ab,
-  700: #303f9f,
-  800: #283593,
-  900: #1a237e,
-  A100: #8c9eff,
-  A200: #536dfe,
-  A400: #3d5afe,
-  A700: #304ffe,
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $light-primary-text,
-    400: $light-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  )
+	50: #e8f5e9,
+	100: #c8e6c9,
+	200: #a5d6a7,
+	300: #81c784,
+	400: #66bb6a,
+	500: #4caf50,
+	600: #43a047,
+	700: #388e3c,
+	800: #2e7d32,
+	900: #1b5e20,
+	A100: #b9f6ca,
+	A200: #69f0ae,
+	A400: #00e676,
+	A700: #00c853,
+	contrast: (
+		50: $dark-primary-text,
+		100: $dark-primary-text,
+		200: $dark-primary-text,
+		300: $light-primary-text,
+		400: $light-primary-text,
+		500: $light-primary-text,
+		600: $light-primary-text,
+		700: $light-primary-text,
+		800: $light-primary-text,
+		900: $light-primary-text,
+		A100: $dark-primary-text,
+		A200: $light-primary-text,
+		A400: $light-primary-text,
+		A700: $light-primary-text,
+	),
 );
 
-$mat-solid-border-accent:(
-  b1 : 1px solid #f0f0f0,
-  b2 : 2px solid #f0f0f0,
-  b3 : 3px solid #f0f0f0,
-  b4 : 4px solid #f0f0f0,
-  b5 : 5px solid #f0f0f0,
-  b6 : 6px solid #f0f0f0,
-
+$mat-solid-border-accent: (
+	b1: 1px solid #f0f0f0,
+	b2: 2px solid #f0f0f0,
+	b3: 3px solid #f0f0f0,
+	b4: 4px solid #f0f0f0,
+	b5: 5px solid #f0f0f0,
+	b6: 6px solid #f0f0f0,
 );
 
 $mat-bs-accent: (
-    50: #e8eaf6,
-    100: #c5cae9,
-    200: #9fa8da,
-    300: #7986cb,
-    400: #5c6bc0,
-    500: #448AFF,
-    600: #3949ab,
-    700: #303f9f,
-    800: #283593,
-    900: #1a237e,
-    contrast: (
-        50: $dark-secondary-text,
-        100: $dark-secondary-text,
-        200: $dark-secondary-text,
-        300: $light-secondary-text,
-        400: $light-secondary-text,
-        500: $light-secondary-text,
-        600: $light-secondary-text,
-        700: $light-secondary-text,
-        800: $light-secondary-text,
-        900: $light-secondary-text,
-        A100:  $dark-secondary-text,
-        A200: $light-secondary-text,
-        A400: $light-secondary-text,
-        A700:$light-secondary-text,
-    ),
+	50: #e8f5e9,
+	100: #c8e6c9,
+	200: #a5d6a7,
+	300: #81c784,
+	400: #66bb6a,
+	500: #4caf50,
+	600: #43a047,
+	700: #388e3c,
+	800: #2e7d32,
+	900: #1b5e20,
+	A100: #b9f6ca,
+	A200: #69f0ae,
+	A400: #00e676,
+	A700: #00c853,
+	contrast: (
+		50: $dark-secondary-text,
+		100: $dark-secondary-text,
+		200: $dark-secondary-text,
+		300: $light-secondary-text,
+		400: $light-secondary-text,
+		500: $light-secondary-text,
+		600: $light-secondary-text,
+		700: $light-secondary-text,
+		800: $light-secondary-text,
+		900: $light-secondary-text,
+		A100: $dark-secondary-text,
+		A200: $light-secondary-text,
+		A400: $light-secondary-text,
+		A700: $light-secondary-text,
+	),
 );
 
 $mat-bs-warn: (
-    50: #fcefe1,
-    100: #f7d7b4,
-    200: #f2bd82,
-    300: #eda350,
-    400: #e98f2b,
-    500: #e57b05,
-    600: #e27304,
-    700: #de6804,
-    800: #da5e03,
-    900: #d34b01,
-    A100: #fffcfb,
-    A200: #ffd8c8,
-    A400: #ffb395,
-    A700: #ffa17b,
-    contrast: (
-        50: $dark-secondary-text,
-        100: $dark-secondary-text,
-        200: $dark-secondary-text,
-        300: $light-secondary-text,
-        400: $light-secondary-text,
-        500: $light-secondary-text,
-        600: $light-secondary-text,
-        700: $light-secondary-text,
-        800: $light-secondary-text,
-        900: $light-secondary-text,
-        A100:  $dark-secondary-text,
-        A200: $light-secondary-text,
-        A400: $light-secondary-text,
-        A700:$light-secondary-text,
-    ),
+	50: #fcefe1,
+	100: #f7d7b4,
+	200: #f2bd82,
+	300: #eda350,
+	400: #e98f2b,
+	500: #e57b05,
+	600: #e27304,
+	700: #de6804,
+	800: #da5e03,
+	900: #d34b01,
+	A100: #fffcfb,
+	A200: #ffd8c8,
+	A400: #ffb395,
+	A700: #ffa17b,
+	contrast: (
+		50: $dark-secondary-text,
+		100: $dark-secondary-text,
+		200: $dark-secondary-text,
+		300: $light-secondary-text,
+		400: $light-secondary-text,
+		500: $light-secondary-text,
+		600: $light-secondary-text,
+		700: $light-secondary-text,
+		800: $light-secondary-text,
+		900: $light-secondary-text,
+		A100: $dark-secondary-text,
+		A200: $light-secondary-text,
+		A400: $light-secondary-text,
+		A700: $light-secondary-text,
+	),
 );
 
 $mat-bs-error: (
-   light : #ef5350,
-   main : #f44336,
-   dark: #c62828
+	light: #ef5350,
+	main: #f44336,
+	dark: #c62828,
 );
-
 
 $mat-bs-success: (
-   light : #4caf50,
-   main : #2e7d32,
-   dark: #1b5e20
+	light: #4caf50,
+	main: #2e7d32,
+	dark: #1b5e20,
 );
-
-
-
