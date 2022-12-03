@@ -73,7 +73,23 @@ export const routes: Route[] = [
 			hideSideNavigation: false,
 		},
 	},
-
+	{
+		path: 'appointments',
+		//	pathMatch : "full",
+		loadChildren: () =>
+			import(
+				'../app-appointment-management/app-appointment-management.module'
+			).then((m) => m.AppAppointmentManagementModule),
+		canActivate: [TMFeatureCanActivateGuard],
+		data: {
+			isFullScreen: true,
+			requiredFeature: 'appointments',
+			authFailRedirection: '/my-profile',
+			isPublic: false,
+			hideToolBar: false,
+			hideSideNavigation: false,
+		},
+	},
 	{
 		path: '',
 		redirectTo: '/my-profile',

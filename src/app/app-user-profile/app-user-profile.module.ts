@@ -10,41 +10,35 @@ import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { SharedUtilityModule } from '../shared/modules/shared-utility/shared-utility.module';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
-
-const routes: Route[] = [
-  { path: "", component: MyProfileComponent }
-
-];
+const routes: Route[] = [{ path: '', component: MyProfileComponent }];
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new MultiTranslateHttpLoader(http, [
-    { prefix: "./assets/i18n/common/", suffix: ".json" },
-    { prefix: "./assets/i18n/app-login/", suffix: ".json" },
-
-  ]);
+	return new MultiTranslateHttpLoader(http, [
+		{ prefix: './assets/i18n/common/', suffix: '.json' },
+		{ prefix: './assets/i18n/app-login/', suffix: '.json' },
+	]);
 }
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FlexLayoutModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    FormsModule,
-    SharedUtilityModule,
-    RouterModule.forChild(routes),
-    TranslateModule.forChild({
-      defaultLanguage: "en",
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (HttpLoaderFactory),
-        deps: [HttpClient]
-      },
-      isolate: true
+	declarations: [MyProfileComponent],
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		RouterModule.forChild(routes),
+		FlexLayoutModule,
+		MaterialModule,
+		SharedUtilityModule,
 
-    })
-  ]
+		TranslateModule.forChild({
+			defaultLanguage: 'en',
+			loader: {
+				provide: TranslateLoader,
+				useFactory: HttpLoaderFactory,
+				deps: [HttpClient],
+			},
+			isolate: true,
+		}),
+	],
 })
-export class AppUserProfileModule { }
+export class AppUserProfileModule {}
