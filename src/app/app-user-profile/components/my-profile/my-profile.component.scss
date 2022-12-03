@@ -7,6 +7,11 @@
 .my-profile {
 	width: 100%;
 	height: 100%;
+	padding: 24px;
+
+	.profile-pic {
+		border-radius: 50%;
+	}
 }
 :host {
 	height: 100%;

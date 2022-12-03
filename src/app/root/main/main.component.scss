@@ -15,10 +15,13 @@
 		.logo-container {
 			width: 225px;
 		}
+		.rounded-img {
+			border-radius: 50%;
+		}
 	}
 
 	.active {
-		background-color: map-get($mat-bs-primary, 500) !important;
+		background-color: map-get($mat-bs-primary, 400) !important;
 		color: white !important;
 	}
 

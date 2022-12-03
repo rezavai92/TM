@@ -1,17 +1,24 @@
-<div class="my-profile" fxLayout="column">
-    <div class="w-100-p" fxLayout="row" fxLayoutGap="16px">
-        <div>Name : </div>
-        <div>{{loggedInUser.firstName + '' +loggedInUser.lastName }}</div>
-    </div>
-    <div fxLayout="row" fxLayoutGap="16px">
-        <div>Gender : </div>
-        <div>{{loggedInUser.gender }}</div>
-    </div>
-    <div fxLayout="row" fxLayoutGap="16px">
-        <div>Date of Birth : </div>
-        <div> <span *ngIf="loggedInUser.dob &&  !(loggedInUser.dob|isDefaultDate); else empty">{{ loggedInUser.dob |
-                date: 'MMM d, y'
-                }}</span></div>
+<div class="my-profile" fxLayout="column" fxLayoutAlign="center center">
+    <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start">
+        <div fxFlex="100">
+            <img class=" profile-pic" width="200px" height="200px"
+                [src]="(loggedInUser.profileImageId) |base64String|async" alt="">
+        </div>
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
+            <div>Name : </div>
+            <div>{{loggedInUser.firstName + '' +loggedInUser.lastName }}</div>
+        </div>
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
+            <div>Gender : </div>
+            <div>{{loggedInUser.gender }}</div>
+        </div>
+        <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
+            <div>Date of Birth : </div>
+            <div> <span *ngIf="loggedInUser.dob &&  !(loggedInUser.dob|isDefaultDate); else empty">{{
+                    loggedInUser.dob |
+                    date: 'MMM d, y'
+                    }}</span></div>
+        </div>
     </div>
 </div>
 

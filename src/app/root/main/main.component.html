@@ -25,11 +25,11 @@
 				<div *ngIf="user">
 					<button mat-button [matMenuTriggerFor]="myProfileMenu">
 
-						<img *ngIf="user.profileImageId" style="margin-top: -4px;" height="32" width="32"
-							[src]="user.profileImageId | base64String |async">
+						<img class="rounded-img" *ngIf="user.profileImageId" style="margin-top: -4px;" height="32"
+							width="32" [src]="user.profileImageId | base64String |async">
 
-						<img style="margin-top: -4px;" height="32" width="32" *ngIf="!user.profileImageId"
-							src="../../../assets/images/user.png" alt="">
+						<img class="rounded-img" style="margin-top: -4px;" height="32" width="32"
+							*ngIf="!user.profileImageId" src="../../../assets/images/user.png" alt="">
 						<span fxHide.xs>
 							{{ user.firstName | displayName: user.lastName }}
 						</span>
