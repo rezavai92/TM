@@ -1,8 +1,11 @@
 <div class="my-profile" fxLayout="column" fxLayoutAlign="center center">
     <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start">
         <div fxFlex="100">
-            <img class=" profile-pic" width="200px" height="200px"
+            <img *ngIf="loggedInUser.profileImageId" class="profile-pic" width="200px" height="200px"
                 [src]="(loggedInUser.profileImageId) |base64String|async" alt="">
+            <img class="profile-pic" style="margin-top: -4px;" height="32" width="32"
+                *ngIf="!loggedInUser.profileImageId" src="../../../assets/images/user.png" width="200px" height="200px"
+                alt="">
         </div>
         <div fxFlex="100" fxLayout="row" fxLayoutGap="16px">
             <div>Name : </div>
