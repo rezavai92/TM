@@ -4,7 +4,7 @@ export enum PortalLanguageEnum {
 }
 
 export enum DoctorsSpecializationEnum {
-	GeneralDoctor = 'GeneralDoctor',
+	GeneralDoctor = 'General',
 	HeartSpecialist = 'HeartSpecialist',
 	EyeSpecialist = 'EyeSpecialist',
 }
