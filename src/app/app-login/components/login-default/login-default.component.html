@@ -1,4 +1,4 @@
-<div fxFlexFill fxLayout="row" fxLayoutAlign="start" class="login-page-container w-100-p">
+<div *ngIf="!authResolving" fxFlexFill fxLayout="row" fxLayoutAlign="start" class="login-page-container w-100-p">
 
 	<div class="w-100-p" fxHide.lt-lg fxShow.gt-md>
 		<div fxFlex="75" class="banner-container">

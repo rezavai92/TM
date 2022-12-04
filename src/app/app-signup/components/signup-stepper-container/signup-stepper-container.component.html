@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center center" class="w-100-p signup-page-container">
+<div *ngIf="!authResolving" fxLayout="row" fxLayoutAlign="center center" class="w-100-p signup-page-container">
 	<div *ngIf="!otpVerified && !allFormsFilledUp" class="sign-up-box" fxLayout="column" fxLayoutGap="16px"
 		fxLayoutAlign="start center">
 		<div class="page-header-1">

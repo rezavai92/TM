@@ -14,7 +14,9 @@ import {
 	Router,
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie-service';
 import { Subscription, take } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth-services/auth.service';
 import { UserRoles } from '../../../shared/constants/tm-config.constant';
 import { CustomToastService } from '../../../shared/modules/shared-utility/services/custom-toast.service';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
@@ -65,20 +67,35 @@ export class SignupStepperContainerComponent
 	bankFormGroup: FormGroup = new FormGroup({});
 	mfsFormGroup: FormGroup = new FormGroup({});
 	languageSubscription!: Subscription;
+	authSubs$!: Subscription;
 	mergedFormData!: any;
 	isAllFormsValid: boolean = false;
 	reqForOtpLoading = false;
 	allFormsFilledUp = false;
 	mobileNumberForOtp = '01831309302';
 	otpVerified = false;
+	authResolving = true;
 	constructor(
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
 		private _signupService: SignupService,
 		private _customToastService: CustomToastService,
 		private _router: Router,
-		private _otpService: OtpService
+		private _otpService: OtpService,
+		private auth: AuthService,
+		private cookie: CookieService
 	) {
+		const token = this.cookie.get('token');
+
+		this.authSubs$ =this.auth.getLoggedInUser().subscribe((res) => {
+			if (token && res) {
+				this._router.navigateByUrl('/my-profile');
+			}
+			else {
+				this.authResolving = false;
+			}
+		});
+
 		this.languageSubscription = this._sharedDataService
 			.getCurrentLang()
 			.subscribe((lang) => {
@@ -97,6 +114,7 @@ export class SignupStepperContainerComponent
 
 	ngOnDestroy(): void {
 		this.languageSubscription.unsubscribe();
+		this.authSubs$.unsubscribe();
 	}
 
 	ngAfterViewInit(): void {

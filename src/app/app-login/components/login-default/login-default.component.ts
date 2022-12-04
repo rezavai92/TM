@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth-services/auth.service';
 import { SharedDataService } from '../../../shared/services/shared-data-services/shared-data.service';
 
 @Component({
@@ -15,14 +16,28 @@ export class LoginDefaultComponent implements OnDestroy {
 	currentSelectedLanguageKey: string = 'ENGLISH';
 	languageSubscription!: Subscription;
 	tokenSubscription!: Subscription;
-
+	authSub$!: Subscription;
+	authResolving = true;
 	constructor(
 		private _router: Router,
 		private _translateService: TranslateService,
 		private _sharedDataService: SharedDataService,
-		private cookie: CookieService
+		private cookie: CookieService,
+		private auth: AuthService
 	) {
 		const token = this.cookie.get('token');
+
+		this.authSub$ =this.auth
+			.getLoggedInUser()
+			.subscribe((res) => {
+				if (token && res) {
+					this._router.navigateByUrl('/my-profile');
+				}
+				else {
+					this.authResolving = false;
+				}
+				
+			});
 
 		this.languageSubscription = this._sharedDataService
 			.getCurrentLang()
@@ -34,6 +49,7 @@ export class LoginDefaultComponent implements OnDestroy {
 	}
 	ngOnDestroy(): void {
 		this.languageSubscription.unsubscribe();
+		this.authSub$.unsubscribe()
 	}
 
 	navigateToSignUp() {
