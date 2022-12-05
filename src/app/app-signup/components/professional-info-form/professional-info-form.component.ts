@@ -80,7 +80,7 @@ export class ProfessionalInfoFormComponent {
 			BusinessPhoneNumber: [
 				'',
 				[
-					Validators.required,
+					//		Validators.required,
 					Validators.pattern(numberRegexString),
 					Validators.maxLength(10),
 					Validators.minLength(10),
@@ -89,7 +89,7 @@ export class ProfessionalInfoFormComponent {
 			BusinessEmail: [
 				'',
 				[
-					Validators.required,
+					//Validators.required,
 					Validators.email,
 					Validators.pattern(emailRegexString),
 				],
@@ -212,7 +212,6 @@ export class ProfessionalInfoFormComponent {
 				this.findDocumentFormGroupAt(documentIndex);
 			docFormGroupFromArray.controls['Attachment'].setValue('');
 			this.professionalInfoForm.updateValueAndValidity();
-			
 		}
 	}
 

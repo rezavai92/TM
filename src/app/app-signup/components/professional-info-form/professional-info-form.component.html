@@ -7,7 +7,7 @@
             <mat-form-field floatLabel="always" appearance="outline" class="w-100-p business-phone-no">
                 <mat-label>{{"BUSINESS_PHONE_NUMBER" | translate}}</mat-label>
                 <input matInput [placeholder]=" 'BUSINESS_PHONE_NUMBER' | translate"
-                    formControlName="BusinessPhoneNumber" required />
+                    formControlName="BusinessPhoneNumber" />
                 <span matPrefix>+880 &nbsp;</span>
                 <mat-error *ngIf="hasError(FormControls['BusinessPhoneNumber'])">
                     <span *ngIf="FormControls['BusinessPhoneNumber']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
@@ -24,8 +24,7 @@
 
             <mat-form-field floatLabel="always" appearance="outline" class="w-100-p">
                 <mat-label>{{"BUSINESS_EMAIL" | translate}}</mat-label>
-                <input matInput [placeholder]=" 'BUSINESS_EMAIL' | translate" formControlName="BusinessEmail"
-                    required />
+                <input matInput [placeholder]=" 'BUSINESS_EMAIL' | translate" formControlName="BusinessEmail" />
                 <mat-error *ngIf="hasError(FormControls['BusinessEmail'])">
                     <span *ngIf="FormControls['BusinessEmail']?.errors?.['required']">{{"THIS_FIELD_REQUIRED"
                         |translate}}</span>

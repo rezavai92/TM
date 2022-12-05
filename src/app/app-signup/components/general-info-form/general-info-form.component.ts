@@ -213,7 +213,7 @@ export class GeneralInfoFormComponent implements OnInit {
 		if (contextFor === 'Front') {
 			return {
 				description:
-					"Allowed formats are : ('png', 'jpg', 'jpeg').  Maximum file size is 1 MB.",
+					"Allowed formats are : ('png', 'jpg', 'jpeg','pdf').  Maximum file size is 1 MB.",
 				title: 'NID Front Part',
 				isDisabled: false,
 				isRequired: true,
@@ -224,7 +224,7 @@ export class GeneralInfoFormComponent implements OnInit {
 		} else {
 			return {
 				description:
-					"Allowed formats are : ('png', 'jpg', 'jpeg'). Maximum file size is 1 MB.",
+					"Allowed formats are : ('png', 'jpg', 'jpeg','pdf'). Maximum file size is 1 MB.",
 				title: 'NID Back Part',
 				isDisabled: false,
 				isRequired: true,
@@ -243,7 +243,7 @@ export class GeneralInfoFormComponent implements OnInit {
 	initNidFrontPartUploadConfig() {
 		this.NidFrontPartUploadConfig = {
 			maxSize: 1,
-			fileTypes: ['png', 'jpg', 'jpeg'],
+			fileTypes: ['png', 'jpg', 'jpeg', 'pdf'],
 			showErrorInsideBox: true,
 		};
 	}
@@ -251,7 +251,7 @@ export class GeneralInfoFormComponent implements OnInit {
 	initNidBackPartUploadConfig() {
 		this.NidBackPartUploadConfig = {
 			maxSize: 1,
-			fileTypes: ['png', 'jpg', 'jpeg'],
+			fileTypes: ['png', 'jpg', 'jpeg', 'pdf'],
 			showErrorInsideBox: true,
 		};
 	}
@@ -346,7 +346,7 @@ export class GeneralInfoFormComponent implements OnInit {
 				event && event.metaData && event.metaData.uploadedFileId
 					? event.metaData.uploadedFileId
 					: this.uploadedProfileImageId;
-			
+
 			this._signupService.storeUploadedDocumentIdsInSignup(
 				this.uploadedProfileImageId
 			);
