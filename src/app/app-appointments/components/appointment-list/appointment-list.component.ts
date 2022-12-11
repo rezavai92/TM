@@ -156,7 +156,7 @@ export class AppointmentListComponent implements OnInit {
 			},
 
 			{
-				key: 'DATE_OFoBIRTH',
+				key: 'DATE_OF_BIRTH',
 				name: 'DateOfBirth',
 				cellTemplate: this.dobTemplate,
 			},

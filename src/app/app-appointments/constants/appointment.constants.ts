@@ -121,3 +121,10 @@ export const LungConditionList = Object.freeze([
 		value: PatientHealthConditionEnum.SEVERE,
 	},
 ]);
+
+
+export const condtionColors = {
+ Normal: 'green',
+Medium: 'yellow',
+Severe : 'red'	
+}

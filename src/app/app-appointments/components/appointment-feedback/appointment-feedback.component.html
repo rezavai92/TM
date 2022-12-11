@@ -108,7 +108,11 @@
                         <mat-label>{{"ECG_CONDITION" | translate}}</mat-label>
                         <mat-select formControlName="EcgCondition" required>
                             <mat-option *ngFor="let condition of ecgConditons" [value]="condition.value">
-                                {{condition.key | translate}}
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <span>{{condition.key | translate}}</span>
+                                    <span [ngClass]="['legend',condition.value]"></span>
+                                </div>
+                               
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="hasError(FormControls['EcgCondition'] )">
@@ -123,7 +127,10 @@
                         <mat-label>{{"HEART_CONDITION" | translate}}</mat-label>
                         <mat-select formControlName="HeartCondition" required>
                             <mat-option *ngFor="let condition of heartConditions" [value]="condition.value">
-                                {{condition.key | translate}}
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <span>{{condition.key | translate}}</span>
+                                    <span [ngClass]="['legend',condition.value]"></span>
+                                </div>
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="hasError(FormControls['HeartCondition'] )">
@@ -143,7 +150,10 @@
                         <mat-label>{{"LUNG_CONDITION" | translate}}</mat-label>
                         <mat-select formControlName="LungConition" required>
                             <mat-option *ngFor="let condition of lungConditions" [value]="condition.value">
-                                {{condition.key | translate}}
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <span>{{condition.key | translate}}</span>
+                                    <span [ngClass]="['legend',condition.value]"></span>
+                                </div>
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="hasError(FormControls['LungConition'] )">
@@ -158,7 +168,10 @@
                         <mat-label>{{"OTOSCOPE_CONDITION" | translate}}</mat-label>
                         <mat-select formControlName="OtoscopeConition" required>
                             <mat-option *ngFor="let condition of otoscopeConditions" [value]="condition.value">
-                                {{condition.key | translate}}
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <span>{{condition.key | translate}}</span>
+                                    <span [ngClass]="['legend',condition.value]"></span>
+                                </div>
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="hasError(FormControls['OtoscopeConition'] )">
@@ -178,7 +191,10 @@
                         <mat-label>{{"OVERALL_HEALTH_CONDITION" | translate}}</mat-label>
                         <mat-select formControlName="PatientCondition" required>
                             <mat-option *ngFor="let condition of overallHealthConditionTypes" [value]="condition.value">
-                                {{condition.key | translate}}
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <span>{{condition.key | translate}}</span>
+                                    <span [ngClass]="['legend',condition.value]"></span>
+                                </div>
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="hasError(FormControls['PatientCondition'] )">

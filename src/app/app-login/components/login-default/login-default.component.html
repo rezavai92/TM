@@ -2,7 +2,7 @@
 
 	<div class="w-100-p" fxHide.lt-lg fxShow.gt-md>
 		<div fxFlex="75" class="banner-container">
-			<img src="../../../assets/images/login-banner.jpg" height="100%" width="100%" alt="Unable to show banner">
+			<!-- <img src="../../../assets/images/login-banner.jpg" height="100%" width="100%" alt="Unable to show banner"> -->
 			<div class="title-container">
 				<img src="../../../assets/images/shifa-bd-logo.jpeg" alt="Unable to show banner">
 			</div>
@@ -27,6 +27,7 @@
 
 	<div fxHide.gt-md fxShow.lt-lg class="w-100-p max-tab-view v-h-100" fxLayout="column" fxLayoutAlign="center center">
 		<div [ngClass.md]="{'w-40-p' : true}" [ngClass.lt-md]="{'w-60-p' : true}" class="login-box-sm-screen">
+			<div style="text-align: center;margin-bottom: 16px;"><img  width="120" height="60" src="../../../assets/images/shifa-bd-logo.jpeg" alt="Unable to show banner"></div>
 			<app-login-form>
 				<button (click)="$event.preventDefault();" mat-button color="primary">Forgot password?
 				</button>

@@ -3,6 +3,7 @@
 @import "../../../../styles/shared/page-header.scss";
 @import "../../../../styles/utils/spacing";
 @import "../../../../styles/utils/singletone";
+@import "../../../../styles/shared/appointment";
 .feedback-container {
 	width: 100%;
 	padding: 16px;
@@ -21,6 +22,15 @@
 		margin-top: -20px;
 	}
 }
+
+.legend{
+	width: 8px;
+	height: 8px;
+	border-radius: 2px;
+	padding: 2px 8px;
+}
+
+
 :host {
 	width: 100%;
 }
