@@ -37,6 +37,11 @@
 	<span *ngIf="row && row.applicantDisplayName; else empty">{{ row.applicantDisplayName }}</span>
 </ng-template>
 
+
+<ng-template #DOBTemplate let-row="row" let-column="column">
+	<span *ngIf="row && row.DateOfBirth; else empty">{{ row.DateOfBirth | date: 'MMM d, y'}}</span>
+</ng-template>
+
 <ng-template #serviceTypeTemplate let-row="row" let-column="column">
 	<span *ngIf="row && row.serviceType; else empty" [class]="[row.serviceType|lowercase, 'status-box']">{{
 		row.serviceType }}</span>

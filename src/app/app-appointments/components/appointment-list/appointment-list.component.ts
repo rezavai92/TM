@@ -73,6 +73,8 @@ export class AppointmentListComponent implements OnInit {
 	serviceStatusTemplate: TemplateRef<any> | undefined;
 	@ViewChild('searchInput', { static: true })
 	searchInput: ElementRef | undefined;
+	@ViewChild('DOBTemplate', { static: true })
+	dobTemplate: TemplateRef<any> | undefined;
 
 	constructor(
 		private appointmentService: AppointmentService,
@@ -151,6 +153,12 @@ export class AppointmentListComponent implements OnInit {
 				key: 'PATIENT_NAME',
 				name: 'applicantDisplayName',
 				cellTemplate: this.applicantDisplayNameTemplate,
+			},
+
+			{
+				key: 'DATE_OFoBIRTH',
+				name: 'DateOfBirth',
+				cellTemplate: this.dobTemplate,
 			},
 
 			{
