@@ -35,6 +35,7 @@ export class AppointmentFeedbackService {
 			HeartCondition: formdata.HeartCondition,
 			LungConition: formdata.LungConition,
 			OtoscopeConition: formdata.OtoscopeConition,
+			ServiceId: otherInfo.ServiceId,
 		};
 
 		return payload;

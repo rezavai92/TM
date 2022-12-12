@@ -41,6 +41,7 @@ export class AppointmentFeedbackComponent implements OnInit {
 
 	loading = false;
 	appointmentId!: string;
+
 	constructor(
 		private fb: FormBuilder,
 		private route: ActivatedRoute,
@@ -128,6 +129,7 @@ export class AppointmentFeedbackComponent implements OnInit {
 			ApplicantPhoneNumber: this.applicantInfo
 				? this.applicantInfo.ApplicantPhoneNumber ?? ''
 				: '',
+			ServiceId: this.appointmentId,
 		};
 		this.feedbackService
 			.submitAppointmentFeedback(formData, otherInfo)
