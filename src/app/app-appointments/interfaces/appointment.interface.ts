@@ -30,7 +30,7 @@ export interface AppointmentListResponseData {
 	serviceRequestDate: string;
 	startTime: string;
 	endTime: string;
-	DateOfBirth: string;
+	dateOfBirth: string;
 }
 
 export interface PatientFile {

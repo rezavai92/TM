@@ -39,7 +39,7 @@
 
 
 <ng-template #DOBTemplate let-row="row" let-column="column">
-	<span *ngIf="row && row.DateOfBirth; else empty">{{ row.DateOfBirth | date: 'MMM d, y'}}</span>
+	<span *ngIf="row && row.dateOfBirth; else empty">{{ row.dateOfBirth | date: 'MMM d, y'}}</span>
 </ng-template>
 
 <ng-template #serviceTypeTemplate let-row="row" let-column="column">
