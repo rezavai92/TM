@@ -5,8 +5,9 @@ import {
 	HttpEvent,
 	HttpInterceptor,
 	HttpHeaders,
+	HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../services/auth-services/auth.service';
 
@@ -28,7 +29,15 @@ export class AuthInterceptor implements HttpInterceptor {
 				`bearer ${token}`
 			);
 			const cloned = request.clone({ headers: httpHeaders });
-			return next.handle(cloned);
+			return next.handle(cloned).pipe(catchError((error: HttpErrorResponse) => {
+
+				if (error.status === 401) {
+					// here refresh token will be implemented.
+					this.auth.logout();	
+				}
+
+				return throwError(()=>error);
+			}));
 		} else return next.handle(request);
 	}
 }
