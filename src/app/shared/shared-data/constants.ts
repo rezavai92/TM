@@ -25,7 +25,8 @@ export const PortalLanguageKeyValueMap = {
 	en: 'ENGLISH',
 	be : 'BENGALI'
 }
-export const emailRegexString = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$';
+export const emailRegexString2 = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$';
+export const emailRegexString = "^([_a-z0-9A-Z-])+(\\.[_a-zA-Z0-9-]+)*@[_a-z0-9A-Z-]+(\\.[_a-zA-Z0-9-]+)*(\\.)+([a-zA-Z]{2,4})$";
 export const numberRegexString = '^[0-9]*$';
 
 
