@@ -1,4 +1,4 @@
-const baseUrl = 'https://shifabd.org';
+const baseUrl = 'https://shifabd.online';
 export const environment = {
 	production: true,
 	baseUrl: `${baseUrl}`,
