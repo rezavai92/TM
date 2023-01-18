@@ -242,7 +242,7 @@ export class GeneralInfoFormComponent implements OnInit {
 
 	initNidFrontPartUploadConfig() {
 		this.NidFrontPartUploadConfig = {
-			maxSize: 1,
+			maxSize: 10,
 			fileTypes: ['png', 'jpg', 'jpeg', 'pdf'],
 			showErrorInsideBox: true,
 		};
@@ -250,7 +250,7 @@ export class GeneralInfoFormComponent implements OnInit {
 
 	initNidBackPartUploadConfig() {
 		this.NidBackPartUploadConfig = {
-			maxSize: 1,
+			maxSize: 10,
 			fileTypes: ['png', 'jpg', 'jpeg', 'pdf'],
 			showErrorInsideBox: true,
 		};
@@ -311,7 +311,7 @@ export class GeneralInfoFormComponent implements OnInit {
 
 	initProfilePictureUploadConfig() {
 		this.ProfilePictureUploadConfig = {
-			maxSize: 5,
+			maxSize: 10,
 			fileTypes: ['png', 'jpg', 'jpeg'],
 			showErrorInsideBox: false,
 		};

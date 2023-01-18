@@ -41,7 +41,7 @@ export class ProfessionalInfoFormComponent {
 	documentTags = DoctorsProfessionalDocumentTags;
 
 	documentUploadConfig: IFileUploadConfig = {
-		maxSize: 1,
+		maxSize: 10,
 		fileTypes: ['pdf', 'xls', 'doc'],
 		maxFiles: 1,
 		showErrorInsideBox: true,
