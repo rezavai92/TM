@@ -64,7 +64,7 @@ export class BankInfoFormComponent implements OnInit, OnDestroy {
             BankName: ["", Validators.required],
             BranchName: ["", Validators.required],
             AccountHolderName: ["", Validators.required],
-            AccountNumber: ["", Validators.required],
+            AccountNumber: ["", [Validators.required,Validators.pattern(numberRegexString)]],
             RoutingNumber: [""],
 
         })

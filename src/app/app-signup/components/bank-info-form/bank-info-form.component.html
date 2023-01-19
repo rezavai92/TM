@@ -38,6 +38,10 @@
                     <mat-error *ngIf="hasError(BankGroupControls['AccountNumber'])">
                         <span *ngIf="BankGroupControls['AccountNumber']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED"
                             | translate }}</span>
+
+                            <span *ngIf="BankGroupControls['AccountNumber']?.errors?.['pattern']">{{ "Only number is allowed"
+                                | translate }}</span>
+
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100-p form-field">

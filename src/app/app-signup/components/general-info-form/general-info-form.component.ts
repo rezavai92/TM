@@ -213,7 +213,7 @@ export class GeneralInfoFormComponent implements OnInit {
 		if (contextFor === 'Front') {
 			return {
 				description:
-					"Allowed formats are : ('png', 'jpg', 'jpeg','pdf').  Maximum file size is 1 MB.",
+					"Allowed formats are : ('png', 'jpg', 'jpeg','pdf').  Maximum file size is 10 MB.",
 				title: 'NID Front Part',
 				isDisabled: false,
 				isRequired: true,
@@ -224,7 +224,7 @@ export class GeneralInfoFormComponent implements OnInit {
 		} else {
 			return {
 				description:
-					"Allowed formats are : ('png', 'jpg', 'jpeg','pdf'). Maximum file size is 1 MB.",
+					"Allowed formats are : ('png', 'jpg', 'jpeg','pdf'). Maximum file size is 10 MB.",
 				title: 'NID Back Part',
 				isDisabled: false,
 				isRequired: true,
@@ -325,7 +325,7 @@ export class GeneralInfoFormComponent implements OnInit {
 	getUploadDataContextForProfilePicture(): IFileUploadDataContext {
 		return {
 			description:
-				"Allowed formats are : ('png', 'jpg', 'jpeg').  Maximum file size is 5 MB.",
+				"Allowed formats are : ('png', 'jpg', 'jpeg').  Maximum file size is 10 MB.",
 			title: 'Profile Picture',
 			isDisabled: false,
 			isRequired: false,
