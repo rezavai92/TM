@@ -42,7 +42,7 @@ export class ProfessionalInfoFormComponent {
 
 	documentUploadConfig: IFileUploadConfig = {
 		maxSize: 10,
-		fileTypes: ['pdf', 'xls', 'doc'],
+		fileTypes: ['png', 'jpg', 'jpeg', 'pdf'],
 		maxFiles: 1,
 		showErrorInsideBox: true,
 	};
