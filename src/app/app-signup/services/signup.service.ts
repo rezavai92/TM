@@ -91,7 +91,7 @@ export class SignupService {
 		professionalInfoFormData: IProfessionalInfoFormDataForRegistration
 	) {
 		const documentIds = [
-			generalInfoFormData.NidBackPartDocId,
+			generalInfoFormData.NidFrontPartDocId,
 			generalInfoFormData.NidBackPartDocId,
 			...professionalInfoFormData.ProfessionalDocumentIds,
 		];
