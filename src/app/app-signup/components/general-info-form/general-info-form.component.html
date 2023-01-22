@@ -59,10 +59,10 @@
 
 			<mat-form-field class="w-100-p" appearance="outline">
 				<mat-label>{{ "DATE_OF_BIRTH" | translate }}</mat-label>
-				<input matInput formControlName="DateOfBirth" [matDatepicker]="birthDayPicker" />
+				<input matInput [min]="minDate" [max]="maxDate" formControlName="DateOfBirth" [matDatepicker]="birthDayPicker" />
 				<mat-hint>MM/DD/YYYY</mat-hint>
-				<mat-datepicker-toggle matSuffix [for]="birthDayPicker"></mat-datepicker-toggle>
-				<mat-datepicker #birthDayPicker></mat-datepicker>
+				<mat-datepicker-toggle   matSuffix [for]="birthDayPicker"></mat-datepicker-toggle>
+				<mat-datepicker  #birthDayPicker></mat-datepicker>
 				<mat-error *ngIf="hasError(FormControls['DateOfBirth'])">
 					<span *ngIf="FormControls['DateOfBirth']?.errors?.['required']">{{ "THIS_FIELD_REQUIRED" | translate
 						}}</span>

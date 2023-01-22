@@ -53,6 +53,8 @@ export class GeneralInfoFormComponent implements OnInit {
 	profilePicUploading = false;
 	uploadedProfileImageId = '';
 	languageSubscription!: Subscription;
+	minDate !: any;
+	maxDate  : any;
 	constructor(
 		private _fb: FormBuilder,
 		private _translateService: TranslateService,
@@ -137,6 +139,9 @@ export class GeneralInfoFormComponent implements OnInit {
 		(this.FormControls['PasswordGroup'] as FormGroup).addValidators(
 			this.confirmPasswordValidator()
 		);
+
+		this.maxDate = new Date();
+        this.minDate = new Date("0001-01-01T00:00:00Z");
 	}
 
 	autoPopulateForm() {

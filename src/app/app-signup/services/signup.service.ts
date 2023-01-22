@@ -109,6 +109,7 @@ export class SignupService {
 		financialInfo: UserFinancialInfo
 	): IRegisterUserPayload {
 		// need to complete this
+		debugger;
 		let payload: IRegisterUserPayload = {
 			FirstName: generalInfoFormData.FirstName,
 			LastName: generalInfoFormData.LastName,

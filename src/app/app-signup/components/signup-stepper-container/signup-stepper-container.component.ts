@@ -156,6 +156,7 @@ export class SignupStepperContainerComponent
 
 	submitForUserRegistration() {
 		this.reqForOtpLoading = true;
+		debugger;
 		let generalInfoFormData: ISignupGeneralInfoFormDataForRegistration =
 			this.generalInfoFormComponent.getRegistrationCompatibleGeneralInfoFormData();
 		let professionalInfoFormData: IProfessionalInfoFormDataForRegistration =

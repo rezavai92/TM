@@ -31,6 +31,7 @@ import { SignupService } from '../../services/signup.service';
 })
 export class ProfessionalInfoFormComponent {
 	professionalInfoForm!: FormGroup;
+	storedProfessionalDoc : any[] = [];
 	//uploaderErrorMessasges: string[] = [];
 	sepcializations = [
 		{ key: DoctorsSpecializationEnum.GeneralDoctor, disabled: false },
@@ -69,7 +70,7 @@ export class ProfessionalInfoFormComponent {
 			BusinessPhoneNumber: formData.BusinessPhoneNumber,
 			BusinessEmail: formData.BusinessEmail,
 			Specializations: formData.Specializations,
-			ProfessionalDocumentIds: [],
+			ProfessionalDocumentIds: [...this.storedProfessionalDoc],
 		};
 
 		return result;
@@ -176,6 +177,7 @@ export class ProfessionalInfoFormComponent {
 
 	deleteDocument(index: number) {
 		this.ProfessionalDocuments.removeAt(index);
+		 this.storedProfessionalDoc.splice(index, 1);
 	}
 
 	get FormControls() {
@@ -197,6 +199,7 @@ export class ProfessionalInfoFormComponent {
 				'document uploaded'
 			);
 			this.professionalInfoForm.updateValueAndValidity();
+			this.storedProfessionalDoc.push(event.metaData.uploadedFileId);
 			this._signupService.storeUploadedDocumentIdsInSignup(
 				event.metaData.uploadedFileId
 			);

@@ -29,5 +29,6 @@
     "SIGNUP_REGISTRATION_SUCCESSFULL" : "Registration is successful",
     "ENTER_VALID_NID_NUMBER" : "Enter a valid NID number",
     "SEND_OTP" : "Send OTP",
-    "INSUFFICIENT_DATA" : "Insufficient data"
+    "INSUFFICIENT_DATA" : "Insufficient data",
+    "OTP_SENT_TO_USERS_PNONE_NUMBER" : "Otp is sent to your provided Mobile number"
 }
