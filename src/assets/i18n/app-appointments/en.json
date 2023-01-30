@@ -47,6 +47,6 @@
     "NORMAL" : "Normal",
     "SEVERE" : "Severe",
     "MEDIUM" : "Medium",
-    "APPLICANT_COMMENT" : "Comment from Applicant"
+    "APPLICANT_COMMENT" : "Comments from Patient"
 
 }
