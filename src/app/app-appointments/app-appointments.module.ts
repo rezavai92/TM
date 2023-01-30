@@ -24,6 +24,7 @@ import { AppointmentCapsuleGenericService } from './services/appointment-capsule
 import { ApplicantAppointmentHistoryComponent } from './components/applicant-appointment-history/applicant-appointment-history.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppointmentFeedbackComponent } from './components/appointment-feedback/appointment-feedback.component';
+import { ApplicantCommentSectionComponent } from './components/applicant-comment-section/applicant-comment-section.component';
 
 const routes: Route[] = [
 	{ path: '', component: AppointmentListComponent },
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		AppointmentCapsuleGenericItemComponent,
 		ApplicantAppointmentHistoryComponent,
   AppointmentFeedbackComponent,
+  ApplicantCommentSectionComponent,
 	],
 	imports: [
 		CommonModule,

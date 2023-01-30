@@ -19,6 +19,7 @@ export class AppointmentCapsuleComponent implements OnInit {
 	sixInOneHealthMonitorData!: ISixInOneMonitor;
 	stethoscopeData!: IStethoscope;
 	otoscopeData!: IOtoscope;
+	applicantComment!: string;
 	ngOnInit(): void {
 		this.loadAllSectionData();
 	}
@@ -27,10 +28,8 @@ export class AppointmentCapsuleComponent implements OnInit {
 		this.loadSixInOneHealthMonitorData();
 		this.loadStethoscopeData();
 		this.loadOtoscopeData();
+		this.loadApplicantComment()
 
-		console.log(this.sixInOneHealthMonitorData);
-		console.log(this.stethoscopeData);
-		console.log(this.otoscopeData);
 	}
 
 	loadStethoscopeData() {
@@ -46,5 +45,8 @@ export class AppointmentCapsuleComponent implements OnInit {
 
 	loadOtoscopeData() {
 		this.otoscopeData = this.cgs.parseOtoscopeData(this.appointmentData);
+	}
+	loadApplicantComment() {
+		this.applicantComment = this.appointmentData.applicantComment;
 	}
 }
