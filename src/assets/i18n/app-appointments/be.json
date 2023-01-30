@@ -46,7 +46,8 @@
      "OTOSCOPE_CONDITION": "Otoscope Condition",
      "NORMAL" : "Normal",
      "SEVERE" : "Severe",
-     "MEDIUM" : "Medium"
+     "MEDIUM" : "Medium",
+     "APPLICANT_COMMENT" : "আবেদনকারীর মন্তব্য"
 
 
 
